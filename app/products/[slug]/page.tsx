@@ -113,7 +113,7 @@ export default async function ProductPage({
 
           {/* CTA */}
           <a
-            href={`https://wa.me/905000000000?text=${encodeURIComponent(`Merhaba, "${product.name}" ürünü hakkında bilgi almak istiyorum.`)}`}
+            href={`https://wa.me/905316893849?text=${encodeURIComponent(`Merhaba, "${product.name}" ürünü hakkında bilgi almak istiyorum.`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full py-4 bg-stone-900 text-white text-sm tracking-widest uppercase text-center hover:bg-stone-700 transition-colors mb-4"
