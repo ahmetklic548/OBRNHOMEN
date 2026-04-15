@@ -1,13 +1,13 @@
 [
   {
-    "id": "985415641",
+    "id": "6548964651",
     "slug": "kesede-inci-tesbih-tesbih-seti",
     "name": "Kesede İnci Tesbih Tesbih Seti",
     "category": "Tesbih",
     "brand": "OBRNHOMEN",
-    "price": 1649.99,
+    "price": 497.98,
     "currency": "TRY",
-    "stock": 50,
+    "stock": 498,
     "inStock": true,
     "color": "Beyaz",
     "size": "Tek Ebat",
@@ -18,39 +18,38 @@
     "metaDescription": "Kesede İnci Tesbih Tesbih Seti — Tesbih."
   },
   {
-    "id": "2312351456156466451",
+    "id": "896468541651",
     "slug": "basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
     "name": "Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
     "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 3699.99,
+    "brand": "PIRISA",
+    "price": 159,
     "currency": "TRY",
-    "stock": 2,
+    "stock": 250,
     "inStock": true,
     "color": null,
     "size": "Tek Ebat",
     "features": [
-      "35 adet şık ve zarif başörtüsü içeren set, farklı kombinler oluşturmanızı sağlar.",
-      "Her bir başörtü, gelin bohçası veya çeyiz için ideal bir hediye seçeneği sunar.",
-      "Set içerisinde yer alan taşlı zikirmatik, dini ritüellerinizi daha anlamlı hale getirir.",
-      "İnci tesbih, hem estetik görünümüyle hem de manevi değeriyle özel bir dokunuş katmaktadır.",
-      "Gelin bohçası ve çeyiz hazırlıklarınız için pratik ve şık bir çözüm sunar."
+      "Gelin bohçası, çeyiz ve hediye için ideal bir set.",
+      "Şık ve zarif tasarımıyla her kıyafetle uyum sağlar.",
+      "Taşlı başörtü, zikirmatik ve inci tesbih içerir.",
+      "Kaliteli malzemelerden üretilmiştir, uzun ömürlü kullanım sunar.",
+      "Hem dini bir ibadet aracı hem de şık bir aksesuar olarak kullanılabilir."
     ],
     "images": [
-      "https://cdn.dsmcdn.com/ty1855/prod/QC_PREP/20260414/18/fd7bef13-4a8b-3264-aa08-ee68ead9b119/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1856/prod/QC_PREP/20260414/18/901f8732-f7bb-3025-a280-db33b7003238/1_org_zoom.jpg"
+      "https://cdn.dsmcdn.com/ty1855/prod/QC_PREP/20260414/19/1cec2cd2-4e7e-372e-8880-a7ee73311ba2/1_org_zoom.jpg"
     ],
-    "metaDescription": "Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti — Konsept Hediyelik. 35 adet şık ve zarif başörtüsü içeren set, farklı kombinler oluşturmanızı sağlar."
+    "metaDescription": "Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti — Konsept Hediyelik. Gelin bohçası, çeyiz ve hediye için ideal bir set."
   },
   {
-    "id": "564165411654968",
+    "id": "156489748785564",
     "slug": "karma-yumusak-sik-desensiz-duz-seccade-700-gr-hafif-namazlik",
     "name": "Karma Yumuşak Şık Desensiz Düz Seccade 700 Gr Hafif Namazlık",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
-    "price": 649.99,
+    "price": 319.99,
     "currency": "TRY",
-    "stock": 259,
+    "stock": 50,
     "inStock": true,
     "color": "Çok Renkli",
     "size": "110 x 70",
@@ -66,12 +65,12 @@
     "metaDescription": "Karma Yumuşak Şık Desensiz Düz Seccade 700 Gr Hafif Namazlık — Seccade. Türkiye'de üretilen, yerli üretim ve kaliteli bir üründür."
   },
   {
-    "id": "468465156651",
-    "slug": "basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti-2",
+    "id": "4645416514645",
+    "slug": "basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti_2",
     "name": "Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
     "category": "Eşarp",
     "brand": "PIRISA",
-    "price": 1399.89,
+    "price": 149.69,
     "currency": "TRY",
     "stock": 50,
     "inStock": true,
@@ -118,7 +117,7 @@
   },
   {
     "id": "6515615231",
-    "slug": "30lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
+    "slug": "30-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
     "name": "30’lu Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -140,55 +139,6 @@
       "https://cdn.dsmcdn.com/ty1856/prod/QC_PREP/20260414/18/901f8732-f7bb-3025-a280-db33b7003238/1_org_zoom.jpg"
     ],
     "metaDescription": "30’lu Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti — Konsept Hediyelik. 30 adet şık ve zarif başörtüsü içeren set, farklı kombinler oluşturmanızı sağ"
-  },
-  {
-    "id": "896468541651",
-    "slug": "basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti-3",
-    "name": "Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
-    "category": "Konsept Hediyelik",
-    "brand": "PIRISA",
-    "price": 159,
-    "currency": "TRY",
-    "stock": 250,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Gelin bohçası, çeyiz ve hediye için ideal bir set.",
-      "Şık ve zarif tasarımıyla her kıyafetle uyum sağlar.",
-      "Taşlı başörtü, zikirmatik ve inci tesbih içerir.",
-      "Kaliteli malzemelerden üretilmiştir, uzun ömürlü kullanım sunar.",
-      "Hem dini bir ibadet aracı hem de şık bir aksesuar olarak kullanılabilir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1855/prod/QC_PREP/20260414/19/1cec2cd2-4e7e-372e-8880-a7ee73311ba2/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti — Konsept Hediyelik. Gelin bohçası, çeyiz ve hediye için ideal bir set."
-  },
-  {
-    "id": "5621651561",
-    "slug": "basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti-4",
-    "name": "Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 1399.99,
-    "currency": "TRY",
-    "stock": 200,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "12 adet şık ve zarif başörtüsü içeren set, farklı kombinler oluşturmanızı sağlar.",
-      "Her bir başörtü, gelin bohçası veya çeyiz için ideal bir hediye seçeneği sunar.",
-      "Set içerisinde yer alan taşlı zikirmatik, dini ritüellerinizi daha anlamlı hale getirir.",
-      "İnci tesbih, hem estetik görünümüyle hem de manevi değeriyle özel bir dokunuş katmaktadır.",
-      "Gelin bohçası ve çeyiz hazırlıklarınız için pratik ve şık bir çözüm sunar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1855/prod/QC_PREP/20260414/18/fd7bef13-4a8b-3264-aa08-ee68ead9b119/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1856/prod/QC_PREP/20260414/18/901f8732-f7bb-3025-a280-db33b7003238/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti — Konsept Hediyelik. 12 adet şık ve zarif başörtüsü içeren set, farklı kombinler oluşturmanızı sağlar."
   },
   {
     "id": "6545616515651651",
@@ -219,7 +169,7 @@
   },
   {
     "id": "46541566561",
-    "slug": "4lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
+    "slug": "4-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
     "name": "4'lü Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
     "category": "Konsept Hediyelik",
     "brand": "PIRISA",
@@ -243,7 +193,7 @@
   },
   {
     "id": "85648964",
-    "slug": "10lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
+    "slug": "10-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
     "name": "10’lu Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -267,32 +217,8 @@
     "metaDescription": "10’lu Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti — Konsept Hediyelik. 10 adet şık ve zarif başörtüsü içeren set, farklı kombinler oluşturmanızı sağ"
   },
   {
-    "id": "4645416514645",
-    "slug": "basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti-5",
-    "name": "Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
-    "category": "Eşarp",
-    "brand": "PIRISA",
-    "price": 149.69,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Beyaz",
-    "size": "Tek Ebat",
-    "features": [
-      "Gelin bohçası, çeyiz ve hediye için ideal bir set.",
-      "Şık ve zarif tasarımıyla her kıyafetle uyum sağlar.",
-      "Taşlı başörtü, zikirmatik ve inci tesbih içerir.",
-      "Kaliteli malzemelerden üretilmiştir, uzun ömürlü kullanım sunar.",
-      "Hem dini bir ibadet aracı hem de şık bir aksesuar olarak kullanılabilir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1855/prod/QC_PREP/20260414/19/1cec2cd2-4e7e-372e-8880-a7ee73311ba2/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti — Eşarp. Gelin bohçası, çeyiz ve hediye için ideal bir set."
-  },
-  {
     "id": "5645641651",
-    "slug": "8li-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
+    "slug": "8-li-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
     "name": "8'li Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -346,7 +272,7 @@
   },
   {
     "id": "89564896561",
-    "slug": "10lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik",
+    "slug": "10-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik",
     "name": "10’lu Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -372,7 +298,7 @@
   },
   {
     "id": "5648654851",
-    "slug": "5li-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
+    "slug": "5-li-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
     "name": "5'li Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -399,7 +325,7 @@
   },
   {
     "id": "445285675864",
-    "slug": "10lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti-2",
+    "slug": "10-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti_2",
     "name": "10’lu Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
     "category": "Tesbih",
     "brand": "OBRNHOMEN",
@@ -424,7 +350,7 @@
   },
   {
     "id": "564165156325",
-    "slug": "5li-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti-2",
+    "slug": "5-li-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti_2",
     "name": "5'li Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik Seti",
     "category": "Tesbih",
     "brand": "OBRNHOMEN",
@@ -451,7 +377,7 @@
   },
   {
     "id": "8567486746854",
-    "slug": "10lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-2",
+    "slug": "10-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik_2",
     "name": "10’lu Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik",
     "category": "Tesbih",
     "brand": "OBRNHOMEN",
@@ -474,29 +400,6 @@
       "https://cdn.dsmcdn.com/ty1855/prod/QC_PREP/20260414/17/62996fe4-eeeb-353b-9437-42bb2bba181c/1_org_zoom.jpg"
     ],
     "metaDescription": "10’lu Başörtü Seti Taşlı Zikirmatik İnci Tesbih Çeyizlik — Tesbih. 10 adet şık ve zarif başörtüden oluşan set, her kombininize uyum sağlar."
-  },
-  {
-    "id": "156489748785564",
-    "slug": "karma-yumusak-sik-desensiz-duz-seccade-700-gr-hafif-namazlik-2",
-    "name": "Karma Yumuşak Şık Desensiz Düz Seccade 700 Gr Hafif Namazlık",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 319.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "110 x 70",
-    "features": [
-      "Türkiye'de üretilen, yerli üretim ve kaliteli bir üründür.",
-      "Düz saçak tasarımı ile sade ve şık bir görünüm sunar.",
-      "Desensiz kaliteli seccade -Namaz kılarken yumuşak dokusuyla -*Desensiz düz modelYumuşak dokulu kumaş Hafif ve taşınabilir Sade ve şık tasarım Günlük kullanıma uygundur Ev, cami ve seyahat için ideal"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1831/prod/QC_PREP/20260227/18/dceb1f88-3077-3e36-a98c-6a769f0ddd79/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1830/prod/QC_PREP/20260227/18/944fa3d9-28ce-3881-9e7f-640a616b10b5/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Yumuşak Şık Desensiz Düz Seccade 700 Gr Hafif Namazlık — Seccade. Türkiye'de üretilen, yerli üretim ve kaliteli bir üründür."
   },
   {
     "id": "47465163256314",
@@ -547,19 +450,19 @@
     "metaDescription": "Karma Yumuşak Şık Desensiz Düz Seccade Hafif Namazlık — Seccade. 1 adet seccade seti ile evinizde veya seyahatlerinizde her zaman yanınızda namaz kılma imkanı."
   },
   {
-    "id": "45961565151",
+    "id": "756845648",
     "slug": "sade-az-desenli-luks-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen",
     "name": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
-    "price": 749.99,
+    "price": 349.99,
     "currency": "TRY",
     "stock": 50,
     "inStock": true,
     "color": "Çok Renkli",
     "size": "70 x 110",
     "features": [
-      "3 adet sade ve az desenli kadife seccade, namazınızı huzur ve sakinlik içinde kılmanız için idealdir.",
+      "1 adet sade ve az desenli kadife seccade, namazınızı huzur ve sakinlik içinde kılmanız için idealdir.",
       "Sık dokuma dodya iplikten üretilmiş olup, uzun ömürlü ve dayanıklıdır.",
       "Göz yormayan desenleriyle, namaz esnasında rahatsızlık hissi yaratmaz ve dikkat dağıtıcı unsurları ortadan kaldırır.",
       "Kadife dokusu sayesinde yumuşak bir dokunuş sunar ve dizlerinize konfor sağlar.",
@@ -568,55 +471,7 @@
     "images": [
       "https://cdn.dsmcdn.com/ty1836/prod/QC_PREP/20260312/15/148eb1f0-0eae-39ab-ac94-fecf4927708d/1_org_zoom.jpg"
     ],
-    "metaDescription": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. 3 adet sade ve az desenli kadife seccade, namazınızı huzur ve "
-  },
-  {
-    "id": "1565648965",
-    "slug": "karma-yumusak-sik-desensiz-duz-seccade-hafif-namazlik-2",
-    "name": "Karma Yumuşak Şık Desensiz Düz Seccade Hafif Namazlık",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 1399.99,
-    "currency": "TRY",
-    "stock": 80,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "5 adet seccade seti ile evinizde veya seyahatlerinizde her zaman yanınızda namaz kılma imkanı.",
-      "Yumuşak dokusu sayesinde rahat bir ibadet deneyimi sunar.",
-      "Şık ve desensiz tasarımıyla her ortama uyum sağlar.",
-      "Hafif yapısı ile kolay taşınabilirlik ve pratik kullanım imkanı.",
-      "Dayanıklı malzemeden üretilmiş olup uzun süreli kullanım için idealdir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1853/prod/QC_PREP/20260410/18/3405d418-8c65-3a15-898e-cd72847c1a73/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Yumuşak Şık Desensiz Düz Seccade Hafif Namazlık — Seccade. 5 adet seccade seti ile evinizde veya seyahatlerinizde her zaman yanınızda namaz kılma imkanı."
-  },
-  {
-    "id": "75627852707450",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-2",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 899.99,
-    "currency": "TRY",
-    "stock": 754,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Yumuşak ve kaliteli kadife kumaştan üretilmiş, konforlu bir ibadet deneyimi sunar.",
-      "500 gram ağırlığında, taşıması kolay ve pratik bir kullanım sağlar.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı ve estetik bir görünüme sahiptir.",
-      "Hac, umre, mevlit gibi özel günlerde hediye olarak idealdir.",
-      "Çeyiz bohçalarının vazgeçilmez parçası olup, geleneksel ve modern dokunuşları bir araya getirir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1852/prod/QC_PREP/20260410/18/a65f825d-ff2b-3eba-99bc-34ef6261b69e/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Yumuşak ve kaliteli kadife kumaştan üretilmiş, konforlu bir ibadet deneyimi sunar."
+    "metaDescription": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. 1 adet sade ve az desenli kadife seccade, namazınızı huzur ve "
   },
   {
     "id": "41785569869720",
@@ -643,83 +498,8 @@
     "metaDescription": "Kadife Seccade Şipinger Desen Namazlık | Çeyiz — Seccade. Yumuşak kadife dokusu ile konforlu bir namaz deneyimi sunar."
   },
   {
-    "id": "875623752",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-3",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 429.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "2 adet kadife seccade seti ile hem şıklığı hem de rahatlığı bir arada sunar.",
-      "500 gram ağırlığındaki hafif yapısı sayesinde taşıması kolay ve pratiktir.",
-      "Şipinger desenleriyle göz alıcı bir görünüm sergiler, namaz esnasında huzur verir.",
-      "Hac, umre, mevlit gibi özel günlerde hediye olarak idealdir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak uzun yıllar kullanılabilir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1851/prod/QC_PREP/20260410/17/3dba780b-9edf-3fe9-b101-a8f43888e71d/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. 2 adet kadife seccade seti ile hem şıklığı hem de rahatlığı bir arada sunar."
-  },
-  {
-    "id": "498485165616",
-    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen",
-    "name": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 1299.99,
-    "currency": "TRY",
-    "stock": 59,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "110 x 70",
-    "features": [
-      "Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize getirir.",
-      "Düz saçak tasarımı ile sade ve şık bir görünüm sunar, namaz kılarken rahat bir kullanım sağlar.",
-      "Polyester materyali sayesinde uzun ömürlü kullanım ve kolay temizlik imkanı sunar.",
-      "Göz yormayan desenleriyle huzurlu ve sakin bir ortamda ibadet etmenizi kolaylaştırır.",
-      "6 adet set halinde sunulan bu seccadeler, hem kendiniz için hem de sevdikleriniz için ideal bir hediyedir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/89087deb-a654-304a-8845-33990997d91f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/5e721b36-72a6-3035-9e8a-088f5e93ef2b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/0922c1d5-1b46-35b7-bfa6-c6e617c5458f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/e9e61176-45e1-3d7a-93cf-8debb26f0210/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize "
-  },
-  {
-    "id": "4563453645576785",
-    "slug": "luks-kadife-dokulu-6li-seccade-seti-desenli-namazlik-takimi-cok-renkli",
-    "name": "Lüks Kadife Dokulu 6’lı Seccade Seti - Desenli Namazlık Takımı - Çok Renkli",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 719.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Lüks kadife dokusu ile göz alıcı bir görünüm sunar.",
-      "6 adet seccade içeren set, farklı desenleriyle namazınızı daha özel kılar.",
-      "Hediyelik olarak idealdir, sevdiklerinize anlamlı bir hediye seçeneği sunar.",
-      "Çok renkli tasarımıyla her zevke hitap eder ve mekanınıza canlılık katar.",
-      "Namazlık takımı olarak kullanabileceğiniz pratik ve şık bir üründür."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1851/prod/QC_PREP/20260410/16/f48c7d60-e1fd-3fc2-9669-a7c3a9d87f95/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Lüks Kadife Dokulu 6’lı Seccade Seti - Desenli Namazlık Takımı - Çok Renkli — Seccade. Lüks kadife dokusu ile göz alıcı bir görünüm sunar."
-  },
-  {
     "id": "451685468546854",
-    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-2",
+    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen",
     "name": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -745,110 +525,32 @@
     "metaDescription": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize "
   },
   {
-    "id": "756845648",
-    "slug": "sade-az-desenli-luks-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-2",
-    "name": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
+    "id": "4563453645576785",
+    "slug": "luks-kadife-dokulu-6-li-seccade-seti-desenli-namazlik-takimi-cok-renkli",
+    "name": "Lüks Kadife Dokulu 6’lı Seccade Seti - Desenli Namazlık Takımı - Çok Renkli",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
-    "price": 349.99,
+    "price": 719.99,
     "currency": "TRY",
     "stock": 50,
     "inStock": true,
     "color": "Çok Renkli",
     "size": "70 x 110",
     "features": [
-      "1 adet sade ve az desenli kadife seccade, namazınızı huzur ve sakinlik içinde kılmanız için idealdir.",
-      "Sık dokuma dodya iplikten üretilmiş olup, uzun ömürlü ve dayanıklıdır.",
-      "Göz yormayan desenleriyle, namaz esnasında rahatsızlık hissi yaratmaz ve dikkat dağıtıcı unsurları ortadan kaldırır.",
-      "Kadife dokusu sayesinde yumuşak bir dokunuş sunar ve dizlerinize konfor sağlar.",
-      "Sade tasarımıyla her türlü ev dekorasyonuna uyum sağlar ve şık bir görünüm kazandırır."
+      "Lüks kadife dokusu ile göz alıcı bir görünüm sunar.",
+      "6 adet seccade içeren set, farklı desenleriyle namazınızı daha özel kılar.",
+      "Hediyelik olarak idealdir, sevdiklerinize anlamlı bir hediye seçeneği sunar.",
+      "Çok renkli tasarımıyla her zevke hitap eder ve mekanınıza canlılık katar.",
+      "Namazlık takımı olarak kullanabileceğiniz pratik ve şık bir üründür."
     ],
     "images": [
-      "https://cdn.dsmcdn.com/ty1836/prod/QC_PREP/20260312/15/148eb1f0-0eae-39ab-ac94-fecf4927708d/1_org_zoom.jpg"
+      "https://cdn.dsmcdn.com/ty1851/prod/QC_PREP/20260410/16/f48c7d60-e1fd-3fc2-9669-a7c3a9d87f95/1_org_zoom.jpg"
     ],
-    "metaDescription": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. 1 adet sade ve az desenli kadife seccade, namazınızı huzur ve "
-  },
-  {
-    "id": "546565656566454",
-    "slug": "sade-az-desenli-luks-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-3",
-    "name": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 999.99,
-    "currency": "TRY",
-    "stock": 84,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "3 adet sade ve az desenli kadife seccade, namazınızı huzur ve sakinlik içinde kılmanız için idealdir.",
-      "Sık dokuma dodya iplikten üretilmiş olup, uzun ömürlü ve dayanıklıdır.",
-      "Göz yormayan desenleriyle, namaz esnasında rahatsızlık hissi yaratmaz ve dikkat dağıtıcı unsurları ortadan kaldırır.",
-      "Kadife dokusu sayesinde yumuşak bir dokunuş sunar ve dizlerinize konfor sağlar.",
-      "Sade tasarımıyla her türlü ev dekorasyonuna uyum sağlar ve şık bir görünüm kazandırır."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1836/prod/QC_PREP/20260312/15/148eb1f0-0eae-39ab-ac94-fecf4927708d/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. 3 adet sade ve az desenli kadife seccade, namazınızı huzur ve "
-  },
-  {
-    "id": "567867845674",
-    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-3",
-    "name": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 889.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "110 x 70",
-    "features": [
-      "Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize getirir.",
-      "Düz saçak tasarımı ile sade ve şık bir görünüm sunar, namaz kılarken rahat bir kullanım sağlar.",
-      "Polyester materyali sayesinde uzun ömürlü kullanım ve kolay temizlik imkanı sunar.",
-      "Göz yormayan desenleriyle huzurlu ve sakin bir ortamda ibadet etmenizi kolaylaştırır.",
-      "4 adet set halinde sunulan bu seccadeler, hem kendiniz için hem de sevdikleriniz için ideal bir hediyedir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/89087deb-a654-304a-8845-33990997d91f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/5e721b36-72a6-3035-9e8a-088f5e93ef2b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/0922c1d5-1b46-35b7-bfa6-c6e617c5458f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/e9e61176-45e1-3d7a-93cf-8debb26f0210/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize "
-  },
-  {
-    "id": "454675734545",
-    "slug": "sade-az-desenli-luks-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-4",
-    "name": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
-    "category": "Seccade",
-    "brand": "PIRISA",
-    "price": 949.99,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Lüks kadife dokusuyla göz alıcı bir tasarıma sahip, sade ve az desenli seccade.",
-      "Sık dokuma dodya iplik kullanımı sayesinde uzun ömürlü ve dayanıklı bir yapı sunar.",
-      "Göz yormayan desenleriyle huzurlu bir ibadet ortamı sağlar.",
-      "5 adet set halinde sunulan bu seccadeler, hem kişisel kullanım hem de hediye olarak idealdir.",
-      "Kadife kumaşın yumuşak dokusu, namaz kılarken konforlu bir deneyim sunar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1837/prod/QC_PREP/20260312/15/4e3114f5-cf48-34f3-bce3-ff22828d6e7f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1838/prod/QC_PREP/20260312/15/fdb62e0b-f29e-3646-9d44-cba0285edc4d/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1836/prod/QC_PREP/20260312/15/7c9f33ff-4bbd-3d55-9503-3c54e69ba102/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1837/prod/QC_PREP/20260312/15/8cb48f00-bba2-35d2-a64d-93a30a0da0ec/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. Lüks kadife dokusuyla göz alıcı bir tasarıma sahip, sade ve az"
+    "metaDescription": "Lüks Kadife Dokulu 6’lı Seccade Seti - Desenli Namazlık Takımı - Çok Renkli — Seccade. Lüks kadife dokusu ile göz alıcı bir görünüm sunar."
   },
   {
     "id": "4534653455746",
-    "slug": "karma-yumusak-sik-desensiz-duz-seccade-hafif-namazlik-3",
+    "slug": "karma-yumusak-sik-desensiz-duz-seccade-hafif-namazlik_2",
     "name": "Karma Yumuşak Şık Desensiz Düz Seccade Hafif Namazlık",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -871,7 +573,7 @@
   },
   {
     "id": "12348598",
-    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-4",
+    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen_2",
     "name": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -894,36 +596,8 @@
     "metaDescription": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. İki adet sade ve az desenli kadife seccade, namazlarınızı huzur içi"
   },
   {
-    "id": "20261839401239383",
-    "slug": "luks-sonil-ceyizlik-seccade-kendinden-desenli-i-seccadesi",
-    "name": "Lüks Şönil Çeyizlik Seccade - Kendinden Desenli ı Seccadesi ( )",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 849,
-    "currency": "TRY",
-    "stock": 100,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 115",
-    "features": [
-      "Gelin bohçaları için özel olarak tasarlanmış, şık ve zarif bir seçenek.",
-      "3 adet seccade içeren set, hem kullanışlı hem de ekonomiktir.",
-      "Kendinden desenli şönil kumaşı ile göz alıcı bir görünüm sunar.",
-      "Yumuşak dokusu sayesinde rahat bir ibadet deneyimi sağlar.",
-      "Lüks ve kaliteli malzemeden üretilmiştir, uzun ömürlüdür.",
-      "Seccadelerin boyutları, ibadet sırasında ideal bir kullanım alanı sunar.",
-      "Özel günlerde hediye olarak da tercih edilebilir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1853/prod/QC_PREP/20260407/14/61bb8614-c1ce-388c-a52d-76140e016d80/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1853/prod/QC_PREP/20260407/14/c1824301-76fd-3ae9-afa8-f583b6c9aeac/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1851/prod/QC_PREP/20260407/14/6bab0a90-725d-3817-8d98-a74cf55b4ba1/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Lüks Şönil Çeyizlik Seccade - Kendinden Desenli ı Seccadesi ( ) — Seccade. Gelin bohçaları için özel olarak tasarlanmış, şık ve zarif bir seçenek."
-  },
-  {
     "id": "2026213128234794729",
-    "slug": "luks-sonil-ceyizlik-seccade-kendinden-desenli-i-seccadesi-2",
+    "slug": "luks-sonil-ceyizlik-seccade-kendinden-desenli-i-seccadesi",
     "name": "Lüks Şönil Çeyizlik Seccade - Kendinden Desenli ı Seccadesi ( )",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -949,7 +623,7 @@
   },
   {
     "id": "2026701153242",
-    "slug": "luks-sonil-ceyizlik-seccade-kendinden-desenli-i-seccadesi-3",
+    "slug": "luks-sonil-ceyizlik-seccade-kendinden-desenli-i-seccadesi_2",
     "name": "Lüks Şönil Çeyizlik Seccade - Kendinden Desenli ı Seccadesi",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -1001,83 +675,6 @@
     "metaDescription": "Ve Set - 40 Kişilik — Seccade. 40 kişiye özel olarak tasarlanmış, hac ve umre hediyelik seti ile sevdiklerinize unutulmaz bir hediye sunun."
   },
   {
-    "id": "5156415621",
-    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-5",
-    "name": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
-    "category": "Seccade",
-    "brand": "PIRISA",
-    "price": 12999.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "110 x 70",
-    "features": [
-      "Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize getirir.",
-      "Düz saçak tasarımı ile sade ve şık bir görünüm sunar, namaz kılarken rahat bir kullanım sağlar.",
-      "Polyester materyali sayesinde uzun ömürlü kullanım ve kolay temizlik imkanı sunar.",
-      "Göz yormayan desenleriyle huzurlu ve sakin bir ortamda ibadet etmenizi kolaylaştırır.",
-      "5 adet set halinde sunulan bu seccadeler, hem kendiniz için hem de sevdikleriniz için ideal bir hediyedir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/89087deb-a654-304a-8845-33990997d91f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/5e721b36-72a6-3035-9e8a-088f5e93ef2b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/0922c1d5-1b46-35b7-bfa6-c6e617c5458f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/e9e61176-45e1-3d7a-93cf-8debb26f0210/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize "
-  },
-  {
-    "id": "8964684684",
-    "slug": "karma-yumusak-sik-desensiz-duz-seccade-700-gr-hafif-namazlik-3",
-    "name": "Karma Yumuşak Şık Desensiz Düz Seccade 700 Gr Hafif Namazlık",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 2599.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "110 x 70",
-    "features": [
-      "Türkiye'de üretilen, yerli üretim ve kaliteli bir üründür.",
-      "Düz saçak tasarımı ile sade ve şık bir görünüm sunar.",
-      "Desensiz kaliteli seccade -Namaz kılarken yumuşak dokusuyla -*Desensiz düz modelYumuşak dokulu kumaş Ağırlık: 700 Gram Hafif ve taşınabilir Sade ve şık tasarım Günlük kullanıma uygundur Ev, cami ve seyahat için ideal"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1831/prod/QC_PREP/20260227/18/dceb1f88-3077-3e36-a98c-6a769f0ddd79/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1830/prod/QC_PREP/20260227/18/944fa3d9-28ce-3881-9e7f-640a616b10b5/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Yumuşak Şık Desensiz Düz Seccade 700 Gr Hafif Namazlık — Seccade. Türkiye'de üretilen, yerli üretim ve kaliteli bir üründür."
-  },
-  {
-    "id": "8546854546",
-    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-6",
-    "name": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
-    "category": "Seccade",
-    "brand": "PIRISA",
-    "price": 2999.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "110 x 70",
-    "features": [
-      "Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize getirir.",
-      "Düz saçak tasarımı ile sade ve şık bir görünüm sunar, namaz kılarken rahat bir kullanım sağlar.",
-      "Polyester materyali sayesinde uzun ömürlü kullanım ve kolay temizlik imkanı sunar.",
-      "Göz yormayan desenleriyle huzurlu ve sakin bir ortamda ibadet etmenizi kolaylaştırır.",
-      "5 adet set halinde sunulan bu seccadeler, hem kendiniz için hem de sevdikleriniz için ideal bir hediyedir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/89087deb-a654-304a-8845-33990997d91f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/5e721b36-72a6-3035-9e8a-088f5e93ef2b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/0922c1d5-1b46-35b7-bfa6-c6e617c5458f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/e9e61176-45e1-3d7a-93cf-8debb26f0210/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize "
-  },
-  {
     "id": "561456161516",
     "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-seccade",
     "name": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen Seccade",
@@ -1101,57 +698,6 @@
       "https://cdn.dsmcdn.com/ty1837/prod/QC_PREP/20260312/16/697ae9ed-f796-35e8-9611-2b5788a7f5ca/1_org_zoom.jpg"
     ],
     "metaDescription": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen Seccade — Seccade. Türkiye menşeli, yerli üretim bir üründür."
-  },
-  {
-    "id": "414561456846",
-    "slug": "sade-az-desenli-luks-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-5",
-    "name": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
-    "category": "Seccade",
-    "brand": "PIRISA",
-    "price": 2199.99,
-    "currency": "TRY",
-    "stock": 47,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Lüks kadife dokusuyla göz alıcı bir tasarıma sahip, sade ve az desenli seccade.",
-      "Sık dokuma dodya iplik kullanımı sayesinde uzun ömürlü ve dayanıklı bir yapı sunar.",
-      "Göz yormayan desenleriyle huzurlu bir ibadet ortamı sağlar.",
-      "5 adet set halinde sunulan bu seccadeler, hem kişisel kullanım hem de hediye olarak idealdir.",
-      "Kadife kumaşın yumuşak dokusu, namaz kılarken konforlu bir deneyim sunar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1837/prod/QC_PREP/20260312/15/4e3114f5-cf48-34f3-bce3-ff22828d6e7f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1838/prod/QC_PREP/20260312/15/fdb62e0b-f29e-3646-9d44-cba0285edc4d/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1836/prod/QC_PREP/20260312/15/7c9f33ff-4bbd-3d55-9503-3c54e69ba102/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1837/prod/QC_PREP/20260312/15/8cb48f00-bba2-35d2-a64d-93a30a0da0ec/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. Lüks kadife dokusuyla göz alıcı bir tasarıma sahip, sade ve az"
-  },
-  {
-    "id": "845156414561865",
-    "slug": "sade-az-desenli-luks-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-6",
-    "name": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
-    "category": "Seccade",
-    "brand": "PIRISA",
-    "price": 1299.99,
-    "currency": "TRY",
-    "stock": 76,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "5 adet sade ve az desenli kadife seccade, namazınızı huzur ve sakinlik içinde kılmanız için idealdir.",
-      "Sık dokuma dodya iplikten üretilmiş olup, uzun ömürlü ve dayanıklıdır.",
-      "Göz yormayan desenleriyle, namaz esnasında rahatsızlık hissi yaratmaz ve dikkat dağıtıcı unsurları ortadan kaldırır.",
-      "Kadife dokusu sayesinde yumuşak bir dokunuş sunar ve dizlerinize konfor sağlar.",
-      "Sade tasarımıyla her türlü ev dekorasyonuna uyum sağlar ve şık bir görünüm kazandırır."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1836/prod/QC_PREP/20260312/15/148eb1f0-0eae-39ab-ac94-fecf4927708d/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Sade Az Desenli Lüks Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. 5 adet sade ve az desenli kadife seccade, namazınızı huzur ve "
   },
   {
     "id": "495151574854",
@@ -1219,7 +765,7 @@
   },
   {
     "id": "564564141",
-    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli-2",
+    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli_2",
     "name": "Simli Goblen Namaz Seccade , & Seccade | Renk Seçenekli",
     "category": "Seccade",
     "brand": "PIRISA",
@@ -1241,7 +787,7 @@
   },
   {
     "id": "6454566541",
-    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli-3",
+    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli_3",
     "name": "Simli Goblen Namaz Seccade , & Seccade | Renk Seçenekli",
     "category": "Seccade",
     "brand": "PIRISA",
@@ -1265,7 +811,7 @@
   },
   {
     "id": "5215615145",
-    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli-4",
+    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli_4",
     "name": "Simli Goblen Namaz Seccade , & Seccade | Renk Seçenekli",
     "category": "Seccade",
     "brand": "PIRISA",
@@ -1289,7 +835,7 @@
   },
   {
     "id": "451651415156",
-    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli-5",
+    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli_5",
     "name": "Simli Goblen Namaz Seccade , & Seccade | Renk Seçenekli",
     "category": "Seccade",
     "brand": "PIRISA",
@@ -1311,7 +857,7 @@
   },
   {
     "id": "5148599841",
-    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli-6",
+    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli_6",
     "name": "Simli Goblen Namaz Seccade , & Seccade | Renk Seçenekli",
     "category": "Seccade",
     "brand": "PIRISA",
@@ -1335,7 +881,7 @@
   },
   {
     "id": "84658468541",
-    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli-7",
+    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli_7",
     "name": "Simli Goblen Namaz Seccade , & Seccade | Renk Seçenekli",
     "category": "Seccade",
     "brand": "PIRISA",
@@ -1405,33 +951,8 @@
     "metaDescription": "Sade desensiz Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. Türkiye'de üretilen bu seccade, yerli üretim kalitesini ve dayanıklıl"
   },
   {
-    "id": "845941859",
-    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-seccade-2",
-    "name": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen Seccade",
-    "category": "Seccade",
-    "brand": "PIRISA",
-    "price": 349.99,
-    "currency": "TRY",
-    "stock": 47,
-    "inStock": true,
-    "color": "Mavi",
-    "size": "110 x 70",
-    "features": [
-      "Türkiye menşeli, yerli üretim bir üründür.",
-      "Sade ve az desenli tasarımıyla göz yormayan bir görünüm sunar.",
-      "Dodya iplik kullanılarak sık dokuma tekniğiyle üretilmiş olup, dayanıklılığı artırılmıştır.",
-      "Polyester materyal sayesinde kolay temizlenebilir ve uzun ömürlüdür.",
-      "Düz saçak tipi ile modern ve şık bir bitiş sağlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1839/prod/QC_ENRICHMENT/20260318/10/dd341660-7807-3d90-a99b-53bf91395688/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1830/prod/QC_PREP/20260302/13/a326aba9-fc68-3da2-a786-6c11da4fd1e5/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen Seccade — Seccade. Türkiye menşeli, yerli üretim bir üründür."
-  },
-  {
     "id": "58914561023",
-    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-seccade-3",
+    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-seccade_2",
     "name": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen Seccade",
     "category": "Seccade",
     "brand": "PIRISA",
@@ -1456,64 +977,14 @@
     "metaDescription": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen Seccade — Seccade. Türkiye menşeli, yerli üretim bir üründür."
   },
   {
-    "id": "1564865415",
-    "slug": "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-7",
-    "name": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen",
-    "category": "Seccade",
-    "brand": "PIRISA",
-    "price": 1349.99,
-    "currency": "TRY",
-    "stock": 75,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "110 x 70",
-    "features": [
-      "Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize getirir.",
-      "Düz saçak tasarımı ile sade ve şık bir görünüm sunar, namaz kılarken rahat bir kullanım sağlar.",
-      "Polyester materyali sayesinde uzun ömürlü kullanım ve kolay temizlik imkanı sunar.",
-      "Göz yormayan desenleriyle huzurlu ve sakin bir ortamda ibadet etmenizi kolaylaştırır.",
-      "5 adet set halinde sunulan bu seccadeler, hem kendiniz için hem de sevdikleriniz için ideal bir hediyedir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/89087deb-a654-304a-8845-33990997d91f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/5e721b36-72a6-3035-9e8a-088f5e93ef2b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/0922c1d5-1b46-35b7-bfa6-c6e617c5458f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260302/13/e9e61176-45e1-3d7a-93cf-8debb26f0210/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Sade Az Desenli Kadife Seccade Namazlık Sık Dokuma Dodya İplik Göz Yormayan Desen — Seccade. Türkiye'de üretilen bu seccade, yerel işçiliği ve kaliteyi evinize "
-  },
-  {
-    "id": "7847589646",
-    "slug": "karma-yumusak-sik-desensiz-duz-seccade-700-gr-hafif-namazlik-4",
-    "name": "Karma Yumuşak Şık Desensiz Düz Seccade 700 Gr Hafif Namazlık",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 1489.99,
-    "currency": "TRY",
-    "stock": 43,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "110 x 70",
-    "features": [
-      "Türkiye'de üretilen, yerli üretim ve kaliteli bir üründür.",
-      "Düz saçak tasarımı ile sade ve şık bir görünüm sunar.",
-      "Desensiz kaliteli seccade -Namaz kılarken yumuşak dokusuyla -*Desensiz düz modelYumuşak dokulu kumaş Ağırlık: 700 Gram Hafif ve taşınabilir Sade ve şık tasarım Günlük kullanıma uygundur Ev, cami ve seyahat için ideal"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1831/prod/QC_PREP/20260227/18/dceb1f88-3077-3e36-a98c-6a769f0ddd79/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1830/prod/QC_PREP/20260227/18/944fa3d9-28ce-3881-9e7f-640a616b10b5/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Yumuşak Şık Desensiz Düz Seccade 700 Gr Hafif Namazlık — Seccade. Türkiye'de üretilen, yerli üretim ve kaliteli bir üründür."
-  },
-  {
-    "id": "ghvjbkhljhjgjkh",
+    "id": "54754251587464",
     "slug": "kiz-cocuk-namaz-seti-seccadeli-tesbihli-elifbali-ibadet-seti",
     "name": "Kız Çocuk Namaz Seti Seccadeli Tesbihli Elifbalı İbadet Seti",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
-    "price": 648.99,
+    "price": 248.99,
     "currency": "TRY",
-    "stock": 50,
+    "stock": 2,
     "inStock": true,
     "color": "Pembe",
     "size": "40 x 80",
@@ -1529,7 +1000,7 @@
   },
   {
     "id": "212313213564",
-    "slug": "3lu-set-motosiklet-figurlu-silikon-anahtarlik-canta-aksesuari-ve",
+    "slug": "3-lu-set-motosiklet-figurlu-silikon-anahtarlik-canta-aksesuari-ve",
     "name": "3’lü Set Motosiklet Figürlü Silikon Anahtarlık - Çanta Aksesuarı Ve",
     "category": "Anahtarlık",
     "brand": "PIRISA",
@@ -1549,28 +1020,6 @@
       "https://cdn.dsmcdn.com/ty1829/prod/QC_PREP/20260220/17/a72975ed-7c97-36f9-a5f1-30f608cb09f5/1_org_zoom.jpg"
     ],
     "metaDescription": "3’lü Set Motosiklet Figürlü Silikon Anahtarlık - Çanta Aksesuarı Ve — Anahtarlık. Türkiye'de üretilmiş, yerel işçiliğin ve kalitenin bir yansımasıdır."
-  },
-  {
-    "id": "54754251587464",
-    "slug": "kiz-cocuk-namaz-seti-seccadeli-tesbihli-elifbali-ibadet-seti-2",
-    "name": "Kız Çocuk Namaz Seti Seccadeli Tesbihli Elifbalı İbadet Seti",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 248.99,
-    "currency": "TRY",
-    "stock": 2,
-    "inStock": true,
-    "color": "Pembe",
-    "size": "40 x 80",
-    "features": [
-      "Türkiye'de üretilmiş, yerli malı bir üründür.",
-      "Düz saçak detayı ile sade ve şık bir görünüm sunar.",
-      "Polyester materyal kullanımı sayesinde dayanıklı ve uzun ömürlüdür."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1828/prod/QC_PREP/20260220/17/a8ae2785-4f70-3f96-93d5-98a2eb1170f1/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kız Çocuk Namaz Seti Seccadeli Tesbihli Elifbalı İbadet Seti — Seccade. Türkiye'de üretilmiş, yerli malı bir üründür."
   },
   {
     "id": "5645456468541",
@@ -1622,7 +1071,7 @@
   },
   {
     "id": "56854854615",
-    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli-8",
+    "slug": "simli-goblen-namaz-seccade-seccade-renk-secenekli_8",
     "name": "Simli Goblen Namaz Seccade , & Seccade | Renk Seçenekli",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -1678,31 +1127,6 @@
     "metaDescription": "Karışık Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çı"
   },
   {
-    "id": "7846515631",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-4",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 369.99,
-    "currency": "TRY",
-    "stock": 499,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "550 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1825/prod/QC_PREP/20260212/01/659f6026-c2cd-3636-9ccb-224a502dcb1b/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
     "id": "941958125620",
     "slug": "siyah-kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca",
     "name": "Siyah Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
@@ -1727,84 +1151,6 @@
       "https://cdn.dsmcdn.com/ty1825/prod/QC_PREP/20260212/01/d9496bb7-db2b-3854-9f35-1c7930976e72/1_org_zoom.jpg"
     ],
     "metaDescription": "Siyah Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortay"
-  },
-  {
-    "id": "4514516521",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-5",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 389.99,
-    "currency": "TRY",
-    "stock": 500,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "550 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1824/prod/QC_PREP/20260212/01/e3717e71-d582-3e89-a3cb-f827971d62ea/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1824/prod/QC_PREP/20260212/01/cc924097-4b07-3d02-b5a0-539cdb8994a8/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
-    "id": "98519521956",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-6",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 949.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "550 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1824/prod/QC_PREP/20260212/01/8a355687-ca71-3d18-ad28-3695535fcb0d/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1826/prod/QC_PREP/20260212/01/e22f0cae-db0c-3762-9c9c-7b6efc9125b9/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
-    "id": "415612636",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-7",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 389.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "550 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1826/prod/QC_PREP/20260212/01/6baedbef-a8cd-3442-8da4-1e15508c3370/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1826/prod/QC_PREP/20260212/01/4fa4e41a-ed79-36ae-9388-3fc65dbfa636/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
   },
   {
     "id": "452364576453",
@@ -1833,82 +1179,6 @@
     "metaDescription": "Karma Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
   },
   {
-    "id": "4523152312",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-8",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 599.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "550 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1824/prod/QC_PREP/20260212/00/b6f2ec8d-0f39-347b-b30b-83efb3ff9d83/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
-    "id": "4512323541",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-9",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 369.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "550 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1824/prod/QC_PREP/20260212/00/dcfd545d-f555-335a-9584-7850f0787f49/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
-    "id": "598415196851265",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-10",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 369.99,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "550 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1825/prod/QC_PREP/20260212/00/e09fbfe3-ae59-320e-92ad-94414969ec22/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1826/prod/QC_PREP/20260212/00/12b82589-a9fe-336d-a47b-90864ea83127/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
     "id": "574638568456",
     "slug": "yesil-kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca",
     "name": "Yeşil Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
@@ -1935,203 +1205,8 @@
     "metaDescription": "Yeşil Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortay"
   },
   {
-    "id": "5641610234589",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-11",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 999.99,
-    "currency": "TRY",
-    "stock": 100,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "550 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1826/prod/QC_PREP/20260212/00/7228c7c6-1738-340e-8d1b-c67c16614196/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
-    "id": "41511546187564",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-12",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 899.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "550 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1826/prod/QC_PREP/20260212/00/745d0d6b-7745-33f7-8f1b-a8dd0fb20a07/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
-    "id": "4524856416",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-13",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 499.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "500 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1826/prod/QC_PREP/20260212/00/81e54a6b-7968-34c8-9fb6-87822defb1fb/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
-    "id": "2026505489564",
-    "slug": "basortu-tasli-zikirmatik-inci-cam-tesbih-ceyizlik-gelin-flamli-bas-ortu-set",
-    "name": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set",
-    "category": "Tesbih",
-    "brand": "OBRNHOMEN",
-    "price": 5999.98,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "her mevsime uygun tasarımıyla dikkat çeken başörtüsü seti.",
-      "Gelin bohçalarının vazgeçilmezi sahip üç parça.",
-      "Yüksek kaliteli pamuk materyali sayesinde gün boyu konforlu bir kullanım sunar.",
-      "Düz dokuma kumaşı ile sade ve zamansız bir görünüm sağlar",
-      "her türlü kombininize kolayca uyum sağlar.",
-      "Taşlı zikirmatik inci cam tesbih, hem estetik hem de işlevsel bir aksesuar olarak öne çıkar.",
-      "Hediye olarak tercih edilebilecek bu set, sevdiklerinizin özel günlerinde anlamlı bir hediye seçeneği oluşturur.",
-      "Tüylenmeyen yapısı sayesinde uzun süreli kullanım imkanı tanır"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1823/prod/QC_PREP/20260209/21/aa63467d-6736-3f55-a7c0-5e5b8d43efc9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/1b4bd804-9ef6-305e-9f61-cd3fe446c41b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/d9eed281-d06a-3a0f-a96e-6e177be56bc9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/d560484d-d5b1-3886-b88d-a8ca4876836c/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set — Tesbih. her mevsime uygun tasarımıyla dikkat çeken başörtüsü seti."
-  },
-  {
-    "id": "2026404876546",
-    "slug": "basortu-tasli-zikirmatik-inci-cam-tesbih-ceyizlik-gelin-flamli-bas-ortu-set-2",
-    "name": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set",
-    "category": "Tesbih",
-    "brand": "OBRNHOMEN",
-    "price": 4699.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "her mevsime uygun tasarımıyla dikkat çeken başörtüsü seti.",
-      "Gelin bohçalarının vazgeçilmezi sahip üç parça.",
-      "Yüksek kaliteli pamuk materyali sayesinde gün boyu konforlu bir kullanım sunar.",
-      "Düz dokuma kumaşı ile sade ve zamansız bir görünüm sağlar",
-      "her türlü kombininize kolayca uyum sağlar.",
-      "Taşlı zikirmatik inci cam tesbih, hem estetik hem de işlevsel bir aksesuar olarak öne çıkar.",
-      "Hediye olarak tercih edilebilecek bu set, sevdiklerinizin özel günlerinde anlamlı bir hediye seçeneği oluşturur.",
-      "Tüylenmeyen yapısı sayesinde uzun süreli kullanım imkanı tanır"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1821/prod/QC_PREP/20260209/21/ddd5db0d-d533-3e22-99e4-31d29168739f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/1b4bd804-9ef6-305e-9f61-cd3fe446c41b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/d9eed281-d06a-3a0f-a96e-6e177be56bc9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/d560484d-d5b1-3886-b88d-a8ca4876836c/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set — Tesbih. her mevsime uygun tasarımıyla dikkat çeken başörtüsü seti."
-  },
-  {
-    "id": "202630559754",
-    "slug": "basortu-tasli-zikirmatik-inci-cam-tesbih-ceyizlik-gelin-flamli-bas-ortu-set-3",
-    "name": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set",
-    "category": "Tesbih",
-    "brand": "OBRNHOMEN",
-    "price": 3599.98,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "her mevsime uygun tasarımıyla dikkat çeken başörtüsü seti.",
-      "Gelin bohçalarının vazgeçilmezi sahip üç parça.",
-      "Yüksek kaliteli pamuk materyali sayesinde gün boyu konforlu bir kullanım sunar.",
-      "Düz dokuma kumaşı ile sade ve zamansız bir görünüm sağlar",
-      "her türlü kombininize kolayca uyum sağlar.",
-      "Taşlı zikirmatik inci cam tesbih, hem estetik hem de işlevsel bir aksesuar olarak öne çıkar.",
-      "Hediye olarak tercih edilebilecek bu set, sevdiklerinizin özel günlerinde anlamlı bir hediye seçeneği oluşturur.",
-      "Tüylenmeyen yapısı sayesinde uzun süreli kullanım imkanı tanır"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1822/prod/QC_PREP/20260209/21/3e84a342-ce0f-3a29-8d39-0deb69989ff2/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/1b4bd804-9ef6-305e-9f61-cd3fe446c41b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/d9eed281-d06a-3a0f-a96e-6e177be56bc9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/d560484d-d5b1-3886-b88d-a8ca4876836c/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set — Tesbih. her mevsime uygun tasarımıyla dikkat çeken başörtüsü seti."
-  },
-  {
-    "id": "202620548946",
-    "slug": "basortu-tasli-zikirmatik-inci-cam-tesbih-ceyizlik-gelin-flamli-bas-ortu-set-4",
-    "name": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set",
-    "category": "Tesbih",
-    "brand": "OBRNHOMEN",
-    "price": 2789,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "her mevsime uygun tasarımıyla dikkat çeken başörtüsü seti.",
-      "Gelin bohçalarının vazgeçilmezi sahip üç parça.",
-      "Yüksek kaliteli pamuk materyali sayesinde gün boyu konforlu bir kullanım sunar.",
-      "Düz dokuma kumaşı ile sade ve zamansız bir görünüm sağlar",
-      "her türlü kombininize kolayca uyum sağlar.",
-      "Taşlı zikirmatik inci cam tesbih, hem estetik hem de işlevsel bir aksesuar olarak öne çıkar.",
-      "Hediye olarak tercih edilebilecek bu set, sevdiklerinizin özel günlerinde anlamlı bir hediye seçeneği oluşturur.",
-      "Tüylenmeyen yapısı sayesinde uzun süreli kullanım imkanı tanır"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1823/prod/QC_PREP/20260209/21/34f47161-3d7a-3e9f-98e7-b1fff7f97bcd/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/1b4bd804-9ef6-305e-9f61-cd3fe446c41b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/d9eed281-d06a-3a0f-a96e-6e177be56bc9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1710/prod/QC_PREP/20250713/15/d560484d-d5b1-3886-b88d-a8ca4876836c/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set — Tesbih. her mevsime uygun tasarımıyla dikkat çeken başörtüsü seti."
-  },
-  {
     "id": "2026104854400",
-    "slug": "basortu-tasli-zikirmatik-inci-cam-tesbih-ceyizlik-gelin-flamli-bas-ortu-set-5",
+    "slug": "basortu-tasli-zikirmatik-inci-cam-tesbih-ceyizlik-gelin-flamli-bas-ortu-set",
     "name": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set",
     "category": "Tesbih",
     "brand": "OBRNHOMEN",
@@ -2160,68 +1235,8 @@
     "metaDescription": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set — Tesbih. her mevsime uygun tasarımıyla dikkat çeken başörtüsü seti."
   },
   {
-    "id": "20265087465465",
-    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz",
-    "name": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 5999.98,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "karma",
-    "size": "Tek Ebat",
-    "features": [
-      "Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına nikah hediyesi hatırası"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1821/prod/QC_PREP/20260209/18/58f4ef21-a1db-35f5-8910-fa3c561b5e4e/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz — Konsept Hediyelik. Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık "
-  },
-  {
-    "id": "2026305567946",
-    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz-2",
-    "name": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 3599.98,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": "karma",
-    "size": "Tek Ebat",
-    "features": [
-      "Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına nikah hediyesi hatırası"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1822/prod/QC_PREP/20260209/18/9bf503e4-731c-312e-a99a-db961ee2cae3/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz — Konsept Hediyelik. Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık "
-  },
-  {
-    "id": "20264089464",
-    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz-3",
-    "name": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 4699.98,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": "karma",
-    "size": "Tek Ebat",
-    "features": [
-      "Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına nikah hediyesi hatırası"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1822/prod/QC_PREP/20260209/18/1ec66ff6-1d5f-3365-b471-b22a7fe0dfa8/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz — Konsept Hediyelik. Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık "
-  },
-  {
     "id": "202620203294345",
-    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz-4",
+    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz",
     "name": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -2241,7 +1256,7 @@
   },
   {
     "id": "2026234154235",
-    "slug": "basortu-tasli-zikirmatik-inci-cam-tesbih-ceyizlik-gelin-flamli-bas-ortu-set-6",
+    "slug": "basortu-tasli-zikirmatik-inci-cam-tesbih-ceyizlik-gelin-flamli-bas-ortu-set_2",
     "name": "Başörtü Taşlı Zikirmatik inci Cam Tesbih Çeyizlik Gelin Flamlı Baş Örtü Set",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -2309,7 +1324,7 @@
   },
   {
     "id": "2025415435737",
-    "slug": "41li-basortusu-tesbih-seti-karisik-kandil-ve-ozel-gunler-icin",
+    "slug": "41-li-basortusu-tesbih-seti-karisik-kandil-ve-ozel-gunler-icin",
     "name": "41'li Başörtüsü Tesbih Seti Karışık , Kandil ve Özel Günler İçin",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -2327,7 +1342,7 @@
   },
   {
     "id": "2026102454644",
-    "slug": "10lu-basortusu-tesbih-seti-karisik-kandil-ve-ozel-gunler-icin",
+    "slug": "10-lu-basortusu-tesbih-seti-karisik-kandil-ve-ozel-gunler-icin",
     "name": "10'lu Başörtüsü Tesbih Seti Karışık , Kandil ve Özel Günler İçin",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -2375,7 +1390,7 @@
   },
   {
     "id": "20267528181",
-    "slug": "otantik-ultra-lux-sonil-seccade-yumusak-dokulu-kaymaz-taban-namazlik-2",
+    "slug": "otantik-ultra-lux-sonil-seccade-yumusak-dokulu-kaymaz-taban-namazlik_2",
     "name": "Otantik Ultra Lüx Şönil Seccade - Yumuşak Dokulu Kaymaz Taban Namazlık",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -2419,34 +1434,8 @@
     "metaDescription": "Premium Halı Dokuma Seccade - Ekstra Yumuşak Konforlu Namazlık — Seccade. Türkiye'de üretilen Premium Halı Dokuma Seccade, yerli üretim kalitesini evinize taşıy"
   },
   {
-    "id": "4523123102",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-14",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 22229.99,
-    "currency": "TRY",
-    "stock": 5,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "500 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/19/a834d646-0d64-3f0b-b97f-dc4d4758ad59/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1815/prod/QC_PREP/20260128/19/6933bcec-7bfd-3c62-b1fd-a3bc7532ce64/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
     "id": "45120654154160",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-15",
+    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca_2",
     "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -2471,56 +1460,6 @@
       "https://cdn.dsmcdn.com/ty1816/prod/QC_PREP/20260128/18/183e2814-38b7-3d45-b758-135399a14c7c/1_org_zoom.jpg"
     ],
     "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye menşeli, yerli üretim bir üründür."
-  },
-  {
-    "id": "45130264510",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-16",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 749.99,
-    "currency": "TRY",
-    "stock": 560,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "500 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/17/c2af252b-2106-3130-93d7-523d0cbeb31e/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
-    "id": "56465312530",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-17",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 3499.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "500 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/17/c2af252b-2106-3130-93d7-523d0cbeb31e/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
   },
   {
     "id": "5646854156",
@@ -2548,201 +1487,8 @@
     "metaDescription": "10 Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya ç"
   },
   {
-    "id": "52165485641",
-    "slug": "kadife-seccade-500-gr-sipinger-desen-namazlik-ceyiz-bohca-18",
-    "name": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 699.99,
-    "currency": "TRY",
-    "stock": 100,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıkan kadife seccade.",
-      "500 gram ağırlığında olup, hem şık hem de kullanışlı bir tasarıma sahiptir.",
-      "Şipinger desenleriyle süslenmiş, göz alıcı bir görünüme sahip olup namaz esnasında huzur veren bir atmosfer yaratır.",
-      "Hac, Umre, Mevlüt gibi özel günlerde hediye olarak tercih edilebilecek, anlamlı ve zarif bir seçenektir.",
-      "Çeyiz bohçalarının vazgeçilmez bir parçası olarak, geleneksel dokunuşları modern çizgilerle buluşturur.",
-      "Düz saçak tipiyle sade ve şık bir bitiş sunarak, seccadenin estetik görünümünü tamamlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/17/c2af252b-2106-3130-93d7-523d0cbeb31e/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Seccade 500 gr | Şipinger Desen Namazlık | Çeyiz Bohça — Seccade. Türkiye'de üretilmiş, yerel işçiliğin ve kaliteli malzemelerin birleşimiyle ortaya çıka"
-  },
-  {
-    "id": "202620094394",
-    "slug": "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz",
-    "name": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 6499.95,
-    "currency": "TRY",
-    "stock": 54,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hediye sunmak istediğinizde tercih edebileceğiniz, yüksek kaliteli cam inci kullanılarak tasarlanmış seçkin bir koleksiyon.",
-      "Ürün Özellikleri: • Materyal: Birinci sınıf, pürüzsüz yüzeyli ve parlak Cam İnci (Plastik boncuklarla karıştırılmamalıdır, ağırlığı ve dokusuyla kaliteyi hissettirir).",
-      "• Dizim: 99’lu standart namaz tespihi formundadır.",
-      "• Tasarım: Şık ve dayanıklı püskül detayları ile modernize edilmiştir.",
-      "İmameler özel işçilikli ve estetik görünümlüdür."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/00/383cf962-30d3-3973-a3d3-aa33ab4cdb24/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz — Konsept Hediyelik. Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hed"
-  },
-  {
-    "id": "20261509332540",
-    "slug": "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz-2",
-    "name": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 4999.98,
-    "currency": "TRY",
-    "stock": 59,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hediye sunmak istediğinizde tercih edebileceğiniz, yüksek kaliteli cam inci kullanılarak tasarlanmış seçkin bir koleksiyon.",
-      "Ürün Özellikleri: • Materyal: Birinci sınıf, pürüzsüz yüzeyli ve parlak Cam İnci (Plastik boncuklarla karıştırılmamalıdır, ağırlığı ve dokusuyla kaliteyi hissettirir).",
-      "• Dizim: 99’lu standart namaz tespihi formundadır.",
-      "• Tasarım: Şık ve dayanıklı püskül detayları ile modernize edilmiştir.",
-      "İmameler özel işçilikli ve estetik görünümlüdür."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/00/383cf962-30d3-3973-a3d3-aa33ab4cdb24/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz — Konsept Hediyelik. Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hed"
-  },
-  {
-    "id": "2346734263587673547",
-    "slug": "lux-kalin-misvak-sivak-sevak-dis-icin-sunnet-vakumlu",
-    "name": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu",
-    "category": "Manuel Diş Fırçası",
-    "brand": "OBRNHOMEN",
-    "price": 249.99,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel ve etkili bir yoludur.",
-      "Orta sertlikteki fırça kılları sayesinde diş etlerinizi nazikçe temizlerken, dişlerinizi beyazlatmaya yardımcı olur.",
-      "Beyazlatma özelliği ile dişlerinizi doğal yollarla parlatır ve daha beyaz bir gülümseme sağlar.",
-      "Sevak misvakları, hac ve umre ziyaretlerinizde dağıtabileceğiniz veya hediye edebileceğiniz ideal bir üründür.",
-      "Vakumlu ambalajı sayesinde hijyenik bir şekilde saklanabilir ve uzun süre tazeliğini korur."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1815/prod/QC_PREP/20260128/17/ff38d4ef-4966-31ce-9f00-64b3d244c1fa/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu — Manuel Diş Fırçası. Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel v"
-  },
-  {
-    "id": "202610033953",
-    "slug": "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz-3",
-    "name": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 3499.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hediye sunmak istediğinizde tercih edebileceğiniz, yüksek kaliteli cam inci kullanılarak tasarlanmış seçkin bir koleksiyon.",
-      "Ürün Özellikleri: • Materyal: Birinci sınıf, pürüzsüz yüzeyli ve parlak Cam İnci (Plastik boncuklarla karıştırılmamalıdır, ağırlığı ve dokusuyla kaliteyi hissettirir).",
-      "• Dizim: 99’lu standart namaz tespihi formundadır.",
-      "• Tasarım: Şık ve dayanıklı püskül detayları ile modernize edilmiştir.",
-      "İmameler özel işçilikli ve estetik görünümlüdür."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/00/383cf962-30d3-3973-a3d3-aa33ab4cdb24/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz — Konsept Hediyelik. Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hed"
-  },
-  {
-    "id": "202650953030",
-    "slug": "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz-4",
-    "name": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 1899.95,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hediye sunmak istediğinizde tercih edebileceğiniz, yüksek kaliteli cam inci kullanılarak tasarlanmış seçkin bir koleksiyon.",
-      "Ürün Özellikleri: • Materyal: Birinci sınıf, pürüzsüz yüzeyli ve parlak Cam İnci (Plastik boncuklarla karıştırılmamalıdır, ağırlığı ve dokusuyla kaliteyi hissettirir).",
-      "• Dizim: 99’lu standart namaz tespihi formundadır.",
-      "• Tasarım: Şık ve dayanıklı püskül detayları ile modernize edilmiştir.",
-      "İmameler özel işçilikli ve estetik görünümlüdür."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/00/383cf962-30d3-3973-a3d3-aa33ab4cdb24/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz — Konsept Hediyelik. Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hed"
-  },
-  {
-    "id": "2026200540",
-    "slug": "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz-5",
-    "name": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 1900,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hediye sunmak istediğinizde tercih edebileceğiniz, yüksek kaliteli cam inci kullanılarak tasarlanmış seçkin bir koleksiyon.",
-      "Ürün Özellikleri: • Materyal: Birinci sınıf, pürüzsüz yüzeyli ve parlak Cam İnci (Plastik boncuklarla karıştırılmamalıdır, ağırlığı ve dokusuyla kaliteyi hissettirir).",
-      "• Dizim: 99’lu standart namaz tespihi formundadır.",
-      "• Tasarım: Şık ve dayanıklı püskül detayları ile modernize edilmiştir.",
-      "İmameler özel işçilikli ve estetik görünümlüdür."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/00/383cf962-30d3-3973-a3d3-aa33ab4cdb24/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz — Konsept Hediyelik. Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hed"
-  },
-  {
-    "id": "20261553454",
-    "slug": "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz-6",
-    "name": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 679.99,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hediye sunmak istediğinizde tercih edebileceğiniz, yüksek kaliteli cam inci kullanılarak tasarlanmış seçkin bir koleksiyon.",
-      "Ürün Özellikleri: • Materyal: Birinci sınıf, pürüzsüz yüzeyli ve parlak Cam İnci (Plastik boncuklarla karıştırılmamalıdır, ağırlığı ve dokusuyla kaliteyi hissettirir).",
-      "• Dizim: 99’lu standart namaz tespihi formundadır.",
-      "• Tasarım: Şık ve dayanıklı püskül detayları ile modernize edilmiştir.",
-      "İmameler özel işçilikli ve estetik görünümlüdür."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/00/383cf962-30d3-3973-a3d3-aa33ab4cdb24/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz — Konsept Hediyelik. Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hed"
-  },
-  {
     "id": "20261234635345",
-    "slug": "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz-7",
+    "slug": "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz",
     "name": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -2765,124 +1511,52 @@
     "metaDescription": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz — Konsept Hediyelik. Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hed"
   },
   {
-    "id": "523456434513",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz",
-    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
-    "category": "Seccade",
+    "id": "4574654765473537",
+    "slug": "lux-kalin-misvak-sivak-sevak-dis-icin-sunnet-vakumlu",
+    "name": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu",
+    "category": "Manuel Diş Fırçası",
     "brand": "OBRNHOMEN",
-    "price": 2599.99,
+    "price": 199.99,
     "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260111/21/faf46e93-0fa7-3f2c-82e7-9c18dca184a6/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/7906c7f2-b1be-36b7-b0c1-60a5a5cc5c39/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/49d75546-f291-3cbb-8919-10abbb334fa8/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1813/prod/QC_PREP/20260118/23/43756953-62ce-34b6-9e81-5474e11e020b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/0c07a24d-772c-301c-a02e-d533e1826192/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/f94e1a1a-c29e-36ac-9d8e-c11ba1bf5dd9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260111/21/6c9001c9-e9de-302f-9b5b-06e4d4619568/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
-  },
-  {
-    "id": "48971561414152",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz-2",
-    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 5999.99,
-    "currency": "TRY",
-    "stock": 40,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260111/21/faf46e93-0fa7-3f2c-82e7-9c18dca184a6/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/7906c7f2-b1be-36b7-b0c1-60a5a5cc5c39/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/49d75546-f291-3cbb-8919-10abbb334fa8/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1813/prod/QC_PREP/20260118/23/43756953-62ce-34b6-9e81-5474e11e020b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/0c07a24d-772c-301c-a02e-d533e1826192/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/f94e1a1a-c29e-36ac-9d8e-c11ba1bf5dd9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260111/21/6c9001c9-e9de-302f-9b5b-06e4d4619568/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
-  },
-  {
-    "id": "894891561",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz-3",
-    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 2329.99,
-    "currency": "TRY",
-    "stock": 500,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260111/21/faf46e93-0fa7-3f2c-82e7-9c18dca184a6/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/7906c7f2-b1be-36b7-b0c1-60a5a5cc5c39/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/49d75546-f291-3cbb-8919-10abbb334fa8/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1813/prod/QC_PREP/20260118/23/43756953-62ce-34b6-9e81-5474e11e020b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/0c07a24d-772c-301c-a02e-d533e1826192/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/f94e1a1a-c29e-36ac-9d8e-c11ba1bf5dd9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260111/21/6c9001c9-e9de-302f-9b5b-06e4d4619568/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
-  },
-  {
-    "id": "534534756375",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz-4",
-    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 1399.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260111/21/faf46e93-0fa7-3f2c-82e7-9c18dca184a6/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/7906c7f2-b1be-36b7-b0c1-60a5a5cc5c39/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/49d75546-f291-3cbb-8919-10abbb334fa8/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1813/prod/QC_PREP/20260118/23/43756953-62ce-34b6-9e81-5474e11e020b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/0c07a24d-772c-301c-a02e-d533e1826192/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/f94e1a1a-c29e-36ac-9d8e-c11ba1bf5dd9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260111/21/6c9001c9-e9de-302f-9b5b-06e4d4619568/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
-  },
-  {
-    "id": "20260282037839",
-    "slug": "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz-8",
-    "name": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 1499.95,
-    "currency": "TRY",
-    "stock": 50,
+    "stock": 48,
     "inStock": true,
     "color": null,
     "size": "Tek Ebat",
     "features": [
-      "Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hediye sunmak istediğinizde tercih edebileceğiniz, yüksek kaliteli cam inci kullanılarak tasarlanmış seçkin bir koleksiyon.",
-      "Ürün Özellikleri: • Materyal: Birinci sınıf, pürüzsüz yüzeyli ve parlak Cam İnci (Plastik boncuklarla karıştırılmamalıdır, ağırlığı ve dokusuyla kaliteyi hissettirir).",
-      "• Dizim: 99’lu standart namaz tespihi formundadır.",
-      "• Tasarım: Şık ve dayanıklı püskül detayları ile modernize edilmiştir.",
-      "İmameler özel işçilikli ve estetik görünümlüdür."
+      "Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel ve etkili bir yoludur.",
+      "Orta sertlikteki fırça kılları sayesinde diş etlerinizi nazikçe temizlerken, dişlerinizi beyazlatmaya yardımcı olur.",
+      "Beyazlatma özelliği ile dişlerinizi doğal yollarla parlatır ve daha beyaz bir gülümseme sağlar.",
+      "Sevak misvakları, hac ve umre ziyaretlerinizde dağıtabileceğiniz veya hediye edebileceğiniz ideal bir üründür.",
+      "Vakumlu ambalajı sayesinde hijyenik bir şekilde saklanabilir ve uzun süre tazeliğini korur."
     ],
     "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260128/00/383cf962-30d3-3973-a3d3-aa33ab4cdb24/1_org_zoom.jpg"
+      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260122/17/702eaaba-f81f-3218-8041-737df6963083/1_org_zoom.jpg"
     ],
-    "metaDescription": "Cam inci tesbih 99 Luk Namaz Tesbihi Tespih Dagitmalik Çeyiz — Konsept Hediyelik. Özel günlerinizde, mevlüt cemiyetlerinizde veya sevdiklerinize anlamlı bir hed"
+    "metaDescription": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu — Manuel Diş Fırçası. Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel v"
+  },
+  {
+    "id": "5634136510",
+    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz",
+    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
+    "category": "Seccade",
+    "brand": "OBRNHOMEN",
+    "price": 699.99,
+    "currency": "TRY",
+    "stock": 44,
+    "inStock": true,
+    "color": "Çok Renkli",
+    "size": "70 x 110",
+    "features": [],
+    "images": [
+      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260111/21/faf46e93-0fa7-3f2c-82e7-9c18dca184a6/1_org_zoom.jpg",
+      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/7906c7f2-b1be-36b7-b0c1-60a5a5cc5c39/1_org_zoom.jpg",
+      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/49d75546-f291-3cbb-8919-10abbb334fa8/1_org_zoom.jpg",
+      "https://cdn.dsmcdn.com/ty1813/prod/QC_PREP/20260118/23/43756953-62ce-34b6-9e81-5474e11e020b/1_org_zoom.jpg",
+      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/0c07a24d-772c-301c-a02e-d533e1826192/1_org_zoom.jpg",
+      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/f94e1a1a-c29e-36ac-9d8e-c11ba1bf5dd9/1_org_zoom.jpg",
+      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260111/21/6c9001c9-e9de-302f-9b5b-06e4d4619568/1_org_zoom.jpg"
+    ],
+    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
   },
   {
     "id": "5415612323",
@@ -2911,104 +1585,8 @@
     "metaDescription": "Kadife Kaplı Yasin-i Şerif Ve Tesbih Set Mevlit Kitabı (TÜL KESELİ) — Konsept Hediyelik. 45 adet Yasin-i Şerif ve tesbih setinden oluşan, mevlit törenleri ve öz"
   },
   {
-    "id": "2026246536",
-    "slug": "tasli-zikirmatik-ve-99lu-inci-tesbih-seti-ozel-tul-keseli",
-    "name": "Taşlı Zikirmatik ve 99'lu İnci Tesbih Seti - Özel Tül Keseli",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 2529,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Kristal Taşlı Dijital Zikirmatik: Ergonomik yapısıyla parmağa tam oturur, üzeri yüksek kaliteli parlak kristal taşlarla tek tek işlenmiştir.",
-      "Dijital ekranı sayesinde zikirlerinizi kolayca takip edebilirsiniz.",
-      "99'lu İnci Tesbih: Birinci sınıf cam inci kullanılarak üretilmiştir.",
-      "Gold detaylı imamesi ve dayanıklı yapısıyla uzun ömürlü kullanım sunar.",
-      "Özel Tül Kese: Ürünler, şık ve yarı şeffaf beyaz organze tül kese içerisinde, hediye edilmeye hazır bir şekilde gönderilir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260122/18/6682e0b8-55a7-3967-82a8-77717f579cde/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Taşlı Zikirmatik ve 99'lu İnci Tesbih Seti - Özel Tül Keseli — Konsept Hediyelik. Kristal Taşlı Dijital Zikirmatik: Ergonomik yapısıyla parmağa tam oturur, üzer"
-  },
-  {
-    "id": "2026403840",
-    "slug": "tasli-zikirmatik-ve-99lu-inci-tesbih-seti-ozel-tul-keseli-2",
-    "name": "Taşlı Zikirmatik ve 99'lu İnci Tesbih Seti - Özel Tül Keseli",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 2499.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Kristal Taşlı Dijital Zikirmatik: Ergonomik yapısıyla parmağa tam oturur, üzeri yüksek kaliteli parlak kristal taşlarla tek tek işlenmiştir.",
-      "Dijital ekranı sayesinde zikirlerinizi kolayca takip edebilirsiniz.",
-      "99'lu İnci Tesbih: Birinci sınıf cam inci kullanılarak üretilmiştir.",
-      "Gold detaylı imamesi ve dayanıklı yapısıyla uzun ömürlü kullanım sunar.",
-      "Özel Tül Kese: Ürünler, şık ve yarı şeffaf beyaz organze tül kese içerisinde, hediye edilmeye hazır bir şekilde gönderilir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260122/18/8233cb67-f17f-38a5-b663-a77dbd994fae/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Taşlı Zikirmatik ve 99'lu İnci Tesbih Seti - Özel Tül Keseli — Konsept Hediyelik. Kristal Taşlı Dijital Zikirmatik: Ergonomik yapısıyla parmağa tam oturur, üzer"
-  },
-  {
-    "id": "2026283738",
-    "slug": "tasli-zikirmatik-ve-99lu-inci-tesbih-seti-ozel-tul-keseli-3",
-    "name": "Taşlı Zikirmatik ve 99'lu İnci Tesbih Seti - Özel Tül Keseli",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 1849.99,
-    "currency": "TRY",
-    "stock": 48,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Kristal Taşlı Dijital Zikirmatik: Ergonomik yapısıyla parmağa tam oturur, üzeri yüksek kaliteli parlak kristal taşlarla tek tek işlenmiştir.",
-      "Dijital ekranı sayesinde zikirlerinizi kolayca takip edebilirsiniz.",
-      "99'lu İnci Tesbih: Birinci sınıf cam inci kullanılarak üretilmiştir.",
-      "Gold detaylı imamesi ve dayanıklı yapısıyla uzun ömürlü kullanım sunar.",
-      "Özel Tül Kese: Ürünler, şık ve yarı şeffaf beyaz organze tül kese içerisinde, hediye edilmeye hazır bir şekilde gönderilir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1815/prod/QC_PREP/20260122/18/b6a06207-99be-38ba-a71d-64b3da7a2daa/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Taşlı Zikirmatik ve 99'lu İnci Tesbih Seti - Özel Tül Keseli — Konsept Hediyelik. Kristal Taşlı Dijital Zikirmatik: Ergonomik yapısıyla parmağa tam oturur, üzer"
-  },
-  {
-    "id": "20262718237",
-    "slug": "tasli-zikirmatik-ve-99lu-inci-tesbih-seti-ozel-tul-keseli-4",
-    "name": "Taşlı Zikirmatik ve 99'lu İnci Tesbih Seti - Özel Tül Keseli",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 1249.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Kristal Taşlı Dijital Zikirmatik: Ergonomik yapısıyla parmağa tam oturur, üzeri yüksek kaliteli parlak kristal taşlarla tek tek işlenmiştir.",
-      "Dijital ekranı sayesinde zikirlerinizi kolayca takip edebilirsiniz.",
-      "99'lu İnci Tesbih: Birinci sınıf cam inci kullanılarak üretilmiştir.",
-      "Gold detaylı imamesi ve dayanıklı yapısıyla uzun ömürlü kullanım sunar.",
-      "Özel Tül Kese: Ürünler, şık ve yarı şeffaf beyaz organze tül kese içerisinde, hediye edilmeye hazır bir şekilde gönderilir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260122/18/9bfcdc8f-a609-3002-bad7-51b87fc4496f/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Taşlı Zikirmatik ve 99'lu İnci Tesbih Seti - Özel Tül Keseli — Konsept Hediyelik. Kristal Taşlı Dijital Zikirmatik: Ergonomik yapısıyla parmağa tam oturur, üzer"
-  },
-  {
     "id": "2026362723838",
-    "slug": "tasli-zikirmatik-ve-99lu-inci-tesbih-seti-ozel-tul-keseli-5",
+    "slug": "tasli-zikirmatik-ve-99-lu-inci-tesbih-seti-ozel-tul-keseli",
     "name": "Taşlı Zikirmatik ve 99'lu İnci Tesbih Seti - Özel Tül Keseli",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -3031,108 +1609,8 @@
     "metaDescription": "Taşlı Zikirmatik ve 99'lu İnci Tesbih Seti - Özel Tül Keseli — Konsept Hediyelik. Kristal Taşlı Dijital Zikirmatik: Ergonomik yapısıyla parmağa tam oturur, üzer"
   },
   {
-    "id": "202673281",
-    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz-5",
-    "name": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz",
-    "category": "Tesbih",
-    "brand": "PIRISA",
-    "price": 3899.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına nikah hediyesi hatırası"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1808/prod/QC_PREP/20260105/18/2b35d3fd-2a0e-39bf-9978-64431b4bd6ff/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz — Tesbih. Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına "
-  },
-  {
-    "id": "9998881111",
-    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz-6",
-    "name": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "PIRISA",
-    "price": 3699.99,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına nikah hediyesi hatırası"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260122/18/41635528-8d95-3ab9-be74-a689bdcd0a7f/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz — Konsept Hediyelik. Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık "
-  },
-  {
-    "id": "99999",
-    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz-7",
-    "name": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz",
-    "category": "Eşarp",
-    "brand": "PIRISA",
-    "price": 3499,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına nikah hediyesi hatırası"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260122/18/2e4f2a20-8da0-31af-b42c-935033e27a44/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz — Eşarp. Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına n"
-  },
-  {
-    "id": "111111",
-    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz-8",
-    "name": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "PIRISA",
-    "price": 2149.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına nikah hediyesi hatırası"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1813/prod/QC_PREP/20260122/17/396a4fde-e253-3561-bba1-77de069f384c/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz — Konsept Hediyelik. Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık "
-  },
-  {
-    "id": "2026345656",
-    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz-9",
-    "name": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz",
-    "category": "Konsept Hediyelik",
-    "brand": "PIRISA",
-    "price": 5149.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına nikah hediyesi hatırası"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1817/prod/QC_PREP/20260122/18/5a0a30fc-bd14-3391-b5ab-2739c403cac2/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz — Konsept Hediyelik. Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık "
-  },
-  {
     "id": "78302820292203",
-    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz-10",
+    "slug": "asetat-canta-basortu-zikirmatikli-inci-tesbih-set-ceyiz_2",
     "name": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz",
     "category": "Tesbih",
     "brand": "PIRISA",
@@ -3149,150 +1627,6 @@
       "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260122/17/5610519a-0c2b-3d60-9646-ebac96a66239/1_org_zoom.jpg"
     ],
     "metaDescription": "Asetat Çanta Başörtü Zikirmatikli İnci Tesbih Set Çeyiz — Tesbih. Eşarp Taşlı Zikirmatik İnci Tesbih Seti Hac Çeyiz Umre Mevlüt Hediyelik Dağıtmalık Düğün Kına "
-  },
-  {
-    "id": "2912043592020459203459",
-    "slug": "lux-kalin-misvak-sivak-sevak-dis-icin-sunnet-vakumlu-2",
-    "name": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu",
-    "category": "Manuel Diş Fırçası",
-    "brand": "OBRNHOMEN",
-    "price": 549.99,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel ve etkili bir yoludur.",
-      "Orta sertlikteki fırça kılları sayesinde diş etlerinizi nazikçe temizlerken, dişlerinizi beyazlatmaya yardımcı olur.",
-      "Beyazlatma özelliği ile dişlerinizi doğal yollarla parlatır ve daha beyaz bir gülümseme sağlar.",
-      "Sevak misvakları, hac ve umre ziyaretlerinizde dağıtabileceğiniz veya hediye edebileceğiniz ideal bir üründür.",
-      "Vakumlu ambalajı sayesinde hijyenik bir şekilde saklanabilir ve uzun süre tazeliğini korur."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1811/prod/QC_PREP/20260109/01/4f60f48b-3d54-3f18-a14f-1f6532cb7f95/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu — Manuel Diş Fırçası. Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel v"
-  },
-  {
-    "id": "02938493823920",
-    "slug": "lux-kalin-misvak-sivak-sevak-dis-icin-sunnet-vakumlu-3",
-    "name": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu",
-    "category": "Manuel Diş Fırçası",
-    "brand": "OBRNHOMEN",
-    "price": 399.99,
-    "currency": "TRY",
-    "stock": 46,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel ve etkili bir yoludur.",
-      "Orta sertlikteki fırça kılları sayesinde diş etlerinizi nazikçe temizlerken, dişlerinizi beyazlatmaya yardımcı olur.",
-      "Beyazlatma özelliği ile dişlerinizi doğal yollarla parlatır ve daha beyaz bir gülümseme sağlar.",
-      "Sevak misvakları, hac ve umre ziyaretlerinizde dağıtabileceğiniz veya hediye edebileceğiniz ideal bir üründür.",
-      "Vakumlu ambalajı sayesinde hijyenik bir şekilde saklanabilir ve uzun süre tazeliğini korur."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_ENRICHMENT/20260122/17/41d9cc36-2c71-3c15-a7ea-bf4a7e82c288/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu — Manuel Diş Fırçası. Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel v"
-  },
-  {
-    "id": "756758478597568976795",
-    "slug": "lux-kalin-misvak-sivak-sevak-dis-icin-sunnet-vakumlu-4",
-    "name": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu",
-    "category": "Manuel Diş Fırçası",
-    "brand": "OBRNHOMEN",
-    "price": 299.99,
-    "currency": "TRY",
-    "stock": 45,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel ve etkili bir yoludur.",
-      "Orta sertlikteki fırça kılları sayesinde diş etlerinizi nazikçe temizlerken, dişlerinizi beyazlatmaya yardımcı olur.",
-      "Beyazlatma özelliği ile dişlerinizi doğal yollarla parlatır ve daha beyaz bir gülümseme sağlar.",
-      "Sevak misvakları, hac ve umre ziyaretlerinizde dağıtabileceğiniz veya hediye edebileceğiniz ideal bir üründür.",
-      "Vakumlu ambalajı sayesinde hijyenik bir şekilde saklanabilir ve uzun süre tazeliğini korur."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1811/prod/QC_PREP/20260109/01/4f60f48b-3d54-3f18-a14f-1f6532cb7f95/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu — Manuel Diş Fırçası. Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel v"
-  },
-  {
-    "id": "3434634665463546",
-    "slug": "lux-kalin-misvak-sivak-sevak-dis-icin-sunnet-vakumlu-5",
-    "name": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu",
-    "category": "Manuel Diş Fırçası",
-    "brand": "OBRNHOMEN",
-    "price": 249.99,
-    "currency": "TRY",
-    "stock": 47,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel ve etkili bir yoludur.",
-      "Orta sertlikteki fırça kılları sayesinde diş etlerinizi nazikçe temizlerken, dişlerinizi beyazlatmaya yardımcı olur.",
-      "Beyazlatma özelliği ile dişlerinizi doğal yollarla parlatır ve daha beyaz bir gülümseme sağlar.",
-      "Sevak misvakları, hac ve umre ziyaretlerinizde dağıtabileceğiniz veya hediye edebileceğiniz ideal bir üründür.",
-      "Vakumlu ambalajı sayesinde hijyenik bir şekilde saklanabilir ve uzun süre tazeliğini korur."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1813/prod/QC_PREP/20260122/17/5a351ecf-1098-39e5-a26e-d309304e2f56/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu — Manuel Diş Fırçası. Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel v"
-  },
-  {
-    "id": "4574654765473537",
-    "slug": "lux-kalin-misvak-sivak-sevak-dis-icin-sunnet-vakumlu-6",
-    "name": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu",
-    "category": "Manuel Diş Fırçası",
-    "brand": "OBRNHOMEN",
-    "price": 199.99,
-    "currency": "TRY",
-    "stock": 48,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel ve etkili bir yoludur.",
-      "Orta sertlikteki fırça kılları sayesinde diş etlerinizi nazikçe temizlerken, dişlerinizi beyazlatmaya yardımcı olur.",
-      "Beyazlatma özelliği ile dişlerinizi doğal yollarla parlatır ve daha beyaz bir gülümseme sağlar.",
-      "Sevak misvakları, hac ve umre ziyaretlerinizde dağıtabileceğiniz veya hediye edebileceğiniz ideal bir üründür.",
-      "Vakumlu ambalajı sayesinde hijyenik bir şekilde saklanabilir ve uzun süre tazeliğini korur."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260122/17/702eaaba-f81f-3218-8041-737df6963083/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu — Manuel Diş Fırçası. Pakistan menşeili, doğal ve kaliteli misvaklar, dişlerinizi temizlemenin geleneksel v"
-  },
-  {
-    "id": "5634136510",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz-5",
-    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 699.99,
-    "currency": "TRY",
-    "stock": 44,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260111/21/faf46e93-0fa7-3f2c-82e7-9c18dca184a6/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/7906c7f2-b1be-36b7-b0c1-60a5a5cc5c39/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/49d75546-f291-3cbb-8919-10abbb334fa8/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1813/prod/QC_PREP/20260118/23/43756953-62ce-34b6-9e81-5474e11e020b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/0c07a24d-772c-301c-a02e-d533e1826192/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/f94e1a1a-c29e-36ac-9d8e-c11ba1bf5dd9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260111/21/6c9001c9-e9de-302f-9b5b-06e4d4619568/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
   },
   {
     "id": "51641206321",
@@ -3321,7 +1655,7 @@
   },
   {
     "id": "TX07B315DD23880",
-    "slug": "otomatik-mezura-15-metre",
+    "slug": "otomatik-mezura-1-5-metre",
     "name": "Otomatik Mezura 1.5 Metre",
     "category": "Amigurumi",
     "brand": "sepetra",
@@ -3348,51 +1682,8 @@
     "metaDescription": "Otomatik Mezura 1.5 Metre — Amigurumi. Hassas ölçüm imkanı sunan UĞURDAN Otomatik Mezura, 1.5 metre uzunluğunda ve dayanıklı yapısıyla ev ve ofis kullanımına uy"
   },
   {
-    "id": "8745894654894564",
-    "slug": "karma-renk-hic-desensiz-kadife-seccade-namazlik-dodya-imalat-sik-dokuma-sik-550-600-gram-2",
-    "name": "Karma Renk Hiç Desensiz Kadife Seccade Namazlık Dodya İmalat Sık Dokuma Şık 550 600 gram",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 1499,
-    "currency": "TRY",
-    "stock": 33,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [
-      "El ve makine yıkamasına uygun olan hiç de sensiz kadife seccade namazlık dodyo ipten imalat harika şık tasarımı ile siz değerli müşterilerimize satışa sunulmuştur adetli sipariş verebilirsiniz stoğumuz yüksek adette vardır"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260121/20/97f90b12-0a9c-31e5-aa3f-8263afb0c07e/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1783/prod/QC_PREP/20251030/09/108ffe47-7c21-3231-9780-13dd5b7e3f81/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1795/prod/QC_ENRICHMENT/20251129/21/f9f5f355-1a7d-3699-9aa1-d2f07306520a/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1794/prod/QC_ENRICHMENT/20251129/21/98ffe655-66bf-3717-a7e5-20ff9cbbb2db/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1795/prod/QC_ENRICHMENT/20251129/21/71945fc3-01f0-346b-b4a6-f14f688cf72f/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1807/prod/QC_ENRICHMENT/20260106/11/0e99cf86-99eb-381f-b053-fd96b8e039b5/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Renk Hiç Desensiz Kadife Seccade Namazlık Dodya İmalat Sık Dokuma Şık 550 600 gram — Seccade. El ve makine yıkamasına uygun olan hiç de sensiz kadife secc"
-  },
-  {
-    "id": "48498456464489541",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz-6",
-    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 1199.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1813/prod/QC_PREP/20260121/20/5f9004a4-7602-38ca-9581-3769089e72fd/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
-  },
-  {
     "id": "984546165498946546",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz-7",
+    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz_2",
     "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -3415,80 +1706,8 @@
     "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Konsept Hediyelik. 20 adet karma simli goblen seccade, farklı renk seçenekleriyle sunulmaktadır."
   },
   {
-    "id": "8761798647416768767",
-    "slug": "tul-keseli-kadife-kapli-yasin-i-serif-hediyesi-karisik-renk",
-    "name": "Tül Keseli Kadife Kaplı Yasin-i Şerif - Hediyesi-Karışık Renk ( )",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 999.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Her biri özenle hazırlanmış, kadife kaplı yasin-i şerifler, mevlitlerde ve özel günlerde anlamlı bir hediye seçeneği sunar.",
-      "Tül keseli tasarımı ile şık ve korunaklı bir sunum sağlar, hediyenizi daha da özel kılar.",
-      "Mevlütlerde ve dini törenlerde dağıtılmak üzere idealdir, misafirlerinize manevi bir hediye verirsiniz.",
-      "Karışık renk seçenekleri ile farklı zevklere hitap eder, her türlü dekorasyona uyum sağlar.",
-      "20 adetlik paketiyle toplu kullanım için uygundur, birden fazla kişiye aynı anda hediye edilebilir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260121/16/7056bf96-988c-3390-936a-d8105e0dbcc2/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Tül Keseli Kadife Kaplı Yasin-i Şerif - Hediyesi-Karışık Renk ( ) — Konsept Hediyelik. Her biri özenle hazırlanmış, kadife kaplı yasin-i şerifler, mevlitlerde v"
-  },
-  {
-    "id": "65214561681",
-    "slug": "tul-keseli-kadife-kapli-yasin-i-serif-hediyesi-karisik-renk-2",
-    "name": "Tül Keseli Kadife Kaplı Yasin-i Şerif - Hediyesi-Karışık Renk ( )",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 1999.99,
-    "currency": "TRY",
-    "stock": 100,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Mevlüt ve özel günlerde sevdiklerinize hediye edebileceğiniz zarif bir seçenek.",
-      "41 adet tül keseli kadife kaplı Yasin-i Şerif ile hem şıklığı hem de anlamlılığı bir arada sunar.",
-      "Her biri özenle hazırlanmış bu set, Mevlüt sofralarına renk katmak için idealdir.",
-      "Karışık renk seçenekleriyle farklı zevklere hitap eder ve görsel bir şölen yaratır.",
-      "Kadife kaplama, ürünlere lüks bir dokunuş katarken, tül keseler de koruma ve estetik sağlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260121/16/7056bf96-988c-3390-936a-d8105e0dbcc2/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Tül Keseli Kadife Kaplı Yasin-i Şerif - Hediyesi-Karışık Renk ( ) — Konsept Hediyelik. Mevlüt ve özel günlerde sevdiklerinize hediye edebileceğiniz zarif bir se"
-  },
-  {
-    "id": "987456654654654654",
-    "slug": "tul-keseli-kadife-kapli-yasin-i-serif-hediyesi-karisik-renk-3",
-    "name": "Tül Keseli Kadife Kaplı Yasin-i Şerif - Hediyesi-Karışık Renk ( )",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 1999.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "Mevlüt ve özel günlerde sevdiklerinize hediye edebileceğiniz zarif bir seçenek.",
-      "41 adet tül keseli kadife kaplı Yasin-i Şerif ile hem şıklığı hem de anlamlılığı bir arada sunar.",
-      "Her biri özenle hazırlanmış bu set, Mevlüt sofralarına renk katmak için idealdir.",
-      "Karışık renk seçenekleriyle farklı zevklere hitap eder ve görsel bir şölen yaratır.",
-      "Kadife kaplama, ürünlere lüks bir dokunuş katarken, tül keseler de koruma ve estetik sağlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260121/16/7056bf96-988c-3390-936a-d8105e0dbcc2/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Tül Keseli Kadife Kaplı Yasin-i Şerif - Hediyesi-Karışık Renk ( ) — Konsept Hediyelik. Mevlüt ve özel günlerde sevdiklerinize hediye edebileceğiniz zarif bir se"
-  },
-  {
     "id": "654789321123654",
-    "slug": "tul-keseli-kadife-kapli-yasin-i-serif-hediyesi-karisik-renk-4",
+    "slug": "tul-keseli-kadife-kapli-yasin-i-serif-hediyesi-karisik-renk",
     "name": "Tül Keseli Kadife Kaplı Yasin-i Şerif - Hediyesi-Karışık Renk ( )",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -3567,30 +1786,6 @@
     "metaDescription": "Kadife Seccade — Seccade. Kadife dokusuyla yumuşak bir dokunuş sunar ve seccade üzerinde rahat bir kullanım sağlar."
   },
   {
-    "id": "6549564521",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz-8",
-    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 1399.99,
-    "currency": "TRY",
-    "stock": 36,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/7906c7f2-b1be-36b7-b0c1-60a5a5cc5c39/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/49d75546-f291-3cbb-8919-10abbb334fa8/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1813/prod/QC_PREP/20260118/23/43756953-62ce-34b6-9e81-5474e11e020b/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260118/23/0c07a24d-772c-301c-a02e-d533e1826192/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1814/prod/QC_PREP/20260118/23/f94e1a1a-c29e-36ac-9d8e-c11ba1bf5dd9/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260111/21/faf46e93-0fa7-3f2c-82e7-9c18dca184a6/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260111/21/6c9001c9-e9de-302f-9b5b-06e4d4619568/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
-  },
-  {
     "id": "4145665114",
     "slug": "kadife-sipinger-seccade",
     "name": "Kadife Şipinger Seccade",
@@ -3625,7 +1820,7 @@
   },
   {
     "id": "51625156",
-    "slug": "kadife-seccade-2",
+    "slug": "kadife-seccade_2",
     "name": "Kadife Seccade ( )",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -3651,7 +1846,7 @@
   },
   {
     "id": "561651451",
-    "slug": "kadife-seccade-3",
+    "slug": "kadife-seccade_3",
     "name": "Kadife Seccade ( )",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -3677,7 +1872,7 @@
   },
   {
     "id": "165914564",
-    "slug": "kadife-seccade-4",
+    "slug": "kadife-seccade_4",
     "name": "Kadife Seccade ( )",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -3703,7 +1898,7 @@
   },
   {
     "id": "6584956145",
-    "slug": "kadife-seccade-5",
+    "slug": "kadife-seccade_5",
     "name": "Kadife Seccade ( )",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -3729,7 +1924,7 @@
   },
   {
     "id": "415656125",
-    "slug": "kadife-seccade-6",
+    "slug": "kadife-seccade_6",
     "name": "Kadife Seccade ( )",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -3779,7 +1974,7 @@
   },
   {
     "id": "498451564641",
-    "slug": "kadife-seccade-7",
+    "slug": "kadife-seccade_7",
     "name": "Kadife Seccade",
     "category": "Seccade",
     "brand": "OBRNHOMEN",
@@ -3877,55 +2072,28 @@
     "metaDescription": "Krem Mini Kuran, İnci Tesbih, Taşlı Zikirmatik Seti — Tesbih. 10 adet mini Kuran-ı Kerim, inci tesbih ve taşlı zikirmatikten oluşan set, hac, umre, mevlit gibi "
   },
   {
-    "id": "4365834574756",
-    "slug": "kadife-kapli-yasin-i-serif-ve-tesbih-set-mevlit-kitabi-tul-keseli-2",
-    "name": "Kadife Kaplı Yasin-i Şerif Ve Tesbih Set Mevlit Kitabı (TÜL KESELİ)",
-    "category": "Konsept Hediyelik",
-    "brand": "PIRISA",
-    "price": 5699,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "45 adet Yasin-i Şerif ve tesbih setinden oluşan, mevlit törenleri ve özel günlerde kullanıma uygun bir ürün.",
-      "Her bir set, kadife kaplı Yasin-i Şerif kitabı ve tesbihten oluşur, şık ve dini bir atmosfer yaratır.",
-      "Yasin-i Şerif kitabı Arapça olarak basılmıştır, orijinal metni okuma imkanı sunar.",
-      "Tesbihler, dini ritüellerde ve dua esnasında kullanılmak üzere tasarlanmıştır.",
-      "Mevlit kitabı, özel günlerde okunacak dualar ve dualar için idealdir.",
-      "Setler, tül keseli olarak sunulur, hem hijyenik hem de şık bir sunum sağlar.",
-      "Türkiye'de üretilmiştir, yerel işçiliği destekler ve kalite standartlarına uygun olarak hazırlanmıştır."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1812/prod/QC_PREP/20260117/19/4ee8fee9-2241-3ff3-a857-bee9057d71f8/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kadife Kaplı Yasin-i Şerif Ve Tesbih Set Mevlit Kitabı (TÜL KESELİ) — Konsept Hediyelik. 45 adet Yasin-i Şerif ve tesbih setinden oluşan, mevlit törenleri ve öz"
-  },
-  {
-    "id": "112233344323",
+    "id": "978984564864",
     "slug": "hakiki-akik-tasi-yuzuk-seti-ve-dogal-tas-paket",
     "name": "Hakiki Akik Taşı Yüzük Seti - , ve Doğal Taş Paket",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
-    "price": 1999.99,
+    "price": 699,
     "currency": "TRY",
-    "stock": 50,
+    "stock": 32,
     "inStock": true,
     "color": null,
     "size": "Tek Ebat",
     "features": [
-      "36 adet hakiki akik taşı yüzükten oluşan set, hem şıklığı hem de anlamı bir arada sunar.",
-      "Her bir yüzük, doğal akik taşından üretilmiştir ve her biri benzersiz desenlere sahiptir.",
-      "Hac, Umre ve Mevlüt gibi özel günlerde dağıtmalık olarak idealdir",
-      "hem manevi değeri hem de hediyelik olarak uygunluğu ile öne çıkar.",
-      "Standlı kutusu sayesinde yüzükler düzenli ve şık bir şekilde sergilenir, böylece hediye verme deneyimi de güzelleşir.",
-      "Doğal taşların enerjisiyle ruhani bir dokunuş katmak isteyenler için mükemmel bir seçenektir."
+      "10 adet hakiki akik taşı yüzük seti ile hem şıklığı hem de manevi değeri bir arada sunar.",
+      "Hac, Umre ve Mevlüt gibi özel günlerde dağıtmalık olarak ideal bir hediye seçeneği oluşturur.",
+      "Doğal taşların özgün dokusu ve güzelliğiyle dikkat çeker, her biri farklı bir karakter taşır.",
+      "Akik taşı, bilgelik ve koruma enerjisi ile bilinir, bu özelliğiyle anlamlı bir hediye alternatifi sunar.",
+      "Set, özel günlerde sevdiklerinize hem manevi hem de estetik bir hediye vermek isteyenler için mükemmel bir seçimdir."
     ],
     "images": [
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260115/17/2c15586b-d354-3efe-b0a4-1072478b4f78/1_org_zoom.jpg"
+      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260115/17/b1abc0c0-7226-329b-bb96-fc0d2e86a90e/1_org_zoom.jpg"
     ],
-    "metaDescription": "Hakiki Akik Taşı Yüzük Seti - , ve Doğal Taş Paket — Konsept Hediyelik. 36 adet hakiki akik taşı yüzükten oluşan set, hem şıklığı hem de anlamı bir arada sunar."
+    "metaDescription": "Hakiki Akik Taşı Yüzük Seti - , ve Doğal Taş Paket — Konsept Hediyelik. 10 adet hakiki akik taşı yüzük seti ile hem şıklığı hem de manevi değeri bir arada sunar"
   },
   {
     "id": "4685856456",
@@ -3975,56 +2143,8 @@
     "metaDescription": "Kesede Beyaz İnci Tesbih Allah Lafızlı Gold Detaylı — Tesbih. Türkiye'de üretilen, yerli malı bir üründür."
   },
   {
-    "id": "71987979879879841",
-    "slug": "tasli-zikirmatik-ve-inci-tesbih-seti-kutulu-ve-hediyeligi-karisik-renkli",
-    "name": "Taşlı Zikirmatik ve İnci Tesbih Seti - Kutulu , ve Hediyeliği- Karışık Renkli",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 4999.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "50 adet taşlı zikirmatik ve inci tesbih setinden oluşan özel koleksiyon.",
-      "Mevlüt, hac ve umre hediyeliği olarak ideal bir seçenek sunar.",
-      "Her biri ayrı ayrı kutulanmış, şık ve korunaklı sunum.",
-      "Karışık renk seçenekleriyle geniş bir yelpazede tercih imkanı sağlar.",
-      "Taşlı zikirmatikler ve inci tesbihler, hem estetik hem de manevi değeriyle dikkat çeker."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260115/17/71eaec5c-c92b-3e13-b0d3-d01c9ff23ef1/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Taşlı Zikirmatik ve İnci Tesbih Seti - Kutulu , ve Hediyeliği- Karışık Renkli — Konsept Hediyelik. 50 adet taşlı zikirmatik ve inci tesbih setinden oluşan özel "
-  },
-  {
-    "id": "8791465413689761",
-    "slug": "tasli-zikirmatik-ve-inci-tesbih-seti-kutulu-ve-hediyeligi-karisik-renkli-2",
-    "name": "Taşlı Zikirmatik ve İnci Tesbih Seti - Kutulu , ve Hediyeliği- Karışık Renkli",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 3999.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "41 adet taşlı zikirmatik ve inci tesbih seti, Mevlüt, Hac ve Umre gibi özel günlerde hediye etmek için idealdir.",
-      "Her bir set, 41 adet zikirmatik ve inci tesbihten oluşur, böylece birden fazla kişiye aynı anda hediye edilebilir.",
-      "Kutulu tasarımı sayesinde ürünler şık ve düzenli bir şekilde saklanabilir ve sunulabilir.",
-      "Karışık renkli taşlar ve inci detayları ile estetik bir görünüm sunar.",
-      "Taşlı zikirmatikler, zikir yaparken rahat bir kullanım sağlar ve taşların dokusuyla farklı bir deneyim sunar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260115/17/7c69363f-2bf9-3468-8e36-0f61f6330bad/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Taşlı Zikirmatik ve İnci Tesbih Seti - Kutulu , ve Hediyeliği- Karışık Renkli — Konsept Hediyelik. 41 adet taşlı zikirmatik ve inci tesbih seti, Mevlüt, Hac ve "
-  },
-  {
     "id": "87178749849878949",
-    "slug": "tasli-zikirmatik-ve-inci-tesbih-seti-kutulu-ve-hediyeligi-karisik-renkli-3",
+    "slug": "tasli-zikirmatik-ve-inci-tesbih-seti-kutulu-ve-hediyeligi-karisik-renkli",
     "name": "Taşlı Zikirmatik ve İnci Tesbih Seti - Kutulu , ve Hediyeliği- Karışık Renkli",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -4050,56 +2170,8 @@
     "metaDescription": "Taşlı Zikirmatik ve İnci Tesbih Seti - Kutulu , ve Hediyeliği- Karışık Renkli — Konsept Hediyelik. 10 adet taşlı zikirmatik ve inci tesbih setinden oluşur, her "
   },
   {
-    "id": "8548646456468",
-    "slug": "tasli-zikirmatik-ve-inci-tesbih-seti-kutulu-ve-hediyeligi-karisik-renkli-4",
-    "name": "Taşlı Zikirmatik ve İnci Tesbih Seti - Kutulu , ve Hediyeliği- Karışık Renkli",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 2999.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "30 adet taşlı zikirmatik ve inci tesbih setinden oluşan, mevlit, hac ve umre hediyeliği olarak ideal bir seçim.",
-      "Her bir set, kutulu olarak sunulmakta olup, şık ve korunaklı bir şekilde taşınabilir.",
-      "Karışık renk seçenekleriyle farklı zevklere hitap eder ve her biri benzersiz bir estetik sunar.",
-      "Taşlı zikirmatikler, kullanım kolaylığı ve şık görünümü ile dikkat çekerken, inci tesbihler geleneksel tasarımlarıyla göz alıcıdır.",
-      "Hediye olarak tercih edildiğinde, hem anlamlı hem de görsel açıdan etkileyici bir seçenek sunar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1811/prod/QC_PREP/20260115/17/fa19d545-5905-3da4-9af9-686b4d52b8ea/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Taşlı Zikirmatik ve İnci Tesbih Seti - Kutulu , ve Hediyeliği- Karışık Renkli — Konsept Hediyelik. 30 adet taşlı zikirmatik ve inci tesbih setinden oluşan, mevl"
-  },
-  {
-    "id": "978984564864",
-    "slug": "hakiki-akik-tasi-yuzuk-seti-ve-dogal-tas-paket-2",
-    "name": "Hakiki Akik Taşı Yüzük Seti - , ve Doğal Taş Paket",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 699,
-    "currency": "TRY",
-    "stock": 32,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "10 adet hakiki akik taşı yüzük seti ile hem şıklığı hem de manevi değeri bir arada sunar.",
-      "Hac, Umre ve Mevlüt gibi özel günlerde dağıtmalık olarak ideal bir hediye seçeneği oluşturur.",
-      "Doğal taşların özgün dokusu ve güzelliğiyle dikkat çeker, her biri farklı bir karakter taşır.",
-      "Akik taşı, bilgelik ve koruma enerjisi ile bilinir, bu özelliğiyle anlamlı bir hediye alternatifi sunar.",
-      "Set, özel günlerde sevdiklerinize hem manevi hem de estetik bir hediye vermek isteyenler için mükemmel bir seçimdir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260115/17/b1abc0c0-7226-329b-bb96-fc0d2e86a90e/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Hakiki Akik Taşı Yüzük Seti - , ve Doğal Taş Paket — Konsept Hediyelik. 10 adet hakiki akik taşı yüzük seti ile hem şıklığı hem de manevi değeri bir arada sunar"
-  },
-  {
     "id": "5463854684160",
-    "slug": "ve-hediyeligi-tasli-dijital-zikirmatik-10lu-karisik-renk-set-hatirasi",
+    "slug": "ve-hediyeligi-tasli-dijital-zikirmatik-10-lu-karisik-renk-set-hatirasi",
     "name": "Ve Hediyeliği Taşlı Dijital Zikirmatik - 10'lu Karışık Renk Set - Hatırası",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -4123,7 +2195,7 @@
   },
   {
     "id": "452435415340165",
-    "slug": "renkli-namaz-takkesi-41li-set-ve-icin-ideal",
+    "slug": "renkli-namaz-takkesi-41-li-set-ve-icin-ideal",
     "name": "Renkli Namaz Takkesi 41'li Set | , , Ve Için Ideal",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -4150,7 +2222,7 @@
   },
   {
     "id": "897967896",
-    "slug": "renkli-namaz-takkesi-12lu-set-ve-icin-ideal",
+    "slug": "renkli-namaz-takkesi-12-lu-set-ve-icin-ideal",
     "name": "Renkli Namaz Takkesi 12'lu Set | , , Ve Için Ideal",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -4174,7 +2246,7 @@
   },
   {
     "id": "56469857",
-    "slug": "renkli-namaz-takkesi-10lu-set-ve-icin-ideal",
+    "slug": "renkli-namaz-takkesi-10-lu-set-ve-icin-ideal",
     "name": "Renkli Namaz Takkesi 10'lu Set | , , Ve Için Ideal",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -4221,104 +2293,8 @@
     "metaDescription": "Ve Hediyeliği Çocuk Kolye Seti - Çocuklar İçin Anlamlı Takı ve Aksesuar ( ) — Konsept Hediyelik. Çocuklar için özel olarak tasarlanmış, hac ve umre temalı 10 ad"
   },
   {
-    "id": "89798451",
-    "slug": "duzrenk-ceyizlik-flamli-pamuk-esarp-yazma",
-    "name": "Düzrenk Çeyizlik Flamlı Pamuk Eşarp Yazma ( )",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 4399.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "100 adetlik paket içeriğiyle, hac ve umre ziyaretlerinizde veya çeyiz hazırlıklarınızda ihtiyacınız olan eşarp ve yazma çeşitliliğini sunar.",
-      "Düz renk tasarımı ile her türlü kıyafetle kolayca kombinlenebilir ve şıklığınızı tamamlar.",
-      "Flamlı pamuk kumaşı, yumuşak dokusu ve nefes alabilir yapısıyla gün boyu konfor sağlar.",
-      "Hediyelik olarak tercih edebileceğiniz bu eşarp ve yazmalar, sevdiklerinize anlamlı bir hediye seçeneği sunar.",
-      "Eşarp ve yazma, hac ve umre ziyaretlerinizde başınızı örtmek için ideal bir aksesuardır."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260115/15/e5c2757e-b895-378f-9df6-616549fce805/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Düzrenk Çeyizlik Flamlı Pamuk Eşarp Yazma ( ) — Konsept Hediyelik. 100 adetlik paket içeriğiyle, hac ve umre ziyaretlerinizde veya çeyiz hazırlıklarınızda ihtiy"
-  },
-  {
-    "id": "56460478",
-    "slug": "duzrenk-ceyizlik-flamli-pamuk-esarp-yazma-2",
-    "name": "Düzrenk Çeyizlik Flamlı Pamuk Eşarp Yazma ( )",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 2299.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "50 adetlik set halinde sunulan bu eşarp yazma, hac ve umre gibi özel günlerde dağıtılmak üzere idealdir.",
-      "Çeyizlik olarak da tercih edilebilecek bu ürün, geleneksel ve modern tasarımıyla dikkat çeker.",
-      "Flamlı pamuk kumaş yapısı sayesinde yumuşak dokusuyla konforlu bir kullanım sunar.",
-      "Düz renkli tasarımıyla sade ve şık bir görünüm sağlar, her türlü kıyafetle kolayca kombinlenebilir.",
-      "Hediye olarak tercih edildiğinde, sevdiklerinize anlamlı bir hatıra bırakmanızı sağlar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1811/prod/QC_PREP/20260115/15/9f7fbca5-74f7-3c11-8eed-c6f1bbfc4be0/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Düzrenk Çeyizlik Flamlı Pamuk Eşarp Yazma ( ) — Konsept Hediyelik. 50 adetlik set halinde sunulan bu eşarp yazma, hac ve umre gibi özel günlerde dağıtılmak üzer"
-  },
-  {
-    "id": "0451400156065156",
-    "slug": "duzrenk-ceyizlik-flamli-pamuk-esarp-yazma-3",
-    "name": "Düzrenk Çeyizlik Flamlı Pamuk Eşarp Yazma ( )",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 1889.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "41 adet pamuklu eşarp ve yazma seti, hac ve umre gibi özel günlerde kullanıma uygundur.",
-      "Çeyizlik olarak da tercih edilebilen bu set, şık ve zarif bir hediye seçeneği sunar.",
-      "Flamlı tasarımıyla dikkat çeken bu eşarplar, günlük kullanımda da rahatlıkla tercih edilebilir.",
-      "Düz renkleri sayesinde farklı kıyafetlerle kolayca kombinlenebilir ve her ortama uyum sağlar.",
-      "Yumuşak dokusu ve kaliteli pamuk kumaşı ile konforlu bir kullanım deneyimi sunar."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1811/prod/QC_PREP/20260115/15/b703b877-34ef-3d0a-b40f-689ee7176501/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Düzrenk Çeyizlik Flamlı Pamuk Eşarp Yazma ( ) — Konsept Hediyelik. 41 adet pamuklu eşarp ve yazma seti, hac ve umre gibi özel günlerde kullanıma uygundur."
-  },
-  {
-    "id": "030202010106316",
-    "slug": "duzrenk-ceyizlik-flamli-pamuk-esarp-yazma-4",
-    "name": "Düzrenk Çeyizlik Flamlı Pamuk Eşarp Yazma ( )",
-    "category": "Konsept Hediyelik",
-    "brand": "OBRNHOMEN",
-    "price": 999.99,
-    "currency": "TRY",
-    "stock": 49,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "20 adetlik set halinde sunulan bu eşarplar, hac ve umre ziyaretleri için ideal bir hediye seçeneği sunar.",
-      "Çeyiz hazırlıkları için şık ve kullanışlı bir alternatif olan bu eşarplar, özel günlerde sevdiklerinize anlamlı bir hediye olabilir.",
-      "Düz renk tasarımlarıyla her türlü kıyafetle kolayca kombinlenebilen bu eşarplar, günlük kullanım için de uygundur.",
-      "Flamlı pamuk kumaştan üretilmiş olup, yumuşak dokusuyla cildinize nazik bir dokunuş sağlar.",
-      "Yazma olarak da kullanılabilen bu eşarplar, çok yönlü kullanım imkanı sunarak hem başörtüsü hem de boyunluk olarak tercih edilebilir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260115/15/d4184b10-e4c4-3642-b685-da25dcdc8cc7/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Düzrenk Çeyizlik Flamlı Pamuk Eşarp Yazma ( ) — Konsept Hediyelik. 20 adetlik set halinde sunulan bu eşarplar, hac ve umre ziyaretleri için ideal bir hediye seç"
-  },
-  {
     "id": "020202020244545",
-    "slug": "duzrenk-ceyizlik-flamli-pamuk-esarp-yazma-5",
+    "slug": "duzrenk-ceyizlik-flamli-pamuk-esarp-yazma",
     "name": "Düzrenk Çeyizlik Flamlı Pamuk Eşarp Yazma ( )",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -4342,7 +2318,7 @@
   },
   {
     "id": "5465416",
-    "slug": "110260-cm-lux-bambu-battal-boy-ihram-erkek-kiyafeti-alt-ust-iki-parca-elbisesi",
+    "slug": "110-260-cm-lux-bambu-battal-boy-ihram-erkek-kiyafeti-alt-ust-iki-parca-elbisesi",
     "name": "110*260 cm Lüx Bambu Battal Boy İhram Erkek Kıyafeti Alt Üst İki Parça Elbisesi",
     "category": "Havlu",
     "brand": "OBRNHOMEN",
@@ -4430,149 +2406,8 @@
     "metaDescription": "LED Dijital Zikirmatik Taşınabilir, Sayma ve Zikir Takibi Kolaylığı!\" — Tesbih. LED'li dijital zikirmatik, zikir sayısını otomatik olarak takip eden bir cihazdı"
   },
   {
-    "id": "5416854561",
-    "slug": "led-dijital-zikirmatik-tasinabilir-sayma-ve-zikir-takibi-kolayligi-2",
-    "name": "LED Dijital Zikirmatik Taşınabilir, Sayma ve Zikir Takibi Kolaylığı!\"",
-    "category": "Tesbih",
-    "brand": "OBRNHOMEN",
-    "price": 699.99,
-    "currency": "TRY",
-    "stock": 200,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "LED'li dijital zikirmatik, zikir sayısını otomatik olarak takip eden bir cihazdır.",
-      "LED ekranı üzerinden sayılar görüntülenir ve taşınması kolaydır."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260109/00/1bc05111-1c53-3d0f-959b-d24e0d843442/1_org_zoom.jpg"
-    ],
-    "metaDescription": "LED Dijital Zikirmatik Taşınabilir, Sayma ve Zikir Takibi Kolaylığı!\" — Tesbih. LED'li dijital zikirmatik, zikir sayısını otomatik olarak takip eden bir cihazdı"
-  },
-  {
-    "id": "546987485641",
-    "slug": "led-dijital-zikirmatik-tasinabilir-sayma-ve-zikir-takibi-kolayligi-3",
-    "name": "LED Dijital Zikirmatik Taşınabilir, Sayma ve Zikir Takibi Kolaylığı!\"",
-    "category": "Tesbih",
-    "brand": "OBRNHOMEN",
-    "price": 419.67,
-    "currency": "TRY",
-    "stock": 100,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "LED'li dijital zikirmatik, zikir sayısını otomatik olarak takip eden bir cihazdır.",
-      "LED ekranı üzerinden sayılar görüntülenir ve taşınması kolaydır."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260109/00/1bc05111-1c53-3d0f-959b-d24e0d843442/1_org_zoom.jpg"
-    ],
-    "metaDescription": "LED Dijital Zikirmatik Taşınabilir, Sayma ve Zikir Takibi Kolaylığı!\" — Tesbih. LED'li dijital zikirmatik, zikir sayısını otomatik olarak takip eden bir cihazdı"
-  },
-  {
-    "id": "51456461231",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz-9",
-    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 1199.99,
-    "currency": "TRY",
-    "stock": 88,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260111/21/faf46e93-0fa7-3f2c-82e7-9c18dca184a6/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260111/21/6c9001c9-e9de-302f-9b5b-06e4d4619568/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
-  },
-  {
-    "id": "545610654569",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz-10",
-    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 3198.99,
-    "currency": "TRY",
-    "stock": 4,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260111/21/faf46e93-0fa7-3f2c-82e7-9c18dca184a6/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260111/21/6c9001c9-e9de-302f-9b5b-06e4d4619568/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
-  },
-  {
-    "id": "4564789456",
-    "slug": "led-dijital-zikirmatik-tasinabilir-sayma-ve-zikir-takibi-kolayligi-4",
-    "name": "LED Dijital Zikirmatik Taşınabilir, Sayma ve Zikir Takibi Kolaylığı!\"",
-    "category": "Tesbih",
-    "brand": "OBRNHOMEN",
-    "price": 698.98,
-    "currency": "TRY",
-    "stock": 100,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "LED'li dijital zikirmatik, zikir sayısını otomatik olarak takip eden bir cihazdır.",
-      "LED ekranı üzerinden sayılar görüntülenir ve taşınması kolaydır."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260109/00/1bc05111-1c53-3d0f-959b-d24e0d843442/1_org_zoom.jpg"
-    ],
-    "metaDescription": "LED Dijital Zikirmatik Taşınabilir, Sayma ve Zikir Takibi Kolaylığı!\" — Tesbih. LED'li dijital zikirmatik, zikir sayısını otomatik olarak takip eden bir cihazdı"
-  },
-  {
-    "id": "68745684564",
-    "slug": "led-dijital-zikirmatik-tasinabilir-sayma-ve-zikir-takibi-kolayligi-5",
-    "name": "LED Dijital Zikirmatik Taşınabilir, Sayma ve Zikir Takibi Kolaylığı!\"",
-    "category": "Tesbih",
-    "brand": "OBRNHOMEN",
-    "price": 1049.99,
-    "currency": "TRY",
-    "stock": 200,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "LED'li dijital zikirmatik, zikir sayısını otomatik olarak takip eden bir cihazdır.",
-      "LED ekranı üzerinden sayılar görüntülenir ve taşınması kolaydır."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260109/00/1bc05111-1c53-3d0f-959b-d24e0d843442/1_org_zoom.jpg"
-    ],
-    "metaDescription": "LED Dijital Zikirmatik Taşınabilir, Sayma ve Zikir Takibi Kolaylığı!\" — Tesbih. LED'li dijital zikirmatik, zikir sayısını otomatik olarak takip eden bir cihazdı"
-  },
-  {
-    "id": "41564565641",
-    "slug": "karma-simli-goblen-seccade-namazlik-renk-secenekli-ceyiz-11",
-    "name": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz",
-    "category": "Seccade",
-    "brand": "OBRNHOMEN",
-    "price": 1468.99,
-    "currency": "TRY",
-    "stock": 40,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "70 x 110",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260111/21/faf46e93-0fa7-3f2c-82e7-9c18dca184a6/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260111/21/6c9001c9-e9de-302f-9b5b-06e4d4619568/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Karma Simli Goblen Seccade Namazlık Renk Seçenekli | Çeyiz — Seccade."
-  },
-  {
     "id": "156496854156",
-    "slug": "led-dijital-zikirmatik-tasinabilir-sayma-ve-zikir-takibi-kolayligi-6",
+    "slug": "led-dijital-zikirmatik-tasinabilir-sayma-ve-zikir-takibi-kolayligi_2",
     "name": "LED Dijital Zikirmatik Taşınabilir, Sayma ve Zikir Takibi Kolaylığı!\"",
     "category": "Tesbih",
     "brand": "OBRNHOMEN",
@@ -4593,7 +2428,7 @@
   },
   {
     "id": "654956155",
-    "slug": "kesede-inci-tesbih-2",
+    "slug": "kesede-inci-tesbih_2",
     "name": "Kesede Inci Tesbih",
     "category": "Konsept Hediyelik",
     "brand": "OBRNHOMEN",
@@ -4616,29 +2451,25 @@
     "metaDescription": "Kesede Inci Tesbih — Konsept Hediyelik. 41 adet inci tanesinden oluşan zarif ve şık bir tesbih seti."
   },
   {
-    "id": "5745774685",
+    "id": "48465165189748",
     "slug": "cocuk-bileklik-bilezik-cocuk-takisi",
     "name": "Çocuk Bileklik Bilezik Çocuk Takısı",
     "category": "Konsept Hediyelik",
     "brand": "PIRISA",
-    "price": 1499.99,
+    "price": 148.99,
     "currency": "TRY",
-    "stock": 50,
+    "stock": 493,
     "inStock": true,
     "color": null,
     "size": "Tek Ebat",
     "features": [
-      "100 adet çocuk bileklik bilezik seti, hac ve umre ziyaretleri için ideal bir hediye seçeneği sunar.",
-      "Çocukların seveceği renk ve tasarımlarla, dini bir anlam taşıyan bu takılar, hem eğlenceli hem de manevi bir değeri beraberinde getirir.",
-      "Hediye olarak dağıtılmaya uygun olması sayesinde, ziyaretçiler arasında kolayca paylaşılabilir ve herkes için özel bir hatıra olur.",
-      "Dayanıklı malzemeden üretilmiş olup, uzun süreli kullanım için uygundur.",
-      "Çocukların bileklerine rahatça takılabilen tasarımıyla konforlu bir kullanım sağlar."
+      "pırısa hediyelik çocuk bilekliği dağıtmalık hediyelik kaliteli ve zarif"
     ],
     "images": [
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260114/19/18a59de7-6b9c-3684-908b-6b4470801a8c/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260114/19/39669cc9-e6e7-3e86-b5f2-c78ec4ae85cf/1_org_zoom.jpg"
+      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260114/19/d5a64f07-baa3-3d48-93d7-42064323e452/1_org_zoom.jpg",
+      "https://cdn.dsmcdn.com/ty1811/prod/QC_PREP/20260114/19/4a4951c6-c6c0-32eb-824f-ba35587f1792/1_org_zoom.jpg"
     ],
-    "metaDescription": "Çocuk Bileklik Bilezik Çocuk Takısı — Konsept Hediyelik. 100 adet çocuk bileklik bilezik seti, hac ve umre ziyaretleri için ideal bir hediye seçeneği sunar."
+    "metaDescription": "Çocuk Bileklik Bilezik Çocuk Takısı — Konsept Hediyelik. pırısa hediyelik çocuk bilekliği dağıtmalık hediyelik kaliteli ve zarif"
   },
   {
     "id": "56416221556",
@@ -4703,66 +2534,6 @@
       "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260114/19/18191e88-018f-3f76-a629-2f4d6def2aeb/1_org_zoom.jpg"
     ],
     "metaDescription": "Çocuk Bileklik Bilezik Hediyesi — Konsept Hediyelik. pırısa kaliteli çocuk bilekliği dağıtmalık hediyelik"
-  },
-  {
-    "id": "65415610f5",
-    "slug": "cocuk-bileklik-bilezik-cocuk-takisi-2",
-    "name": "Çocuk Bileklik Bilezik Çocuk Takısı",
-    "category": "Konsept Hediyelik",
-    "brand": "PIRISA",
-    "price": 219.99,
-    "currency": "TRY",
-    "stock": 100,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "pırısa hediyelik mdağıtmalık çocuk bilekliği"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260114/19/331ee1da-23e7-336f-8509-b559466a6291/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1809/prod/QC_PREP/20260114/19/e8e4760d-738b-3d3b-a7dd-ecf5d7bfdfa6/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Çocuk Bileklik Bilezik Çocuk Takısı — Konsept Hediyelik. pırısa hediyelik mdağıtmalık çocuk bilekliği"
-  },
-  {
-    "id": "48465165189748",
-    "slug": "cocuk-bileklik-bilezik-cocuk-takisi-3",
-    "name": "Çocuk Bileklik Bilezik Çocuk Takısı",
-    "category": "Konsept Hediyelik",
-    "brand": "PIRISA",
-    "price": 148.99,
-    "currency": "TRY",
-    "stock": 493,
-    "inStock": true,
-    "color": null,
-    "size": "Tek Ebat",
-    "features": [
-      "pırısa hediyelik çocuk bilekliği dağıtmalık hediyelik kaliteli ve zarif"
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1810/prod/QC_PREP/20260114/19/d5a64f07-baa3-3d48-93d7-42064323e452/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1811/prod/QC_PREP/20260114/19/4a4951c6-c6c0-32eb-824f-ba35587f1792/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Çocuk Bileklik Bilezik Çocuk Takısı — Konsept Hediyelik. pırısa hediyelik çocuk bilekliği dağıtmalık hediyelik kaliteli ve zarif"
-  },
-  {
-    "id": "6548964651",
-    "slug": "kesede-inci-tesbih-tesbih-seti-2",
-    "name": "Kesede İnci Tesbih Tesbih Seti",
-    "category": "Tesbih",
-    "brand": "OBRNHOMEN",
-    "price": 497.98,
-    "currency": "TRY",
-    "stock": 498,
-    "inStock": true,
-    "color": "Beyaz",
-    "size": "Tek Ebat",
-    "features": [],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1811/prod/QC_PREP/20260114/19/ea6cdace-2b48-380f-b9c3-76e4180ccfcc/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Kesede İnci Tesbih Tesbih Seti — Tesbih."
   },
   {
     "id": "6677777766667777677",
