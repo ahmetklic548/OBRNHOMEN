@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import MobileNav from "@/app/components/MobileNav";
 import FloatingWhatsApp from "@/app/components/FloatingWhatsApp";
 import "./globals.css";
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </footer>
 
         <FloatingWhatsApp />
+        <GoogleAnalytics gaId="G-EZ3ZCTGL48" />
       </body>
     </html>
   );
