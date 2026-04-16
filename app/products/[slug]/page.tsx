@@ -40,8 +40,31 @@ export default async function ProductPage({
     `Merhaba, "${product.name}" ürünü hakkında bilgi almak istiyorum.`
   );
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.metaDescription,
+    image: product.images,
+    brand: { "@type": "Brand", name: product.brand },
+    offers: {
+      "@type": "Offer",
+      url: `https://obrnhomen.com/products/${product.slug}`,
+      priceCurrency: "TRY",
+      price: product.price.toFixed(2),
+      availability: product.inStock
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+      seller: { "@type": "Organization", name: "OBRNHOMEN" },
+    },
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb */}
       <nav className="text-[10px] tracking-[0.25em] uppercase text-stone-400 mb-10 flex items-center gap-2 flex-wrap">
         <Link href="/" className="hover:text-stone-700 transition-colors">
