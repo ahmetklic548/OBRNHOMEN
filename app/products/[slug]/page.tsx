@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllSlugs, getProductBySlug } from "@/lib/products";
 import ImageGallery from "@/app/components/ImageGallery";
+import AddToCartButton from "@/app/components/AddToCartButton";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -144,14 +145,14 @@ export default async function ProductPage({
           )}
 
           {/* CTA */}
-          <a
-            href={`https://wa.me/905316893849?text=${waText}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full py-4 bg-stone-900 text-white text-xs tracking-[0.2em] uppercase text-center hover:bg-stone-700 transition-colors duration-200 mb-3"
-          >
-            Sipariş Ver — WhatsApp
-          </a>
+          <AddToCartButton
+            slug={product.slug}
+            name={product.name}
+            price={product.price}
+            image={product.images[0] ?? ""}
+            inStock={product.inStock}
+            waText={waText}
+          />
           <p className="text-xs text-stone-400 text-center tracking-wide mb-10">
             Güvenli ödeme · Hızlı kargo · Kolay iade
           </p>
