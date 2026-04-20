@@ -28,7 +28,7 @@
 
 /* ─── Temel gövde ───────────────────────────────────────── */
 body {
-  background: var(--background);
+  background: #f9f3ea;
   color: var(--foreground);
   font-family: var(--font-cormorant, "Cormorant Garamond"), Georgia, serif;
   -webkit-font-smoothing: antialiased;
