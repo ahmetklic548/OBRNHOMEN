@@ -21,7 +21,7 @@ export default function HeroSection() {
 
       {/* Ana başlık */}
       <motion.h1
-        className="text-6xl md:text-7xl font-light tracking-[0.2em] uppercase mb-6"
+        className="text-4xl sm:text-5xl md:text-7xl font-light tracking-[0.2em] uppercase mb-6"
         style={{ color: "#fff8ed", textShadow: "0 2px 40px rgba(0,0,0,0.8), 0 0 60px rgba(201,168,76,0.4)" }}
         variants={{
           hidden: {},

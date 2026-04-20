@@ -30,7 +30,7 @@ export default function Home() {
       />
 
       {/* ── Tam ekran hero: 3D sahne + metin katmanı ── */}
-      <section className="relative h-screen overflow-hidden hero-dark islamic-pattern">
+      <section className="relative h-screen min-h-[600px] overflow-hidden hero-dark islamic-pattern hero-section">
         {/* Three.js canvas (arka plan) */}
         <div className="absolute inset-0 z-0">
           <Hero3DWrapper />

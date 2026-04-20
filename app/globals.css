@@ -76,3 +76,17 @@ h1, h2, h3 {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ─── Mobile: 3D hero yüksekliği ───────────────── */
+@media (max-width: 640px) {
+  .hero-section {
+    min-height: 100svh;
+  }
+}
+
+/* ─── Touch cihazlarda hover yerine tap efekti ── */
+@media (hover: none) {
+  .group:active .group-hover\:scale-\[1\.05\] {
+    transform: scale(1.03);
+  }
+}
