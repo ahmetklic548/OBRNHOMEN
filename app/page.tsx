@@ -1,5 +1,7 @@
 import { getAllProducts, getAllCategories } from "@/lib/products";
 import ProductGrid from "@/app/components/ProductGrid";
+import HeroSection from "@/app/components/HeroSection";
+import Hero3DWrapper from "@/app/components/Hero3DWrapper";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -21,34 +23,42 @@ export default function Home() {
   const categories = getAllCategories();
 
   return (
-    <div className="max-w-6xl mx-auto px-6">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* Hero */}
-      <section className="pt-24 pb-20 text-center">
-        <p className="text-[10px] tracking-[0.4em] uppercase text-stone-400 mb-5">
-          El İşçiliği &amp; Özgün Tasarım
-        </p>
-        <h1 className="text-5xl md:text-6xl font-light tracking-[0.15em] uppercase text-stone-800 mb-8">
-          Koleksiyon
-        </h1>
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <div className="h-px w-16 bg-stone-300" />
-          <span className="text-stone-300 text-lg">✦</span>
-          <div className="h-px w-16 bg-stone-300" />
+
+      {/* ── Tam ekran hero: 3D sahne + metin katmanı ── */}
+      <section className="relative h-screen overflow-hidden hero-dark islamic-pattern">
+        {/* Three.js canvas (arka plan) */}
+        <div className="absolute inset-0 z-0">
+          <Hero3DWrapper />
         </div>
-        <p className="text-stone-500 max-w-sm mx-auto leading-relaxed text-sm">
-          Her ürün, özel anlarınız için titizlikle hazırlanmıştır.
-        </p>
+
+        {/* Üst gradient siperlik — header'la geçişi yumuşatır */}
+        <div
+          className="absolute inset-x-0 top-0 h-28 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to bottom, rgba(12,11,8,0.7), transparent)" }}
+        />
+
+        {/* Alt gradient siperlik — ürün bölümüne geçişi yumuşatır */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-40 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to top, #fafaf9, transparent)" }}
+        />
+
+        {/* Metin katmanı */}
+        <div className="relative z-20 h-full flex items-center justify-center">
+          <HeroSection />
+        </div>
       </section>
 
-      {/* Filtre + Grid */}
-      <ProductGrid products={products} categories={categories} />
-
-      {/* Alt boşluk */}
-      <div className="pb-24" />
-    </div>
+      {/* ── Ürün koleksiyonu ── */}
+      <div className="max-w-6xl mx-auto px-6">
+        <ProductGrid products={products} categories={categories} />
+        <div className="pb-24" />
+      </div>
+    </>
   );
 }

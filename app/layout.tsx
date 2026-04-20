@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Cormorant_Garamond } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import MobileNav from "@/app/components/MobileNav";
 import FloatingWhatsApp from "@/app/components/FloatingWhatsApp";
 import CartButton from "@/app/components/CartButton";
 import { CartProvider } from "@/app/components/CartContext";
+import HajjManWrapper from "@/app/components/HajjManWrapper";
 import "./globals.css";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: { default: "OBRNHOMEN", template: "%s | OBRNHOMEN" },
@@ -14,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr" className="h-full">
+    <html lang="tr" className={`h-full ${cormorant.variable}`}>
       <body className="min-h-full flex flex-col">
         <CartProvider>
           <header className="border-b border-stone-200 bg-stone-50 sticky top-0 z-30">
@@ -43,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </header>
 
           <main className="flex-1">{children}</main>
+          <HajjManWrapper />
 
           <footer className="border-t border-stone-200 bg-stone-50 mt-20">
             <div className="max-w-6xl mx-auto px-6 py-12">

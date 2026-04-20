@@ -973,29 +973,6 @@
     "metaDescription": "Türkiye'de üretilmiş, yerli malı bir üründür. Pembe, 40 x 80."
   },
   {
-    "id": "212313213564",
-    "slug": "3-lu-set-motosiklet-figurlu-silikon-anahtarlik-canta-aksesuari",
-    "name": "3’lü Set Motosiklet Figürlü Silikon Anahtarlık - Çanta Aksesuarı",
-    "category": "Anahtarlık",
-    "brand": "PIRISA",
-    "price": 199.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "Çok Renkli",
-    "size": "1",
-    "features": [
-      "Türkiye'de üretilmiş, yerel işçiliğin ve kalitenin bir yansımasıdır.",
-      "Dayanıklı silikon malzemeden üretilmiş, uzun ömürlü kullanım sunar.",
-      "Motosiklet tutkunları için ideal bir aksesuar olup, çanta ve anahtarlıklarda şık bir görünüm sağlar.",
-      "3'lü set halinde sunulan bu ürün, hem kendi kullanımınız için hem de sevdiklerinize hediye olarak mükemmel bir seçenektir."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1829/prod/QC_PREP/20260220/17/a72975ed-7c97-36f9-a5f1-30f608cb09f5/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Dayanıklı silikon malzemeden üretilmiş, uzun ömürlü kullanım sunar. 1."
-  },
-  {
     "id": "5645456468541",
     "slug": "erkek-cocuk-ibadet-seti-seccade-tesbih-elifba-namaz-seti",
     "name": "Erkek Çocuk İbadet Seti Seccade Tesbih Elifba Namaz Seti",
@@ -1488,7 +1465,7 @@
     "id": "4574654765473537",
     "slug": "lux-kalin-misvak-sivak-sevak-dis-icin-sunnet-vakumlu",
     "name": "Lüx Kalın Misvak Sivak Sevak Diş için Sünnet Vakumlu",
-    "category": "Manuel Diş Fırçası",
+    "category": "Misvak",
     "brand": "OBRNHOMEN",
     "price": 199.99,
     "currency": "TRY",
@@ -1626,34 +1603,6 @@
       "https://cdn.dsmcdn.com/ty1807/prod/QC_ENRICHMENT/20260106/11/0e99cf86-99eb-381f-b053-fd96b8e039b5/1_org_zoom.jpg"
     ],
     "metaDescription": "Namaz vakitleriniz için kaliteli ve şık seccade. Karma Renk Hiç Desensiz Kadife Seccade Namazlık Dodya İmalat Sık Dokuma Şık 550 600 gram. 70 x 110."
-  },
-  {
-    "id": "TX07B315DD23880",
-    "slug": "otomatik-mezura-1-5-metre",
-    "name": "Otomatik Mezura 1.5 Metre",
-    "category": "Amigurumi",
-    "brand": "sepetra",
-    "price": 199.99,
-    "currency": "TRY",
-    "stock": 50,
-    "inStock": true,
-    "color": "renkli",
-    "size": "Tek Ebat",
-    "features": [
-      "Hassas ölçüm imkanı sunan UĞURDAN Otomatik Mezura, 1.5 metre uzunluğunda ve dayanıklı yapısıyla ev ve ofis kullanımına uygun bir alettir.",
-      "Kolay kullanım için tasarlanmış olan bu mezura, otomatik ölçüm özelliği sayesinde zaman kazandırır ve hataları minimize eder.",
-      "Geniş ekranı ile net ve okunaklı ölçümler sunar, böylece ölçüm sonuçlarını kolayca takip edebilirsiniz.",
-      "Dayanıklı plastik gövdesi ve sağlam metal ölçüm çubuğu ile uzun süreli kullanım için idealdir her türlü yüzeye zarar vermeden ölçüm yapabilirsiniz.",
-      "Hafif ve taşınabilir tasarımı sayesinde istediğiniz her yere rahatlıkla taşıyabilirsiniz evde, ofiste veya iş yerinizde kolayca kullanabilirsiniz."
-    ],
-    "images": [
-      "https://cdn.dsmcdn.com/ty1634/prod/QC/20250206/17/db78317c-e567-3559-bd7f-95396b9b4c26/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1634/prod/QC/20250206/17/12f450da-6ac3-3cee-a2e6-dc948380fc92/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1634/prod/QC/20250206/17/f2e20d8f-e7cb-3f16-b9f0-e881e50d809c/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1633/prod/QC/20250206/17/82da5833-d707-3c86-a5d4-5b48ced7f921/1_org_zoom.jpg",
-      "https://cdn.dsmcdn.com/ty1632/prod/QC/20250206/17/fd353eb8-3756-3967-8544-e46096e8b89e/1_org_zoom.jpg"
-    ],
-    "metaDescription": "Geniş ekranı ile net ve okunaklı ölçümler sunar, böylece ölçüm sonuçlarını kolayca takip edebilirsiniz. renkli."
   },
   {
     "id": "984546165498946546",
@@ -2262,7 +2211,7 @@
     "id": "5465416",
     "slug": "110-260-cm-lux-bambu-battal-boy-ihram-erkek-kiyafeti-alt-ust-iki-parca-elbisesi",
     "name": "110*260 cm Lüx Bambu Battal Boy İhram Erkek Kıyafeti Alt Üst İki Parça Elbisesi",
-    "category": "Havlu",
+    "category": "İhram",
     "brand": "OBRNHOMEN",
     "price": 1994.99,
     "currency": "TRY",
@@ -2311,7 +2260,7 @@
     "id": "564651562",
     "slug": "dogal-taze-misvak-kaliteli-paketli-agiz-bakim-urunu",
     "name": "Doğal & Taze Misvak Kaliteli Paketli, Ağız Bakım Ürünü",
-    "category": "Manuel Diş Fırçası",
+    "category": "Misvak",
     "brand": "PIRISA",
     "price": 299.99,
     "currency": "TRY",

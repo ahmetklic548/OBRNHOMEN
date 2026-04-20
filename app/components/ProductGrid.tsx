@@ -3,7 +3,26 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import type { Product } from "@/lib/products";
+
+const ease = "easeOut" as const;
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.07 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease },
+  },
+};
 
 export default function ProductGrid({
   products,
@@ -51,44 +70,59 @@ export default function ProductGrid({
       </p>
 
       {/* Ürün grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
-        {filtered.map((product) => (
-          <Link key={product.id} href={`/products/${product.slug}`} className="group block">
-            {/* Görsel */}
-            <div className="aspect-square bg-stone-100 overflow-hidden mb-4 relative">
-              {product.images[0] ? (
-                <Image
-                  src={product.images[0]}
-                  alt={product.name}
-                  fill
-                  className="object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-stone-300 text-xs tracking-widest uppercase">
-                  Görsel Yok
+      <motion.div
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0, margin: "0px 0px -50px 0px" }}
+      >
+        <AnimatePresence mode="popLayout">
+          {filtered.map((product) => (
+            <motion.div
+              key={product.id}
+              variants={cardVariants}
+              layout
+              whileHover={{ y: -5, transition: { duration: 0.25, ease } }}
+            >
+              <Link href={`/products/${product.slug}`} className="group block">
+                {/* Görsel */}
+                <div className="aspect-square bg-stone-100 overflow-hidden mb-4 relative transition-shadow duration-300 group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.10)]">
+                  {product.images[0] ? (
+                    <Image
+                      src={product.images[0]}
+                      alt={product.name}
+                      fill
+                      className="object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-stone-300 text-xs tracking-widest uppercase">
+                      Görsel Yok
+                    </div>
+                  )}
+                  {!product.inStock && (
+                    <div className="absolute inset-0 bg-white/75 flex items-center justify-center">
+                      <span className="text-xs tracking-widest uppercase text-stone-400">Tükendi</span>
+                    </div>
+                  )}
                 </div>
-              )}
-              {!product.inStock && (
-                <div className="absolute inset-0 bg-white/75 flex items-center justify-center">
-                  <span className="text-xs tracking-widest uppercase text-stone-400">Tükendi</span>
-                </div>
-              )}
-            </div>
 
-            {/* Bilgi */}
-            <p className="text-[10px] tracking-[0.2em] uppercase text-stone-400 mb-1.5">
-              {product.category}
-            </p>
-            <h2 className="text-sm text-stone-700 leading-snug mb-3 group-hover:text-stone-900 transition-colors line-clamp-2 min-h-[2.6rem]">
-              {product.name}
-            </h2>
-            <p className="text-sm font-medium text-stone-900">
-              {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
-            </p>
-          </Link>
-        ))}
-      </div>
+                {/* Bilgi */}
+                <p className="text-[10px] tracking-[0.2em] uppercase text-stone-400 mb-1.5">
+                  {product.category}
+                </p>
+                <h2 className="text-sm text-stone-700 leading-snug mb-3 group-hover:text-stone-900 transition-colors line-clamp-2 min-h-[2.6rem]">
+                  {product.name}
+                </h2>
+                <p className="text-sm font-medium text-stone-900">
+                  {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
+                </p>
+              </Link>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </>
   );
 }
