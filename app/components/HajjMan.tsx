@@ -48,8 +48,8 @@ function HajjModel({ isScrolling }: { isScrolling: boolean }) {
   });
 
   return (
-    <group ref={groupRef} position={[0, -1, 0]}>
-      <primitive object={scene} scale={1.0} />
+    <group ref={groupRef} position={[0, -0.5, 0]}>
+      <primitive object={scene} scale={0.8} />
     </group>
   );
 }
@@ -83,7 +83,7 @@ export default function HajjMan() {
       {pastHero && (
         <motion.div
           className="fixed left-0 bottom-0 z-20 pointer-events-none hidden sm:block"
-          style={{ width: "clamp(130px, 12vw, 190px)", height: "clamp(280px, 26vw, 400px)" }}
+          style={{ width: "clamp(90px, 9vw, 140px)", height: "clamp(200px, 20vw, 290px)" }}
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -60 }}

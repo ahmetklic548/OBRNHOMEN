@@ -95,13 +95,48 @@ export default function Home() {
 
       {/* ── Ürün koleksiyonu ── */}
       <div
-        className="relative"
+        className="relative overflow-hidden"
         style={{
           background: "linear-gradient(180deg, #f9f3ea 0%, #faf5ec 60%, #f5ede0 100%)",
         }}
       >
-        {/* Çok hafif İslami desen overlay */}
-        <div className="absolute inset-0 opacity-[0.04] islamic-pattern pointer-events-none" />
+        {/* İslami desen overlay — biraz daha belirgin */}
+        <div className="absolute inset-0 opacity-[0.07] islamic-pattern pointer-events-none" />
+
+        {/* Sol dikey İslami bordür şeridi */}
+        <div
+          className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none hidden lg:block"
+          style={{
+            background: "linear-gradient(to right, rgba(201,168,76,0.12), transparent)",
+            borderRight: "1px solid rgba(201,168,76,0.18)",
+          }}
+        >
+          <div className="absolute inset-0 islamic-pattern opacity-30" />
+        </div>
+
+        {/* Sağ dikey İslami bordür şeridi */}
+        <div
+          className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none hidden lg:block"
+          style={{
+            background: "linear-gradient(to left, rgba(201,168,76,0.12), transparent)",
+            borderLeft: "1px solid rgba(201,168,76,0.18)",
+          }}
+        >
+          <div className="absolute inset-0 islamic-pattern opacity-30" />
+        </div>
+
+        {/* Üst altın çizgi */}
+        <div
+          className="absolute top-0 inset-x-0 h-px pointer-events-none"
+          style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent)" }}
+        />
+
+        {/* Alt altın çizgi */}
+        <div
+          className="absolute bottom-0 inset-x-0 h-px pointer-events-none"
+          style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent)" }}
+        />
+
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <ProductGrid products={products} categories={categories} />
           <div className="pb-16" />

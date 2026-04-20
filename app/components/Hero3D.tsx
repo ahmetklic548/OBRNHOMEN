@@ -149,8 +149,8 @@ function Scene({ scrollRef }: { scrollRef: React.RefObject<number> }) {
 
       <Kaaba />
 
-      <Sparkles count={140} size={1.8} speed={0.3} opacity={0.6} color="#ffd700" scale={10} />
-      <Stars radius={28} depth={10} count={700} factor={2} saturation={0} fade speed={0.5} />
+      <Sparkles count={60} size={1.6} speed={0.25} opacity={0.5} color="#ffd700" scale={10} />
+      <Stars radius={28} depth={10} count={300} factor={2} saturation={0} fade speed={0.4} />
       <ScrollCamera scrollRef={scrollRef} />
     </>
   );
@@ -161,8 +161,8 @@ export default function Hero3D() {
   return (
     <Canvas
       camera={{ position: [0, 0.5, 5.5], fov: 42 }}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      dpr={[1, 1.5]}
+      gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+      dpr={[0.7, 1]}
     >
       <Scene scrollRef={scrollRef} />
     </Canvas>
