@@ -33,6 +33,23 @@ export default function ProductGrid({
     <div className="py-16">
       {/* ── Bölüm başlığı ── */}
       <div className="text-center mb-14">
+        {/* Dekoratif İslami çerçeve üst kısım */}
+        <motion.div
+          className="flex items-center justify-center gap-2 mb-3"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="h-px w-12" style={{ background: "linear-gradient(to right, transparent, #c9a84c)" }} />
+          <IslamicStar size={10} color="#c9a84c" opacity={0.5} />
+          <div className="h-px w-6" style={{ background: "#c9a84c", opacity: 0.3 }} />
+          <IslamicStar size={16} color="#c9a84c" opacity={0.8} />
+          <div className="h-px w-6" style={{ background: "#c9a84c", opacity: 0.3 }} />
+          <IslamicStar size={10} color="#c9a84c" opacity={0.5} />
+          <div className="h-px w-12" style={{ background: "linear-gradient(to left, transparent, #c9a84c)" }} />
+        </motion.div>
+
         <motion.div
           className="flex items-center justify-center gap-3 mb-5"
           initial={{ opacity: 0, y: 12 }}
@@ -153,6 +170,11 @@ export default function ProductGrid({
                   )}
                   {/* Altın köşe hover efekti */}
                   <div className="absolute inset-0 border-2 border-[#c9a84c]/0 group-hover:border-[#c9a84c]/20 transition-all duration-300 pointer-events-none" />
+                  {/* Köşe süsler */}
+                  <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-[#c9a84c]/30 group-hover:border-[#c9a84c]/70 transition-all duration-300 pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#c9a84c]/30 group-hover:border-[#c9a84c]/70 transition-all duration-300 pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-[#c9a84c]/30 group-hover:border-[#c9a84c]/70 transition-all duration-300 pointer-events-none" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-[#c9a84c]/30 group-hover:border-[#c9a84c]/70 transition-all duration-300 pointer-events-none" />
                 </div>
 
                 {/* Bilgi */}

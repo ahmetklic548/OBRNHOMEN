@@ -91,8 +91,8 @@ export default function HajjMan() {
     <AnimatePresence>
       {pastHero && (
         <motion.div
-          className="fixed left-0 bottom-0 z-20 pointer-events-none hidden sm:block"
-          style={{ width: "clamp(110px, 11vw, 160px)", height: "clamp(240px, 23vw, 340px)" }}
+          className="fixed left-0 z-20 pointer-events-none hidden sm:block"
+          style={{ width: "clamp(110px, 11vw, 160px)", height: "clamp(240px, 23vw, 340px)", bottom: "22vh" }}
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -60 }}

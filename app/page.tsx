@@ -145,19 +145,50 @@ export default function Home() {
 
       {/* ── Alt kapanış bandı ── */}
       <section
-        className="py-10 text-center"
-        style={{ background: "#1a1208" }}
+        className="relative py-16 text-center overflow-hidden"
+        style={{ background: "linear-gradient(180deg, #1a1208 0%, #0c0b08 100%)" }}
       >
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <IslamicStar size={16} color="#c9a84c" opacity={0.7} />
-          <p className="text-[10px] tracking-[0.5em] uppercase" style={{ color: "rgba(201,168,76,0.7)" }}>
-            OBRNHOMEN — El İşçiliği &amp; Özgün Tasarım
+        {/* Arka plan desen */}
+        <div className="absolute inset-0 opacity-[0.08] islamic-pattern pointer-events-none" />
+
+        {/* Üst altın çizgi */}
+        <div className="absolute top-0 inset-x-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.6), transparent)" }} />
+
+        <div className="relative z-10 max-w-sm mx-auto px-6">
+          {/* Üst ornament */}
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="h-px flex-1" style={{ background: "linear-gradient(to right, transparent, #c9a84c)" }} />
+            <IslamicStar size={10} color="#c9a84c" opacity={0.6} />
+            <IslamicStar size={18} color="#c9a84c" opacity={0.9} />
+            <IslamicStar size={10} color="#c9a84c" opacity={0.6} />
+            <div className="h-px flex-1" style={{ background: "linear-gradient(to left, transparent, #c9a84c)" }} />
+          </div>
+
+          {/* Logo / marka */}
+          <p className="text-lg tracking-[0.5em] uppercase mb-2" style={{ color: "#c9a84c", fontFamily: "Georgia, serif" }}>
+            OBRNHOMEN
           </p>
-          <IslamicStar size={16} color="#c9a84c" opacity={0.7} />
+          <p className="text-[9px] tracking-[0.35em] uppercase mb-6" style={{ color: "rgba(201,168,76,0.5)" }}>
+            El İşçiliği &amp; Özgün Tasarım
+          </p>
+
+          {/* Ayetin altın çizgisi */}
+          <div className="h-px mb-4" style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent)" }} />
+
+          <p className="text-xs leading-loose mb-4" style={{ color: "rgba(240,192,96,0.5)", fontFamily: "Georgia, serif", direction: "rtl" }}>
+            وَمَا تَفْعَلُوا مِنْ خَيْرٍ فَإِنَّ اللَّهَ بِهِ عَلِيمٌ
+          </p>
+          <p className="text-[9px] tracking-widest" style={{ color: "rgba(245,235,215,0.25)" }}>
+            Her iyilik Allah katında bilinir.
+          </p>
+
+          {/* Alt ornament */}
+          <div className="flex items-center justify-center gap-3 mt-6">
+            <div className="h-px flex-1" style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.3))" }} />
+            <IslamicStar size={12} color="#c9a84c" opacity={0.4} />
+            <div className="h-px flex-1" style={{ background: "linear-gradient(to left, transparent, rgba(201,168,76,0.3))" }} />
+          </div>
         </div>
-        <p className="text-xs" style={{ color: "rgba(245,235,215,0.35)" }}>
-          Her ürün bir emek, her hediye bir anlam taşır.
-        </p>
       </section>
     </>
   );
