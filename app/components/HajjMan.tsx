@@ -32,13 +32,22 @@ function HajjModel({ isScrolling }: { isScrolling: boolean }) {
   const { scene, animations } = useGLTF("/hajj.glb");
   const { actions, names } = useAnimations(animations, groupRef);
 
-  /* İlk animasyonu scroll'a göre kontrol et */
+  /* Animasyonu scroll'a göre kontrol et */
   useEffect(() => {
     if (!names.length) return;
     const action = actions[names[0]];
     if (!action) return;
-    action.reset().play();
-    action.paused = !isScrolling;
+
+    if (isScrolling) {
+      /* Scroll: animasyonu oynat (koşma) */
+      action.paused = false;
+      if (!action.isRunning()) action.reset().play();
+    } else {
+      /* Durma: frame 0'a dön (dik duruş) */
+      if (!action.isRunning()) action.reset().play();
+      action.time = 0;
+      action.paused = true;
+    }
   }, [isScrolling, actions, names]);
 
   /* Durduğunda yavaş nefes hareketi */
@@ -60,7 +69,7 @@ useGLTF.preload("/hajj.glb");
 function HajjScene({ isScrolling }: { isScrolling: boolean }) {
   return (
     <Canvas
-      camera={{ position: [0.3, 0.3, 3.8], fov: 46 }}
+      camera={{ position: [0, 0.2, 4.2], fov: 44 }}
       gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       dpr={0.75}
     >
@@ -83,7 +92,7 @@ export default function HajjMan() {
       {pastHero && (
         <motion.div
           className="fixed left-0 bottom-0 z-20 pointer-events-none hidden sm:block"
-          style={{ width: "clamp(90px, 9vw, 140px)", height: "clamp(200px, 20vw, 290px)" }}
+          style={{ width: "clamp(110px, 11vw, 160px)", height: "clamp(240px, 23vw, 340px)" }}
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -60 }}
