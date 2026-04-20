@@ -41,3 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+public/masjid_al-haram_kaaba.glb
+public/hajj_man_animated.glb
