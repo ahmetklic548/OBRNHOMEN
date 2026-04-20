@@ -149,8 +149,8 @@ function Scene({ scrollRef }: { scrollRef: React.RefObject<number> }) {
 
       <Kaaba />
 
-      <Sparkles count={60} size={1.6} speed={0.25} opacity={0.5} color="#ffd700" scale={10} />
-      <Stars radius={28} depth={10} count={300} factor={2} saturation={0} fade speed={0.4} />
+      <Sparkles count={30} size={1.5} speed={0.2} opacity={0.45} color="#ffd700" scale={10} />
+      <Stars radius={28} depth={10} count={150} factor={2} saturation={0} fade speed={0.35} />
       <ScrollCamera scrollRef={scrollRef} />
     </>
   );

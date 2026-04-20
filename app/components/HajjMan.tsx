@@ -60,7 +60,7 @@ useGLTF.preload("/hajj.glb");
 function HajjScene({ isScrolling }: { isScrolling: boolean }) {
   return (
     <Canvas
-      camera={{ position: [0, 0.5, 3.2], fov: 50 }}
+      camera={{ position: [0.3, 0.3, 3.8], fov: 46 }}
       gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       dpr={0.75}
     >
