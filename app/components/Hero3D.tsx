@@ -122,14 +122,6 @@ function Kaaba() {
       <mesh material={marble} position={[0, -1.52, 0]}>
         <cylinderGeometry args={[3.8, 3.8, 0.12, 80]} />
       </mesh>
-      {/* İç çember */}
-      <mesh material={darkGold} position={[0, -1.455, 0]}>
-        <torusGeometry args={[2.0, 0.025, 12, 100]} />
-      </mesh>
-      {/* Dış çember */}
-      <mesh material={gold} position={[0, -1.455, 0]}>
-        <torusGeometry args={[3.7, 0.03, 12, 100]} />
-      </mesh>
 
       {/* ── Maqam Ibrahim ── */}
       <mesh material={gold} position={[0, -1.18, 2.8]}>

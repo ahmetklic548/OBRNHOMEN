@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     const no_installment  = "0";
     const max_installment = "0";
     const currency        = "TL";
-    const test_mode       = "0"; /* canlı mod */
+    const test_mode       = "1"; /* test modu */
 
     /* Hash hesapla */
     const hash_str =

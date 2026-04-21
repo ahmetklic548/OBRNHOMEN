@@ -29,16 +29,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CartProvider>
           <AuthProvider>
           <header className="border-b border-stone-200 bg-stone-50 sticky top-0 z-30">
-            <div className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between relative">
+            <div className="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between relative">
               <Link
                 href="/"
-                className="text-xl md:text-2xl tracking-[0.3em] uppercase font-light text-stone-800 hover:text-[#c9a84c] transition-colors duration-200"
+                className="text-2xl md:text-3xl tracking-[0.35em] uppercase font-light text-stone-800 hover:text-[#c9a84c] transition-colors duration-200"
               >
                 OBRNHOMEN
               </Link>
 
               {/* Desktop nav */}
-              <nav className="hidden md:flex gap-8 text-sm tracking-[0.2em] uppercase text-stone-500 font-light">
+              <nav className="hidden md:flex gap-8 text-xs tracking-[0.2em] uppercase text-stone-500 font-light">
                 <Link href="/koleksiyon" className="hover:text-stone-900 transition-colors">Koleksiyon</Link>
                 <Link href="/about" className="hover:text-stone-900 transition-colors">Hakkımızda</Link>
                 <Link href="/returns" className="hover:text-stone-900 transition-colors">İade</Link>

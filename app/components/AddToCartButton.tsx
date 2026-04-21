@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useCart } from "./CartContext";
+import { useAuth } from "./AuthProvider";
 
 interface Props {
   slug: string;
@@ -13,12 +15,25 @@ interface Props {
 
 export default function AddToCartButton({ slug, name, price, image, inStock, waText }: Props) {
   const { add } = useCart();
+  const { user } = useAuth();
+  const router = useRouter();
   const [added, setAdded] = useState(false);
 
+  const requireAuth = () => {
+    router.push("/hesap");
+  };
+
   const handleAdd = () => {
+    if (!user) { requireAuth(); return; }
     add({ slug, name, price, image });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
+  };
+
+  const handleBuy = () => {
+    if (!user) { requireAuth(); return; }
+    add({ slug, name, price, image });
+    router.push("/checkout");
   };
 
   if (!inStock) {
@@ -31,6 +46,17 @@ export default function AddToCartButton({ slug, name, price, image, inStock, waT
 
   return (
     <div className="space-y-3 mb-3">
+      {/* Satın Al — birincil CTA */}
+      <button
+        onClick={handleBuy}
+        className="w-full py-4 text-white text-xs tracking-[0.3em] uppercase transition-colors duration-200"
+        style={{ background: "#c9a84c" }}
+        onMouseEnter={e => (e.currentTarget.style.background = "#b8973d")}
+        onMouseLeave={e => (e.currentTarget.style.background = "#c9a84c")}
+      >
+        Satın Al
+      </button>
+
       {/* Sepete Ekle */}
       <button
         onClick={handleAdd}

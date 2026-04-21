@@ -10,7 +10,7 @@ type Step = "form" | "paying" | "error";
 
 export default function CheckoutPage() {
   const { items, total, clear } = useCart();
-  const { profile } = useAuth();
+  const { user, profile, loading: authLoading } = useAuth();
   const router = useRouter();
   const iframeRef = useRef<HTMLDivElement>(null);
 
@@ -36,6 +36,11 @@ export default function CheckoutPage() {
       }));
     }
   }, [profile]);
+
+  /* Giriş yapılmamışsa hesap sayfasına yönlendir */
+  useEffect(() => {
+    if (!authLoading && !user) router.replace("/hesap");
+  }, [authLoading, user, router]);
 
   /* Sepet boşsa anasayfaya yönlendir */
   useEffect(() => {
