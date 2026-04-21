@@ -4,7 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/app/components/CartContext";
 import { useAuth } from "@/app/components/AuthProvider";
-import { IslamicStar, IslamicDivider } from "@/app/components/IslamicOrnament";
+
+const SHIPPING_FEE       = 200;
+const FREE_SHIPPING_OVER = 1000;
 
 type Step = "form" | "paying" | "error";
 
@@ -13,6 +15,9 @@ export default function CheckoutPage() {
   const { user, profile, loading: authLoading } = useAuth();
   const router = useRouter();
   const iframeRef = useRef<HTMLDivElement>(null);
+
+  const shipping   = total >= FREE_SHIPPING_OVER ? 0 : SHIPPING_FEE;
+  const grandTotal = total + shipping;
 
   const [step,  setStep]  = useState<Step>("form");
   const [token, setToken] = useState<string | null>(null);
@@ -72,11 +77,16 @@ export default function CheckoutPage() {
     e.preventDefault();
     setError("");
 
+    /* Kargo ürün olarak sepete ekle (PayTR basket için) */
+    const basketItems = shipping > 0
+      ? [...items, { name: "Kargo Ücreti", price: shipping, qty: 1 }]
+      : items;
+
     try {
       const res = await fetch("/api/paytr-token", {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({ items, total, ...form }),
+        body:    JSON.stringify({ items: basketItems, total: grandTotal, ...form }),
       });
 
       const data = await res.json();
@@ -114,23 +124,20 @@ export default function CheckoutPage() {
   return (
     <div
       className="min-h-screen py-16"
-      style={{ background: "linear-gradient(180deg, #f9f3ea 0%, #faf5ec 100%)" }}
+      style={{ background: "linear-gradient(180deg, #f9f9f7 0%, #f4f1ec 100%)" }}
     >
-      <div className="absolute inset-0 opacity-[0.035] islamic-pattern pointer-events-none" style={{ zIndex: 0 }} />
-
       <div className="relative z-10 max-w-2xl mx-auto px-6">
 
         {/* Başlık */}
         <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="flex items-center justify-center gap-4 mb-4">
             <div className="h-px w-16" style={{ background: "linear-gradient(to right, transparent, #c9a84c)" }} />
-            <IslamicStar size={18} color="#c9a84c" opacity={0.8} />
+            <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#c9a84c" }} />
             <div className="h-px w-16" style={{ background: "linear-gradient(to left, transparent, #c9a84c)" }} />
           </div>
-          <h1 className="text-2xl tracking-[0.3em] uppercase font-light text-stone-800 mb-2">
+          <h1 className="text-2xl tracking-[0.3em] uppercase font-light text-stone-800">
             {step === "paying" ? "Güvenli Ödeme" : "Sipariş Bilgileri"}
           </h1>
-          <IslamicDivider color="#c9a84c" className="mt-4 opacity-40" />
         </div>
 
         {/* FORM */}
@@ -171,7 +178,8 @@ export default function CheckoutPage() {
             {/* Sağ — Sipariş özeti */}
             <div>
               <p className="text-[10px] tracking-[0.35em] uppercase text-stone-400 mb-4">Sipariş Özeti</p>
-              <div className="space-y-3 mb-6">
+
+              <div className="space-y-3 mb-5">
                 {items.map(item => (
                   <div key={item.slug} className="flex justify-between text-sm">
                     <span className="text-stone-600 line-clamp-1 flex-1 mr-2">
@@ -183,17 +191,41 @@ export default function CheckoutPage() {
                   </div>
                 ))}
               </div>
-              <div className="border-t border-stone-200 pt-4 flex justify-between">
-                <span className="text-xs tracking-widest uppercase text-stone-400">Toplam</span>
+
+              {/* Ara toplam + kargo */}
+              <div className="border-t border-stone-200 pt-4 space-y-2 mb-4">
+                <div className="flex justify-between text-sm">
+                  <span className="text-stone-400 tracking-wide">Ara Toplam</span>
+                  <span className="text-stone-700">{total.toLocaleString("tr-TR")} ₺</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-stone-400 tracking-wide">Kargo</span>
+                  {shipping === 0 ? (
+                    <span className="text-emerald-600 text-xs tracking-wide">Ücretsiz</span>
+                  ) : (
+                    <span className="text-stone-700">{shipping.toLocaleString("tr-TR")} ₺</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Genel toplam */}
+              <div className="border-t border-stone-900 pt-4 flex justify-between">
+                <span className="text-xs tracking-widest uppercase text-stone-600">Ödenecek</span>
                 <span className="text-lg font-light text-stone-900">
-                  {total.toLocaleString("tr-TR")} ₺
+                  {grandTotal.toLocaleString("tr-TR")} ₺
                 </span>
               </div>
-              <div className="mt-6 p-4 border border-[#c9a84c]/20" style={{ background: "rgba(201,168,76,0.04)" }}>
-                <div className="flex items-center gap-2 mb-2">
-                  <IslamicStar size={12} color="#c9a84c" opacity={0.7} />
-                  <p className="text-[10px] tracking-widest uppercase text-stone-500">Ödeme Yöntemleri</p>
+
+              {/* Ücretsiz kargo bildirimi */}
+              {shipping > 0 && (
+                <div className="mt-4 p-3 bg-amber-50 border border-amber-100 text-xs text-amber-700 leading-relaxed">
+                  {(FREE_SHIPPING_OVER - total).toLocaleString("tr-TR")} ₺ daha ekleyin, kargo ücretsiz olsun!
                 </div>
+              )}
+
+              {/* Ödeme yöntemleri */}
+              <div className="mt-5 p-4 border border-stone-100 bg-white">
+                <p className="text-[10px] tracking-widest uppercase text-stone-400 mb-1">Ödeme Yöntemleri</p>
                 <p className="text-xs text-stone-400 leading-relaxed">
                   Kredi kartı, banka kartı ve taksit seçenekleri PayTR altyapısıyla güvenle sunulmaktadır.
                 </p>
