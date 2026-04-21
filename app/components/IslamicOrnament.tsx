@@ -111,6 +111,89 @@ export function IslamicDivider({
   );
 }
 
+/* ---------- Büyük arka plan yıldız geometrisi (dekoratif, sadece kontur) ---------- */
+export function IslamicGeoBg({
+  size = 300,
+  color = "#c9a84c",
+  opacity = 0.06,
+  className = "",
+}: {
+  size?: number;
+  color?: Color;
+  opacity?: number;
+  className?: string;
+}) {
+  const cx = size / 2;
+  const cy = size / 2;
+  const R  = size / 2.1;
+  const r  = size / 4.2;
+
+  const outer = Array.from({ length: 16 }, (_, i) => {
+    const angle  = (i * Math.PI) / 8 - Math.PI / 2;
+    const radius = i % 2 === 0 ? R : r;
+    return `${cx + radius * Math.cos(angle)},${cy + radius * Math.sin(angle)}`;
+  }).join(" ");
+
+  /* İç sekizgen */
+  const hexR   = R * 0.55;
+  const hexPts = Array.from({ length: 8 }, (_, i) => {
+    const angle = (i * Math.PI) / 4 - Math.PI / 8;
+    return `${cx + hexR * Math.cos(angle)},${cy + hexR * Math.sin(angle)}`;
+  }).join(" ");
+
+  return (
+    <svg
+      viewBox={`0 0 ${size} ${size}`}
+      width={size}
+      height={size}
+      className={className}
+      aria-hidden="true"
+    >
+      <polygon points={outer} fill="none" stroke={color} strokeWidth="1" opacity={opacity} />
+      <polygon points={hexPts} fill="none" stroke={color} strokeWidth="0.6" opacity={opacity * 0.7} />
+      <circle cx={cx} cy={cy} r={R * 0.25} fill="none" stroke={color} strokeWidth="0.5" opacity={opacity * 0.5} />
+    </svg>
+  );
+}
+
+/* ---------- Kategori arası İslami geçiş bölücüsü ---------- */
+export function IslamicInterlude({
+  quote,
+  translation,
+  color = "#c9a84c",
+}: {
+  quote?: string;
+  translation?: string;
+  color?: Color;
+}) {
+  return (
+    <div className="py-10 flex flex-col items-center gap-4">
+      {/* Üst çizgi + yıldız */}
+      <div className="flex items-center gap-4 w-full max-w-sm">
+        <div className="h-px flex-1" style={{ background: `linear-gradient(to right, transparent, ${color})`, opacity: 0.3 }} />
+        <IslamicStar size={8}  color={color} opacity={0.4} />
+        <IslamicStar size={20} color={color} opacity={0.7} />
+        <IslamicStar size={8}  color={color} opacity={0.4} />
+        <div className="h-px flex-1" style={{ background: `linear-gradient(to left, transparent, ${color})`, opacity: 0.3 }} />
+      </div>
+
+      {quote && (
+        <p
+          className="text-base text-center leading-loose"
+          style={{ color: "#8b6914", opacity: 0.55, fontFamily: "Georgia, serif", direction: "rtl" }}
+        >
+          {quote}
+        </p>
+      )}
+      {translation && (
+        <p className="text-[9px] tracking-[0.3em] uppercase text-center" style={{ color: "#a8956a", opacity: 0.6 }}>
+          {translation}
+        </p>
+      )}
+    </div>
+  );
+}
+
 /* ---------- Panel çerçeve (ürün açıklama kartları için) ---------- */
 export function OrnamentedPanel({
   children,

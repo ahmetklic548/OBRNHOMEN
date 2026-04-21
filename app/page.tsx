@@ -3,7 +3,7 @@ import HeroSection from "@/app/components/HeroSection";
 import Hero3DWrapper from "@/app/components/Hero3DWrapper";
 import FeaturedGrid from "@/app/components/FeaturedGrid";
 import CategoryStrip from "@/app/components/CategoryStrip";
-import { IslamicStar } from "@/app/components/IslamicOrnament";
+import { IslamicStar, IslamicInterlude, IslamicGeoBg } from "@/app/components/IslamicOrnament";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -111,6 +111,17 @@ export default function Home() {
           <div className="absolute inset-0 islamic-pattern opacity-25" />
         </div>
 
+        {/* Büyük arka plan geometrik şekiller */}
+        <div className="absolute top-20 left-[-60px] pointer-events-none hidden lg:block" aria-hidden>
+          <IslamicGeoBg size={320} color="#c9a84c" opacity={0.055} />
+        </div>
+        <div className="absolute bottom-40 right-[-60px] pointer-events-none hidden lg:block" aria-hidden>
+          <IslamicGeoBg size={260} color="#c9a84c" opacity={0.045} />
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" aria-hidden>
+          <IslamicGeoBg size={500} color="#c9a84c" opacity={0.022} />
+        </div>
+
         <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20 pb-4">
           {/* Ara başlık */}
           <div className="text-center mb-16">
@@ -122,9 +133,21 @@ export default function Home() {
             </h2>
           </div>
 
-          <CategoryStrip category="Tesbih"            products={tesbihler}  index={0} />
-          <CategoryStrip category="Seccade"           products={seccadeler} index={1} />
-          <CategoryStrip category="Konsept Hediyelik" products={hediyeler}  index={2} />
+          <CategoryStrip category="Tesbih" products={tesbihler} index={0} />
+
+          <IslamicInterlude
+            quote="سُبْحَانَ اللهِ وَبِحَمْدِهِ"
+            translation="Allah'ı hamd ile tesbih ederim"
+          />
+
+          <CategoryStrip category="Seccade" products={seccadeler} index={1} />
+
+          <IslamicInterlude
+            quote="اللّٰهُمَّ بَارِكْ لَنَا"
+            translation="Allah'ım bize bereket ver"
+          />
+
+          <CategoryStrip category="Konsept Hediyelik" products={hediyeler} index={2} />
         </div>
       </div>
 

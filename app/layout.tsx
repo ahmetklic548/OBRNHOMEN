@@ -6,7 +6,6 @@ import MobileNav from "@/app/components/MobileNav";
 import FloatingWhatsApp from "@/app/components/FloatingWhatsApp";
 import CartButton from "@/app/components/CartButton";
 import { CartProvider } from "@/app/components/CartContext";
-import HajjManWrapper from "@/app/components/HajjManWrapper";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -52,7 +51,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </header>
 
           <main className="flex-1">{children}</main>
-          <HajjManWrapper />
 
           <footer className="border-t border-stone-200 bg-stone-50">
             <div className="max-w-6xl mx-auto px-6 py-12">
