@@ -1,5 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { useCart } from "./CartContext";
 import Image from "next/image";
 
@@ -13,6 +14,7 @@ export default function CartDrawer({
   onClose: () => void;
 }) {
   const { items, remove, clear, total, count } = useCart();
+  const router = useRouter();
 
   const waText = encodeURIComponent(
     "Merhaba! OBRNHOMEN'den sipariş vermek istiyorum:\n\n" +
@@ -105,12 +107,21 @@ export default function CartDrawer({
                     {total.toLocaleString("tr-TR")} ₺
                   </span>
                 </div>
+                {/* PayTR ödeme butonu */}
+                <button
+                  onClick={() => { onClose(); router.push("/checkout"); }}
+                  className="block w-full py-4 text-white text-xs tracking-[0.2em] uppercase text-center transition-colors duration-200 mb-3"
+                  style={{ background: "#1a1208" }}
+                >
+                  Güvenli Ödeme Yap
+                </button>
+
+                {/* WhatsApp alternatif */}
                 <a
                   href={`https://wa.me/905316893849?text=${waText}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => { clear(); onClose(); }}
-                  className="block w-full py-4 bg-stone-900 text-white text-xs tracking-[0.2em] uppercase text-center hover:bg-stone-700 transition-colors duration-200 mb-3"
+                  className="block w-full py-3 border border-stone-200 text-stone-500 text-xs tracking-[0.2em] uppercase text-center hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors duration-200 mb-3"
                 >
                   WhatsApp ile Sipariş Ver
                 </a>
