@@ -38,3 +38,14 @@ export function getAllCategories(): string[] {
 export function getAllSlugs(): string[] {
   return products.map((p) => p.slug);
 }
+
+export function getFeaturedProducts(): Product[] {
+  const picks = ["Tesbih", "Seccade", "Konsept Hediyelik", "Eşarp"];
+  return picks
+    .map((cat) => products.find((p) => p.category === cat && p.inStock))
+    .filter(Boolean) as Product[];
+}
+
+export function getCategoryPreview(category: string, count = 3): Product[] {
+  return products.filter((p) => p.category === category && p.inStock).slice(0, count);
+}

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
-  { href: "/", label: "Koleksiyon" },
+  { href: "/koleksiyon", label: "Koleksiyon" },
   { href: "/about", label: "Hakkımızda" },
   { href: "/returns", label: "İade" },
   { href: "/payment", label: "Ödeme" },

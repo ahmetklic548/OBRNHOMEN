@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               {/* Desktop nav */}
               <nav className="hidden md:flex gap-8 text-xs tracking-widest uppercase text-stone-500">
-                <Link href="/" className="hover:text-stone-900 transition-colors">Koleksiyon</Link>
+                <Link href="/koleksiyon" className="hover:text-stone-900 transition-colors">Koleksiyon</Link>
                 <Link href="/about" className="hover:text-stone-900 transition-colors">Hakkımızda</Link>
                 <Link href="/returns" className="hover:text-stone-900 transition-colors">İade</Link>
                 <Link href="/payment" className="hover:text-stone-900 transition-colors">Güvenli Ödeme</Link>
@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-1">{children}</main>
           <HajjManWrapper />
 
-          <footer className="border-t border-stone-200 bg-stone-50 mt-20">
+          <footer className="border-t border-stone-200 bg-stone-50">
             <div className="max-w-6xl mx-auto px-6 py-12">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-8">
                 <div>

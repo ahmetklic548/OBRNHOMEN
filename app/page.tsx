@@ -1,7 +1,8 @@
-import { getAllProducts, getAllCategories } from "@/lib/products";
-import ProductGrid from "@/app/components/ProductGrid";
+import { getFeaturedProducts, getCategoryPreview } from "@/lib/products";
 import HeroSection from "@/app/components/HeroSection";
 import Hero3DWrapper from "@/app/components/Hero3DWrapper";
+import FeaturedGrid from "@/app/components/FeaturedGrid";
+import CategoryStrip from "@/app/components/CategoryStrip";
 import { IslamicStar } from "@/app/components/IslamicOrnament";
 
 const jsonLd = {
@@ -20,8 +21,10 @@ const jsonLd = {
 };
 
 export default function Home() {
-  const products = getAllProducts();
-  const categories = getAllCategories();
+  const featured   = getFeaturedProducts();
+  const tesbihler  = getCategoryPreview("Tesbih", 3);
+  const seccadeler = getCategoryPreview("Seccade", 3);
+  const hediyeler  = getCategoryPreview("Konsept Hediyelik", 3);
 
   return (
     <>
@@ -53,11 +56,8 @@ export default function Home() {
         className="relative py-14 overflow-hidden"
         style={{ background: "linear-gradient(135deg, #1a1208 0%, #2d1f0a 50%, #1a1208 100%)" }}
       >
-        {/* Arka plan desen */}
         <div className="absolute inset-0 opacity-10 islamic-pattern" />
-
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          {/* Üst ornament */}
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(to right, transparent, #c9a84c)" }} />
             <IslamicStar size={22} color="#c9a84c" opacity={0.9} />
@@ -65,26 +65,18 @@ export default function Home() {
             <IslamicStar size={22} color="#c9a84c" opacity={0.9} />
             <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(to left, transparent, #c9a84c)" }} />
           </div>
-
-          {/* Arapça ibare */}
           <p
             className="text-2xl md:text-3xl mb-4 leading-loose"
             style={{ color: "#f0c060", fontFamily: "Georgia, serif", direction: "rtl" }}
           >
             بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ
           </p>
-
-          {/* Türkçe karşılık */}
           <p className="text-xs tracking-[0.35em] uppercase mb-6" style={{ color: "rgba(240,192,96,0.6)" }}>
-            Rahman ve Rahim olan Allah'ın adıyla
+            Rahman ve Rahim olan Allah&apos;ın adıyla
           </p>
-
-          {/* Alt açıklama */}
           <p className="text-sm leading-relaxed" style={{ color: "rgba(245,235,215,0.65)" }}>
             Her ürünümüz, kadim el sanatlarının izinde, titizlikle ve sevgiyle hazırlanmıştır.
           </p>
-
-          {/* Alt ornament */}
           <div className="flex items-center justify-center gap-4 mt-6">
             <div className="h-px flex-1 max-w-[80px]" style={{ background: "linear-gradient(to right, transparent, #c9a84c)" }} />
             <IslamicStar size={14} color="#ffd700" opacity={0.7} />
@@ -93,53 +85,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Ürün koleksiyonu ── */}
+      {/* ── Seçilmiş ürünler (Apple-style featured) ── */}
+      <FeaturedGrid products={featured} />
+
+      {/* ── Kategori şeritleri ── */}
       <div
         className="relative overflow-hidden"
-        style={{
-          background: "linear-gradient(180deg, #f9f3ea 0%, #faf5ec 60%, #f5ede0 100%)",
-        }}
+        style={{ background: "linear-gradient(180deg, #faf5ec 0%, #f5ede0 100%)" }}
       >
-        {/* İslami desen overlay — biraz daha belirgin */}
-        <div className="absolute inset-0 opacity-[0.07] islamic-pattern pointer-events-none" />
+        <div className="absolute inset-0 opacity-[0.05] islamic-pattern pointer-events-none" />
 
-        {/* Sol dikey İslami bordür şeridi */}
+        {/* Sol bordür */}
         <div
           className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none hidden lg:block"
-          style={{
-            background: "linear-gradient(to right, rgba(201,168,76,0.12), transparent)",
-            borderRight: "1px solid rgba(201,168,76,0.18)",
-          }}
+          style={{ background: "linear-gradient(to right, rgba(201,168,76,0.1), transparent)", borderRight: "1px solid rgba(201,168,76,0.15)" }}
         >
-          <div className="absolute inset-0 islamic-pattern opacity-30" />
+          <div className="absolute inset-0 islamic-pattern opacity-25" />
         </div>
 
-        {/* Sağ dikey İslami bordür şeridi */}
+        {/* Sağ bordür */}
         <div
           className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none hidden lg:block"
-          style={{
-            background: "linear-gradient(to left, rgba(201,168,76,0.12), transparent)",
-            borderLeft: "1px solid rgba(201,168,76,0.18)",
-          }}
+          style={{ background: "linear-gradient(to left, rgba(201,168,76,0.1), transparent)", borderLeft: "1px solid rgba(201,168,76,0.15)" }}
         >
-          <div className="absolute inset-0 islamic-pattern opacity-30" />
+          <div className="absolute inset-0 islamic-pattern opacity-25" />
         </div>
 
-        {/* Üst altın çizgi */}
-        <div
-          className="absolute top-0 inset-x-0 h-px pointer-events-none"
-          style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent)" }}
-        />
+        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-20 pb-4">
+          {/* Ara başlık */}
+          <div className="text-center mb-16">
+            <p className="text-[10px] tracking-[0.5em] uppercase mb-2" style={{ color: "#c9a84c" }}>
+              Kategoriler
+            </p>
+            <h2 className="text-2xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-700">
+              Koleksiyondan Seçmeler
+            </h2>
+          </div>
 
-        {/* Alt altın çizgi */}
-        <div
-          className="absolute bottom-0 inset-x-0 h-px pointer-events-none"
-          style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent)" }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <ProductGrid products={products} categories={categories} />
-          <div className="pb-16" />
+          <CategoryStrip category="Tesbih"            products={tesbihler}  index={0} />
+          <CategoryStrip category="Seccade"           products={seccadeler} index={1} />
+          <CategoryStrip category="Konsept Hediyelik" products={hediyeler}  index={2} />
         </div>
       </div>
 
@@ -148,14 +133,10 @@ export default function Home() {
         className="relative py-16 text-center overflow-hidden"
         style={{ background: "linear-gradient(180deg, #1a1208 0%, #0c0b08 100%)" }}
       >
-        {/* Arka plan desen */}
         <div className="absolute inset-0 opacity-[0.08] islamic-pattern pointer-events-none" />
-
-        {/* Üst altın çizgi */}
         <div className="absolute top-0 inset-x-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.6), transparent)" }} />
 
         <div className="relative z-10 max-w-sm mx-auto px-6">
-          {/* Üst ornament */}
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="h-px flex-1" style={{ background: "linear-gradient(to right, transparent, #c9a84c)" }} />
             <IslamicStar size={10} color="#c9a84c" opacity={0.6} />
@@ -164,7 +145,6 @@ export default function Home() {
             <div className="h-px flex-1" style={{ background: "linear-gradient(to left, transparent, #c9a84c)" }} />
           </div>
 
-          {/* Logo / marka */}
           <p className="text-lg tracking-[0.5em] uppercase mb-2" style={{ color: "#c9a84c", fontFamily: "Georgia, serif" }}>
             OBRNHOMEN
           </p>
@@ -172,7 +152,6 @@ export default function Home() {
             El İşçiliği &amp; Özgün Tasarım
           </p>
 
-          {/* Ayetin altın çizgisi */}
           <div className="h-px mb-4" style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent)" }} />
 
           <p className="text-xs leading-loose mb-4" style={{ color: "rgba(240,192,96,0.5)", fontFamily: "Georgia, serif", direction: "rtl" }}>
@@ -182,7 +161,6 @@ export default function Home() {
             Her iyilik Allah katında bilinir.
           </p>
 
-          {/* Alt ornament */}
           <div className="flex items-center justify-center gap-3 mt-6">
             <div className="h-px flex-1" style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.3))" }} />
             <IslamicStar size={12} color="#c9a84c" opacity={0.4} />
