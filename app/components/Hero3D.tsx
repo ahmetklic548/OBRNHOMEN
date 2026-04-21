@@ -21,115 +21,137 @@ function ScrollCamera({ scrollRef }: { scrollRef: React.RefObject<number> }) {
   const { camera } = useThree();
   useFrame(() => {
     const p = Math.min(scrollRef.current / (window.innerHeight * 0.9), 1);
-    camera.position.z = THREE.MathUtils.lerp(camera.position.z, 5.5 - p * 2, 0.05);
-    camera.position.y = THREE.MathUtils.lerp(camera.position.y, p * 2, 0.05);
-    camera.lookAt(0, 0, 0);
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, 7 - p * 2.5, 0.04);
+    camera.position.y = THREE.MathUtils.lerp(camera.position.y, 0.8 + p * 1.5, 0.04);
+    camera.lookAt(0, 0.2, 0);
   });
   return null;
 }
 
 /* ── Malzemeler ─────────────────────────────────────────── */
-const black  = new THREE.MeshStandardMaterial({ color: "#080808", roughness: 0.85, metalness: 0.05 });
-const gold   = new THREE.MeshStandardMaterial({ color: "#c9a84c", roughness: 0.08, metalness: 0.97, envMapIntensity: 2.5 });
-const bright = new THREE.MeshStandardMaterial({ color: "#ffd700", roughness: 0.04, metalness: 1.0,  envMapIntensity: 4 });
-const marble = new THREE.MeshStandardMaterial({ color: "#e8dcc8", roughness: 0.4,  metalness: 0.0  });
-const stone  = new THREE.MeshStandardMaterial({ color: "#1a1a1a", roughness: 0.9,  metalness: 0.0  });
+const kiswa  = new THREE.MeshStandardMaterial({ color: "#050505", roughness: 0.92, metalness: 0.03 });
+const gold   = new THREE.MeshStandardMaterial({ color: "#c9a84c", roughness: 0.1,  metalness: 0.95, envMapIntensity: 3 });
+const bright = new THREE.MeshStandardMaterial({ color: "#ffd700", roughness: 0.03, metalness: 1.0,  envMapIntensity: 5 });
+const marble = new THREE.MeshStandardMaterial({ color: "#ddd5c0", roughness: 0.35, metalness: 0.0 });
+const stone  = new THREE.MeshStandardMaterial({ color: "#111111", roughness: 0.95, metalness: 0.0 });
+const darkGold = new THREE.MeshStandardMaterial({ color: "#a07830", roughness: 0.15, metalness: 0.9, envMapIntensity: 2 });
 
 /* ── Kabe ───────────────────────────────────────────────── */
 function Kaaba() {
   const groupRef = useRef<THREE.Group>(null);
-  useFrame(() => { if (groupRef.current) groupRef.current.rotation.y += 0.006; });
 
-  /* Köşe sütunlarının konumları */
-  const corners: [number, number][] = [
-    [ 1.12,  1.12],
-    [-1.12,  1.12],
-    [ 1.12, -1.12],
-    [-1.12, -1.12],
-  ];
+  /* Yavaş dönüş */
+  useFrame(() => {
+    if (groupRef.current) groupRef.current.rotation.y += 0.004;
+  });
+
+  /* Kiswah üzerinde yatay altın çizgiler (kumaş izlenimi) */
+  const fabricLines = [-0.9, -0.3, 0.3, 1.0];
 
   return (
     <group ref={groupRef}>
 
-      {/* ── Ana siyah küp (Kiswah) ── */}
-      <mesh material={black} position={[0, 0, 0]}>
-        <boxGeometry args={[2.2, 2.8, 2.2]} />
+      {/* ── Ana Kabe gövdesi (Kiswah) — daha gerçekçi oran ── */}
+      <mesh material={kiswa} position={[0, 0.1, 0]}>
+        <boxGeometry args={[2.4, 3.2, 2.15]} />
       </mesh>
 
-      {/* ── Hizam: geniş altın kuşak ── */}
-      <mesh material={gold} position={[0, 0.6, 0]}>
-        <boxGeometry args={[2.23, 0.28, 2.23]} />
-      </mesh>
-      {/* Hizam üst çizgisi */}
-      <mesh material={bright} position={[0, 0.75, 0]}>
-        <boxGeometry args={[2.24, 0.03, 2.24]} />
-      </mesh>
-      {/* Hizam alt çizgisi */}
-      <mesh material={bright} position={[0, 0.45, 0]}>
-        <boxGeometry args={[2.24, 0.03, 2.24]} />
-      </mesh>
-
-      {/* ── Altın kapı (Bab al-Kaaba) ── */}
-      {/* Dış çerçeve */}
-      <mesh material={gold} position={[0, 0.22, 1.115]}>
-        <boxGeometry args={[0.72, 1.12, 0.018]} />
-      </mesh>
-      {/* İç altın panel */}
-      <mesh material={bright} position={[0, 0.22, 1.122]}>
-        <boxGeometry args={[0.58, 0.96, 0.012]} />
-      </mesh>
-      {/* Kapı kolu */}
-      <mesh material={bright} position={[0, 0.18, 1.135]}>
-        <boxGeometry args={[0.06, 0.22, 0.025]} />
-      </mesh>
-
-      {/* ── Hajar al-Aswad (Siyah Taş) — sağ ön köşede ── */}
-      <mesh material={stone} position={[1.1, -0.55, 1.1]}>
-        <sphereGeometry args={[0.1, 16, 16]} />
-      </mesh>
-      {/* Taş çerçevesi */}
-      <mesh material={bright} position={[1.1, -0.55, 1.1]}>
-        <torusGeometry args={[0.13, 0.025, 12, 24]} />
-      </mesh>
-
-      {/* ── Köşe sütunları (Arkan) ── */}
-      {corners.map(([x, z], i) => (
-        <group key={i} position={[x, 0, z]}>
-          <mesh material={gold}>
-            <cylinderGeometry args={[0.07, 0.07, 2.85, 12]} />
-          </mesh>
-          {/* Sütun başlığı */}
-          <mesh material={bright} position={[0, 1.47, 0]}>
-            <cylinderGeometry args={[0.1, 0.07, 0.1, 12]} />
-          </mesh>
-        </group>
+      {/* ── Kiswah kumaş çizgileri (dekoratif yatay bantlar) ── */}
+      {fabricLines.map((y, i) => (
+        <mesh key={i} material={darkGold} position={[0, y, 0]}>
+          <boxGeometry args={[2.42, 0.018, 2.17]} />
+        </mesh>
       ))}
 
-      {/* ── Üst altın bordür ── */}
-      <mesh material={bright} position={[0, 1.42, 0]}>
-        <boxGeometry args={[2.24, 0.04, 2.24]} />
+      {/* ── Hizam: kalın altın kuşak ── */}
+      <mesh material={gold} position={[0, 0.85, 0]}>
+        <boxGeometry args={[2.43, 0.34, 2.16]} />
+      </mesh>
+      {/* Hizam üst şerit */}
+      <mesh material={bright} position={[0, 1.03, 0]}>
+        <boxGeometry args={[2.44, 0.035, 2.17]} />
+      </mesh>
+      {/* Hizam alt şerit */}
+      <mesh material={bright} position={[0, 0.67, 0]}>
+        <boxGeometry args={[2.44, 0.035, 2.17]} />
+      </mesh>
+      {/* Hizam Arapça yazı simülasyonu — ince dikey çizgiler */}
+      {[-0.8, -0.4, 0, 0.4, 0.8].map((x, i) => (
+        <mesh key={i} material={bright} position={[x, 0.85, 1.085]}>
+          <boxGeometry args={[0.06, 0.22, 0.005]} />
+        </mesh>
+      ))}
+
+      {/* ── Kapı çerçevesi (Bab al-Kaaba) — yükseltilmiş ── */}
+      {/* Dış altın çerçeve */}
+      <mesh material={gold} position={[0, 0.6, 1.078]}>
+        <boxGeometry args={[0.78, 1.4, 0.02]} />
+      </mesh>
+      {/* İç parlak panel */}
+      <mesh material={bright} position={[0, 0.6, 1.088]}>
+        <boxGeometry args={[0.62, 1.22, 0.014]} />
+      </mesh>
+      {/* Kapı orta çizgisi */}
+      <mesh material={gold} position={[0, 0.6, 1.095]}>
+        <boxGeometry args={[0.04, 1.1, 0.01]} />
+      </mesh>
+      {/* Kapı üst yay simülasyonu */}
+      <mesh material={bright} position={[0, 1.28, 1.088]}>
+        <boxGeometry args={[0.62, 0.08, 0.012]} />
       </mesh>
 
-      {/* ── Mermer zemin platformu ── */}
-      <mesh material={marble} position={[0, -1.48, 0]}>
-        <cylinderGeometry args={[2.8, 2.8, 0.1, 64]} />
+      {/* ── Hajar al-Aswad (Siyah Taş) ── */}
+      <mesh material={stone} position={[1.21, -0.5, 1.08]}>
+        <sphereGeometry args={[0.1, 20, 20]} />
       </mesh>
-      {/* Dış çember çizgisi */}
-      <mesh material={gold} position={[0, -1.42, 0]}>
-        <torusGeometry args={[2.8, 0.03, 8, 80]} />
-      </mesh>
-
-      {/* ── Maqam Ibrahim (küçük altın kafes) — önde ── */}
-      <mesh material={gold} position={[0, -1.1, 2.2]}>
-        <boxGeometry args={[0.28, 0.36, 0.28]} />
-      </mesh>
-      <mesh material={bright} position={[0, -0.92, 2.2]}>
-        <boxGeometry args={[0.3, 0.04, 0.3]} />
+      {/* Oval altın çerçeve */}
+      <mesh material={bright} position={[1.21, -0.5, 1.08]} rotation={[0, Math.PI / 4, 0]}>
+        <torusGeometry args={[0.14, 0.028, 16, 32]} />
       </mesh>
 
-      {/* ── Kabe etrafında atmosferik ışık ── */}
-      <pointLight position={[0, 2, 0]} intensity={1.5} color="#ffd700" distance={4} />
-      <pointLight position={[0, -1, 2.5]} intensity={0.8} color="#c9a84c" distance={3} />
+      {/* ── Üst altın kenar bordürü ── */}
+      <mesh material={bright} position={[0, 1.71, 0]}>
+        <boxGeometry args={[2.44, 0.045, 2.17]} />
+      </mesh>
+      {/* Çatı yüzeyi — hafif gri */}
+      <mesh material={marble} position={[0, 1.74, 0]}>
+        <boxGeometry args={[2.4, 0.04, 2.15]} />
+      </mesh>
+
+      {/* ── Geniş mermer tavafsah platformu ── */}
+      <mesh material={marble} position={[0, -1.52, 0]}>
+        <cylinderGeometry args={[3.8, 3.8, 0.12, 80]} />
+      </mesh>
+      {/* İç çember */}
+      <mesh material={darkGold} position={[0, -1.455, 0]}>
+        <torusGeometry args={[2.0, 0.025, 12, 100]} />
+      </mesh>
+      {/* Dış çember */}
+      <mesh material={gold} position={[0, -1.455, 0]}>
+        <torusGeometry args={[3.7, 0.03, 12, 100]} />
+      </mesh>
+
+      {/* ── Maqam Ibrahim ── */}
+      <mesh material={gold} position={[0, -1.18, 2.8]}>
+        <boxGeometry args={[0.3, 0.42, 0.3]} />
+      </mesh>
+      <mesh material={bright} position={[0, -0.96, 2.8]}>
+        <boxGeometry args={[0.34, 0.05, 0.34]} />
+      </mesh>
+      {/* Maqam üstü küçük kubbe */}
+      <mesh material={gold} position={[0, -0.92, 2.8]}>
+        <sphereGeometry args={[0.1, 12, 8]} />
+      </mesh>
+
+      {/* ── Zemzem kuyusu (küçük yuvarlak kap) ── */}
+      <mesh material={marble} position={[-1.8, -1.46, 1.5]}>
+        <cylinderGeometry args={[0.18, 0.18, 0.1, 20]} />
+      </mesh>
+
+      {/* ── Kabe etrafı ışık ── */}
+      <pointLight position={[0, 2.5, 0]}   intensity={2}   color="#ffd700" distance={5} />
+      <pointLight position={[0, -0.5, 3]}  intensity={1.2} color="#c9a84c" distance={4} />
+      <pointLight position={[-2, 1, -2]}   intensity={0.6} color="#ff8800" distance={4} />
     </group>
   );
 }
@@ -138,10 +160,10 @@ function Kaaba() {
 function Scene({ scrollRef }: { scrollRef: React.RefObject<number> }) {
   return (
     <>
-      <ambientLight intensity={0.12} />
-      <pointLight position={[6, 6, 6]} intensity={5} color="#ffd700" />
-      <pointLight position={[-5, -3, 3]} intensity={1.5} color="#ff9500" />
-      <pointLight position={[0, -6, 2]} intensity={0.8} color="#c9a84c" />
+      <ambientLight intensity={0.1} />
+      <pointLight position={[8, 8, 8]}   intensity={6}   color="#ffd700" />
+      <pointLight position={[-6, -4, 4]} intensity={1.8} color="#ff9500" />
+      <pointLight position={[0, -8, 3]}  intensity={1.0} color="#c9a84c" />
 
       <Suspense fallback={null}>
         <Environment preset="night" />
@@ -149,8 +171,8 @@ function Scene({ scrollRef }: { scrollRef: React.RefObject<number> }) {
 
       <Kaaba />
 
-      <Sparkles count={30} size={1.5} speed={0.2} opacity={0.45} color="#ffd700" scale={10} />
-      <Stars radius={28} depth={10} count={150} factor={2} saturation={0} fade speed={0.35} />
+      <Sparkles count={30} size={1.5} speed={0.2} opacity={0.45} color="#ffd700" scale={12} />
+      <Stars radius={30} depth={12} count={150} factor={2} saturation={0} fade speed={0.35} />
       <ScrollCamera scrollRef={scrollRef} />
     </>
   );
@@ -160,7 +182,7 @@ export default function Hero3D() {
   const scrollRef = useScrollRef();
   return (
     <Canvas
-      camera={{ position: [0, 0.5, 5.5], fov: 42 }}
+      camera={{ position: [0, 1, 7], fov: 44 }}
       gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
       dpr={[0.7, 1]}
     >
