@@ -6,6 +6,8 @@ import MobileNav from "@/app/components/MobileNav";
 import FloatingWhatsApp from "@/app/components/FloatingWhatsApp";
 import CartButton from "@/app/components/CartButton";
 import { CartProvider } from "@/app/components/CartContext";
+import { AuthProvider } from "@/app/components/AuthProvider";
+import AuthButton from "@/app/components/AuthButton";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -25,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="tr" className={`h-full ${cormorant.variable}`}>
       <body className="min-h-full flex flex-col">
         <CartProvider>
+          <AuthProvider>
           <header className="border-b border-stone-200 bg-stone-50 sticky top-0 z-30">
             <div className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between relative">
               <Link
@@ -42,8 +45,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/payment" className="hover:text-stone-900 transition-colors">Güvenli Ödeme</Link>
               </nav>
 
-              {/* Sepet + Mobile hamburger */}
-              <div className="flex items-center gap-4">
+              {/* Auth + Sepet + Mobile hamburger */}
+              <div className="flex items-center gap-5">
+                <AuthButton />
                 <CartButton />
                 <MobileNav />
               </div>
@@ -77,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </footer>
 
           <FloatingWhatsApp />
+          </AuthProvider>
         </CartProvider>
         <GoogleAnalytics gaId="G-EZ3ZCTGL48" />
       </body>

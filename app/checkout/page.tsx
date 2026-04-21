@@ -3,12 +3,14 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/app/components/CartContext";
+import { useAuth } from "@/app/components/AuthProvider";
 import { IslamicStar, IslamicDivider } from "@/app/components/IslamicOrnament";
 
 type Step = "form" | "paying" | "error";
 
 export default function CheckoutPage() {
   const { items, total, clear } = useCart();
+  const { profile } = useAuth();
   const router = useRouter();
   const iframeRef = useRef<HTMLDivElement>(null);
 
@@ -22,6 +24,18 @@ export default function CheckoutPage() {
     phone:   "",
     address: "",
   });
+
+  /* Profil varsa formu otomatik doldur */
+  useEffect(() => {
+    if (profile) {
+      setForm(f => ({
+        ...f,
+        name:    profile.name    || f.name,
+        phone:   profile.phone   || f.phone,
+        address: profile.address || f.address,
+      }));
+    }
+  }, [profile]);
 
   /* Sepet boşsa anasayfaya yönlendir */
   useEffect(() => {
