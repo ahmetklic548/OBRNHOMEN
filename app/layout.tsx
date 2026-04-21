@@ -2,13 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import MobileNav from "@/app/components/MobileNav";
-import FloatingWhatsApp from "@/app/components/FloatingWhatsApp";
-import CartButton from "@/app/components/CartButton";
 import { CartProvider } from "@/app/components/CartContext";
 import { AuthProvider } from "@/app/components/AuthProvider";
-import AuthButton from "@/app/components/AuthButton";
 import NavbarClient from "@/app/components/NavbarClient";
+import LiveChatWidget from "@/app/components/LiveChatWidget";
 import "./globals.css";
 
 const inter = Inter({
@@ -80,7 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </footer>
 
-            <FloatingWhatsApp />
+            <LiveChatWidget />
           </AuthProvider>
         </CartProvider>
         <GoogleAnalytics gaId="G-EZ3ZCTGL48" />
