@@ -56,8 +56,8 @@ export default function CheckoutPage() {
       iframe.scrolling = "no";
       iframe.style.cssText = "width:100%;height:540px;border:none;";
       iframeRef.current!.appendChild(iframe);
-      /* @ts-expect-error PayTR global */
-      if (window.iFrameResize) window.iFrameResize({}, "#paytriframe");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((window as any).iFrameResize) (window as any).iFrameResize({}, "#paytriframe");
     };
     document.body.appendChild(script);
     return () => { document.body.removeChild(script); };
