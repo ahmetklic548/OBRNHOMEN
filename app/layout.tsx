@@ -26,16 +26,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col">
         <CartProvider>
           <header className="border-b border-stone-200 bg-stone-50 sticky top-0 z-30">
-            <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between relative">
+            <div className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between relative">
               <Link
                 href="/"
-                className="text-lg tracking-[0.25em] uppercase font-light text-stone-800 hover:text-stone-600 transition-colors"
+                className="text-xl md:text-2xl tracking-[0.3em] uppercase font-light text-stone-800 hover:text-[#c9a84c] transition-colors duration-200"
               >
                 OBRNHOMEN
               </Link>
 
               {/* Desktop nav */}
-              <nav className="hidden md:flex gap-8 text-xs tracking-widest uppercase text-stone-500">
+              <nav className="hidden md:flex gap-8 text-sm tracking-[0.2em] uppercase text-stone-500 font-light">
                 <Link href="/koleksiyon" className="hover:text-stone-900 transition-colors">Koleksiyon</Link>
                 <Link href="/about" className="hover:text-stone-900 transition-colors">Hakkımızda</Link>
                 <Link href="/returns" className="hover:text-stone-900 transition-colors">İade</Link>

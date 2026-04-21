@@ -19,18 +19,18 @@ export default function HeroSection() {
         El İşçiliği &amp; Özgün Tasarım
       </motion.p>
 
-      {/* Ana başlık */}
+      {/* Ana başlık — OBRNHOMEN */}
       <motion.h1
-        className="text-4xl sm:text-5xl md:text-7xl font-light tracking-[0.2em] uppercase mb-6"
+        className="text-4xl sm:text-5xl md:text-7xl font-light tracking-[0.25em] uppercase mb-6"
         style={{ color: "#fff8ed", textShadow: "0 2px 40px rgba(0,0,0,0.8), 0 0 60px rgba(201,168,76,0.4)" }}
         variants={{
           hidden: {},
-          visible: { transition: { staggerChildren: 0.15, delayChildren: 0.3 } },
+          visible: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
         }}
         initial="hidden"
         animate="visible"
       >
-        {"Koleksiyon".split("").map((char, i) => (
+        {"OBRNHOMEN".split("").map((char, i) => (
           <motion.span
             key={i}
             className="inline-block"

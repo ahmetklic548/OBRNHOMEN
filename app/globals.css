@@ -32,7 +32,18 @@ body {
   color: var(--foreground);
   font-family: var(--font-cormorant, "Cormorant Garamond"), Georgia, serif;
   -webkit-font-smoothing: antialiased;
+  font-size: 17px;
 }
+
+/* Tüm metin elementleri için minimum okunabilirlik */
+p, span, a, li, td, th, label, input, textarea, button {
+  font-size: inherit;
+}
+
+/* Ürün adı, açıklama gibi küçük text'ler */
+.text-xs  { font-size: 0.8rem  !important; }
+.text-sm  { font-size: 0.95rem !important; }
+.text-base{ font-size: 1.05rem !important; }
 
 html {
   scroll-behavior: smooth;
