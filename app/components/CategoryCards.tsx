@@ -3,122 +3,116 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+const ease = [0.25, 0.46, 0.45, 0.94] as const;
+
 const categories = [
   {
     name: "Tesbih",
-    label: "Tesbihler",
-    desc: "El yapımı doğal taş ve ahşap tesbihler",
     href: "/koleksiyon?kategori=Tesbih",
-    bg: "#1c1a16",
-    accent: "#c9a84c",
+    bg: "#1D1D1F",
+    description: "El yapımı doğal taş ve ahşap",
+    number: "01",
   },
   {
     name: "Seccade",
-    label: "Seccadeler",
-    desc: "Yüksek kalite iplik ve özgün desenler",
     href: "/koleksiyon?kategori=Seccade",
-    bg: "#141210",
-    accent: "#c9a84c",
+    bg: "#2d2d2d",
+    description: "Özgün desen ve yüksek kalite iplik",
+    number: "02",
   },
   {
-    name: "Konsept Hediyelik",
-    label: "Hediyelikler",
-    desc: "Özel günler için anlamlı hediyeler",
+    name: "Hediyelik",
     href: "/koleksiyon?kategori=Konsept+Hediyelik",
-    bg: "#181511",
-    accent: "#c9a84c",
+    bg: "#c9a84c",
+    description: "Özel günler için anlamlı seçimler",
+    number: "03",
   },
 ];
 
 export default function CategoryCards() {
   return (
-    <section className="py-24" style={{ background: "#f0ede8" }}>
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Başlık */}
-        <div className="text-center mb-14">
-          <motion.p
-            className="text-[10px] tracking-[0.6em] uppercase mb-4"
-            style={{ color: "#c9a84c" }}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+    <section className="py-28 px-6" style={{ background: "#ffffff" }}>
+      <div className="max-w-6xl mx-auto">
+
+        {/* Heading */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease }}
+        >
+          <p
+            className="text-[11px] tracking-[0.5em] uppercase font-medium mb-4"
+            style={{ color: "#86868B" }}
           >
             Kategoriler
-          </motion.p>
-          <motion.h2
-            className="text-3xl md:text-4xl font-light tracking-[0.2em] uppercase text-stone-800"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.08 }}
+          </p>
+          <h2
+            className="font-semibold"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              letterSpacing: "-0.022em",
+              color: "#1D1D1F",
+            }}
           >
             Ne Arıyorsunuz?
-          </motion.h2>
-        </div>
+          </h2>
+        </motion.div>
 
-        {/* 3 kolon */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {categories.map((cat, i) => (
             <motion.div
               key={cat.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
+              transition={{ duration: 0.65, ease, delay: i * 0.1 }}
             >
-              <Link href={cat.href} className="block group">
-                {/* Card */}
+              <Link href={cat.href} className="group block">
                 <div
-                  className="relative overflow-hidden flex flex-col justify-end p-8"
-                  style={{ background: cat.bg, minHeight: 280 }}
+                  className="relative rounded-3xl overflow-hidden flex flex-col justify-between p-8 transition-transform duration-500 group-hover:scale-[1.02]"
+                  style={{ background: cat.bg, minHeight: 300 }}
                 >
-                  {/* Gold orb glow */}
-                  <div
-                    className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{
-                      background: `radial-gradient(circle, ${cat.accent}22 0%, transparent 70%)`,
-                      filter: "blur(30px)",
-                      transform: "translate(30%, -30%)",
-                    }}
-                  />
+                  {/* Number */}
+                  <p
+                    className="text-[10px] tracking-[0.4em] uppercase font-medium mb-auto"
+                    style={{ color: "rgba(255,255,255,0.35)" }}
+                  >
+                    {cat.number}
+                  </p>
 
-                  {/* Top label */}
-                  <div className="absolute top-7 left-8 flex items-center gap-2">
-                    <div className="w-4 h-px" style={{ background: cat.accent, opacity: 0.6 }} />
-                    <span
-                      className="text-[9px] tracking-[0.45em] uppercase"
-                      style={{ color: `${cat.accent}99` }}
+                  {/* Bottom content */}
+                  <div className="mt-auto pt-16">
+                    <p
+                      className="text-xs mb-2"
+                      style={{ color: "rgba(255,255,255,0.5)" }}
                     >
-                      Koleksiyon
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <div>
-                    <h3
-                      className="text-2xl md:text-3xl font-light tracking-[0.2em] uppercase mb-3 transition-all duration-300"
-                      style={{ color: "#fff8f0" }}
-                    >
-                      {cat.label}
-                    </h3>
-                    <p className="text-xs leading-relaxed mb-5" style={{ color: "rgba(255,248,240,0.45)" }}>
-                      {cat.desc}
+                      {cat.description}
                     </p>
+                    <h3
+                      className="text-2xl font-semibold mb-4"
+                      style={{
+                        color: "#ffffff",
+                        letterSpacing: "-0.015em",
+                      }}
+                    >
+                      {cat.name}
+                    </h3>
                     <span
-                      className="inline-flex items-center gap-2 text-[10px] tracking-[0.4em] uppercase transition-all duration-300 group-hover:gap-3"
-                      style={{ color: cat.accent }}
+                      className="inline-flex items-center gap-2 text-xs font-medium transition-gap duration-300"
+                      style={{ color: "rgba(255,255,255,0.65)" }}
                     >
                       Keşfet
                       <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </span>
                   </div>
 
-                  {/* Bottom gold line */}
+                  {/* Bottom shine line */}
                   <div
-                    className="absolute inset-x-0 bottom-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: `linear-gradient(to right, transparent, ${cat.accent}80, transparent)` }}
+                    className="absolute inset-x-0 bottom-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)" }}
                   />
                 </div>
               </Link>

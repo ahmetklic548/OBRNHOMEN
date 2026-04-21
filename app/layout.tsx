@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import Link from "next/link";
-import { Cormorant_Garamond } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import MobileNav from "@/app/components/MobileNav";
 import FloatingWhatsApp from "@/app/components/FloatingWhatsApp";
@@ -8,12 +8,12 @@ import CartButton from "@/app/components/CartButton";
 import { CartProvider } from "@/app/components/CartContext";
 import { AuthProvider } from "@/app/components/AuthProvider";
 import AuthButton from "@/app/components/AuthButton";
+import NavbarClient from "@/app/components/NavbarClient";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-cormorant",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -24,63 +24,63 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr" className={`h-full ${cormorant.variable}`}>
+    <html lang="tr" className={`h-full ${inter.variable}`}>
       <body className="min-h-full flex flex-col">
         <CartProvider>
           <AuthProvider>
-          <header className="border-b border-stone-200 bg-stone-50 sticky top-0 z-30">
-            <div className="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between relative">
-              <Link
-                href="/"
-                className="text-2xl md:text-3xl tracking-[0.35em] uppercase font-light text-stone-800 hover:text-[#c9a84c] transition-colors duration-200"
-              >
-                OBRNHOMEN
-              </Link>
 
-              {/* Desktop nav */}
-              <nav className="hidden md:flex gap-8 text-xs tracking-[0.2em] uppercase text-stone-500 font-light">
-                <Link href="/koleksiyon" className="hover:text-stone-900 transition-colors">Koleksiyon</Link>
-                <Link href="/about" className="hover:text-stone-900 transition-colors">Hakkımızda</Link>
-                <Link href="/returns" className="hover:text-stone-900 transition-colors">İade</Link>
-                <Link href="/payment" className="hover:text-stone-900 transition-colors">Güvenli Ödeme</Link>
-              </nav>
+            {/* Glassmorphism navbar */}
+            <NavbarClient />
 
-              {/* Auth + Sepet + Mobile hamburger */}
-              <div className="flex items-center gap-5">
-                <AuthButton />
-                <CartButton />
-                <MobileNav />
-              </div>
-            </div>
-          </header>
+            <main className="flex-1">{children}</main>
 
-          <main className="flex-1">{children}</main>
+            {/* Footer */}
+            <footer style={{ background: "#1D1D1F" }}>
+              <div className="max-w-6xl mx-auto px-6 py-16">
+                <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-12">
+                  {/* Brand */}
+                  <div>
+                    <p className="text-xl tracking-[0.3em] uppercase font-light mb-3" style={{ color: "#ffffff" }}>
+                      OBRNHOMEN
+                    </p>
+                    <p className="text-sm leading-relaxed max-w-xs" style={{ color: "#86868B" }}>
+                      El işçiliği ve özgün tasarımla hazırlanan özel hediye koleksiyonları.
+                    </p>
+                  </div>
 
-          <footer className="border-t border-stone-200 bg-stone-50">
-            <div className="max-w-6xl mx-auto px-6 py-12">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-8">
-                <div>
-                  <p className="text-base tracking-[0.25em] uppercase font-light text-stone-800 mb-2">
-                    OBRNHOMEN
-                  </p>
-                  <p className="text-xs text-stone-400 leading-relaxed max-w-xs">
-                    El işçiliği ve özgün tasarımla hazırlanan özel hediye koleksiyonları.
-                  </p>
+                  {/* Links */}
+                  <div className="grid grid-cols-2 gap-x-16 gap-y-3 text-sm" style={{ color: "#86868B" }}>
+                    {[
+                      { href: "/koleksiyon", label: "Koleksiyon" },
+                      { href: "/about",      label: "Hakkımızda" },
+                      { href: "/returns",    label: "İade Şartları" },
+                      { href: "/payment",    label: "Güvenli Ödeme" },
+                      { href: "/hesap",      label: "Hesabım" },
+                    ].map(({ href, label }) => (
+                      <Link
+                        key={href}
+                        href={href}
+                        className="transition-colors hover:text-white"
+                        style={{ color: "#86868B" }}
+                      >
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex flex-col gap-2 text-xs tracking-widest uppercase text-stone-400">
-                  <Link href="/about" className="hover:text-stone-700 transition-colors">Hakkımızda</Link>
-                  <Link href="/returns" className="hover:text-stone-700 transition-colors">İade Şartları</Link>
-                  <Link href="/payment" className="hover:text-stone-700 transition-colors">Güvenli Ödeme</Link>
+
+                {/* Bottom */}
+                <div
+                  className="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs"
+                  style={{ borderColor: "rgba(255,255,255,0.08)", color: "#86868B" }}
+                >
+                  <span>© {new Date().getFullYear()} OBRNHOMEN. Tüm hakları saklıdır.</span>
+                  <span>obrnhomen.com</span>
                 </div>
               </div>
-              <div className="border-t border-stone-200 pt-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-stone-400">
-                <span>© {new Date().getFullYear()} OBRNHOMEN. Tüm hakları saklıdır.</span>
-                <span className="tracking-wide">obrnhomen.com</span>
-              </div>
-            </div>
-          </footer>
+            </footer>
 
-          <FloatingWhatsApp />
+            <FloatingWhatsApp />
           </AuthProvider>
         </CartProvider>
         <GoogleAnalytics gaId="G-EZ3ZCTGL48" />
