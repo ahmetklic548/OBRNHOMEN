@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllSlugs, getProductBySlug } from "@/lib/products";
-import ImageGallery from "@/app/components/ImageGallery";
+import StackedImages from "@/app/components/StackedImages";
 import ProductInfo from "@/app/components/ProductInfo";
 
 export async function generateStaticParams() {
@@ -57,38 +57,44 @@ export default async function ProductPage({
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "#fff" }}>
+    <div className="min-h-screen" style={{ background: "#ffffff" }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="max-w-6xl mx-auto px-4 md:px-6 py-8">
-        {/* Breadcrumb */}
-        <nav className="text-[10px] tracking-[0.2em] uppercase text-stone-400 mb-8 flex items-center gap-2 flex-wrap">
-          <Link href="/" className="hover:text-stone-700 transition-colors">Anasayfa</Link>
-          <span className="text-stone-300">/</span>
-          <Link href="/koleksiyon" className="hover:text-stone-700 transition-colors">Koleksiyon</Link>
-          <span className="text-stone-300">/</span>
+      {/* Breadcrumb */}
+      <div className="max-w-screen-xl mx-auto px-6 pt-28 pb-4">
+        <nav className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>
+          <Link href="/" className="hover:text-black transition-colors">Anasayfa</Link>
+          <span>/</span>
+          <Link href="/koleksiyon" className="hover:text-black transition-colors">Koleksiyon</Link>
+          <span>/</span>
           <Link
             href={`/koleksiyon?kategori=${encodeURIComponent(product.category)}`}
-            className="hover:text-stone-700 transition-colors"
+            className="hover:text-black transition-colors"
           >
             {product.category}
           </Link>
-          <span className="text-stone-300">/</span>
-          <span className="text-stone-500 line-clamp-1">{product.name}</span>
+          <span>/</span>
+          <span className="text-black line-clamp-1">{product.name}</span>
         </nav>
+      </div>
 
-        {/* 2-kolon layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
-          {/* Sol — Galeri */}
-          <div className="md:sticky md:top-28">
-            <ImageGallery images={product.images} name={product.name} />
+      {/* Main — stacked images left, sticky info right */}
+      <div className="max-w-screen-xl mx-auto px-6 pb-24">
+        <div className="lg:grid lg:grid-cols-[3fr_2fr] lg:gap-16 xl:gap-24 items-start">
+
+          {/* LEFT — stacked images */}
+          <div className="mb-12 lg:mb-0">
+            <StackedImages images={product.images} name={product.name} />
           </div>
 
-          {/* Sağ — Bilgi + CTA */}
-          <ProductInfo product={product} />
+          {/* RIGHT — sticky panel */}
+          <div className="lg:sticky lg:top-24">
+            <ProductInfo product={product} />
+          </div>
+
         </div>
       </div>
     </div>
