@@ -9,6 +9,7 @@ import StatsBar from "@/app/components/StatsBar";
 import MarqueeStrip from "@/app/components/MarqueeStrip";
 import ShinyButton from "@/app/components/ShinyButton";
 import BestSellers from "@/app/components/BestSellers";
+import Testimonials from "@/app/components/Testimonials";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -74,7 +75,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 9 — Bottom CTA */}
+      {/* 9 — Testimonials */}
+      <Testimonials />
+
+      {/* 10 — Bottom CTA */}
       <section className="py-32 px-6 text-center" style={{ background: "#1D1D1F" }}>
         <div className="max-w-2xl mx-auto">
           <p
