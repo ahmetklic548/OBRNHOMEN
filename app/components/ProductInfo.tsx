@@ -142,7 +142,7 @@ export default function ProductInfo({ product }: { product: Product }) {
             className="font-semibold"
             style={{ fontSize: "2rem", letterSpacing: "-0.02em", color: "#1D1D1F" }}
           >
-            {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
+            {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
           </span>
           <span
             className="text-sm font-medium px-2 py-0.5 rounded-full"

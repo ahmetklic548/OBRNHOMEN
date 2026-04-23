@@ -186,7 +186,7 @@ export default function ProductGrid({
                 </h2>
                 <div className="flex items-baseline gap-2">
                   <p className="text-sm font-medium text-stone-900">
-                    {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
+                    {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
                   </p>
                   <p className="text-xs line-through" style={{ color: "#86868B" }}>
                     {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺

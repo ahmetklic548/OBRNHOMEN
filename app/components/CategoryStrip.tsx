@@ -72,7 +72,7 @@ export default function CategoryStrip({
               </h4>
               <div className="flex items-baseline gap-1.5">
                 <p className="text-xs font-medium text-stone-800">
-                  {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
+                  {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
                 </p>
                 <p className="text-[10px] line-through" style={{ color: "#86868B" }}>
                   {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺

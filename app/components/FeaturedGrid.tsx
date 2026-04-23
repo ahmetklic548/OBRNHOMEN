@@ -107,7 +107,7 @@ export default function FeaturedGrid({ products }: { products: Product[] }) {
                 </h3>
                 <div className="flex items-baseline gap-2">
                   <p className="text-sm font-semibold" style={{ color: "#1D1D1F" }}>
-                    {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
+                    {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
                   </p>
                   <p className="text-xs line-through" style={{ color: "#86868B" }}>
                     {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺

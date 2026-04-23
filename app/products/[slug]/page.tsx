@@ -138,7 +138,7 @@ export default async function ProductPage({
                   <p className="text-xs font-medium line-clamp-2 mb-1" style={{ color: "#1D1D1F" }}>{p.name}</p>
                   <div className="flex items-baseline gap-1.5">
                     <p className="text-xs font-medium" style={{ color: "#1D1D1F" }}>
-                      {(p.price * 0.8).toLocaleString("tr-TR")} ₺
+                      {(p.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
                     </p>
                     <p className="text-[10px] line-through" style={{ color: "#86868B" }}>
                       {p.price.toLocaleString("tr-TR")} ₺
