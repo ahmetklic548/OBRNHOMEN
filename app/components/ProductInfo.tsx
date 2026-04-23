@@ -120,20 +120,41 @@ export default function ProductInfo({ product }: { product: Product }) {
         {product.name}
       </h1>
 
-      {/* SKU */}
-      <p className="text-[10px] tracking-widest uppercase mb-6" style={{ color: "#86868B" }}>
-        SKU: {product.id}
-      </p>
+      {/* Quantity + SKU */}
+      <div className="flex items-center gap-4 mb-6">
+        {product.quantity && product.quantity > 1 && (
+          <span
+            className="text-xs font-medium px-3 py-1 rounded-full"
+            style={{ background: "#F5F5F7", color: "#1D1D1F" }}
+          >
+            {product.quantity} Adet / Paket
+          </span>
+        )}
+        <p className="text-[10px] tracking-widest uppercase" style={{ color: "#86868B" }}>
+          SKU: {product.id}
+        </p>
+      </div>
 
-      {/* Price */}
+      {/* Price — %20 indirimli */}
       <div className="mb-6">
-        <p
-          className="font-semibold mb-1"
-          style={{ fontSize: "2rem", letterSpacing: "-0.02em", color: "#1D1D1F" }}
-        >
+        <div className="flex items-center gap-3 mb-1">
+          <span
+            className="font-semibold"
+            style={{ fontSize: "2rem", letterSpacing: "-0.02em", color: "#1D1D1F" }}
+          >
+            {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
+          </span>
+          <span
+            className="text-sm font-medium px-2 py-0.5 rounded-full"
+            style={{ background: "#fee2e2", color: "#dc2626" }}
+          >
+            %20 İndirim
+          </span>
+        </div>
+        <p className="text-sm line-through" style={{ color: "#86868B" }}>
           {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
         </p>
-        <p className="text-xs" style={{ color: "#86868B" }}>KDV dahil</p>
+        <p className="text-xs mt-1" style={{ color: "#86868B" }}>KDV dahil</p>
       </div>
 
       {/* Attributes */}
@@ -157,18 +178,27 @@ export default function ProductInfo({ product }: { product: Product }) {
         </div>
       )}
 
-      {/* Stock */}
-      <div className="flex items-center gap-2 mb-7">
+      {/* Stock + urgency */}
+      <div className="flex items-center gap-3 mb-2">
         <span
           className={`w-1.5 h-1.5 rounded-full ${product.inStock ? "bg-emerald-400" : "bg-stone-300"}`}
         />
-        <span
-          className="text-xs tracking-widest uppercase"
-          style={{ color: product.inStock ? "#34d399" : "#86868B" }}
-        >
+        <span className="text-xs tracking-widest uppercase" style={{ color: product.inStock ? "#34d399" : "#86868B" }}>
           {product.inStock ? "Stokta Var" : "Tükendi"}
         </span>
+        {product.inStock && product.stock <= 20 && (
+          <span className="text-xs font-medium px-2 py-0.5 rounded-full" style={{ background: "#fff3cd", color: "#92400e" }}>
+            Son {product.stock} adet
+          </span>
+        )}
       </div>
+
+      {/* Description */}
+      {product.metaDescription && (
+        <p className="text-sm leading-relaxed mb-6" style={{ color: "#86868B" }}>
+          {product.metaDescription}
+        </p>
+      )}
 
       {/* CTA */}
       {product.inStock ? (

@@ -184,9 +184,14 @@ export default function ProductGrid({
                 <h2 className="text-sm text-stone-700 leading-snug mb-2 group-hover:text-stone-900 transition-colors line-clamp-2 min-h-[2.6rem]">
                   {product.name}
                 </h2>
-                <p className="text-sm font-medium text-stone-900">
-                  {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
-                </p>
+                <div className="flex items-baseline gap-2">
+                  <p className="text-sm font-medium text-stone-900">
+                    {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
+                  </p>
+                  <p className="text-xs line-through" style={{ color: "#86868B" }}>
+                    {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
+                  </p>
+                </div>
               </Link>
             </motion.div>
           ))}

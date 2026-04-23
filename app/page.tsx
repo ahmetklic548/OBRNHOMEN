@@ -1,10 +1,14 @@
-import { getFeaturedProducts, getCategoryPreview } from "@/lib/products";
+import Link from "next/link";
+import { getFeaturedProducts, getCategoryPreview, getAllProducts } from "@/lib/products";
 import HomeHero from "@/app/components/HomeHero";
 import FeaturedGrid from "@/app/components/FeaturedGrid";
 import BentoFeatures from "@/app/components/BentoFeatures";
 import CategoryCards from "@/app/components/CategoryCards";
 import CategoryStrip from "@/app/components/CategoryStrip";
 import StatsBar from "@/app/components/StatsBar";
+import MarqueeStrip from "@/app/components/MarqueeStrip";
+import ShinyButton from "@/app/components/ShinyButton";
+import BestSellers from "@/app/components/BestSellers";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -26,8 +30,9 @@ export default function Home() {
   const tesbihler  = getCategoryPreview("Tesbih", 3);
   const seccadeler = getCategoryPreview("Seccade", 3);
   const hediyeler  = getCategoryPreview("Konsept Hediyelik", 3);
+  const marqueeProducts = getAllProducts().filter(p => p.images[0]).slice(0, 14);
 
-  const heroProduct = featured[0];
+  const heroProduct = getAllProducts().find(p => p.slug === "4-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti") ?? featured[0];
 
   return (
     <>
@@ -48,22 +53,28 @@ export default function Home() {
       {/* 3 — Featured products */}
       <FeaturedGrid products={featured} />
 
-      {/* 4 — Bento features */}
+      {/* 4 — Marquee product strip */}
+      <MarqueeStrip products={marqueeProducts} />
+
+      {/* 5 — Bento features */}
       <BentoFeatures />
 
-      {/* 5 — Category showcase */}
+      {/* 6 — Best sellers from Trendyol data */}
+      <BestSellers />
+
+      {/* 7 — Category showcase */}
       <CategoryCards />
 
-      {/* 6 — Category strips */}
+      {/* 8 — Category strips */}
       <section className="py-24 px-6" style={{ background: "#F5F5F7" }}>
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <CategoryStrip category="Tesbih" products={tesbihler} index={0} />
           <CategoryStrip category="Seccade" products={seccadeler} index={1} />
           <CategoryStrip category="Konsept Hediyelik" products={hediyeler} index={2} />
         </div>
       </section>
 
-      {/* 7 — Bottom CTA */}
+      {/* 9 — Bottom CTA */}
       <section className="py-32 px-6 text-center" style={{ background: "#1D1D1F" }}>
         <div className="max-w-2xl mx-auto">
           <p
@@ -85,13 +96,9 @@ export default function Home() {
           <p className="mb-10 text-base" style={{ color: "#86868B" }}>
             198+ ürün, güvenli ödeme, hızlı teslimat.
           </p>
-          <a
-            href="/koleksiyon"
-            className="inline-block px-10 py-4 rounded-full text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 active:scale-100"
-            style={{ background: "#c9a84c", color: "#ffffff" }}
-          >
-            Tüm Koleksiyonu Gör
-          </a>
+          <Link href="/koleksiyon">
+            <ShinyButton variant="gold">Tüm Koleksiyonu Gör</ShinyButton>
+          </Link>
         </div>
       </section>
     </>

@@ -40,7 +40,7 @@ export default function CategoryStrip({
       </motion.div>
 
       {/* 3-kolon grid */}
-      <div className="grid grid-cols-3 gap-4 md:gap-6">
+      <div className="grid grid-cols-3 gap-5 md:gap-8">
         {products.map((product, i) => (
           <motion.div
             key={product.id}
@@ -48,11 +48,11 @@ export default function CategoryStrip({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease, delay: index * 0.05 + i * 0.08 }}
-            whileHover={{ y: -5, transition: { duration: 0.2, ease } }}
+            whileHover={{ y: -6, transition: { duration: 0.2, ease } }}
             className="group"
           >
             <Link href={`/products/${product.slug}`} className="block">
-              <div className="relative aspect-square overflow-hidden mb-3 border border-stone-100 group-hover:border-[#c9a84c]/30 transition-colors duration-300">
+              <div className="relative aspect-[3/4] overflow-hidden mb-3 rounded-xl border border-stone-100 group-hover:border-[#c9a84c]/30 transition-colors duration-300">
                 {product.images[0] ? (
                   <Image
                     src={product.images[0]}
@@ -70,9 +70,14 @@ export default function CategoryStrip({
               <h4 className="text-xs text-stone-600 leading-snug group-hover:text-stone-900 transition-colors line-clamp-2 mb-1">
                 {product.name}
               </h4>
-              <p className="text-xs font-medium text-stone-800">
-                {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
-              </p>
+              <div className="flex items-baseline gap-1.5">
+                <p className="text-xs font-medium text-stone-800">
+                  {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
+                </p>
+                <p className="text-[10px] line-through" style={{ color: "#86868B" }}>
+                  {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
+                </p>
+              </div>
             </Link>
           </motion.div>
         ))}

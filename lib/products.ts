@@ -15,6 +15,7 @@ export interface Product {
   features: string[];
   images: string[];
   metaDescription: string;
+  quantity?: number;
 }
 
 const products = productsData as Product[];

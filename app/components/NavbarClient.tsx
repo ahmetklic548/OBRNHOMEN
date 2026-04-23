@@ -17,7 +17,7 @@ export default function NavbarClient() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ${
+      className={`transition-all duration-500 ${
         scrolled ? "glass shadow-sm" : "bg-transparent"
       }`}
     >

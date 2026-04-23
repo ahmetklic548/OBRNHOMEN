@@ -26,8 +26,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CartProvider>
           <AuthProvider>
 
-            {/* Glassmorphism navbar */}
-            <NavbarClient />
+            {/* Fixed header: announcement bar + navbar stacked */}
+            <div className="fixed top-0 inset-x-0 z-40">
+              <div className="w-full py-2 px-4 text-center text-[11px] tracking-[0.15em]" style={{ background: "#1D1D1F", color: "#c9a84c" }}>
+                1000 ₺ ve üzeri siparişlerde kargo ücretsiz &nbsp;·&nbsp; 14 gün iade garantisi
+              </div>
+              <NavbarClient />
+            </div>
 
             <main className="flex-1">{children}</main>
 

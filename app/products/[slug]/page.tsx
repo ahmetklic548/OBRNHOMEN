@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getAllSlugs, getProductBySlug } from "@/lib/products";
+import { getAllSlugs, getProductBySlug, getProductsByCategory } from "@/lib/products";
 import StackedImages from "@/app/components/StackedImages";
 import ProductInfo from "@/app/components/ProductInfo";
 
@@ -17,13 +17,34 @@ export async function generateMetadata({
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) return {};
+
+  const title = `${product.name} | ${product.category} – OBRNHOMEN`;
+  const description = `${product.metaDescription} ${product.inStock ? "Stokta mevcut." : ""} Hızlı kargo, 14 gün iade garantisi. obrnhomen.com`;
+
   return {
-    title: product.name,
-    description: product.metaDescription,
+    title,
+    description,
+    keywords: [
+      product.name,
+      product.category,
+      product.brand,
+      "hediyelik",
+      "hac umre",
+      "el işçiliği",
+      ...(product.color ? [product.color] : []),
+    ].filter(Boolean),
     openGraph: {
-      title: product.name,
-      description: product.metaDescription,
-      images: product.images[0] ? [{ url: product.images[0] }] : [],
+      title,
+      description,
+      url: `https://obrnhomen.com/products/${product.slug}`,
+      type: "website",
+      images: product.images[0] ? [{ url: product.images[0], alt: product.name }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: product.images[0] ? [product.images[0]] : [],
     },
   };
 }
@@ -36,6 +57,10 @@ export default async function ProductPage({
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) notFound();
+
+  const related = getProductsByCategory(product.category)
+    .filter(p => p.slug !== product.slug && p.inStock && p.images[0])
+    .slice(0, 4);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -64,7 +89,7 @@ export default async function ProductPage({
       />
 
       {/* Breadcrumb */}
-      <div className="max-w-screen-xl mx-auto px-6 pt-28 pb-4">
+      <div className="max-w-screen-xl mx-auto px-6 pt-36 pb-4">
         <nav className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>
           <Link href="/" className="hover:text-black transition-colors">Anasayfa</Link>
           <span>/</span>
@@ -82,21 +107,49 @@ export default async function ProductPage({
       </div>
 
       {/* Main — stacked images left, sticky info right */}
-      <div className="max-w-screen-xl mx-auto px-6 pb-24">
+      <div className="max-w-screen-xl mx-auto px-6 pb-16">
         <div className="lg:grid lg:grid-cols-[3fr_2fr] lg:gap-16 xl:gap-24 items-start">
-
-          {/* LEFT — stacked images */}
           <div className="mb-12 lg:mb-0">
             <StackedImages images={product.images} name={product.name} />
           </div>
-
-          {/* RIGHT — sticky panel */}
           <div className="lg:sticky lg:top-24">
             <ProductInfo product={product} />
           </div>
-
         </div>
       </div>
+
+      {/* Related products */}
+      {related.length > 0 && (
+        <div className="border-t px-6 py-16" style={{ borderColor: "rgba(0,0,0,0.06)", background: "#F5F5F7" }}>
+          <div className="max-w-screen-xl mx-auto">
+            <p className="text-[11px] tracking-[0.4em] uppercase font-medium mb-8" style={{ color: "#86868B" }}>
+              Bunları da beğenebilirsiniz
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {related.map(p => (
+                <Link key={p.slug} href={`/products/${p.slug}`} className="group">
+                  <div className="relative aspect-square rounded-2xl overflow-hidden mb-3" style={{ background: "#ffffff" }}>
+                    <img
+                      src={p.images[0]}
+                      alt={p.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    />
+                  </div>
+                  <p className="text-xs font-medium line-clamp-2 mb-1" style={{ color: "#1D1D1F" }}>{p.name}</p>
+                  <div className="flex items-baseline gap-1.5">
+                    <p className="text-xs font-medium" style={{ color: "#1D1D1F" }}>
+                      {(p.price * 0.8).toLocaleString("tr-TR")} ₺
+                    </p>
+                    <p className="text-[10px] line-through" style={{ color: "#86868B" }}>
+                      {p.price.toLocaleString("tr-TR")} ₺
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
