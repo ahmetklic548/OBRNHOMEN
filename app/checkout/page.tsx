@@ -7,6 +7,7 @@ import { useAuth } from "@/app/components/AuthProvider";
 
 const SHIPPING_FEE       = 200;
 const FREE_SHIPPING_OVER = 1000;
+const VALID_COUPONS: Record<string, number> = { HOSGELDIN10: 10 };
 
 type Step = "form" | "paying" | "error";
 
@@ -16,8 +17,25 @@ export default function CheckoutPage() {
   const router = useRouter();
   const iframeRef = useRef<HTMLDivElement>(null);
 
+  const [couponInput,   setCouponInput]   = useState("");
+  const [couponApplied, setCouponApplied] = useState<string | null>(null);
+  const [couponError,   setCouponError]   = useState("");
+
+  const discountRate  = couponApplied ? (VALID_COUPONS[couponApplied] ?? 0) : 0;
+  const discountAmount = Math.round(total * discountRate / 100);
   const shipping   = total >= FREE_SHIPPING_OVER ? 0 : SHIPPING_FEE;
-  const grandTotal = total + shipping;
+  const grandTotal = total - discountAmount + shipping;
+
+  const applyCoupon = () => {
+    const code = couponInput.trim().toUpperCase();
+    if (VALID_COUPONS[code]) {
+      setCouponApplied(code);
+      setCouponError("");
+    } else {
+      setCouponError("Geçersiz kupon kodu.");
+      setCouponApplied(null);
+    }
+  };
 
   const [step,  setStep]  = useState<Step>("form");
   const [token, setToken] = useState<string | null>(null);
@@ -192,12 +210,53 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
-              {/* Ara toplam + kargo */}
+              {/* Kupon kodu */}
+              <div className="border-t border-stone-200 pt-4 mb-4">
+                {!couponApplied ? (
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={couponInput}
+                      onChange={e => { setCouponInput(e.target.value); setCouponError(""); }}
+                      placeholder="Kupon kodu"
+                      className="flex-1 border border-stone-200 bg-white px-3 py-2 text-xs text-stone-800 focus:outline-none focus:border-[#c9a84c] transition-colors uppercase"
+                    />
+                    <button
+                      type="button"
+                      onClick={applyCoupon}
+                      className="px-3 py-2 text-xs tracking-wide text-white transition-colors"
+                      style={{ background: "#1D1D1F" }}
+                    >
+                      Uygula
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-emerald-600 font-medium">✓ {couponApplied} uygulandı</span>
+                    <button
+                      type="button"
+                      onClick={() => { setCouponApplied(null); setCouponInput(""); }}
+                      className="text-[10px] text-stone-400 underline"
+                    >
+                      Kaldır
+                    </button>
+                  </div>
+                )}
+                {couponError && <p className="text-[10px] text-red-500 mt-1">{couponError}</p>}
+              </div>
+
+              {/* Ara toplam + indirim + kargo */}
               <div className="border-t border-stone-200 pt-4 space-y-2 mb-4">
                 <div className="flex justify-between text-sm">
                   <span className="text-stone-400 tracking-wide">Ara Toplam</span>
                   <span className="text-stone-700">{total.toLocaleString("tr-TR")} ₺</span>
                 </div>
+                {discountAmount > 0 && (
+                  <div className="flex justify-between text-sm">
+                    <span className="text-emerald-600 tracking-wide">İndirim (%{discountRate})</span>
+                    <span className="text-emerald-600">-{discountAmount.toLocaleString("tr-TR")} ₺</span>
+                  </div>
+                )}
                 <div className="flex justify-between text-sm">
                   <span className="text-stone-400 tracking-wide">Kargo</span>
                   {shipping === 0 ? (
