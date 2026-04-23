@@ -6,6 +6,7 @@ import { CartProvider } from "@/app/components/CartContext";
 import { AuthProvider } from "@/app/components/AuthProvider";
 import NavbarClient from "@/app/components/NavbarClient";
 import LiveChatWidget from "@/app/components/LiveChatWidget";
+import NewsletterPopup from "@/app/components/NewsletterPopup";
 import "./globals.css";
 
 const inter = Inter({
@@ -83,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </footer>
 
             <LiveChatWidget />
+            <NewsletterPopup />
           </AuthProvider>
         </CartProvider>
         <GoogleAnalytics gaId="G-EZ3ZCTGL48" />
