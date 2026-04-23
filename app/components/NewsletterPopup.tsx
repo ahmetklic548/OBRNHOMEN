@@ -117,14 +117,25 @@ export default function NewsletterPopup() {
                   </p>
                 </>
               ) : (
-                <div className="text-center py-4">
+                <div className="text-center py-2">
                   <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "#f0fdf4" }}>
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
                   <p className="font-semibold mb-1" style={{ color: "#1D1D1F" }}>Teşekkürler!</p>
-                  <p className="text-sm" style={{ color: "#86868B" }}>İndirim kodun e-postana gönderildi.</p>
+                  <p className="text-sm mb-5" style={{ color: "#86868B" }}>İşte senin özel indirim kodun:</p>
+                  <div
+                    className="rounded-xl px-6 py-4 mb-4 select-all"
+                    style={{ background: "#1D1D1F" }}
+                  >
+                    <p className="text-xl font-semibold tracking-[0.2em]" style={{ color: "#c9a84c" }}>
+                      HOSGELDIN10
+                    </p>
+                  </div>
+                  <p className="text-xs" style={{ color: "#86868B" }}>
+                    Sipariş sırasında bu kodu belirt, %10 indirim uygulayalım.
+                  </p>
                 </div>
               )}
             </div>
