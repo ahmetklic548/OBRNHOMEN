@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     const no_installment  = "0";
     const max_installment = "0";
     const currency        = "TL";
-    const test_mode       = "1"; /* test modu */
+    const test_mode       = "0";
 
     /* Hash hesapla */
     const hash_str =
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
       payment_amount,
       paytr_token,
       user_basket,
-      debug_on:           "1",
+      debug_on:           "0",
       no_installment,
       max_installment,
       user_name:          name,
