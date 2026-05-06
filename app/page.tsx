@@ -48,7 +48,13 @@ const jsonLd = [
     url: "https://obrnhomen.com",
     logo: "https://obrnhomen.com/icons/icon.svg",
     description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
-    address: { "@type": "PostalAddress", addressCountry: "TR" },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Mustafa Kemal Paşa Mah. Harbiye Sok. No:7",
+      addressLocality: "Arnavutköy",
+      addressRegion: "İstanbul",
+      addressCountry: "TR",
+    },
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+905316893849",
