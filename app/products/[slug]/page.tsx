@@ -64,31 +64,42 @@ export default async function ProductPage({
     .filter(p => p.slug !== product.slug && p.inStock && p.images[0])
     .slice(0, 4);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.metaDescription,
-    image: product.images,
-    brand: { "@type": "Brand", name: product.brand },
-    offers: {
-      "@type": "Offer",
-      url: `https://obrnhomen.com/products/${product.slug}`,
-      priceCurrency: "TRY",
-      price: product.price.toFixed(2),
-      availability: product.inStock
-        ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
-      seller: { "@type": "Organization", name: "OBRNHOMEN" },
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.name,
+      description: product.metaDescription,
+      image: product.images,
+      brand: { "@type": "Brand", name: product.brand },
+      offers: {
+        "@type": "Offer",
+        url: `https://obrnhomen.com/products/${product.slug}`,
+        priceCurrency: "TRY",
+        price: product.price.toFixed(2),
+        availability: product.inStock
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+        seller: { "@type": "Organization", name: "OBRNHOMEN" },
+      },
     },
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Anasayfa", item: "https://obrnhomen.com" },
+        { "@type": "ListItem", position: 2, name: "Koleksiyon", item: "https://obrnhomen.com/koleksiyon" },
+        { "@type": "ListItem", position: 3, name: product.category, item: `https://obrnhomen.com/koleksiyon/${encodeURIComponent(product.category)}` },
+        { "@type": "ListItem", position: 4, name: product.name, item: `https://obrnhomen.com/products/${product.slug}` },
+      ],
+    },
+  ];
 
   return (
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {jsonLd.map((schema, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      ))}
 
       {/* Breadcrumb */}
       <div className="max-w-screen-xl mx-auto px-6 pt-36 pb-4">

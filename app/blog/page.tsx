@@ -2,8 +2,21 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog | Hac, Umre ve Hediyelik Rehberi",
-  description: "Hac ve umre hediyeliği nasıl seçilir? Tesbih, seccade ve İslami hediyelik ürünler hakkında bilgi ve öneriler.",
+  title: "Blog & Rehber | Hac Umre Hediyeliği, Tesbih & Seccade",
+  description: "Hac ve umre hediyeliği nasıl seçilir? Tesbih çeşitleri, mevlüt hediye fikirleri ve seccade seçim rehberi. OBRNHOMEN uzman içerikleri.",
+  keywords: ["hac umre hediyeliği rehberi", "tesbih çeşitleri", "mevlüt hediyesi", "seccade seçimi", "İslami hediyelik"],
+  openGraph: {
+    title: "Blog & Rehber | OBRNHOMEN",
+    description: "Hac, umre, mevlüt ve İslami hediyelik ürünleri hakkında rehber içerikler.",
+    url: "https://obrnhomen.com/blog",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog & Rehber | OBRNHOMEN",
+    description: "Hac, umre, mevlüt ve İslami hediyelik ürünleri hakkında rehber içerikler.",
+  },
+  alternates: { canonical: "https://obrnhomen.com/blog" },
 };
 
 const posts = [

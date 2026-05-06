@@ -92,8 +92,19 @@ export default async function KategoriPage({
 
   const meta = categoryMeta[category];
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Anasayfa", item: "https://obrnhomen.com" },
+      { "@type": "ListItem", position: 2, name: "Koleksiyon", item: "https://obrnhomen.com/koleksiyon" },
+      { "@type": "ListItem", position: 3, name: category, item: `https://obrnhomen.com/koleksiyon/${kategori}` },
+    ],
+  };
+
   return (
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       {/* Breadcrumb */}
       <div className="max-w-6xl mx-auto px-6 pt-36 pb-2">
         <nav className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>

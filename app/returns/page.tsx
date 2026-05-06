@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "İade Şartları",
-  description: "OBRNHOMEN iade ve değişim politikası.",
+  title: "İade & Değişim Şartları | OBRNHOMEN",
+  description: "OBRNHOMEN'de teslimden itibaren 14 gün içinde ücretsiz iade hakkı. Koşullar, süreç ve iletişim bilgileri.",
+  openGraph: {
+    title: "İade & Değişim Şartları | OBRNHOMEN",
+    description: "Teslimden itibaren 14 gün içinde iade hakkı. Ürün orijinal ambalajında, kullanılmamış olmalıdır.",
+    url: "https://obrnhomen.com/returns",
+    type: "website",
+  },
+  alternates: { canonical: "https://obrnhomen.com/returns" },
 };
 
 const sections = [

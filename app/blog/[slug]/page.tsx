@@ -141,7 +141,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.title,
     description: post.excerpt,
-    openGraph: { title: post.title, description: post.excerpt, url: `https://obrnhomen.com/blog/${slug}` },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `https://obrnhomen.com/blog/${slug}`,
+      type: "article",
+      publishedTime: post.date,
+      authors: ["OBRNHOMEN"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+    },
+    alternates: { canonical: `https://obrnhomen.com/blog/${slug}` },
   };
 }
 
@@ -164,8 +177,25 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   const post = posts[slug];
   if (!post) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { "@type": "Organization", name: "OBRNHOMEN", url: "https://obrnhomen.com" },
+    publisher: {
+      "@type": "Organization",
+      name: "OBRNHOMEN",
+      logo: { "@type": "ImageObject", url: "https://obrnhomen.com/icons/icon.svg" },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `https://obrnhomen.com/blog/${slug}` },
+  };
+
   return (
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Header */}
       <div className="pt-36 pb-12 px-6" style={{ background: "#F5F5F7" }}>
         <div className="max-w-2xl mx-auto">

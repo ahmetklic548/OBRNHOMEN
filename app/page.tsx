@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getFeaturedProducts, getCategoryPreview, getAllProducts } from "@/lib/products";
 import HomeHero from "@/app/components/HomeHero";
 import FeaturedGrid from "@/app/components/FeaturedGrid";
@@ -10,20 +11,54 @@ import MarqueeStrip from "@/app/components/MarqueeStrip";
 import BestSellers from "@/app/components/BestSellers";
 import Testimonials from "@/app/components/Testimonials";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Store",
-  name: "OBRNHOMEN",
-  url: "https://obrnhomen.com",
-  description: "El işçiliği ve özgün tasarımla hazırlanan özel hediyeler.",
-  address: { "@type": "PostalAddress", addressCountry: "TR" },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+905316893849",
-    contactType: "customer service",
-    availableLanguage: "Turkish",
+export const metadata: Metadata = {
+  title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
+  description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler. 198+ ürün, ücretsiz kargo 1000₺ üzeri, 14 gün iade garantisi.",
+  keywords: ["tesbih", "seccade", "hac hediyeliği", "umre hediyeliği", "mevlüt hediyeliği", "hediyelik set", "el işi hediye", "namaz örtüsü", "obrnhomen"],
+  openGraph: {
+    title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
+    description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
+    url: "https://obrnhomen.com",
+    type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
+    description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
+  },
+  alternates: { canonical: "https://obrnhomen.com" },
 };
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "OBRNHOMEN",
+    url: "https://obrnhomen.com",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: { "@type": "EntryPoint", urlTemplate: "https://obrnhomen.com/koleksiyon?q={search_term_string}" },
+      "query-input": "required name=search_term_string",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    name: "OBRNHOMEN",
+    url: "https://obrnhomen.com",
+    logo: "https://obrnhomen.com/icons/icon.svg",
+    description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
+    address: { "@type": "PostalAddress", addressCountry: "TR" },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+905316893849",
+      contactType: "customer service",
+      availableLanguage: "Turkish",
+      contactOption: "TollFree",
+    },
+    sameAs: ["https://www.trendyol.com/magaza/obrnhomen"],
+  },
+];
 
 export default function Home() {
   const featured   = getFeaturedProducts();
@@ -36,10 +71,13 @@ export default function Home() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {jsonLd.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
 
       {/* 1 — Hero */}
       <HomeHero

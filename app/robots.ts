@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/admin", "/checkout", "/hesap", "/odeme", "/api/"],
     },
     sitemap: "https://obrnhomen.com/sitemap.xml",
   };

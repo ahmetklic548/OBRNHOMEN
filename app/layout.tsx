@@ -24,8 +24,10 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: { default: "OBRNHOMEN", template: "%s | OBRNHOMEN" },
-  description: "El işçiliği ve özgün tasarımla hazırlanan özel hediyeler.",
+  metadataBase: new URL("https://obrnhomen.com"),
+  title: { default: "OBRNHOMEN | El İşi Tesbih, Seccade & Hediyelik", template: "%s | OBRNHOMEN" },
+  description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler. 198+ ürün, hızlı kargo, 14 gün iade garantisi.",
+  keywords: ["tesbih", "seccade", "hac hediyeliği", "umre hediyeliği", "mevlüt hediyeliği", "hediyelik set", "el işi hediye", "obrnhomen"],
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -33,6 +35,15 @@ export const metadata: Metadata = {
     title: "OBRNHOMEN",
   },
   formatDetection: { telephone: false },
+  openGraph: {
+    siteName: "OBRNHOMEN",
+    locale: "tr_TR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@obrnhomen",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

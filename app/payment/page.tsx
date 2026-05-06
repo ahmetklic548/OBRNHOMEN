@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Güvenli Ödeme",
-  description: "OBRNHOMEN güvenli ödeme yöntemleri ve politikası.",
+  title: "Güvenli Ödeme Yöntemleri | OBRNHOMEN",
+  description: "Kredi kartı, banka kartı ve havale ile güvenli alışveriş. 256-bit SSL koruması, kart bilgisi saklanmaz. Seçili bankalarda 3 taksit imkânı.",
+  openGraph: {
+    title: "Güvenli Ödeme Yöntemleri | OBRNHOMEN",
+    description: "256-bit SSL korumalı ödeme. Kredi kartı, EFT ve kapıda ödeme seçenekleri.",
+    url: "https://obrnhomen.com/payment",
+    type: "website",
+  },
+  alternates: { canonical: "https://obrnhomen.com/payment" },
 };
 
 const sections = [

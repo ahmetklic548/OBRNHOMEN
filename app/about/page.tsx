@@ -1,13 +1,42 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Hakkımızda",
-  description: "OBRNHOMEN — el işçiliği ve özgün tasarımla hazırlanan özel hediyeler.",
+  title: "Hakkımızda | OBRNHOMEN",
+  description: "OBRNHOMEN, geleneksel el sanatlarından ilham alan ve modern minimalist estetikle buluşturan özel hediyelik koleksiyonları üretmektedir. Hac, umre ve mevlüt hediyelerinde yerli üretim kalitesi.",
+  keywords: ["obrnhomen hakkında", "el işi hediyelik", "hac umre hediyesi marka", "türk el sanatları"],
+  openGraph: {
+    title: "Hakkımızda | OBRNHOMEN",
+    description: "El sanatlarından ilham, modern minimalist estetikle buluşan özel hediyelik koleksiyonları.",
+    url: "https://obrnhomen.com/about",
+    type: "website",
+  },
+  alternates: { canonical: "https://obrnhomen.com/about" },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "Hakkımızda — OBRNHOMEN",
+  url: "https://obrnhomen.com/about",
+  description: "OBRNHOMEN, hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler sunan Türk markasıdır.",
+  publisher: {
+    "@type": "Organization",
+    name: "OBRNHOMEN",
+    url: "https://obrnhomen.com",
+    logo: "https://obrnhomen.com/icons/icon.svg",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+905316893849",
+      contactType: "customer service",
+      availableLanguage: "Turkish",
+    },
+  },
 };
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen" style={{ background: "#fafaf8" }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Header */}
       <div className="pt-40 pb-10 px-6 border-b" style={{ borderColor: "#efefef" }}>
         <div className="max-w-2xl mx-auto">
