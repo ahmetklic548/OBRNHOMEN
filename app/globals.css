@@ -34,11 +34,12 @@ body {
   line-height: 1.6;
 }
 
-/* ─── Apple-style headings ──────────────────────────────── */
+/* ─── Editorial headings ────────────────────────────────── */
 h1, h2, h3, h4 {
-  letter-spacing: -0.022em;
-  line-height: 1.08;
-  font-weight: 600;
+  font-family: var(--font-playfair, "Playfair Display"), Georgia, serif;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  font-weight: 400;
 }
 
 /* ─── Selection ─────────────────────────────────────────── */
@@ -64,12 +65,17 @@ h1, h2, h3, h4 {
   box-shadow: 0 4px 28px rgba(0,0,0,0.10), 0 16px 60px rgba(0,0,0,0.10);
 }
 
-/* ─── Glassmorphism ─────────────────────────────────────── */
+/* ─── Navbar scroll state ───────────────────────────────── */
 .glass {
-  background: rgba(255,255,255,0.78);
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+/* ─── Serif display helper ──────────────────────────────── */
+.font-serif-display {
+  font-family: var(--font-playfair, "Playfair Display"), Georgia, serif;
 }
 
 /* ─── Touch tap ─────────────────────────────────────────── */

@@ -27,10 +27,17 @@ export default function NewsletterPopup() {
     if (!email.trim()) return;
     setLoading(true);
     try {
+      // Firebase'e kaydet (yedek)
       await setDoc(doc(db, "newsletter", email), {
         email,
         createdAt: new Date().toISOString(),
         source: "popup",
+      });
+      // Resend ile hoş geldin e-postası gönder
+      await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
     } finally {
       setLoading(false);
@@ -55,40 +62,50 @@ export default function NewsletterPopup() {
 
           {/* Modal */}
           <motion.div
-            className="fixed inset-x-4 bottom-6 sm:inset-auto sm:left-1/2 sm:bottom-auto sm:top-1/2 sm:w-[440px] z-[91] rounded-2xl overflow-hidden"
+            className="fixed inset-x-4 bottom-6 sm:inset-auto sm:left-1/2 sm:bottom-auto sm:top-1/2 sm:w-[420px] z-[91] overflow-hidden"
             style={{
               background: "#ffffff",
-              boxShadow: "0 24px 80px rgba(0,0,0,0.18)",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
+              border: "1px solid #efefef",
             }}
             initial={{ opacity: 0, y: 40, x: 0 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            {/* Gold top bar */}
-            <div className="h-1.5 w-full" style={{ background: "linear-gradient(to right, #c9a84c, #e8c96d, #c9a84c)" }} />
+            {/* Gold top line */}
+            <div className="h-px w-full" style={{ background: "#c9a84c" }} />
 
             <div className="px-8 py-8">
               {/* Close */}
               <button
                 onClick={close}
-                className="absolute top-5 right-5 w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-black/5"
-                style={{ color: "#86868B" }}
+                className="absolute top-5 right-5 w-7 h-7 flex items-center justify-center transition-opacity hover:opacity-50"
+                style={{ color: "#999" }}
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                   <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               </button>
 
               {!done ? (
                 <>
-                  <p className="text-[10px] tracking-[0.4em] uppercase font-medium mb-3" style={{ color: "#c9a84c" }}>
+                  <p className="text-[9px] tracking-[0.5em] uppercase mb-4" style={{ color: "#c9a84c" }}>
                     Özel Teklif
                   </p>
-                  <h2 className="font-semibold mb-2" style={{ fontSize: "1.5rem", letterSpacing: "-0.02em", color: "#1D1D1F" }}>
+                  <h2
+                    className="mb-3"
+                    style={{
+                      fontSize: "1.6rem",
+                      fontWeight: 400,
+                      fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
+                      color: "#0a0a0a",
+                      lineHeight: 1.1,
+                    }}
+                  >
                     İlk Siparişinde<br />%10 İndirim
                   </h2>
-                  <p className="text-sm mb-6" style={{ color: "#86868B" }}>
+                  <p className="text-sm mb-6 leading-relaxed" style={{ color: "#888" }}>
                     E-posta adresini bırak, kampanyalardan ve yeni ürünlerden ilk sen haberdar ol.
                   </p>
 
@@ -99,41 +116,41 @@ export default function NewsletterPopup() {
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       placeholder="E-posta adresin"
-                      className="flex-1 px-4 py-3 rounded-full text-sm outline-none border"
-                      style={{ borderColor: "rgba(0,0,0,0.12)", color: "#1D1D1F" }}
+                      className="flex-1 px-4 py-3 text-sm outline-none border focus:border-black transition-colors"
+                      style={{ borderColor: "#e0e0e0", color: "#0a0a0a" }}
                     />
                     <button
                       type="submit"
                       disabled={loading}
-                      className="px-5 py-3 rounded-full text-sm font-medium text-white transition-opacity hover:opacity-80 disabled:opacity-50"
-                      style={{ background: "#1D1D1F" }}
+                      className="px-5 py-3 text-[10px] tracking-[0.2em] uppercase font-medium text-white transition-opacity hover:opacity-75 disabled:opacity-40"
+                      style={{ background: "#0a0a0a" }}
                     >
                       {loading ? "..." : "Kaydol"}
                     </button>
                   </form>
 
-                  <p className="text-[10px] mt-3 text-center" style={{ color: "#86868B" }}>
+                  <p className="text-[9px] mt-3 text-center" style={{ color: "#bbb" }}>
                     İstediğin zaman abonelikten çıkabilirsin.
                   </p>
                 </>
               ) : (
                 <div className="text-center py-2">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "#f0fdf4" }}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <div className="w-10 h-10 flex items-center justify-center mx-auto mb-4" style={{ background: "#f0fdf4" }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
-                  <p className="font-semibold mb-1" style={{ color: "#1D1D1F" }}>Teşekkürler!</p>
-                  <p className="text-sm mb-5" style={{ color: "#86868B" }}>İşte senin özel indirim kodun:</p>
+                  <p className="mb-1 text-base" style={{ color: "#0a0a0a" }}>Teşekkürler!</p>
+                  <p className="text-sm mb-5" style={{ color: "#888" }}>İşte senin özel indirim kodun:</p>
                   <div
-                    className="rounded-xl px-6 py-4 mb-4 select-all"
-                    style={{ background: "#1D1D1F" }}
+                    className="px-6 py-4 mb-4 select-all"
+                    style={{ background: "#0a0a0a" }}
                   >
-                    <p className="text-xl font-semibold tracking-[0.2em]" style={{ color: "#c9a84c" }}>
+                    <p className="text-lg tracking-[0.25em] uppercase" style={{ color: "#c9a84c" }}>
                       HOSGELDIN10
                     </p>
                   </div>
-                  <p className="text-xs" style={{ color: "#86868B" }}>
+                  <p className="text-xs" style={{ color: "#999" }}>
                     Sipariş sırasında bu kodu belirt, %10 indirim uygulayalım.
                   </p>
                 </div>

@@ -24,23 +24,27 @@ export default function KoleksiyonPage() {
   return (
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
       {/* Header */}
-      <div className="pt-36 pb-8 px-6 text-center" style={{ background: "#F5F5F7" }}>
-        <p className="text-[10px] tracking-[0.5em] uppercase font-medium mb-3" style={{ color: "#86868B" }}>
-          OBRNHOMEN
-        </p>
-        <h1
-          className="font-semibold mb-3"
-          style={{
-            fontSize: "clamp(1.8rem, 4vw, 3rem)",
-            letterSpacing: "-0.022em",
-            color: "#1D1D1F",
-          }}
-        >
-          Tüm Koleksiyon
-        </h1>
-        <p className="text-sm" style={{ color: "#86868B" }}>
-          {products.length} ürün · Tesbih, Seccade, Hediyelik ve daha fazlası
-        </p>
+      <div className="pt-40 pb-10 px-6" style={{ background: "#fafaf8", borderBottom: "1px solid #efefef" }}>
+        <div className="max-w-6xl mx-auto">
+          <p className="text-[9px] tracking-[0.55em] uppercase mb-4" style={{ color: "#c9a84c" }}>
+            OBRNHOMEN
+          </p>
+          <h1
+            style={{
+              fontSize: "clamp(2rem, 5vw, 4rem)",
+              fontWeight: 400,
+              fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
+              color: "#0a0a0a",
+              lineHeight: 1.05,
+              marginBottom: "0.75rem",
+            }}
+          >
+            Tüm Koleksiyon
+          </h1>
+          <p className="text-xs tracking-wide" style={{ color: "#999" }}>
+            {products.length} ürün · Tesbih, Seccade, Hediyelik ve daha fazlası
+          </p>
+        </div>
       </div>
 
       {/* Grid */}

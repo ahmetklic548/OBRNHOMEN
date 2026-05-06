@@ -18,35 +18,41 @@ export default function MobileNav() {
     <>
       <button
         onClick={() => setOpen(!open)}
-        className="md:hidden flex flex-col gap-1.5 p-1"
+        className="md:hidden flex flex-col gap-[5px] p-1"
         aria-label="Menü"
       >
-        <span className={`block w-6 h-px bg-stone-600 transition-all duration-200 ${open ? "rotate-45 translate-y-2" : ""}`} />
-        <span className={`block w-6 h-px bg-stone-600 transition-all duration-200 ${open ? "opacity-0" : ""}`} />
-        <span className={`block w-6 h-px bg-stone-600 transition-all duration-200 ${open ? "-rotate-45 -translate-y-2" : ""}`} />
+        <span
+          className={`block w-5 h-px bg-black transition-all duration-200 ${open ? "rotate-45 translate-y-[6px]" : ""}`}
+        />
+        <span
+          className={`block w-5 h-px bg-black transition-all duration-200 ${open ? "opacity-0" : ""}`}
+        />
+        <span
+          className={`block w-5 h-px bg-black transition-all duration-200 ${open ? "-rotate-45 -translate-y-[6px]" : ""}`}
+        />
       </button>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            className="md:hidden absolute top-full left-0 right-0 bg-stone-50 border-b border-stone-200 z-40 overflow-hidden"
-            initial={{ opacity: 0, y: -8 }}
+            className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-black/10 z-40"
+            initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
           >
             {links.map((link, i) => (
               <motion.div
                 key={link.href}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -10 }}
-                transition={{ duration: 0.18, delay: i * 0.05, ease: "easeOut" as const }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.12, delay: i * 0.04 }}
               >
                 <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block px-6 py-4 text-xs tracking-widest uppercase text-stone-600 hover:text-stone-900 hover:bg-stone-100 transition-colors border-b border-stone-100"
+                  className="block px-6 py-4 text-[10px] tracking-[0.25em] uppercase text-black/60 hover:text-black hover:bg-stone-50 transition-colors border-b border-black/5"
                 >
                   {link.label}
                 </Link>

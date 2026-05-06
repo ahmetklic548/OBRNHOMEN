@@ -7,7 +7,6 @@ import CategoryCards from "@/app/components/CategoryCards";
 import CategoryStrip from "@/app/components/CategoryStrip";
 import StatsBar from "@/app/components/StatsBar";
 import MarqueeStrip from "@/app/components/MarqueeStrip";
-import ShinyButton from "@/app/components/ShinyButton";
 import BestSellers from "@/app/components/BestSellers";
 import Testimonials from "@/app/components/Testimonials";
 
@@ -67,7 +66,7 @@ export default function Home() {
       <CategoryCards />
 
       {/* 8 — Category strips */}
-      <section className="py-24 px-6" style={{ background: "#F5F5F7" }}>
+      <section className="py-24 px-6" style={{ background: "#f5f0eb" }}>
         <div className="max-w-7xl mx-auto">
           <CategoryStrip category="Tesbih" products={tesbihler} index={0} />
           <CategoryStrip category="Seccade" products={seccadeler} index={1} />
@@ -79,29 +78,36 @@ export default function Home() {
       <Testimonials />
 
       {/* 10 — Bottom CTA */}
-      <section className="py-32 px-6 text-center" style={{ background: "#1D1D1F" }}>
+      <section className="py-32 px-6 text-center" style={{ background: "#0a0a0a" }}>
         <div className="max-w-2xl mx-auto">
           <p
-            className="text-[11px] tracking-[0.5em] uppercase font-medium mb-6"
-            style={{ color: "#86868B" }}
+            className="text-[9px] tracking-[0.55em] uppercase mb-6"
+            style={{ color: "#c9a84c" }}
           >
             OBRNHOMEN
           </p>
           <h2
-            className="font-semibold mb-6"
+            className="mb-6"
             style={{
-              fontSize: "clamp(2rem, 5vw, 4rem)",
-              letterSpacing: "-0.022em",
+              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+              fontWeight: 400,
+              fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
               color: "#ffffff",
+              lineHeight: 1.05,
             }}
           >
             Alışverişe<br />Başlayın
           </h2>
-          <p className="mb-10 text-base" style={{ color: "#86868B" }}>
+          <div className="mx-auto mb-8" style={{ width: 40, height: 1, background: "#c9a84c" }} />
+          <p className="mb-10 text-sm tracking-wide" style={{ color: "#555" }}>
             198+ ürün, güvenli ödeme, hızlı teslimat.
           </p>
-          <Link href="/koleksiyon">
-            <ShinyButton variant="gold">Tüm Koleksiyonu Gör</ShinyButton>
+          <Link
+            href="/koleksiyon"
+            className="inline-block px-10 py-3.5 text-[10px] tracking-[0.3em] uppercase font-medium border transition-all duration-200 hover:bg-white hover:text-black"
+            style={{ borderColor: "#ffffff", color: "#ffffff" }}
+          >
+            Tüm Koleksiyonu Gör
           </Link>
         </div>
       </section>

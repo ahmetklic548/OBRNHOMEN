@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     const no_installment  = "0";
     const max_installment = "0";
     const currency        = "TL";
-    const test_mode       = "0";
+    const test_mode       = process.env.PAYTR_TEST_MODE ?? "0";
 
     /* Hash hesapla */
     const hash_str =

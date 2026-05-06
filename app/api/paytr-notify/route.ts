@@ -27,11 +27,25 @@ export async function POST(req: NextRequest) {
     }
 
     if (status === "success") {
-      /* ✅ Ödeme başarılı — sipariş kaydı için buraya loglama eklenebilir */
-      console.log(`Sipariş başarılı: ${merchant_oid} — ${total_amount} kuruş`);
+      // SMS bildirimi gönder (arka planda, hata olsa da devam et)
+      const phone = params.get("email") ?? ""; // PayTR email alanı
+      if (phone) {
+        fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://obrnhomen.com"}/api/send-sms`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "order_confirm",
+            data: {
+              phone,
+              orderId: merchant_oid,
+              name: params.get("email") ?? "",
+              total: (Number(total_amount) / 100).toLocaleString("tr-TR"),
+            },
+          }),
+        }).catch(() => {});
+      }
     } else {
-      /* ❌ Ödeme başarısız veya iptal */
-      console.log(`Sipariş başarısız: ${merchant_oid} — durum: ${status}`);
+      console.error(`PayTR ödeme başarısız: ${merchant_oid} — durum: ${status}`);
     }
 
     /* PayTR OK beklediğini söyler */

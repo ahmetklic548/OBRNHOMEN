@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { getAllSlugs, getProductBySlug, getProductsByCategory } from "@/lib/products";
 import StackedImages from "@/app/components/StackedImages";
 import ProductInfo from "@/app/components/ProductInfo";
+import RecentlyViewed from "@/app/components/RecentlyViewed";
+import ProductReviews from "@/app/components/ProductReviews";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -117,6 +119,12 @@ export default async function ProductPage({
           </div>
         </div>
       </div>
+
+      {/* Ürün yorumları */}
+      <ProductReviews slug={product.slug} />
+
+      {/* Recently viewed */}
+      <RecentlyViewed currentSlug={product.slug} />
 
       {/* Related products */}
       {related.length > 0 && (

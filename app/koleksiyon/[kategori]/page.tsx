@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getAllCategories, getProductsByCategory } from "@/lib/products";
 import ProductGrid from "@/app/components/ProductGrid";
 import type { Metadata } from "next";
@@ -93,10 +94,21 @@ export default async function KategoriPage({
 
   return (
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
+      {/* Breadcrumb */}
+      <div className="max-w-6xl mx-auto px-6 pt-36 pb-2">
+        <nav className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>
+          <Link href="/" className="hover:text-black transition-colors">Anasayfa</Link>
+          <span>/</span>
+          <Link href="/koleksiyon" className="hover:text-black transition-colors">Koleksiyon</Link>
+          <span>/</span>
+          <span style={{ color: "#1D1D1F" }}>{category}</span>
+        </nav>
+      </div>
+
       {/* Header */}
-      <div className="pt-36 pb-8 px-6 text-center" style={{ background: "#F5F5F7" }}>
+      <div className="pb-8 px-6 pt-4 text-center" style={{ background: "#F5F5F7", marginTop: "1rem" }}>
         <p className="text-[10px] tracking-[0.5em] uppercase font-medium mb-3" style={{ color: "#86868B" }}>
-          Koleksiyon
+          OBRNHOMEN
         </p>
         <h1
           className="font-semibold mb-3"

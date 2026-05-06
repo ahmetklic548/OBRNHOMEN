@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0d070"/>
+      <stop offset="100%" stop-color="#b8902e"/>
+    </linearGradient>
+    <mask id="crescentMask">
+      <circle cx="216" cy="256" r="184" fill="white"/>
+      <circle cx="296" cy="208" r="141" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- Arka plan -->
+  <rect width="512" height="512" rx="112" fill="#1a1208"/>
+
+  <!-- Hilal -->
+  <circle cx="216" cy="256" r="184" fill="url(#goldGrad)" mask="url(#crescentMask)"/>
+
+  <!-- Yıldız -->
+  <polygon
+    points="408,96 423,141 471,141 433,169 448,214 408,186 368,214 383,169 345,141 393,141"
+    fill="url(#goldGrad)"
+  />
+</svg>

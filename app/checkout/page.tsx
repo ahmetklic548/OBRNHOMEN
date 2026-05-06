@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, startTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/app/components/CartContext";
 import { useAuth } from "@/app/components/AuthProvider";
@@ -11,20 +11,30 @@ const VALID_COUPONS: Record<string, number> = { HOSGELDIN10: 10 };
 
 type Step = "form" | "paying" | "error";
 
+const STEPS = [
+  { key: "form",   label: "Bilgiler",   num: 1 },
+  { key: "paying", label: "Ödeme",      num: 2 },
+  { key: "done",   label: "Tamamlandı", num: 3 },
+];
+
 export default function CheckoutPage() {
-  const { items, total, clear } = useCart();
+  const { items, total } = useCart();
   const { user, profile, loading: authLoading } = useAuth();
-  const router = useRouter();
+  const router   = useRouter();
   const iframeRef = useRef<HTMLDivElement>(null);
 
   const [couponInput,   setCouponInput]   = useState("");
   const [couponApplied, setCouponApplied] = useState<string | null>(null);
   const [couponError,   setCouponError]   = useState("");
+  const [step,  setStep]  = useState<Step>("form");
+  const [token, setToken] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
+  const [form, setForm] = useState({ name: "", email: "", phone: "", address: "" });
 
-  const discountRate  = couponApplied ? (VALID_COUPONS[couponApplied] ?? 0) : 0;
+  const discountRate   = couponApplied ? (VALID_COUPONS[couponApplied] ?? 0) : 0;
   const discountAmount = Math.round(total * discountRate / 100);
-  const shipping   = total >= FREE_SHIPPING_OVER ? 0 : SHIPPING_FEE;
-  const grandTotal = total - discountAmount + shipping;
+  const shipping       = total >= FREE_SHIPPING_OVER ? 0 : SHIPPING_FEE;
+  const grandTotal     = total - discountAmount + shipping;
 
   const applyCoupon = () => {
     const code = couponInput.trim().toUpperCase();
@@ -37,40 +47,25 @@ export default function CheckoutPage() {
     }
   };
 
-  const [step,  setStep]  = useState<Step>("form");
-  const [token, setToken] = useState<string | null>(null);
-  const [error, setError] = useState<string>("");
-
-  const [form, setForm] = useState({
-    name:    "",
-    email:   "",
-    phone:   "",
-    address: "",
-  });
-
-  /* Profil varsa formu otomatik doldur */
   useEffect(() => {
     if (profile) {
-      setForm(f => ({
+      startTransition(() => setForm(f => ({
         ...f,
         name:    profile.name    || f.name,
         phone:   profile.phone   || f.phone,
         address: profile.address || f.address,
-      }));
+      })));
     }
   }, [profile]);
 
-  /* Giriş yapılmamışsa hesap sayfasına yönlendir */
   useEffect(() => {
     if (!authLoading && !user) router.replace("/hesap");
   }, [authLoading, user, router]);
 
-  /* Sepet boşsa anasayfaya yönlendir */
   useEffect(() => {
     if (items.length === 0 && step === "form") router.replace("/");
   }, [items, step, router]);
 
-  /* PayTR iFrame scripti enjekte et */
   useEffect(() => {
     if (step !== "paying" || !token || !iframeRef.current) return;
     iframeRef.current.innerHTML = "";
@@ -94,27 +89,21 @@ export default function CheckoutPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-
-    /* Kargo ürün olarak sepete ekle (PayTR basket için) */
     const basketItems = shipping > 0
       ? [...items, { name: "Kargo Ücreti", price: shipping, qty: 1 }]
       : items;
-
     try {
       const res = await fetch("/api/paytr-token", {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
         body:    JSON.stringify({ items: basketItems, total: grandTotal, ...form }),
       });
-
       const data = await res.json();
-
       if (!res.ok || !data.token) {
         setError(data.error ?? "Ödeme başlatılamadı. Lütfen tekrar deneyin.");
         setStep("error");
         return;
       }
-
       setToken(data.token);
       setStep("paying");
     } catch {
@@ -123,51 +112,98 @@ export default function CheckoutPage() {
     }
   };
 
-  const field = (key: keyof typeof form, label: string, type = "text", placeholder = "") => (
-    <div>
-      <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 mb-2">
-        {label}
-      </label>
-      <input
-        type={type}
-        required
-        value={form[key]}
-        onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
-        placeholder={placeholder}
-        className="w-full border border-stone-200 bg-white px-4 py-3 text-sm text-stone-800 focus:outline-none focus:border-[#c9a84c] transition-colors"
-      />
-    </div>
-  );
+  const currentIdx = STEPS.findIndex(s => s.key === (step === "error" ? "form" : step));
 
   return (
-    <div
-      className="min-h-screen py-16"
-      style={{ background: "linear-gradient(180deg, #f9f9f7 0%, #f4f1ec 100%)" }}
-    >
-      <div className="relative z-10 max-w-2xl mx-auto px-6">
+    <div className="min-h-screen pt-32 pb-20 px-6" style={{ background: "#fafaf8" }}>
+      <div className="max-w-5xl mx-auto">
 
-        {/* Başlık */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-px w-16" style={{ background: "linear-gradient(to right, transparent, #c9a84c)" }} />
-            <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#c9a84c" }} />
-            <div className="h-px w-16" style={{ background: "linear-gradient(to left, transparent, #c9a84c)" }} />
-          </div>
-          <h1 className="text-2xl tracking-[0.3em] uppercase font-light text-stone-800">
+        {/* Progress steps */}
+        <div className="flex items-center justify-center gap-0 mb-14">
+          {STEPS.map(({ key, label, num }, i) => {
+            const stepIdx  = STEPS.findIndex(s => s.key === key);
+            const isActive = stepIdx === currentIdx;
+            const isDone   = stepIdx < currentIdx;
+            return (
+              <div key={key} className="flex items-center">
+                <div className="flex flex-col items-center gap-1.5">
+                  <div
+                    className="w-6 h-6 flex items-center justify-center text-[10px] font-medium transition-all"
+                    style={{
+                      background: isDone ? "#c9a84c" : isActive ? "#0a0a0a" : "#e5e5e5",
+                      color: isDone || isActive ? "#fff" : "#bbb",
+                    }}
+                  >
+                    {isDone ? "✓" : num}
+                  </div>
+                  <span
+                    className="text-[8px] tracking-[0.25em] uppercase"
+                    style={{ color: isActive ? "#0a0a0a" : "#bbb" }}
+                  >
+                    {label}
+                  </span>
+                </div>
+                {i < 2 && (
+                  <div
+                    className="w-16 h-px mx-3 mb-4"
+                    style={{ background: isDone ? "#c9a84c" : "#e5e5e5" }}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Page title */}
+        <div className="mb-10">
+          <p className="text-[9px] tracking-[0.55em] uppercase mb-3" style={{ color: "#c9a84c" }}>
+            OBRNHOMEN
+          </p>
+          <h1
+            style={{
+              fontSize: "clamp(1.8rem, 4vw, 3rem)",
+              fontWeight: 400,
+              fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
+              color: "#0a0a0a",
+              lineHeight: 1.1,
+            }}
+          >
             {step === "paying" ? "Güvenli Ödeme" : "Sipariş Bilgileri"}
           </h1>
+          <div className="mt-4 h-px" style={{ background: "#e8e8e8" }} />
         </div>
 
         {/* FORM */}
         {step === "form" && (
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Sol — Form */}
+          <div className="grid md:grid-cols-[1fr_360px] gap-10">
+
+            {/* Left — Form */}
             <form onSubmit={handleSubmit} className="space-y-5">
-              {field("name",    "Ad Soyad",    "text",  "Ahmet Yılmaz")}
-              {field("email",   "E-posta",     "email", "ahmet@ornek.com")}
-              {field("phone",   "Telefon",     "tel",   "05xx xxx xx xx")}
+              {(
+                [
+                  { key: "name",    label: "Ad Soyad",         type: "text",  placeholder: "Ahmet Yılmaz" },
+                  { key: "email",   label: "E-posta",           type: "email", placeholder: "ahmet@ornek.com" },
+                  { key: "phone",   label: "Telefon",           type: "tel",   placeholder: "05xx xxx xx xx" },
+                ] as { key: keyof typeof form; label: string; type: string; placeholder: string }[]
+              ).map(({ key, label, type, placeholder }) => (
+                <div key={key}>
+                  <label className="block text-[9px] tracking-[0.35em] uppercase mb-2" style={{ color: "#999" }}>
+                    {label}
+                  </label>
+                  <input
+                    type={type}
+                    required
+                    value={form[key]}
+                    onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
+                    placeholder={placeholder}
+                    className="w-full border bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors"
+                    style={{ borderColor: "#e0e0e0", color: "#0a0a0a" }}
+                  />
+                </div>
+              ))}
+
               <div>
-                <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 mb-2">
+                <label className="block text-[9px] tracking-[0.35em] uppercase mb-2" style={{ color: "#999" }}>
                   Teslimat Adresi
                 </label>
                 <textarea
@@ -176,42 +212,46 @@ export default function CheckoutPage() {
                   value={form.address}
                   onChange={e => setForm(f => ({ ...f, address: e.target.value }))}
                   placeholder="Mahalle, cadde, no, ilçe, şehir"
-                  className="w-full border border-stone-200 bg-white px-4 py-3 text-sm text-stone-800 focus:outline-none focus:border-[#c9a84c] transition-colors resize-none"
+                  className="w-full border bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition-colors resize-none"
+                  style={{ borderColor: "#e0e0e0", color: "#0a0a0a" }}
                 />
               </div>
+
               <button
                 type="submit"
-                className="w-full py-4 text-white text-xs tracking-[0.3em] uppercase transition-colors duration-200"
-                style={{ background: "#1a1208" }}
-                onMouseEnter={e => (e.currentTarget.style.background = "#2d1f0a")}
-                onMouseLeave={e => (e.currentTarget.style.background = "#1a1208")}
+                className="w-full py-4 text-[10px] tracking-[0.3em] uppercase font-medium text-white transition-opacity hover:opacity-75"
+                style={{ background: "#0a0a0a" }}
               >
                 Ödemeye Geç →
               </button>
-              <p className="text-[10px] text-stone-400 text-center tracking-wide">
+
+              <p className="text-[9px] tracking-wide text-center" style={{ color: "#bbb" }}>
                 256-bit SSL ile şifrelenmiş güvenli ödeme
               </p>
             </form>
 
-            {/* Sağ — Sipariş özeti */}
+            {/* Right — Order summary */}
             <div>
-              <p className="text-[10px] tracking-[0.35em] uppercase text-stone-400 mb-4">Sipariş Özeti</p>
+              <p className="text-[9px] tracking-[0.4em] uppercase mb-5" style={{ color: "#999" }}>
+                Sipariş Özeti
+              </p>
 
               <div className="space-y-3 mb-5">
                 {items.map(item => (
-                  <div key={item.slug} className="flex justify-between text-sm">
-                    <span className="text-stone-600 line-clamp-1 flex-1 mr-2">
-                      {item.name} <span className="text-stone-400">x{item.qty}</span>
+                  <div key={item.slug} className="flex justify-between text-sm gap-2">
+                    <span className="line-clamp-1 flex-1" style={{ color: "#555" }}>
+                      {item.name}{" "}
+                      <span style={{ color: "#bbb" }}>x{item.qty}</span>
                     </span>
-                    <span className="text-stone-800 shrink-0">
+                    <span className="shrink-0" style={{ color: "#0a0a0a" }}>
                       {(item.price * item.qty).toLocaleString("tr-TR")} ₺
                     </span>
                   </div>
                 ))}
               </div>
 
-              {/* Kupon kodu */}
-              <div className="border-t border-stone-200 pt-4 mb-4">
+              {/* Kupon */}
+              <div className="border-t pt-4 mb-4" style={{ borderColor: "#efefef" }}>
                 {!couponApplied ? (
                   <div className="flex gap-2">
                     <input
@@ -219,73 +259,83 @@ export default function CheckoutPage() {
                       value={couponInput}
                       onChange={e => { setCouponInput(e.target.value); setCouponError(""); }}
                       placeholder="Kupon kodu"
-                      className="flex-1 border border-stone-200 bg-white px-3 py-2 text-xs text-stone-800 focus:outline-none focus:border-[#c9a84c] transition-colors uppercase"
+                      className="flex-1 border bg-white px-3 py-2 text-xs focus:outline-none focus:border-black transition-colors uppercase"
+                      style={{ borderColor: "#e0e0e0", color: "#0a0a0a" }}
                     />
                     <button
                       type="button"
                       onClick={applyCoupon}
-                      className="px-3 py-2 text-xs tracking-wide text-white transition-colors"
-                      style={{ background: "#1D1D1F" }}
+                      className="px-4 py-2 text-[9px] tracking-[0.2em] uppercase text-white transition-opacity hover:opacity-75"
+                      style={{ background: "#0a0a0a" }}
                     >
                       Uygula
                     </button>
                   </div>
                 ) : (
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-emerald-600 font-medium">✓ {couponApplied} uygulandı</span>
+                    <span className="text-xs" style={{ color: "#16a34a" }}>✓ {couponApplied} uygulandı</span>
                     <button
                       type="button"
                       onClick={() => { setCouponApplied(null); setCouponInput(""); }}
-                      className="text-[10px] text-stone-400 underline"
+                      className="text-[9px] underline transition-opacity hover:opacity-50"
+                      style={{ color: "#999" }}
                     >
                       Kaldır
                     </button>
                   </div>
                 )}
-                {couponError && <p className="text-[10px] text-red-500 mt-1">{couponError}</p>}
+                {couponError && <p className="text-[10px] mt-1" style={{ color: "#dc2626" }}>{couponError}</p>}
               </div>
 
-              {/* Ara toplam + indirim + kargo */}
-              <div className="border-t border-stone-200 pt-4 space-y-2 mb-4">
+              {/* Totals */}
+              <div className="border-t pt-4 space-y-2.5 mb-4" style={{ borderColor: "#efefef" }}>
                 <div className="flex justify-between text-sm">
-                  <span className="text-stone-400 tracking-wide">Ara Toplam</span>
-                  <span className="text-stone-700">{total.toLocaleString("tr-TR")} ₺</span>
+                  <span style={{ color: "#999" }}>Ara Toplam</span>
+                  <span style={{ color: "#555" }}>{total.toLocaleString("tr-TR")} ₺</span>
                 </div>
                 {discountAmount > 0 && (
                   <div className="flex justify-between text-sm">
-                    <span className="text-emerald-600 tracking-wide">İndirim (%{discountRate})</span>
-                    <span className="text-emerald-600">-{discountAmount.toLocaleString("tr-TR")} ₺</span>
+                    <span style={{ color: "#16a34a" }}>İndirim (%{discountRate})</span>
+                    <span style={{ color: "#16a34a" }}>-{discountAmount.toLocaleString("tr-TR")} ₺</span>
                   </div>
                 )}
                 <div className="flex justify-between text-sm">
-                  <span className="text-stone-400 tracking-wide">Kargo</span>
-                  {shipping === 0 ? (
-                    <span className="text-emerald-600 text-xs tracking-wide">Ücretsiz</span>
-                  ) : (
-                    <span className="text-stone-700">{shipping.toLocaleString("tr-TR")} ₺</span>
-                  )}
+                  <span style={{ color: "#999" }}>Kargo</span>
+                  {shipping === 0
+                    ? <span className="text-xs" style={{ color: "#16a34a" }}>Ücretsiz</span>
+                    : <span style={{ color: "#555" }}>{shipping.toLocaleString("tr-TR")} ₺</span>
+                  }
                 </div>
               </div>
 
-              {/* Genel toplam */}
-              <div className="border-t border-stone-900 pt-4 flex justify-between">
-                <span className="text-xs tracking-widest uppercase text-stone-600">Ödenecek</span>
-                <span className="text-lg font-light text-stone-900">
+              {/* Grand total */}
+              <div className="border-t pt-4 flex justify-between items-baseline" style={{ borderColor: "#0a0a0a" }}>
+                <span className="text-[9px] tracking-[0.35em] uppercase" style={{ color: "#555" }}>Ödenecek</span>
+                <span
+                  style={{
+                    fontSize: "1.5rem",
+                    fontWeight: 400,
+                    fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
+                    color: "#0a0a0a",
+                  }}
+                >
                   {grandTotal.toLocaleString("tr-TR")} ₺
                 </span>
               </div>
 
-              {/* Ücretsiz kargo bildirimi */}
+              {/* Free shipping nudge */}
               {shipping > 0 && (
-                <div className="mt-4 p-3 bg-amber-50 border border-amber-100 text-xs text-amber-700 leading-relaxed">
+                <div className="mt-4 p-3 border-l-2 text-xs leading-relaxed" style={{ borderColor: "#c9a84c", background: "#fffbf0", color: "#7a5f1a" }}>
                   {(FREE_SHIPPING_OVER - total).toLocaleString("tr-TR")} ₺ daha ekleyin, kargo ücretsiz olsun!
                 </div>
               )}
 
-              {/* Ödeme yöntemleri */}
-              <div className="mt-5 p-4 border border-stone-100 bg-white">
-                <p className="text-[10px] tracking-widest uppercase text-stone-400 mb-1">Ödeme Yöntemleri</p>
-                <p className="text-xs text-stone-400 leading-relaxed">
+              {/* Payment info */}
+              <div className="mt-5 p-4 border" style={{ borderColor: "#efefef", background: "#ffffff" }}>
+                <p className="text-[9px] tracking-[0.3em] uppercase mb-1" style={{ color: "#999" }}>
+                  Ödeme Yöntemleri
+                </p>
+                <p className="text-xs leading-relaxed" style={{ color: "#aaa" }}>
                   Kredi kartı, banka kartı ve taksit seçenekleri PayTR altyapısıyla güvenle sunulmaktadır.
                 </p>
               </div>
@@ -297,20 +347,21 @@ export default function CheckoutPage() {
         {step === "paying" && (
           <div ref={iframeRef} className="w-full min-h-[540px]">
             <div className="flex items-center justify-center h-40">
-              <p className="text-xs tracking-widest uppercase text-stone-400 animate-pulse">
+              <p className="text-[10px] tracking-[0.3em] uppercase animate-pulse" style={{ color: "#bbb" }}>
                 Yükleniyor...
               </p>
             </div>
           </div>
         )}
 
-        {/* HATA */}
+        {/* ERROR */}
         {step === "error" && (
-          <div className="text-center py-16">
-            <p className="text-stone-500 mb-2 text-sm">{error}</p>
+          <div className="text-center py-20">
+            <p className="text-sm mb-6" style={{ color: "#555" }}>{error}</p>
             <button
               onClick={() => setStep("form")}
-              className="mt-4 text-xs tracking-widest uppercase underline text-stone-400 hover:text-stone-700"
+              className="text-[9px] tracking-[0.3em] uppercase border px-6 py-3 transition-colors hover:bg-black hover:text-white"
+              style={{ borderColor: "#0a0a0a", color: "#0a0a0a" }}
             >
               Tekrar Dene
             </button>

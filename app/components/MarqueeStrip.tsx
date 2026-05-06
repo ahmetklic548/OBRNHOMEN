@@ -22,10 +22,10 @@ export default function MarqueeStrip({ products }: Props) {
   if (products.length === 0) return null;
 
   return (
-    <section className="py-16 overflow-hidden" style={{ background: "#1D1D1F" }}>
+    <section className="py-16 overflow-hidden" style={{ background: "#0a0a0a" }}>
       <p
-        className="text-center text-[10px] tracking-[0.5em] uppercase mb-10 font-medium"
-        style={{ color: "#86868B" }}
+        className="text-center text-[9px] tracking-[0.55em] uppercase mb-10"
+        style={{ color: "#444" }}
       >
         Koleksiyondan
       </p>
@@ -54,8 +54,7 @@ export default function MarqueeStrip({ products }: Props) {
                 style={{
                   width: ITEM_W,
                   height: ITEM_W,
-                  borderRadius: 14,
-                  background: "#2a2a2a",
+                  background: "#1a1a1a",
                 }}
               >
                 {p.images[0] ? (

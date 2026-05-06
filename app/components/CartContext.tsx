@@ -22,18 +22,20 @@ const CartContext = createContext<CartCtx | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [mounted, setMounted] = useState(false);
 
-  // localStorage sync
   useEffect(() => {
     try {
       const saved = localStorage.getItem("obrnhomen-cart");
       if (saved) setItems(JSON.parse(saved));
     } catch {}
+    setMounted(true);
   }, []);
 
   useEffect(() => {
+    if (!mounted) return;
     localStorage.setItem("obrnhomen-cart", JSON.stringify(items));
-  }, [items]);
+  }, [items, mounted]);
 
   const add = (item: Omit<CartItem, "qty">) => {
     setItems((prev) => {
@@ -45,11 +47,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const remove = (slug: string) => setItems((prev) => prev.filter((i) => i.slug !== slug));
   const clear = () => setItems([]);
-  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
-  const count = items.reduce((s, i) => s + i.qty, 0);
+  const total = mounted ? items.reduce((s, i) => s + i.price * i.qty, 0) : 0;
+  const count = mounted ? items.reduce((s, i) => s + i.qty, 0) : 0;
 
   return (
-    <CartContext.Provider value={{ items, add, remove, clear, total, count }}>
+    <CartContext.Provider value={{ items: mounted ? items : [], add, remove, clear, total, count }}>
       {children}
     </CartContext.Provider>
   );

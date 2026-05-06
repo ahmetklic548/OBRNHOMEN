@@ -7,38 +7,69 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="max-w-2xl mx-auto px-6 py-24">
-      <p className="text-xs tracking-[0.3em] uppercase text-stone-400 mb-4">Marka Hikayesi</p>
-      <h1 className="text-3xl font-light text-stone-800 mb-12">Hakkımızda</h1>
+    <div className="min-h-screen" style={{ background: "#fafaf8" }}>
+      {/* Header */}
+      <div className="pt-40 pb-10 px-6 border-b" style={{ borderColor: "#efefef" }}>
+        <div className="max-w-2xl mx-auto">
+          <p className="text-[9px] tracking-[0.55em] uppercase mb-4" style={{ color: "#c9a84c" }}>
+            Marka Hikayesi
+          </p>
+          <h1
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontWeight: 400,
+              fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
+              color: "#0a0a0a",
+              lineHeight: 1.1,
+            }}
+          >
+            Hakkımızda
+          </h1>
+        </div>
+      </div>
 
-      <div className="space-y-8 text-stone-600 leading-relaxed">
-        <p>
-          OBRNHOMEN, geleneksel el sanatlarından ilham alan ve modern minimalist estetikle
-          buluşturan özel hediye koleksiyonları üretmektedir. Her ürün, özel günlerin anlam
-          taşıması gerektiği inancıyla, titizlikle seçilmiş malzemeler kullanılarak tasarlanmaktadır.
-        </p>
-        <p>
-          Hac, umre, mevlüt ve düğün gibi manevi öneme sahip organizasyonlar için hazırlanan
-          koleksiyonlarımız; tesbih, seccade, başörtüsü setleri ve el yapımı hediye kitleriyle
-          geniş bir yelpazeyi kapsamaktadır.
-        </p>
-        <p>
-          Markamız, kaliteyi asla konfor için feda etmez. Üretim sürecinde her detay
-          incelenmekte, yalnızca kalite standartlarını karşılayan ürünler koleksiyonumuza dahil edilmektedir.
-        </p>
+      {/* Content */}
+      <div className="max-w-2xl mx-auto px-6 py-16">
+        <div className="space-y-8 text-sm leading-relaxed" style={{ color: "#555" }}>
+          <p>
+            OBRNHOMEN, geleneksel el sanatlarından ilham alan ve modern minimalist estetikle
+            buluşturan özel hediye koleksiyonları üretmektedir. Her ürün, özel günlerin anlam
+            taşıması gerektiği inancıyla, titizlikle seçilmiş malzemeler kullanılarak tasarlanmaktadır.
+          </p>
+          <p>
+            Hac, umre, mevlüt ve düğün gibi manevi öneme sahip organizasyonlar için hazırlanan
+            koleksiyonlarımız; tesbih, seccade, başörtüsü setleri ve el yapımı hediye kitleriyle
+            geniş bir yelpazeyi kapsamaktadır.
+          </p>
+          <p>
+            Markamız, kaliteyi asla konfor için feda etmez. Üretim sürecinde her detay
+            incelenmekte, yalnızca kalite standartlarını karşılayan ürünler koleksiyonumuza dahil edilmektedir.
+          </p>
 
-        <div className="pt-8 border-t border-stone-200 grid grid-cols-3 gap-8 text-center">
-          <div>
-            <p className="text-2xl font-light text-stone-800 mb-1">198+</p>
-            <p className="text-xs tracking-widest uppercase text-stone-400">Ürün</p>
-          </div>
-          <div>
-            <p className="text-2xl font-light text-stone-800 mb-1">%100</p>
-            <p className="text-xs tracking-widest uppercase text-stone-400">Yerli Üretim</p>
-          </div>
-          <div>
-            <p className="text-2xl font-light text-stone-800 mb-1">5+</p>
-            <p className="text-xs tracking-widest uppercase text-stone-400">Kategori</p>
+          <div className="pt-10 border-t" style={{ borderColor: "#efefef" }}>
+            <div className="grid grid-cols-3 gap-8 text-center">
+              {[
+                { value: "198+", label: "Ürün" },
+                { value: "%100", label: "Yerli Üretim" },
+                { value: "5+", label: "Kategori" },
+              ].map(({ value, label }) => (
+                <div key={label}>
+                  <p
+                    style={{
+                      fontSize: "2rem",
+                      fontWeight: 400,
+                      fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
+                      color: "#0a0a0a",
+                      lineHeight: 1,
+                      marginBottom: "0.4rem",
+                    }}
+                  >
+                    {value}
+                  </p>
+                  <p className="text-[9px] tracking-[0.35em] uppercase" style={{ color: "#999" }}>{label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -3,8 +3,7 @@
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
-import ShinyButton from "./ShinyButton";
+import { useRef, useState, useEffect, startTransition } from "react";
 
 interface Props {
   heroImage?: string;
@@ -44,31 +43,32 @@ function IntroOverlay({ onDone, onSkip }: { onDone: () => void; onSkip: () => vo
         <motion.div
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center"
           style={{ background: "#0a0a0a" }}
-          exit={{ opacity: 0, scale: 1.04 }}
-          transition={{ duration: 0.7, ease }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease }}
         >
-          {/* Gold dot above */}
+          {/* Thin gold line above */}
           <motion.div
-            className="w-1 h-1 rounded-full mb-10"
-            style={{ background: "#c9a84c" }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            className="mb-10"
+            style={{ width: 32, height: 1, background: "#c9a84c" }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           />
 
           {/* Letters */}
-          <div className="flex items-center" style={{ gap: "0.08em" }}>
+          <div className="flex items-center" style={{ gap: "0.12em" }}>
             {BRAND.split("").map((letter, i) => (
               <motion.span
                 key={i}
-                initial={{ opacity: 0, y: 12 }}
-                animate={i < letterCount ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-                transition={{ duration: 0.25, ease }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={i < letterCount ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                transition={{ duration: 0.3, ease }}
                 style={{
-                  fontSize: "clamp(2.2rem, 7vw, 5.5rem)",
-                  fontWeight: 300,
-                  letterSpacing: "0.35em",
+                  fontSize: "clamp(2rem, 6vw, 4.5rem)",
+                  fontWeight: 400,
+                  letterSpacing: "0.45em",
                   color: "#ffffff",
+                  fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
                   display: "inline-block",
                 }}
               >
@@ -76,7 +76,6 @@ function IntroOverlay({ onDone, onSkip }: { onDone: () => void; onSkip: () => vo
               </motion.span>
             ))}
 
-            {/* Blinking cursor */}
             <AnimatePresence>
               {cursorVisible && (
                 <motion.span
@@ -86,11 +85,10 @@ function IntroOverlay({ onDone, onSkip }: { onDone: () => void; onSkip: () => vo
                   transition={{ duration: 0.7, repeat: Infinity }}
                   style={{
                     display: "inline-block",
-                    width: 3,
-                    height: "clamp(2.2rem, 7vw, 5.5rem)",
+                    width: 2,
+                    height: "clamp(2rem, 6vw, 4.5rem)",
                     background: "#c9a84c",
-                    borderRadius: 2,
-                    marginLeft: "0.15em",
+                    marginLeft: "0.2em",
                     verticalAlign: "middle",
                   }}
                 />
@@ -102,26 +100,27 @@ function IntroOverlay({ onDone, onSkip }: { onDone: () => void; onSkip: () => vo
           <motion.p
             initial={{ opacity: 0 }}
             animate={letterCount === BRAND.length ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
             style={{
               marginTop: "1.5rem",
-              fontSize: "0.7rem",
-              letterSpacing: "0.45em",
+              fontSize: "0.6rem",
+              letterSpacing: "0.5em",
               textTransform: "uppercase",
-              color: "#86868B",
+              color: "#444",
             }}
           >
             El İşçiliği &amp; Özgün Tasarım
           </motion.p>
 
-          {/* Skip button */}
+          {/* Skip */}
           <motion.button
             onClick={onSkip}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 0.4 }}
+            whileHover={{ opacity: 0.8 }}
             transition={{ duration: 0.4, delay: 0.6 }}
-            className="absolute bottom-10 right-10 text-[11px] tracking-[0.2em] uppercase transition-opacity hover:opacity-100"
-            style={{ color: "#86868B", opacity: 0.5 }}
+            className="absolute bottom-10 right-10 text-[9px] tracking-[0.25em] uppercase"
+            style={{ color: "#888" }}
           >
             Geç →
           </motion.button>
@@ -137,7 +136,7 @@ export default function HomeHero({ heroImage, heroProductName }: Props) {
 
   useEffect(() => {
     if (sessionStorage.getItem("obrn_intro_seen") === "1") {
-      setIntroComplete(true);
+      startTransition(() => setIntroComplete(true));
     }
   }, []);
 
@@ -147,9 +146,8 @@ export default function HomeHero({ heroImage, heroProductName }: Props) {
   };
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imgY  = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const op    = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const imgY  = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const op    = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
     <>
@@ -157,146 +155,125 @@ export default function HomeHero({ heroImage, heroProductName }: Props) {
 
       <section
         ref={ref}
-        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-28"
-        style={{ background: "#ffffff" }}
+        className="relative min-h-screen flex items-end overflow-hidden"
+        style={{ background: "#fafaf8" }}
       >
-        {/* Subtle radial bg */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse 80% 60% at 50% 40%, #F5F5F7 0%, #ffffff 70%)",
-          }}
-        />
+        {/* Full-bleed image (right side on desktop, bg on mobile) */}
+        {heroImage && (
+          <motion.div
+            style={{ y: imgY }}
+            className="absolute inset-0 md:left-[45%]"
+          >
+            <Image
+              src={heroImage}
+              alt={heroProductName ?? "OBRNHOMEN"}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 55vw"
+            />
+            {/* Gradient overlay on mobile */}
+            <div
+              className="absolute inset-0 md:hidden"
+              style={{ background: "linear-gradient(to top, rgba(250,250,248,0.95) 0%, rgba(250,250,248,0.4) 60%, transparent 100%)" }}
+            />
+            {/* Gradient on left edge for desktop */}
+            <div
+              className="absolute inset-y-0 left-0 w-1/2 hidden md:block"
+              style={{ background: "linear-gradient(to right, #fafaf8 0%, transparent 100%)" }}
+            />
+          </motion.div>
+        )}
 
+        {/* Editorial text block — left-aligned, bottom-anchored */}
         <motion.div
-          style={{ y: textY, opacity: op }}
-          className="relative z-10 text-center px-6 max-w-5xl mx-auto w-full"
+          style={{ opacity: op }}
+          className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-12 pb-20 md:pb-28 pt-48 md:pt-0 md:w-[52%]"
         >
           {/* Eyebrow */}
           <motion.p
-            className="text-[11px] tracking-[0.5em] uppercase mb-6 font-medium"
-            style={{ color: "#86868B" }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            className="text-[9px] tracking-[0.55em] uppercase mb-8"
+            style={{ color: "#c9a84c" }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={introComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             transition={{ duration: 0.7, ease, delay: 0.05 }}
           >
-            El İşçiliği &amp; Özgün Tasarım
+            Yeni Koleksiyon — 2025
           </motion.p>
 
-          {/* H1 — letters staggered */}
-          <div className="mb-6 overflow-hidden">
-            <motion.h1
-              className="font-semibold text-center"
-              style={{
-                fontSize: "clamp(2.8rem, 8vw, 7rem)",
-                letterSpacing: "-0.025em",
-                lineHeight: 1.04,
-                color: "#1D1D1F",
-              }}
-              initial={{ opacity: 0, y: 40 }}
-              animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.8, ease, delay: 0.15 }}
-            >
-              Hayatınıza{" "}
-              <br className="hidden sm:block" />
-              <span style={{ color: "#c9a84c" }}>Değer</span> Katın
-            </motion.h1>
-          </div>
+          {/* Headline */}
+          <motion.h1
+            className="mb-8 font-serif-display"
+            style={{
+              fontSize: "clamp(3rem, 7vw, 6.5rem)",
+              fontWeight: 400,
+              lineHeight: 1.05,
+              letterSpacing: "-0.01em",
+              color: "#0a0a0a",
+              fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
+            }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.9, ease, delay: 0.15 }}
+          >
+            Hayatınıza<br />
+            <em style={{ fontStyle: "italic", color: "#0a0a0a" }}>Değer</em> Katın
+          </motion.h1>
+
+          {/* Rule */}
+          <motion.div
+            className="mb-8"
+            style={{ width: 48, height: 1, background: "#c9a84c" }}
+            initial={{ scaleX: 0, originX: 0 }}
+            animate={introComplete ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.6, ease, delay: 0.4 }}
+          />
 
           {/* Sub */}
           <motion.p
-            className="max-w-md mx-auto mb-10 leading-relaxed"
-            style={{ color: "#86868B", fontSize: "1.1rem" }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.7, ease, delay: 0.28 }}
-          >
-            Titizlikle hazırlanmış koleksiyonlar,
-            özel anlarınız için tasarlandı.
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+            className="mb-10 max-w-sm leading-relaxed text-sm"
+            style={{ color: "#666" }}
             initial={{ opacity: 0, y: 16 }}
             animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            transition={{ duration: 0.7, ease, delay: 0.4 }}
+            transition={{ duration: 0.7, ease, delay: 0.45 }}
           >
-            <Link href="/koleksiyon">
-              <ShinyButton variant="dark">Koleksiyonu Keşfet</ShinyButton>
+            Titizlikle hazırlanmış koleksiyonlar, özel anlarınız için tasarlandı.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            className="flex flex-col sm:flex-row items-start gap-4"
+            initial={{ opacity: 0, y: 12 }}
+            animate={introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            transition={{ duration: 0.7, ease, delay: 0.55 }}
+          >
+            <Link
+              href="/koleksiyon"
+              className="inline-block px-8 py-3 text-[10px] tracking-[0.3em] uppercase font-medium transition-all duration-200 hover:opacity-80"
+              style={{ background: "#0a0a0a", color: "#ffffff" }}
+            >
+              Koleksiyonu Keşfet
             </Link>
-            <Link href="/koleksiyon">
-              <ShinyButton variant="light">Çok Satanlar</ShinyButton>
+            <Link
+              href="/koleksiyon"
+              className="inline-block px-8 py-3 text-[10px] tracking-[0.3em] uppercase font-medium border transition-all duration-200 hover:bg-black hover:text-white"
+              style={{ borderColor: "#0a0a0a", color: "#0a0a0a" }}
+            >
+              Çok Satanlar
             </Link>
           </motion.div>
         </motion.div>
 
-        {/* Product image */}
-        {heroImage && (
-          <motion.div
-            style={{ y: imgY, opacity: op }}
-            className="relative z-10 w-full max-w-xl mx-auto px-6"
-            initial={{ opacity: 0, scale: 0.93 }}
-            animate={introComplete ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.93 }}
-            transition={{ duration: 1, ease, delay: 0.45 }}
-          >
-            <div
-              className="relative aspect-square rounded-3xl overflow-hidden"
-              style={{
-                boxShadow: "0 24px 80px rgba(0,0,0,0.12), 0 8px 30px rgba(0,0,0,0.08)",
-              }}
-            >
-              <Image
-                src={heroImage}
-                alt={heroProductName ?? "OBRNHOMEN Ürün"}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, 600px"
-              />
-            </div>
-
-            {/* Floating badges */}
-            <motion.div
-              className="absolute -top-4 -right-2 md:-right-8 bg-white rounded-2xl px-5 py-3 apple-shadow"
-              initial={{ opacity: 0, x: 20, rotate: 6 }}
-              animate={introComplete ? { opacity: 1, x: 0, rotate: 3 } : { opacity: 0, x: 20, rotate: 6 }}
-              transition={{ duration: 0.8, delay: 0.9, ease }}
-            >
-              <p className="text-[10px] tracking-widest uppercase font-medium" style={{ color: "#86868B" }}>
-                El İşçiliği
-              </p>
-              <p className="text-sm font-semibold" style={{ color: "#1D1D1F" }}>
-                %100 Özgün
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="absolute -bottom-4 -left-2 md:-left-8 bg-white rounded-2xl px-5 py-3 apple-shadow"
-              initial={{ opacity: 0, x: -20, rotate: -6 }}
-              animate={introComplete ? { opacity: 1, x: 0, rotate: -3 } : { opacity: 0, x: -20, rotate: -6 }}
-              transition={{ duration: 0.8, delay: 1.05, ease }}
-            >
-              <p className="text-[10px] tracking-widest uppercase font-medium" style={{ color: "#86868B" }}>
-                Kargo
-              </p>
-              <p className="text-sm font-semibold" style={{ color: "#1D1D1F" }}>
-                1000 ₺+ Ücretsiz
-              </p>
-            </motion.div>
-          </motion.div>
-        )}
-
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
           initial={{ opacity: 0 }}
           animate={introComplete ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1, delay: 1.4 }}
+          transition={{ duration: 1, delay: 1.2 }}
           style={{ opacity: op as never }}
         >
           <motion.div
-            className="w-px h-10 rounded-full"
+            className="w-px h-10"
             style={{ background: "linear-gradient(to bottom, #c9a84c, transparent)" }}
             animate={{ scaleY: [0.4, 1, 0.4] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
