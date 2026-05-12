@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, startTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/app/components/CartContext";
 import { useAuth } from "@/app/components/AuthProvider";
+import { trackBeginCheckout } from "@/lib/analytics";
 
 const SHIPPING_FEE       = 200;
 const FREE_SHIPPING_OVER = 1000;
@@ -105,6 +106,8 @@ export default function CheckoutPage() {
         return;
       }
       setToken(data.token);
+      trackBeginCheckout(grandTotal, items.map(i => ({ slug: i.slug, name: i.name, price: i.price, qty: i.qty })));
+      localStorage.setItem("obrnhomen-pending-total", String(grandTotal));
       setStep("paying");
     } catch {
       setError("Bağlantı hatası. Lütfen tekrar deneyin.");

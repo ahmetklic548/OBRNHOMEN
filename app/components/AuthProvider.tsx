@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { onAuthStateChanged, signInWithPopup, signOut, User } from "firebase/auth";
+import { onAuthStateChanged, signInWithRedirect, getRedirectResult, signOut, User } from "firebase/auth";
 import { auth, googleProvider } from "@/lib/firebase";
 import { getOrCreateUser, UserProfile } from "@/lib/userStore";
 
@@ -26,6 +26,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!auth) { setLoading(false); return; }
+    getRedirectResult(auth).catch(() => {});
     const unsub = onAuthStateChanged(auth, async (u) => {
       setUser(u);
       if (u) {
@@ -45,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signInWithGoogle = async () => {
     if (!auth || !googleProvider) return;
-    await signInWithPopup(auth, googleProvider);
+    await signInWithRedirect(auth, googleProvider);
   };
 
   const logout = async () => {

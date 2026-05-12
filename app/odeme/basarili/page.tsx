@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { IslamicStar, IslamicDivider } from "@/app/components/IslamicOrnament";
+import PurchaseTracker from "@/app/components/PurchaseTracker";
 
 export default function OdemeBasarili() {
   return (
+    <>
+    <PurchaseTracker />
     <div
       className="min-h-screen flex items-center justify-center"
       style={{ background: "linear-gradient(180deg, #f9f3ea 0%, #faf5ec 100%)" }}
@@ -44,5 +47,6 @@ export default function OdemeBasarili() {
         </Link>
       </div>
     </div>
+    </>
   );
 }

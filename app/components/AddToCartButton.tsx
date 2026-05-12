@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "./CartContext";
 import { useAuth } from "./AuthProvider";
+import { trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 
 interface Props {
   slug: string;
@@ -26,6 +27,7 @@ export default function AddToCartButton({ slug, name, price, image, inStock, waT
   const handleAdd = () => {
     if (!user) { requireAuth(); return; }
     add({ slug, name, price, image });
+    trackAddToCart({ slug, name, price });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
@@ -33,6 +35,7 @@ export default function AddToCartButton({ slug, name, price, image, inStock, waT
   const handleBuy = () => {
     if (!user) { requireAuth(); return; }
     add({ slug, name, price, image });
+    trackBeginCheckout(price, [{ slug, name, price, qty: 1 }]);
     router.push("/checkout");
   };
 
