@@ -1,32 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { useAuth } from "@/app/components/AuthProvider";
 
-const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL ?? "ahmet.klic548@gmail.com";
+const ADMIN_EMAIL = "ahmet.klic548@gmail.com";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const [checking, setChecking] = useState(true);
+  const { user, loading } = useAuth();
 
   useEffect(() => {
-    if (!auth) {
-      // Firebase kurulu değil — geliştirme ortamında admin açık
-      setChecking(false);
-      return;
+    if (loading) return;
+    if (!user || user.email !== ADMIN_EMAIL) {
+      router.replace("/hesap");
     }
-    return onAuthStateChanged(auth, (user) => {
-      if (!user || user.email !== ADMIN_EMAIL) {
-        router.replace("/hesap");
-      } else {
-        setChecking(false);
-      }
-    });
-  }, [router]);
+  }, [user, loading, router]);
 
-  if (checking) {
+  if (loading || !user || user.email !== ADMIN_EMAIL) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: "#F5F5F7" }}>
         <p className="text-xs tracking-widest uppercase" style={{ color: "#86868B" }}>Yükleniyor...</p>

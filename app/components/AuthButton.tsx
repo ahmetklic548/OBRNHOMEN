@@ -4,9 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "./AuthProvider";
 
+const ADMIN_EMAIL = "ahmet.klic548@gmail.com";
+
 export default function AuthButton() {
   const { user, profile, loading, signInWithGoogle, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const isAdmin = user?.email === ADMIN_EMAIL;
 
   if (loading) return <div className="w-24 h-8 rounded-full animate-pulse" style={{ background: "#F5F5F7" }} />;
 
@@ -80,6 +83,17 @@ export default function AuthButton() {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
               Hesabım
             </Link>
+            {isAdmin && (
+              <Link
+                href="/admin"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 text-sm transition-colors hover:bg-stone-50"
+                style={{ color: "#c9a84c" }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                Admin Panel
+              </Link>
+            )}
             <div className="mx-3 border-t my-1" style={{ borderColor: "rgba(0,0,0,0.06)" }} />
             <button
               onClick={() => { logout(); setMenuOpen(false); }}
