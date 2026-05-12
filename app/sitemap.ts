@@ -23,6 +23,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "tesbih-cesitleri-ve-anlami",
     "mevlut-hediyesi-fikirleri",
     "seccade-secerken-dikkat-edilmesi-gerekenler",
+    "ihram-nedir-nasil-kullanilir",
+    "namaz-ortusu-secim-rehberi",
+    "ramazan-hediyesi-fikirleri",
+    "toplu-hediyelik-siparis-rehberi",
+    "dugun-nisanda-hediyelik-onerileri",
+    "ceyizlik-tesbih-seti-nasil-hazirlanir",
+    "misvak-nedir-faydalari",
+    "din-kitabi-secimi-rehberi",
   ];
 
   const blogUrls = blogSlugs.map((slug) => ({

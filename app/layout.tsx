@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://obrnhomen.com"),
   title: { default: "OBRNHOMEN | El İşi Tesbih, Seccade & Hediyelik", template: "%s | OBRNHOMEN" },
   description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler. 198+ ürün, hızlı kargo, 14 gün iade garantisi.",
-  keywords: ["tesbih", "seccade", "hac hediyeliği", "umre hediyeliği", "mevlüt hediyeliği", "hediyelik set", "el işi hediye", "obrnhomen"],
+  keywords: ["tesbih", "seccade", "hac hediyeliği", "umre hediyeliği", "mevlüt hediyeliği", "hediyelik set", "el işi hediye", "namaz örtüsü", "çeyizlik tesbih", "toplu hediyelik", "ramazan hediyesi", "düğün hediyesi", "misvak", "ihram", "din kitabı", "obrnhomen"],
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,

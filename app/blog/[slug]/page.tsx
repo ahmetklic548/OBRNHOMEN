@@ -128,6 +128,281 @@ Seccade, her Müslümanın günde en az beş kez kullandığı ve bu nedenle kal
 - Katlamak yerine rulo yaparak saklayın, bu şekil bozulmasını önler
     `,
   },
+  "ihram-nedir-nasil-kullanilir": {
+    title: "İhram Nedir, Nasıl Kullanılır?",
+    excerpt: "Hac ve umre ibadetinin sembolü olan ihramın özellikleri, nasıl giyildiği ve dikkat edilmesi gereken noktalar.",
+    category: "Rehber",
+    date: "2025-03-05",
+    readTime: "4 dk",
+    content: `
+İhram, hac ve umre ibadetini yerine getirecek erkek hacıların giydiği, iki parçadan oluşan dikişsiz beyaz örtüdür. Mikat sınırlarında giyilmesi zorunlu olan ihram, hac ibadetinin en bilinen sembollerinden biridir.
+
+## İhramın Özellikleri
+
+İhram, iki beyaz dikişsiz kumaş parçasından oluşur. Üst parça "rida", alt parça ise "izar" olarak adlandırılır. Bu örtüler pamuklu veya sentetik kumaştan üretilebilir; ancak doğal pamuk tercih edilmesi tavsiye edilir.
+
+**Neden Dikişsiz Olmalıdır?**
+
+İhramın dikişsiz olması, hac ibadeti süresince tüm hacıların sosyal statü farkı gözetmeksizin Allah'ın huzurunda eşit olduğunu simgeler.
+
+## İhrama Girerken Dikkat Edilmesi Gerekenler
+
+1. **Niyet ve telbiye:** İhrama girerken niyet edilir ve telbiye getirilir.
+2. **Boyut:** İhram kumaşları yeterince geniş ve uzun olmalıdır.
+3. **Kalite:** Uzun saatler giyileceğinden ince ve nefes alabilir kumaş seçilmelidir.
+4. **Yedek almak:** Uzun hac/umre yolculuğu için bir yedek ihram seti bulundurmak pratiktir.
+
+## İhram Nasıl Bağlanır?
+
+En yaygın yöntemde izar bele dolanarak tutturulur, rida ise sol omuzun altından geçirilip sağ omuzu açıkta bırakacak şekilde sarılır. Dikişsiz olduğu için önceden pratik yapmak faydalı olacaktır.
+
+## İhram Sonrası
+
+Hac veya umre ibadeti tamamlandığında ihramdan çıkılır ve tıraş (hilak) veya saç kısaltma işlemi yapılır. OBRNHOMEN'de saf pamuklu, nefes alabilir ihram setleri mevcuttur; hac ve umre hazırlığınız için koleksiyonumuzu inceleyebilirsiniz.
+    `,
+  },
+  "namaz-ortusu-secim-rehberi": {
+    title: "Namaz Örtüsü (Eşarp) Seçim Rehberi",
+    excerpt: "Pamuklu, vual ve saten namaz örtüleri arasındaki farklar; doğru seçim için dikkat edilmesi gereken kriterler.",
+    category: "Rehber",
+    date: "2025-03-12",
+    readTime: "4 dk",
+    content: `
+Namaz kılarken başı ve boynu örten namaz örtüsü, namazın farzlarından biridir. Piyasada farklı malzeme ve tasarımlarda onlarca seçenek bulunduğundan doğru namaz örtüsünü bulmak zaman zaman zor olabilir.
+
+## Namaz Örtüsü Materyalleri
+
+**Vual (Tül) Kumaş:** Hafif yapısıyla yaz aylarında tercih edilir. Nefes alabilir olmakla birlikte ince yapısı nedeniyle altına astar giyilmesi önerilir.
+
+**Pamuklu Örtü:** En klasik ve yaygın tercihlerden biridir. Her mevsim kullanılabilir, yıkamaya dayanıklıdır.
+
+**Saten ve İpek Karışımlı:** Özel günler ve bayramlarda tercih edilen bu örtüler hem şık hem de konforludur.
+
+**Pileli (Volanlı) Örtü:** Pratik yapısı ve yerinde kalma özelliğiyle öne çıkar; namaz esnasında yer değiştirmez.
+
+## Seçimde Dikkat Edilmesi Gerekenler
+
+1. **Boy ve genişlik:** Örtünün boyun ve göğüs kısmını tamamen kapatması şarttır.
+2. **Saydamlık:** İnce ve şeffaf kumaşlar namaz için uygun değildir.
+3. **Kayma direnci:** Namazda sürekli düzeltmek zorunda kalmamak için iç astarı olan modeller tercih edilebilir.
+4. **Kolay bakım:** Bazı örtüler yalnızca elle yıkama gerektirir; etiketi kontrol edin.
+
+## Hediye Olarak Namaz Örtüsü
+
+Namaz örtüsü hac, umre ve mevlüt törenleri için anlamlı bir hediye seçeneğidir. Kutulu setler, tesbih veya misvak ile kombine edilerek daha kapsamlı hediyeler hazırlanabilir. OBRNHOMEN koleksiyonunda farklı renk ve malzemelerde namaz örtüleri bulabilirsiniz.
+    `,
+  },
+  "ramazan-hediyesi-fikirleri": {
+    title: "Ramazan Hediyesi Fikirleri 2025",
+    excerpt: "Ramazan ayında sevdiklerinize verebileceğiniz en anlamlı hediyeler: tesbih setleri, seccade, Kuran ve kombine hediyelik setler.",
+    category: "Rehber",
+    date: "2025-03-20",
+    readTime: "3 dk",
+    content: `
+Ramazan, ruhani anlamda zenginleşmenin ve yakınlarla paylaşmanın yoğun şekilde yaşandığı kutlu bir aydır. Ramazan boyunca verilecek güzel bir hediye, bu özel atmosferi daha da anlamlı kılar. İşte 2025 Ramazan'ı için en güzel hediye fikirleri:
+
+## Tesbih Setleri
+
+Ramazan boyunca zikir ve ibadet yoğunlaşır. Bu nedenle tesbih, Ramazan hediyelerinin vazgeçilmezi hâline gelmiştir. İnci, akik veya kuka tesbih; kadife kese ile birlikte sunulduğunda hem kullanışlı hem de zarif bir hediye olur.
+
+## Seccade
+
+Yeni bir seccade, Ramazan ayı boyunca beş vakit namazda sevdiklerinize eşlik edecektir. Kadife veya özel dokuma seccadeler kalıcı ve anlamlı bir tercih olarak öne çıkar.
+
+## Kuran-ı Kerim ve Dini Kitaplar
+
+Ramazan'da Kuran okuma alışkanlığı arttığından güzel ciltli bir Kuran-ı Kerim veya mealli baskı çok değerli bir hediyedir. Cep boyu setler de sıkça tercih edilmektedir.
+
+## Misvak Seti
+
+Sünneti yaşatmak isteyenler için misvak, mütevazı ama değerli bir Ramazan hediyesidir. Özel kutusunda sunulan misvak setleri hem kullanışlı hem de sembolik anlam taşır.
+
+## Kombine Hediyelik Setler
+
+- **Tesbih + Misvak Seti**
+- **Seccade + Namaz Örtüsü Seti**
+- **Tesbih + Kuran Seti**
+
+Toplu Ramazan hediyeliği için OBRNHOMEN olarak özel fiyat ve paketleme imkânı sunuyoruz. Detaylar için WhatsApp: +90 531 689 38 49
+    `,
+  },
+  "toplu-hediyelik-siparis-rehberi": {
+    title: "Toplu Hediyelik Sipariş Rehberi",
+    excerpt: "Mevlüt, düğün, hac organizasyonu ve kurumsal etkinlikler için toplu hediyelik siparişinde nelere dikkat edilmeli?",
+    category: "Rehber",
+    date: "2025-04-01",
+    readTime: "3 dk",
+    content: `
+Mevlüt, düğün, nişan veya hac/umre organizasyonları için çok sayıda kişiye hediye almak zaman ve bütçe açısından zorlu olabilir. Doğru planlama yapıldığında toplu hediyelik siparişi hem ekonomik hem de pratik bir çözümdür.
+
+## Ne Zaman Toplu Sipariş?
+
+Toplu hediyelik genellikle şu durumlar için tercih edilir:
+
+- **Mevlüt töreni:** 50-300 misafire hediyelik dağıtımı
+- **Düğün ve nişan:** Davetlilere takı ya da nikâh masası hediyesi
+- **Hac/umre kafilesi:** Kalabalık gruba aynı anda hediye
+- **Kurumsal:** Şirket etkinlikleri veya dini özel günler
+
+## En Çok Tercih Edilen Toplu Hediyelikler
+
+1. **Tesbih setleri** — Kadife kese içinde, farklı boyutlarda
+2. **Misvak seti** — Küçük, hafif ve ekonomik
+3. **Seccade** — Orta ve büyük ölçekli organizasyonlar için
+4. **Kombine set** — Tesbih + örtü + misvak bir arada
+
+## Sipariş Süreci
+
+**Adım 1:** Hediye verilecek kişi sayısını ve bütçeyi belirleyin.
+**Adım 2:** WhatsApp hattımızdan ürün kodu ve adet bildirin.
+**Adım 3:** 24 saat içinde özel toplu fiyat ve kargo koşullarınızı paylaşırız.
+**Adım 4:** Ödeme sonrası paketleme ve kargo takip numarası iletilir.
+
+50 adet ve üzeri siparişlerde **ücretsiz kargo** ve **özel fiyat** uygulanmaktadır. OBRNHOMEN WhatsApp: +90 531 689 38 49
+    `,
+  },
+  "dugun-nisanda-hediyelik-onerileri": {
+    title: "Düğün ve Nişan Hediyeliği Önerileri",
+    excerpt: "Düğün ve nişan törenlerinde davetlilere verilecek en anlamlı dini hediyelikler: tesbih, seccade ve kombine setler.",
+    category: "Rehber",
+    date: "2025-04-10",
+    readTime: "3 dk",
+    content: `
+Düğün ve nişan törenlerinde davetlilere verilen hediyelikler, o özel günün bir hatırası olarak yıllarca saklanır. Anlamlı, kullanışlı ve estetik bir hediye seçmek hem ev sahiplerini hem de davetlileri mutlu eder.
+
+## Neden Dini Hediyelikler?
+
+- **Kalıcılık:** Tesbih ve seccade yıllarca, hatta kuşaklar boyu kullanılır.
+- **Anlamlılık:** İbadet aracı olan hediyeler sevap değeri taşır.
+- **Evrensellik:** Her yaştan misafire uygun, hiç reddedilmeyen hediyelerdir.
+
+## Düğün Hediyeliği Önerileri
+
+**Tesbih Seti (Kadife Kese İçinde):** En klasik düğün hediyeliğidir. İnci, akik, kuka ve kristal tesbihler arasından bütçeye göre seçim yapılabilir.
+
+**Misvak + Tesbih Kombine Set:** Pratik ve anlam dolu bu set, hem küçük bütçelere hem de büyük kalabalıklara uygundur.
+
+**Namaz Örtüsü (Eşarp):** Özellikle hanım misafirlere yönelik hediyelik örtü setleri popülerdir.
+
+**Seccade:** Daha özenli bir hediye arıyorsanız seccade idealdir; küçük ölçekli törenler için özellikle tercih edilir.
+
+## Nişan Hediyeliği Önerileri
+
+Nişan organizasyonlarında genellikle daha küçük ve sembolik hediyeler tercih edilir:
+
+- Cep boy Kuran seti
+- Misvak seti
+- Küçük tesbih + kese
+
+50 adet ve üzeri toplu siparişlerde özel paketleme ve fiyat avantajı sunulmaktadır. Detaylar için WhatsApp: +90 531 689 38 49
+    `,
+  },
+  "ceyizlik-tesbih-seti-nasil-hazirlanir": {
+    title: "Çeyizlik Tesbih Seti Nasıl Hazırlanır?",
+    excerpt: "Türk geleneğinde çeyiz sandığının vazgeçilmezi: çeyizlik tesbih ve seccade setleri nasıl hazırlanır, nelere dikkat edilmeli?",
+    category: "Bilgi",
+    date: "2025-04-18",
+    readTime: "4 dk",
+    content: `
+Türk geleneğinde çeyiz sandığı, yeni evlenecek çiftin hayatını birlikte kurmak için hazırladığı eşya topluluğudur. Bu özel koleksiyona eklenen çeyizlik tesbih seti, hem manevi bir dokunuş hem de değerli bir hatıra olarak öne çıkar.
+
+## Çeyizlik Tesbih Neden Önemlidir?
+
+Tesbih, namaz ve zikir için kullanılan bir ibadet aracı olmasının yanı sıra çeyiz sandığında şans ve bereket getireceğine inanılan simgesel bir yer tutar. Özellikle annenin kızına verdiği çeyizlik tesbih, manevi bir armağan olarak kuşaktan kuşağa aktarılır.
+
+## Çeyizlik Tesbih Seti İçeriği
+
+**Tesbih:** İnci, akik veya altın kaplama tesbih tercih edilir. 33 veya 99 taneli olması kullanım alışkanlığına göre belirlenir.
+
+**Kadife Kese:** Tesbihin korunması için kaliteli bir kadife veya deri kese olmazsa olmazdır.
+
+**Seccade:** Eşleşen renk ve desende bir seccade seti tamamlar.
+
+**Namaz Örtüsü:** Hanım çeyizi için seccade ile uyumlu bir namaz örtüsü eklenebilir.
+
+## Seçim Kriterleri
+
+1. **Dayanıklılık:** Çeyizlik ürünler uzun yıllar kullanılacağından kaliteli malzeme önceliğiniz olmalı.
+2. **Estetik:** Renk ve tasarım uyumu, setin bir bütün olarak değerini artırır.
+3. **Kutulama:** Özel bir kutu veya kese içinde sunulan set hediye olarak da idealdir.
+
+OBRNHOMEN koleksiyonunda özelleştirilebilir çeyizlik tesbih ve seccade setleri mevcuttur. İstenilen renk, boyut ve ambalaj kombinasyonları için WhatsApp: +90 531 689 38 49
+    `,
+  },
+  "misvak-nedir-faydalari": {
+    title: "Misvak Nedir? Faydaları ve Kullanımı",
+    excerpt: "Sünnetin yaşayan sembolü misvak hakkında her şey: nedir, faydaları nelerdir, nasıl kullanılır?",
+    category: "Bilgi",
+    date: "2025-04-25",
+    readTime: "4 dk",
+    content: `
+Misvak, Arak ağacının dallarından elde edilen ve ağız hijyenini sağlamak için kullanılan doğal bir diş temizleme aracıdır. Hz. Peygamber'in (s.a.v.) sık sık kullandığı ve tavsiye ettiği misvak, İslam geleneğinde önemli bir sünnettir.
+
+## Misvakın Tarihçesi
+
+Misvak kullanımı İslamiyet'ten çok önce Orta Doğu ve Afrika'da yaygındı. Peygamber Efendimiz'in misvak kullanımını teşvik eden pek çok hadisi bulunmaktadır. Bugün modern araştırmalar da misvakın ağız sağlığına katkısını bilimsel olarak doğrulamaktadır.
+
+## Misvakın Faydaları
+
+**Ağız Hijyeni:** Misvakta bulunan doğal antibakteriyel maddeler diş çürümelerini ve diş eti sorunlarını önler.
+
+**Doğal Beyazlatma:** İçeriğindeki maddeler dişleri doğal yollarla beyazlatır.
+
+**Nefes Tazeliği:** Misvak kullanımı ağız kokusunu giderir ve nefesi tazelar.
+
+**Diş Eti Sağlığı:** Düzenli kullanım diş etlerini güçlendirir ve kanamaları azaltır.
+
+## Misvak Nasıl Kullanılır?
+
+1. Misvağın uç kısmı yaklaşık 1 cm kadar soyulur.
+2. Lif yapısındaki uç kısım ıslatılarak ağıza alınır.
+3. Diş fırçası gibi ileri geri hareketle dişler, diş etleri ve dil temizlenir.
+4. Her kullanım sonrasında ucun biraz kesilmesi önerilir.
+
+## Misvak Hediye Olarak
+
+Misvak; hac, umre ve mevlüt törenleri için anlamlı, kullanışlı ve uygun maliyetli bir hediye seçeneğidir. Toplu hediyeliklerde de sıkça tercih edilir. OBRNHOMEN'de doğal arak ağacından üretilen misvak setleri mevcuttur.
+    `,
+  },
+  "din-kitabi-secimi-rehberi": {
+    title: "Din Kitabı Seçimi: Nelere Dikkat Edilmeli?",
+    excerpt: "Kuran-ı Kerim, Delailü'l Hayrat ve ilmihal gibi dini kitapları seçerken dikkat edilmesi gereken kriterler ve hediye önerileri.",
+    category: "Bilgi",
+    date: "2025-05-02",
+    readTime: "4 dk",
+    content: `
+Kuran-ı Kerim, tefsirler ve İslami bilgi kitapları; hac, umre, mevlüt ve düğün gibi özel günlerin en değerli hediyelerinden biridir. Ancak doğru kitabı seçmek bazen zorlaşabilir.
+
+## Kuran-ı Kerim Seçimi
+
+**Baskı Kalitesi:** Sayfa kalitesi ve baskı netliği okunabilirlik açısından belirleyicidir. Uzun süreli kullanım için kalın ve dayanıklı sayfa tercih edin.
+
+**Boyut Seçeneği:**
+- **Cep boy:** Seyahat ve taşıma için ideal
+- **Orta boy (çanta boyu):** Günlük kullanım için dengeli seçim
+- **Büyük boy (rahle boyu):** Ev okuma ve toplu ibadet için
+
+**Mealli veya Mealiz:** Kuran okuması kuvvetli olmayanlar için Türkçe meal ve okunuş içeren baskılar tercih edilebilir.
+
+**Cilt Kalitesi:** Deri veya suni deri ciltli baskılar uzun yıllar dayanır. Fermuar kapaklı modeller ek koruma sağlar.
+
+## Diğer Dini Kitaplar
+
+**Delailü'l Hayrat:** Salavat-ı şerife kitabı olarak bilinen bu eser hac ve umre hediyeliğinde sıkça tercih edilir.
+
+**Cevşen:** Dua ve zikir kitabı olarak popülerdir; küçük boy baskılar hediye için idealdir.
+
+**İlmihal:** İslami ibadet ve fıkıh bilgisi için kapsamlı bir kaynak; hem yetişkinler hem gençler için uygundur.
+
+## Kime Hediye Edilecek?
+
+- **Çocuklar için:** Resimli Kur'an kıssaları veya çocuk ilmihalleri
+- **Gençler için:** Modern baskılı, Türkçe açıklamalı Kuran
+- **Yetişkinler için:** Büyük boy, deri ciltli klasik baskı
+
+OBRNHOMEN koleksiyonunda kaliteli din kitabı seçenekleri mevcuttur. Hediye paketleme için WhatsApp: +90 531 689 38 49
+    `,
+  },
 };
 
 export async function generateStaticParams() {

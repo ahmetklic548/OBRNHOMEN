@@ -12,6 +12,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
+    if (!auth) {
+      // Firebase kurulu değil — geliştirme ortamında admin açık
+      setChecking(false);
+      return;
+    }
     return onAuthStateChanged(auth, (user) => {
       if (!user || user.email !== ADMIN_EMAIL) {
         router.replace("/hesap");
@@ -42,6 +47,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 { href: "/admin", label: "Genel Bakış" },
                 { href: "/admin/urunler", label: "Ürünler" },
                 { href: "/admin/urunler/yeni", label: "+ Yeni Ürün" },
+                { href: "/admin/trendyol", label: "Trendyol" },
+                { href: "/admin/sosyal-medya", label: "Sosyal Medya" },
               ].map(({ href, label }) => (
                 <a key={href} href={href} className="text-[11px] tracking-wide transition-colors hover:text-white" style={{ color: "#86868B" }}>
                   {label}

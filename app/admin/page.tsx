@@ -12,6 +12,7 @@ export default function AdminDashboard() {
   const inStock = getAllProducts().filter(p => p.inStock).length;
 
   useEffect(() => {
+    if (!db) { setFirestoreCount(0); return; }
     getDocs(query(collection(db, "products"), orderBy("name")))
       .then(snap => setFirestoreCount(snap.size))
       .catch(() => setFirestoreCount(0));
@@ -58,6 +59,20 @@ export default function AdminDashboard() {
           style={{ borderColor: "#e5e5e5", color: "#1D1D1F" }}
         >
           JSON → Firestore Aktar
+        </Link>
+        <Link
+          href="/admin/sosyal-medya"
+          className="px-6 py-3 text-xs tracking-[0.2em] uppercase text-center border transition-colors hover:border-[#c9a84c]"
+          style={{ borderColor: "#e5e5e5", color: "#1D1D1F" }}
+        >
+          Sosyal Medya İçerik Üreteci
+        </Link>
+        <Link
+          href="/admin/trendyol"
+          className="px-6 py-3 text-xs tracking-[0.2em] uppercase text-center border transition-colors hover:border-[#c9a84c]"
+          style={{ borderColor: "#e5e5e5", color: "#1D1D1F" }}
+        >
+          Trendyol Siparişleri
         </Link>
       </div>
     </div>

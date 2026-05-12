@@ -14,7 +14,7 @@ import Testimonials from "@/app/components/Testimonials";
 export const metadata: Metadata = {
   title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
   description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler. 198+ ürün, ücretsiz kargo 1000₺ üzeri, 14 gün iade garantisi.",
-  keywords: ["tesbih", "seccade", "hac hediyeliği", "umre hediyeliği", "mevlüt hediyeliği", "hediyelik set", "el işi hediye", "namaz örtüsü", "obrnhomen"],
+  keywords: ["tesbih", "seccade", "hac hediyeliği", "umre hediyeliği", "mevlüt hediyeliği", "hediyelik set", "el işi hediye", "namaz örtüsü", "çeyizlik tesbih", "toplu hediyelik", "ramazan hediyesi", "düğün hediyesi dini", "misvak", "ihram", "obrnhomen"],
   openGraph: {
     title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
     description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
@@ -40,6 +40,32 @@ const jsonLd = [
       target: { "@type": "EntryPoint", urlTemplate: "https://obrnhomen.com/koleksiyon?q={search_term_string}" },
       "query-input": "required name=search_term_string",
     },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "OBRNHOMEN",
+    url: "https://obrnhomen.com",
+    logo: "https://obrnhomen.com/icons/icon.svg",
+    image: "https://obrnhomen.com/icons/icon.svg",
+    description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
+    telephone: "+905316893849",
+    priceRange: "₺₺",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Mustafa Kemal Paşa Mah. Harbiye Sok. No:7",
+      addressLocality: "Arnavutköy",
+      addressRegion: "İstanbul",
+      postalCode: "34275",
+      addressCountry: "TR",
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "09:00",
+      closes: "21:00",
+    },
+    sameAs: ["https://www.trendyol.com/magaza/obrnhomen"],
   },
   {
     "@context": "https://schema.org",
