@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "./CartContext";
-import { useAuth } from "./AuthProvider";
 import { trackView } from "./RecentlyViewed";
+import { trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 import type { Product } from "@/lib/products";
 
 /* ── Icon set (outline SVG, Lucide-style) ─────────────────── */
@@ -76,7 +76,6 @@ function Accordion({ title, children }: { title: string; children: React.ReactNo
 /* ── Main component ───────────────────────────────────────── */
 export default function ProductInfo({ product }: { product: Product }) {
   const { add } = useCart();
-  const { user } = useAuth();
   const router   = useRouter();
   const [added, setAdded] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -87,6 +86,12 @@ export default function ProductInfo({ product }: { product: Product }) {
       name: product.name,
       price: product.price,
       image: product.images[0] ?? "",
+      category: product.category,
+    });
+    trackViewItem({
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
       category: product.category,
     });
   }, [product.slug, product.name, product.price, product.images, product.category]);
@@ -102,18 +107,16 @@ export default function ProductInfo({ product }: { product: Product }) {
     }
   };
 
-  const requireAuth = () => router.push("/hesap");
-
   const handleAdd = () => {
-    if (!user) { requireAuth(); return; }
     add({ slug: product.slug, name: product.name, price: product.price, image: product.images[0] ?? "" });
+    trackAddToCart({ slug: product.slug, name: product.name, price: product.price, category: product.category });
     setAdded(true);
     setTimeout(() => setAdded(false), 2500);
   };
 
   const handleBuy = () => {
-    if (!user) { requireAuth(); return; }
     add({ slug: product.slug, name: product.name, price: product.price, image: product.images[0] ?? "" });
+    trackBeginCheckout(product.price, [{ slug: product.slug, name: product.name, price: product.price, qty: 1 }]);
     router.push("/checkout");
   };
 

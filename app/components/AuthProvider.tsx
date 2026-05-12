@@ -29,8 +29,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const unsub = onAuthStateChanged(auth, async (u) => {
       setUser(u);
       if (u) {
-        const p = await getOrCreateUser(u.uid, { name: u.displayName ?? "", email: u.email ?? "" });
-        setProfile(p);
+        try {
+          const p = await getOrCreateUser(u.uid, { name: u.displayName ?? "", email: u.email ?? "" });
+          setProfile(p);
+        } catch {
+          setProfile(null);
+        }
       } else {
         setProfile(null);
       }

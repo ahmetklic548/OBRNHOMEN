@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description: "El işçiliğiyle üretilmiş tesbih, seccade ve hediyelik ürünler.",
     url: "https://obrnhomen.com/koleksiyon",
   },
+  alternates: { canonical: "https://obrnhomen.com/koleksiyon" },
 };
 
 export default function KoleksiyonPage() {

@@ -76,6 +76,7 @@ export async function generateMetadata({
       url: `https://obrnhomen.com/koleksiyon/${kategori}`,
       images: products[0]?.images[0] ? [{ url: products[0].images[0] }] : [],
     },
+    alternates: { canonical: `https://obrnhomen.com/koleksiyon/${kategori}` },
   };
 }
 
