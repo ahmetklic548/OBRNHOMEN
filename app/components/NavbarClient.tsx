@@ -5,6 +5,7 @@ import Link from "next/link";
 import AuthButton from "./AuthButton";
 import CartButton from "./CartButton";
 import MobileNav from "./MobileNav";
+import SearchBar from "./SearchBar";
 
 export default function NavbarClient() {
   const [scrolled, setScrolled] = useState(false);
@@ -57,6 +58,7 @@ export default function NavbarClient() {
 
         {/* Right actions */}
         <div className="flex items-center gap-5">
+          <SearchBar />
           <AuthButton />
           <CartButton />
           <MobileNav />
