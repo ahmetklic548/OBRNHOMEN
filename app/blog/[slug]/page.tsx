@@ -9,6 +9,7 @@ const posts: Record<string, {
   date: string;
   readTime: string;
   content: string;
+  related: { label: string; href: string }[];
 }> = {
   "hac-umre-hediyesi-nasil-secilir": {
     title: "Hac ve Umre Hediyeliği Nasıl Seçilir?",
@@ -41,6 +42,11 @@ Hac veya umre hediyeliği seçerken şu noktalara dikkat etmek faydalıdır:
 
 Hac veya umre kafilesinden dönen biri için tüm gruba hediye almak istiyorsanız toplu sipariş seçeneği hem ekonomik hem de pratiktir. OBRNHOMEN olarak toplu siparişlerinizde özel fiyat sunmaktayız.
     `,
+    related: [
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+      { label: "Seccade Koleksiyonu", href: "/koleksiyon/Seccade" },
+    ],
   },
   "tesbih-cesitleri-ve-anlami": {
     title: "Tesbih Çeşitleri ve Anlamları",
@@ -73,6 +79,10 @@ Kuka, Afrika'da yetişen bir ağacın tohumundan yapılır. Hafifliği ve doğal
 - **Hediye için:** Kutulu inci veya akik tesbih seti
 - **Hac umre hatırası için:** Kuka veya özel baskılı tesbih
     `,
+    related: [
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+    ],
   },
   "mevlut-hediyesi-fikirleri": {
     title: "Mevlüt Hediyesi Fikirleri 2025",
@@ -97,6 +107,11 @@ Mevlüt törenleri, doğum, ölüm yıl dönümü veya özel günlerde düzenlen
 
 50 adet ve üzeri siparişlerde özel fiyat ve ücretsiz kargo avantajından yararlanabilirsiniz. Mevlüt organizasyonunuzun tarihini ve ürün tercihlerinizi WhatsApp üzerinden iletmeniz yeterlidir.
     `,
+    related: [
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Namaz Örtüsü", href: "/koleksiyon/Namaz Örtüsü" },
+    ],
   },
   "seccade-secerken-dikkat-edilmesi-gerekenler": {
     title: "Seccade Seçerken Dikkat Edilmesi Gerekenler",
@@ -127,6 +142,10 @@ Seccade, her Müslümanın günde en az beş kez kullandığı ve bu nedenle kal
 - Doğrudan güneş ışığına maruz bırakmayın, renkler solar
 - Katlamak yerine rulo yaparak saklayın, bu şekil bozulmasını önler
     `,
+    related: [
+      { label: "Seccade Koleksiyonu", href: "/koleksiyon/Seccade" },
+      { label: "Namaz Örtüsü", href: "/koleksiyon/Namaz Örtüsü" },
+    ],
   },
   "ihram-nedir-nasil-kullanilir": {
     title: "İhram Nedir, Nasıl Kullanılır?",
@@ -160,6 +179,10 @@ En yaygın yöntemde izar bele dolanarak tutturulur, rida ise sol omuzun altınd
 
 Hac veya umre ibadeti tamamlandığında ihramdan çıkılır ve tıraş (hilak) veya saç kısaltma işlemi yapılır. OBRNHOMEN'de saf pamuklu, nefes alabilir ihram setleri mevcuttur; hac ve umre hazırlığınız için koleksiyonumuzu inceleyebilirsiniz.
     `,
+    related: [
+      { label: "İhram Koleksiyonu", href: "/koleksiyon/İhram" },
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+    ],
   },
   "namaz-ortusu-secim-rehberi": {
     title: "Namaz Örtüsü (Eşarp) Seçim Rehberi",
@@ -191,6 +214,11 @@ Namaz kılarken başı ve boynu örten namaz örtüsü, namazın farzlarından b
 
 Namaz örtüsü hac, umre ve mevlüt törenleri için anlamlı bir hediye seçeneğidir. Kutulu setler, tesbih veya misvak ile kombine edilerek daha kapsamlı hediyeler hazırlanabilir. OBRNHOMEN koleksiyonunda farklı renk ve malzemelerde namaz örtüleri bulabilirsiniz.
     `,
+    related: [
+      { label: "Namaz Örtüsü", href: "/koleksiyon/Namaz Örtüsü" },
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+    ],
   },
   "ramazan-hediyesi-fikirleri": {
     title: "Ramazan Hediyesi Fikirleri 2025",
@@ -225,6 +253,11 @@ Sünneti yaşatmak isteyenler için misvak, mütevazı ama değerli bir Ramazan 
 
 Toplu Ramazan hediyeliği için OBRNHOMEN olarak özel fiyat ve paketleme imkânı sunuyoruz. Detaylar için WhatsApp: +90 531 689 38 49
     `,
+    related: [
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Seccade Koleksiyonu", href: "/koleksiyon/Seccade" },
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+    ],
   },
   "toplu-hediyelik-siparis-rehberi": {
     title: "Toplu Hediyelik Sipariş Rehberi",
@@ -260,6 +293,11 @@ Toplu hediyelik genellikle şu durumlar için tercih edilir:
 
 50 adet ve üzeri siparişlerde **ücretsiz kargo** ve **özel fiyat** uygulanmaktadır. OBRNHOMEN WhatsApp: +90 531 689 38 49
     `,
+    related: [
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Seccade Koleksiyonu", href: "/koleksiyon/Seccade" },
+    ],
   },
   "dugun-nisanda-hediyelik-onerileri": {
     title: "Düğün ve Nişan Hediyeliği Önerileri",
@@ -296,6 +334,11 @@ Nişan organizasyonlarında genellikle daha küçük ve sembolik hediyeler terci
 
 50 adet ve üzeri toplu siparişlerde özel paketleme ve fiyat avantajı sunulmaktadır. Detaylar için WhatsApp: +90 531 689 38 49
     `,
+    related: [
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+      { label: "Seccade Koleksiyonu", href: "/koleksiyon/Seccade" },
+    ],
   },
   "ceyizlik-tesbih-seti-nasil-hazirlanir": {
     title: "Çeyizlik Tesbih Seti Nasıl Hazırlanır?",
@@ -328,6 +371,11 @@ Tesbih, namaz ve zikir için kullanılan bir ibadet aracı olmasının yanı sı
 
 OBRNHOMEN koleksiyonunda özelleştirilebilir çeyizlik tesbih ve seccade setleri mevcuttur. İstenilen renk, boyut ve ambalaj kombinasyonları için WhatsApp: +90 531 689 38 49
     `,
+    related: [
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Seccade Koleksiyonu", href: "/koleksiyon/Seccade" },
+      { label: "Namaz Örtüsü", href: "/koleksiyon/Namaz Örtüsü" },
+    ],
   },
   "misvak-nedir-faydalari": {
     title: "Misvak Nedir? Faydaları ve Kullanımı",
@@ -363,6 +411,10 @@ Misvak kullanımı İslamiyet'ten çok önce Orta Doğu ve Afrika'da yaygındı.
 
 Misvak; hac, umre ve mevlüt törenleri için anlamlı, kullanışlı ve uygun maliyetli bir hediye seçeneğidir. Toplu hediyeliklerde de sıkça tercih edilir. OBRNHOMEN'de doğal arak ağacından üretilen misvak setleri mevcuttur.
     `,
+    related: [
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+    ],
   },
   "din-kitabi-secimi-rehberi": {
     title: "Din Kitabı Seçimi: Nelere Dikkat Edilmeli?",
@@ -402,6 +454,10 @@ Kuran-ı Kerim, tefsirler ve İslami bilgi kitapları; hac, umre, mevlüt ve dü
 
 OBRNHOMEN koleksiyonunda kaliteli din kitabı seçenekleri mevcuttur. Hediye paketleme için WhatsApp: +90 531 689 38 49
     `,
+    related: [
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+    ],
   },
 };
 
@@ -503,6 +559,25 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         <div className="prose-content">
           {renderContent(post.content)}
         </div>
+
+        {/* İlgili Ürünler */}
+        {post.related.length > 0 && (
+          <div className="mt-14 pt-10 border-t" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
+            <p className="text-[10px] tracking-[0.4em] uppercase mb-4" style={{ color: "#86868B" }}>İlgili Ürünler</p>
+            <div className="flex flex-wrap gap-2">
+              {post.related.map((r) => (
+                <Link
+                  key={r.href}
+                  href={r.href}
+                  className="px-5 py-2.5 text-xs tracking-[0.15em] uppercase border transition-colors hover:border-[#c9a84c] hover:text-[#c9a84c]"
+                  style={{ borderColor: "#e5e5e5", color: "#1D1D1F" }}
+                >
+                  {r.label} →
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* CTA */}
         <div className="mt-16 p-8 text-center border" style={{ borderColor: "rgba(201,168,76,0.3)", background: "rgba(201,168,76,0.04)" }}>
