@@ -116,6 +116,46 @@ const posts = [
     date: "2025-05-02",
     readTime: "4 dk",
   },
+  {
+    slug: "kurban-bayrami-hediyesi-fikirleri",
+    title: "Kurban Bayramı Hediyesi Fikirleri 2025",
+    excerpt: "Kurban Bayramı'nda sevdiklerinize verebileceğiniz en anlamlı hediyelikler: tesbih setleri, seccade, namaz örtüsü ve kombine hediye fikirleri.",
+    category: "Rehber",
+    date: "2025-05-10",
+    readTime: "4 dk",
+  },
+  {
+    slug: "sunnet-dugunu-hediyelik-onerileri",
+    title: "Sünnet Düğünü Hediyelik Önerileri",
+    excerpt: "Sünnet töreninde çocuğa verilecek en anlamlı dini hediyelikler ve toplu davetliye dağıtılacak hediyelik seçenekleri.",
+    category: "Rehber",
+    date: "2025-05-17",
+    readTime: "3 dk",
+  },
+  {
+    slug: "bebek-mevludu-hediyelik-fikirleri",
+    title: "Bebek Mevlüdü Hediyelik Fikirleri",
+    excerpt: "Yeni doğan bebeğin mevlüdünde misafirlere verilecek en güzel hediyelikler ve bebek için anlamlı dini armağanlar.",
+    category: "Rehber",
+    date: "2025-05-24",
+    readTime: "3 dk",
+  },
+  {
+    slug: "taziye-hediyesi-ne-verilir",
+    title: "Taziye Hediyesi Ne Verilir?",
+    excerpt: "Vefat eden kişinin ailesine yapılacak ziyarette ne götürülür? Taziye ziyaretinde anlamlı hediye seçenekleri ve dikkat edilmesi gerekenler.",
+    category: "Rehber",
+    date: "2025-05-31",
+    readTime: "4 dk",
+  },
+  {
+    slug: "bayram-hediyesi-fikirleri",
+    title: "Bayram Hediyesi Fikirleri: Ramazan ve Kurban",
+    excerpt: "Ramazan ve Kurban Bayramı'nda sevdiklerinizi mutlu edecek dini ve anlamlı hediye fikirleri; her bütçeye uygun seçenekler.",
+    category: "Rehber",
+    date: "2025-06-07",
+    readTime: "3 dk",
+  },
 ];
 
 export default function BlogPage() {

@@ -459,6 +459,197 @@ OBRNHOMEN koleksiyonunda kaliteli din kitabı seçenekleri mevcuttur. Hediye pak
       { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
     ],
   },
+
+  "kurban-bayrami-hediyesi-fikirleri": {
+    title: "Kurban Bayramı Hediyesi Fikirleri 2025",
+    excerpt: "Kurban Bayramı'nda sevdiklerinize verebileceğiniz en anlamlı hediyelikler: tesbih setleri, seccade, namaz örtüsü ve kombine hediye fikirleri.",
+    category: "Rehber",
+    date: "2025-05-10",
+    readTime: "4 dk",
+    content: `
+Kurban Bayramı, İslam'ın en büyük iki bayramından biri olarak sevgi, paylaşım ve fedakârlığın simgesidir. Bu özel günde sevdiklerinize anlamlı bir hediye vermek, bayramın ruhunu daha da güçlendirir.
+
+## Neden Kurban Bayramı'nda Hediye Verilir?
+
+Bayramlar, aile ve dostlarla bir araya gelme, sevinç paylaşma ve sevgi gösterme zamanlarıdır. Özellikle büyüklere, çocuklara ve bayram ziyaretine gidilen ev sahiplerine götürülen hediyelikler bu güzel geleneği yaşatır.
+
+## En Anlamlı Kurban Bayramı Hediyelikleri
+
+**Tesbih Seti:** Bayramlarda en çok tercih edilen hediyedir. Kadife kese içinde sunulan inci, akik veya kuka tesbih; hem kullanışlı hem de manevi değer taşır.
+
+**Seccade:** Yeni bir seccade, aldığınız kişinin her namazda sizi hatırlamasını sağlar. Kadife veya özel dokuma modeller bayram hediyesi olarak idealdir.
+
+**Namaz Örtüsü:** Hanım büyükler için düşünceli bir hediyedir. Bayramlık renklerde özel ambalajlı setler çok tercih edilmektedir.
+
+**Kombine Hediyelik Set:** Tesbih + misvak + namaz örtüsünden oluşan kombine setler hem kapsamlı hem de zarif bir seçimdir.
+
+**Kuran-ı Kerim:** Özellikle gençlere verilecek Türkçe mealli Kuran, ömür boyu kullanılacak değerli bir armağandır.
+
+## Toplu Bayram Hediyeliği
+
+Bayram ziyaretlerinizde misafir olduğunuz her eve ayrı hediye götürmek için toplu sipariş seçeneğini değerlendirebilirsiniz. OBRNHOMEN'de 10 adet ve üzeri siparişlerde özel fiyat uygulanmaktadır. Detaylar için WhatsApp: +90 531 689 38 49
+    `,
+    related: [
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Seccade Koleksiyonu", href: "/koleksiyon/Seccade" },
+    ],
+  },
+
+  "sunnet-dugunu-hediyelik-onerileri": {
+    title: "Sünnet Düğünü Hediyelik Önerileri",
+    excerpt: "Sünnet töreninde çocuğa verilecek en anlamlı dini hediyelikler ve toplu davetliye dağıtılacak hediyelik seçenekleri.",
+    category: "Rehber",
+    date: "2025-05-17",
+    readTime: "3 dk",
+    content: `
+Sünnet düğünü, bir çocuğun hayatındaki en önemli geçiş törenlerinden biridir. Bu özel günde hem sünnet olan çocuğa hem de törene katılan misafirlere verilecek hediyelik seçimi, anın güzelliğini tamamlar.
+
+## Sünnet Çocuğuna Hediye
+
+**Tesbih:** Çocuğun sünnet olmasıyla birlikte namaz ve zikir hayatına ilk adımını atmasını simgeleyen tesbih, manevi açıdan en anlamlı hediyedir. Küçük boy ve hafif modeller çocuklar için uygundur.
+
+**Kuran-ı Kerim:** Resimli veya Türkçe mealli çocuk Kuranları, sünnet hediyesi olarak sıkça tercih edilir.
+
+**Çocuk Dua Kitabı:** Namaz surelerini ve duaları içeren küçük kitaplar, sünnet çocuğu için hem öğretici hem de anlamlıdır.
+
+**Misvak Seti:** Küçük ama değerli bu sünnet armağanı, çocuğa güzel bir alışkanlık kazandırır.
+
+## Davetlilere Dağıtılacak Hediyelikler
+
+Sünnet törenlerinde misafirlere dağıtılan hediyelikler genellikle şunlar olur:
+
+- **Tesbih + kese seti** — En klasik ve tercih edilen seçenek
+- **Misvak seti** — Küçük, hafif, ekonomik
+- **Namaz örtüsü** — Hanım misafirler için ideal
+
+## Kaç Adet Sipariş Verilmeli?
+
+Davetli sayısına göre hesaplama yapın ve %10 fazladan sipariş verin; son dakika davetliler için yedek bulundurmak önemlidir. OBRNHOMEN'de 50 adet ve üzeri siparişlerde ücretsiz kargo ve özel fiyat uygulanmaktadır. WhatsApp: +90 531 689 38 49
+    `,
+    related: [
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+    ],
+  },
+
+  "bebek-mevludu-hediyelik-fikirleri": {
+    title: "Bebek Mevlüdü Hediyelik Fikirleri",
+    excerpt: "Yeni doğan bebeğin mevlüdünde misafirlere verilecek en güzel hediyelikler ve bebek için anlamlı dini armağanlar.",
+    category: "Rehber",
+    date: "2025-05-24",
+    readTime: "3 dk",
+    content: `
+Bebek mevlüdü, yeni dünyaya gelen bir canın şükrü olarak düzenlenen ve aile ile dostların bir araya geldiği güzel bir törendir. Bu özel günde dağıtılacak hediyelikler, misafirlerinizin zihninde o anın hatırasını taze tutar.
+
+## Bebek Mevlüdünde Misafirlere Ne Verilir?
+
+**Tesbih + Kese Seti:** Bebek mevlütlerinin vazgeçilmez hediyeliğidir. Pembe veya mavi renk seçenekleriyle bebeğin cinsiyetine uygun sunumlar yapılabilir.
+
+**Misvak Seti:** Küçük, şık ve anlamlı. Özellikle büyük davetli gruplarında ekonomik bir tercih olarak öne çıkar.
+
+**Namaz Örtüsü:** Hanım misafirler için ideal bir mevlüt hediyesidir. Açık renk ve zarif ambalajlı modeller tercih edilebilir.
+
+**Dua Kartı + Tesbih Kombine:** Son yıllarda popülerleşen bu set, bebeğe yapılan duayı içeren bir kartla birlikte tesbih sunumunu kapsar.
+
+## Bebek İçin Anlamlı Hediyeler
+
+Ziyarette bebeğe özel hediye götürmek isteyenler için:
+
+- **Bebek tesbihi:** Küçük ve nazarlıklı modeller
+- **Bebek için dua kitabı:** Sureyi içeren şirin baskılar
+- **Bebeğin ismiyle özel tesbih:** Kişiselleştirilmiş hediyeler
+
+## Kaç Kişilik Sipariş?
+
+Davetli sayısını belirleyin ve %15 fazladan sipariş verin. OBRNHOMEN'de bebek mevlüdü için özel renk ve ambalaj seçenekleri mevcuttur. WhatsApp: +90 531 689 38 49
+    `,
+    related: [
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Namaz Örtüsü", href: "/koleksiyon/Namaz Örtüsü" },
+    ],
+  },
+
+  "taziye-hediyesi-ne-verilir": {
+    title: "Taziye Hediyesi Ne Verilir?",
+    excerpt: "Vefat eden kişinin ailesine yapılacak ziyarette ne götürülür? Taziye ziyaretinde anlamlı hediye seçenekleri ve dikkat edilmesi gerekenler.",
+    category: "Rehber",
+    date: "2025-05-31",
+    readTime: "4 dk",
+    content: `
+Bir yakınını kaybeden aileye yapılan taziye ziyareti, insani ve dini bir sorumluluktur. Bu ziyarette götürülecek hediye, acı içindeki aileye destek ve sevgi mesajı taşır. Peki taziye ziyaretinde ne götürülür?
+
+## Taziye Ziyaretinde Hediye Verilir mi?
+
+Ülkemizde taziye ziyaretlerinde hediye götürmek yaygın bir gelenektir. Ancak hediyenin sade, manevi değer taşıyan ve gündelik ihtiyaca yönelik olması beklenir. Gösterişli veya pahalı hediyeler uygun görülmez.
+
+## En Anlamlı Taziye Hediyelikleri
+
+**Tesbih:** Taziye ziyaretinin en klasik ve anlamlı hediyesidir. Vefat eden kişinin ruhuna dua etmek için kullanılacak tesbih, ailesi tarafından değerle karşılanır. Sade ve zarif modeller tercih edilmeli; parlak veya renkli olanlardan kaçınılmalıdır.
+
+**Kuran-ı Kerim:** Vefat eden adına Kuran okumak için hediye edilen Kuran-ı Kerim, en değerli taziye armağanlarından biridir. Deri ciltli ve sade baskılar uygundur.
+
+**Delailü'l Hayrat:** Salavat kitabı olarak da bilinen bu eser, taziye hediyesi olarak çok tercih edilmektedir.
+
+**Namaz Örtüsü:** Özellikle hanım aile üyelerine yönelik, sade renkte bir namaz örtüsü düşünceli bir tercih olabilir.
+
+## Dikkat Edilmesi Gerekenler
+
+- Hediyeyi sade ve gösterişsiz tutun
+- Parlak renkler ve süslü ambalajlardan kaçının
+- Koyu veya pastel tonlar tercih edin
+- Mümkünse aile büyüğüne veya ev sahibine verin
+
+OBRNHOMEN'de taziye için uygun sade tesbih ve Kuran-ı Kerim seçenekleri mevcuttur. WhatsApp: +90 531 689 38 49
+    `,
+    related: [
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+    ],
+  },
+
+  "bayram-hediyesi-fikirleri": {
+    title: "Bayram Hediyesi Fikirleri: Ramazan ve Kurban",
+    excerpt: "Ramazan ve Kurban Bayramı'nda sevdiklerinizi mutlu edecek dini ve anlamlı hediye fikirleri; her bütçeye uygun seçenekler.",
+    category: "Rehber",
+    date: "2025-06-07",
+    readTime: "3 dk",
+    content: `
+Bayramlar, sevdiklerimizle hasret giderme ve sevgi gösterme zamanlarıdır. Ramazan ve Kurban Bayramı'nda verilecek anlamlı bir hediye, o özel günün hatırasını kalıcı kılar.
+
+## Her Bütçeye Uygun Bayram Hediyesi
+
+### Ekonomik Seçenekler (0–150 ₺)
+
+**Misvak Seti:** Küçük ama sünnet değeri taşıyan bu hediye, her yaştan kişiye uygun ve çok şık sunulabilen bir seçenektir.
+
+**Küçük Tesbih + Kese:** Cep boyutunda, kadife kese içinde sunulan tesbihler hem taşınabilir hem de sembolik anlam taşır.
+
+### Orta Bütçe (150–400 ₺)
+
+**Tesbih Seti (Kutulu):** Özel kutusunda sunulan inci veya akik tesbih seti, bayram hediyelerinin en klasiğidir.
+
+**Namaz Örtüsü:** Saten veya pamuklu, zarif ambalajlı namaz örtüleri hanım büyükler için ideal bir tercihtir.
+
+**Seccade:** Beş vakit namazda her gün kullanılacak kaliteli bir seccade, uzun yıllar hatırlanacak bir hediyedir.
+
+### Özel Hediyeler (400 ₺ ve üzeri)
+
+**Kombine Hediyelik Set:** Tesbih + seccade + namaz örtüsünden oluşan kapsamlı hediye setleri, özellikle büyüklere verilen bayram hediyelerinde tercih edilmektedir.
+
+**Kuran-ı Kerim (Deri Cilt):** Büyük boy, deri ciltli Kuran-ı Kerim, ömür boyu kullanılacak en değerli bayram armağanlarından biridir.
+
+## Bayram Hediyesinde Ambalaj Önemi
+
+Hediyenin sunumu en az içeriği kadar önemlidir. Özel bayramlık ambalaj ve kurdele seçimi, hediyenizi çok daha anlamlı kılar. OBRNHOMEN'de tüm siparişlerde özel hediye ambalajı seçeneği mevcuttur. Detaylar için WhatsApp: +90 531 689 38 49
+    `,
+    related: [
+      { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
+      { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
+      { label: "Seccade Koleksiyonu", href: "/koleksiyon/Seccade" },
+    ],
+  },
 };
 
 export async function generateStaticParams() {

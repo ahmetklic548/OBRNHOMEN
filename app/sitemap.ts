@@ -31,6 +31,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "ceyizlik-tesbih-seti-nasil-hazirlanir",
     "misvak-nedir-faydalari",
     "din-kitabi-secimi-rehberi",
+    "kurban-bayrami-hediyesi-fikirleri",
+    "sunnet-dugunu-hediyelik-onerileri",
+    "bebek-mevludu-hediyelik-fikirleri",
+    "taziye-hediyesi-ne-verilir",
+    "bayram-hediyesi-fikirleri",
   ];
 
   const blogUrls = blogSlugs.map((slug) => ({
