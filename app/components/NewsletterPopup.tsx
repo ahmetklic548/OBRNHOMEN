@@ -28,7 +28,7 @@ export default function NewsletterPopup() {
     setLoading(true);
     try {
       // Firebase'e kaydet (yedek)
-      await setDoc(doc(db, "newsletter", email), {
+      if (db) await setDoc(doc(db, "newsletter", email), {
         email,
         createdAt: new Date().toISOString(),
         source: "popup",

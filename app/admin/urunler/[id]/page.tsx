@@ -27,7 +27,7 @@ export default function UrunForm() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    if (isNew) return;
+    if (isNew || !db) { setLoading(false); return; }
     getDoc(doc(db, "products", id)).then(snap => {
       if (snap.exists()) setForm({ ...EMPTY, ...snap.data() } as Form);
       setLoading(false);
@@ -38,6 +38,7 @@ export default function UrunForm() {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!db) return;
     setSaving(true);
     const data = {
       ...form,

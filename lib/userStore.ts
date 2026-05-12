@@ -20,6 +20,7 @@ export interface SavedOrder {
 
 /* Kullanıcı profili getir veya oluştur */
 export async function getOrCreateUser(uid: string, data: Partial<UserProfile>): Promise<UserProfile> {
+  if (!db) throw new Error("Firebase yapılandırılmamış");
   const ref  = doc(db, "users", uid);
   const snap = await getDoc(ref);
 
@@ -37,18 +38,21 @@ export async function getOrCreateUser(uid: string, data: Partial<UserProfile>): 
 
 /* Profil güncelle (telefon, adres) */
 export async function updateUserProfile(uid: string, data: Partial<UserProfile>) {
+  if (!db) throw new Error("Firebase yapılandırılmamış");
   const ref = doc(db, "users", uid);
   await updateDoc(ref, data as Record<string, unknown>);
 }
 
 /* Sipariş kaydet */
 export async function saveOrder(uid: string, order: SavedOrder) {
+  if (!db) throw new Error("Firebase yapılandırılmamış");
   const ref = doc(db, "users", uid, "orders", order.merchant_oid);
   await setDoc(ref, order);
 }
 
 /* Siparişleri getir */
 export async function getOrders(uid: string): Promise<SavedOrder[]> {
+  if (!db) return [];
   const { collection, getDocs, orderBy, query } = await import("firebase/firestore");
   const q    = query(collection(db, "users", uid, "orders"), orderBy("date", "desc"));
   const snap = await getDocs(q);

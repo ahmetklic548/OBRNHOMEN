@@ -11,7 +11,8 @@ export default function AktarPage() {
   const [total, setTotal] = useState(0);
 
   const handleImport = async () => {
-    if (!confirm("198 ürünün tamamı Firestore'a aktarılacak. Devam?")) return;
+    if (!db) { alert("Firebase yapılandırılmamış."); return; }
+    if (!confirm("Tüm ürünler Firestore'a aktarılacak. Devam?")) return;
     setStatus("running");
     const products = getAllProducts();
     setTotal(products.length);
@@ -32,6 +33,7 @@ export default function AktarPage() {
   };
 
   const handleExport = async () => {
+    if (!db) { alert("Firebase yapılandırılmamış."); return; }
     const { getDocs, query, orderBy } = await import("firebase/firestore");
     const snap = await getDocs(query(collection(db, "products"), orderBy("name")));
     const data = snap.docs.map(d => d.data());

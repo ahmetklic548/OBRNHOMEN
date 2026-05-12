@@ -22,6 +22,7 @@ export default function AdminUrunler() {
   const [deleting, setDeleting] = useState<string | null>(null);
 
   const load = async () => {
+    if (!db) { setLoading(false); return; }
     setLoading(true);
     const snap = await getDocs(query(collection(db, "products"), orderBy("name")));
     setProducts(snap.docs.map(d => ({ id: d.id, ...d.data() } as FProduct)));
@@ -31,7 +32,7 @@ export default function AdminUrunler() {
   useEffect(() => { load(); }, []);
 
   const handleDelete = async (id: string, name: string) => {
-    if (!confirm(`"${name}" silinsin mi?`)) return;
+    if (!db || !confirm(`"${name}" silinsin mi?`)) return;
     setDeleting(id);
     await deleteDoc(doc(db, "products", id));
     setProducts(p => p.filter(x => x.id !== id));
