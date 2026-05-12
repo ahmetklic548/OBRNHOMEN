@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { onAuthStateChanged, signInWithRedirect, getRedirectResult, signOut, User } from "firebase/auth";
+import { onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, signOut, User } from "firebase/auth";
 import { auth, googleProvider } from "@/lib/firebase";
 import { getOrCreateUser, UserProfile } from "@/lib/userStore";
 
@@ -46,7 +46,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signInWithGoogle = async () => {
     if (!auth || !googleProvider) return;
-    await signInWithRedirect(auth, googleProvider);
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (err: unknown) {
+      const code = (err as { code?: string })?.code;
+      if (code === "auth/popup-blocked" || code === "auth/popup-closed-by-user") return;
+      // COOP ortamında popup çalışmıyorsa redirect'e geç
+      await signInWithRedirect(auth, googleProvider);
+    }
   };
 
   const logout = async () => {
