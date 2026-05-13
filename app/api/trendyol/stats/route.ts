@@ -1,13 +1,5 @@
-import { NextResponse } from "next/server";
-
-const BASE = "https://api.trendyol.com/sapigw";
-
-function authHeader() {
-  const token = Buffer.from(
-    `${process.env.TRENDYOL_API_KEY}:${process.env.TRENDYOL_API_SECRET}`
-  ).toString("base64");
-  return `Basic ${token}`;
-}
+import { NextRequest, NextResponse } from "next/server";
+import { trendyolAuthHeader, TRENDYOL_BASE } from "@/lib/trendyol";
 
 async function fetchPage(supplierId: string, startDate: number, endDate: number, page: number) {
   const params = new URLSearchParams({
@@ -16,9 +8,9 @@ async function fetchPage(supplierId: string, startDate: number, endDate: number,
     page: String(page),
     size: "200",
   });
-  const res = await fetch(`${BASE}/suppliers/${supplierId}/orders?${params}`, {
+  const res = await fetch(`${TRENDYOL_BASE}/suppliers/${supplierId}/orders?${params}`, {
     headers: {
-      Authorization: authHeader(),
+      Authorization: trendyolAuthHeader(),
       "User-Agent": `${supplierId} - SelfIntegration`,
       Accept: "application/json",
     },
@@ -27,7 +19,11 @@ async function fetchPage(supplierId: string, startDate: number, endDate: number,
   return res.json();
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  if (req.headers.get("x-admin-secret") !== process.env.ADMIN_SECRET) {
+    return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
+  }
+
   const supplierId = process.env.TRENDYOL_SUPPLIER_ID;
   if (!supplierId) return NextResponse.json({ error: "TRENDYOL_SUPPLIER_ID eksik" }, { status: 500 });
 

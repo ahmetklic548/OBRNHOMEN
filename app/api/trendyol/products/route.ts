@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import { trendyolAuthHeader, TRENDYOL_BASE } from "@/lib/trendyol";
 
-const BASE = "https://api.trendyol.com/sapigw";
-
-function authHeader() {
-  const token = Buffer.from(
-    `${process.env.TRENDYOL_API_KEY}:${process.env.TRENDYOL_API_SECRET}`
-  ).toString("base64");
-  return `Basic ${token}`;
+function isAuthorized(req: NextRequest) {
+  return req.headers.get("x-admin-secret") === process.env.ADMIN_SECRET;
 }
 
 export async function GET(req: NextRequest) {
+  if (!isAuthorized(req)) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
+
   const supplierId = process.env.TRENDYOL_SUPPLIER_ID;
   if (!supplierId) return NextResponse.json({ error: "TRENDYOL_SUPPLIER_ID eksik" }, { status: 500 });
 
@@ -21,9 +19,9 @@ export async function GET(req: NextRequest) {
   const params = new URLSearchParams({ page, size });
   if (approved) params.set("approved", approved);
 
-  const res = await fetch(`${BASE}/suppliers/${supplierId}/products?${params}`, {
+  const res = await fetch(`${TRENDYOL_BASE}/suppliers/${supplierId}/products?${params}`, {
     headers: {
-      Authorization: authHeader(),
+      Authorization: trendyolAuthHeader(),
       "User-Agent": `${supplierId} - SelfIntegration`,
       Accept: "application/json",
     },
@@ -36,15 +34,17 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  if (!isAuthorized(req)) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
+
   const supplierId = process.env.TRENDYOL_SUPPLIER_ID;
   if (!supplierId) return NextResponse.json({ error: "TRENDYOL_SUPPLIER_ID eksik" }, { status: 500 });
 
   const body = await req.json();
 
-  const res = await fetch(`${BASE}/suppliers/${supplierId}/products/price-and-inventory`, {
+  const res = await fetch(`${TRENDYOL_BASE}/suppliers/${supplierId}/products/price-and-inventory`, {
     method: "POST",
     headers: {
-      Authorization: authHeader(),
+      Authorization: trendyolAuthHeader(),
       "User-Agent": `${supplierId} - SelfIntegration`,
       "Content-Type": "application/json",
       Accept: "application/json",

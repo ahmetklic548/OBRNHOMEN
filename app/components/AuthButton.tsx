@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "./AuthProvider";
 
-const ADMIN_EMAIL = "ahmet.klic548@gmail.com";
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL ?? "";
 
 export default function AuthButton() {
   const { user, profile, loading, signInWithGoogle, logout } = useAuth();
@@ -46,8 +47,7 @@ export default function AuthButton() {
         style={{ background: "#F5F5F7" }}
       >
         {user.photoURL ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={user.photoURL} alt="" width={22} height={22} className="rounded-full" />
+          <Image src={user.photoURL} alt="" width={22} height={22} className="rounded-full" />
         ) : (
           <span
             className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold"

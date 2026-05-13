@@ -1,5 +1,14 @@
 import data from "@/data/top100_products.json";
 
+export function trendyolAuthHeader(): string {
+  const token = Buffer.from(
+    `${process.env.TRENDYOL_API_KEY}:${process.env.TRENDYOL_API_SECRET}`
+  ).toString("base64");
+  return `Basic ${token}`;
+}
+
+export const TRENDYOL_BASE = "https://api.trendyol.com/sapigw";
+
 export interface TrendyolProduct {
   rank: number;
   name: string;

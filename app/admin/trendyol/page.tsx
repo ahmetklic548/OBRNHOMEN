@@ -12,6 +12,11 @@ interface Stats { bugun: StatRange; yedi_gun: StatRange; otuz_gun: StatRange; }
 interface TYProduct { barcode: string; title: string; productMainId: string; categoryName: string; quantity: number; salePrice: number; listPrice: number; approved: boolean; images?: { url: string }[]; }
 interface ProductsResp { content: TYProduct[]; totalPages: number; totalElements: number; }
 
+/* ─── AUTH HEADER ─── */
+const adminHeaders = () => ({
+  "x-admin-secret": process.env.NEXT_PUBLIC_ADMIN_SECRET ?? "",
+});
+
 /* ─── CONSTANTS ─── */
 const STATUS_OPTIONS = [
   { value: "", label: "Tümü" }, { value: "Created", label: "Oluşturuldu" },
@@ -42,7 +47,7 @@ function SiparislerTab() {
     try {
       const p = new URLSearchParams({ page: String(page), size: "20" });
       if (status) p.set("status", status);
-      const res = await fetch(`/api/trendyol/orders?${p}`);
+      const res = await fetch(`/api/trendyol/orders?${p}`, { headers: adminHeaders() });
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json.error));
       setData(json);
@@ -129,7 +134,7 @@ function IstatistiklerTab() {
   const [aralik, setAralik] = useState<"bugun" | "yedi_gun" | "otuz_gun">("otuz_gun");
 
   useEffect(() => {
-    fetch("/api/trendyol/stats")
+    fetch("/api/trendyol/stats", { headers: adminHeaders() })
       .then(r => r.json())
       .then(d => setStats(d))
       .catch(() => setError("İstatistikler yüklenemedi"))
@@ -209,7 +214,7 @@ function UrunlerTab() {
     try {
       const p = new URLSearchParams({ page: String(page), size: "20" });
       if (approved) p.set("approved", approved);
-      const res = await fetch(`/api/trendyol/products?${p}`);
+      const res = await fetch(`/api/trendyol/products?${p}`, { headers: adminHeaders() });
       const json = await res.json();
       if (!res.ok) throw new Error(JSON.stringify(json.error));
       setData(json);
@@ -225,7 +230,7 @@ function UrunlerTab() {
     try {
       const res = await fetch("/api/trendyol/products", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...adminHeaders() },
         body: JSON.stringify({ items: [{ barcode: editing.barcode, quantity: editing.quantity, salePrice: editing.salePrice, listPrice: editing.salePrice }] }),
       });
       if (!res.ok) throw new Error("Güncelleme başarısız");

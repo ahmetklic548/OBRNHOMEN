@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { getAllProducts } from "@/lib/products";
 
 const HISTORY_KEY = "search-history";
@@ -202,8 +203,7 @@ export default function SearchBar() {
                   className={`flex items-center gap-3 px-4 py-2.5 cursor-pointer transition-colors ${active === i ? "bg-stone-50" : "hover:bg-stone-50"}`}
                 >
                   {r.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={r.image} alt="" width={36} height={36} className="rounded object-cover shrink-0" style={{ width: 36, height: 36 }} />
+                    <Image src={r.image} alt="" width={36} height={36} className="rounded object-cover shrink-0" />
                   )}
                   <div className="flex-1 min-w-0">
                     <p className="text-sm truncate" style={{ color: "#1D1D1F" }}>{r.name}</p>

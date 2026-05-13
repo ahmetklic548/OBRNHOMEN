@@ -41,45 +41,54 @@ Platform dinamiklerine sadık kal:
 }`;
 
 export async function POST(req: NextRequest) {
-  const { slug, topic } = await req.json() as { slug?: string; topic?: string };
-
-  if (!slug && !topic) {
-    return NextResponse.json({ error: "slug veya topic gerekli" }, { status: 400 });
+  if (req.headers.get("x-admin-secret") !== process.env.ADMIN_SECRET) {
+    return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
   }
 
-  let userMessage = "";
+  try {
+    const { slug, topic } = await req.json() as { slug?: string; topic?: string };
 
-  if (slug) {
-    const product = getProductBySlug(slug);
-    if (!product) {
-      return NextResponse.json({ error: "Ürün bulunamadı" }, { status: 404 });
+    if (!slug && !topic) {
+      return NextResponse.json({ error: "slug veya topic gerekli" }, { status: 400 });
     }
-    userMessage = `Ürün: ${product.name}
+
+    let userMessage = "";
+
+    if (slug) {
+      const product = getProductBySlug(slug);
+      if (!product) {
+        return NextResponse.json({ error: "Ürün bulunamadı" }, { status: 404 });
+      }
+      userMessage = `Ürün: ${product.name}
 Kategori: ${product.category}
 Marka: ${product.brand}
 Fiyat: ${product.price.toLocaleString("tr-TR")} TL
 Özellikler: ${product.features.join(", ")}
 Açıklama: ${product.metaDescription}`;
-  } else {
-    userMessage = `Konu: ${topic}`;
+    } else {
+      userMessage = `Konu: ${topic}`;
+    }
+
+    const message = await client.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 2000,
+      system: SYSTEM_PROMPT,
+      messages: [{ role: "user", content: userMessage }],
+    });
+
+    const text = message.content[0].type === "text" ? message.content[0].text : "";
+
+    let parsed: unknown;
+    try {
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      parsed = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(text);
+    } catch {
+      return NextResponse.json({ error: "JSON parse hatası", raw: text }, { status: 500 });
+    }
+
+    return NextResponse.json(parsed);
+  } catch (err) {
+    console.error("Social content hatası:", err);
+    return NextResponse.json({ error: "Sunucu hatası" }, { status: 500 });
   }
-
-  const message = await client.messages.create({
-    model: "claude-sonnet-4-6",
-    max_tokens: 2000,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: "user", content: userMessage }],
-  });
-
-  const text = message.content[0].type === "text" ? message.content[0].text : "";
-
-  let parsed: unknown;
-  try {
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    parsed = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(text);
-  } catch {
-    return NextResponse.json({ error: "JSON parse hatası", raw: text }, { status: 500 });
-  }
-
-  return NextResponse.json(parsed);
 }

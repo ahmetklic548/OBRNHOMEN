@@ -5,10 +5,8 @@ const nextConfig: NextConfig = {
   turbopack: { root: __dirname },
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.dsmcdn.com",
-      },
+      { protocol: "https", hostname: "cdn.dsmcdn.com" },
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
     ],
   },
 };

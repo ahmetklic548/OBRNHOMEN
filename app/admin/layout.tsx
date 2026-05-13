@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/components/AuthProvider";
 
-const ADMIN_EMAIL = "ahmet.klic548@gmail.com";
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL ?? "";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
