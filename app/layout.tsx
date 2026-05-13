@@ -115,9 +115,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <span>© {new Date().getFullYear()} OBRNHOMEN. Tüm hakları saklıdır.</span>
                   <span>obrnhomen.com</span>
                 </div>
-                <div className="mt-4 text-center text-[9px] tracking-wide leading-relaxed" style={{ color: "#2a2a2a" }}>
-                  Mustafa Kemal Paşa Mah. Harbiye Sok. No:7, Arnavutköy / İstanbul &nbsp;·&nbsp; +90 531 689 38 49
-                </div>
               </div>
             </footer>
 
