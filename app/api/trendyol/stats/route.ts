@@ -19,6 +19,27 @@ async function fetchPage(supplierId: string, startDate: number, endDate: number,
   return res.json();
 }
 
+const MAX_PAGES = 20;
+
+async function fetchAllOrders(supplierId: string, startDate: number, endDate: number) {
+  const allOrders: Record<string, unknown>[] = [];
+  let totalElements = 0;
+  let page = 0;
+
+  while (page < MAX_PAGES) {
+    const data = await fetchPage(supplierId, startDate, endDate, page);
+    const orders: Record<string, unknown>[] = data.content ?? [];
+    totalElements = data.totalElements ?? totalElements;
+    allOrders.push(...orders);
+
+    const totalPages = data.totalPages ?? 1;
+    page++;
+    if (page >= totalPages || orders.length === 0) break;
+  }
+
+  return { orders: allOrders, totalElements };
+}
+
 export async function GET(req: NextRequest) {
   if (req.headers.get("x-admin-secret") !== process.env.ADMIN_SECRET) {
     return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
@@ -38,9 +59,7 @@ export async function GET(req: NextRequest) {
 
   const results = await Promise.all(
     ranges.map(async ({ key, start, end }) => {
-      const data = await fetchPage(supplierId, start, end, 0);
-      const orders: Record<string, unknown>[] = data.content ?? [];
-      const total = data.totalElements ?? 0;
+      const { orders, totalElements: total } = await fetchAllOrders(supplierId, start, end);
 
       let ciro = 0;
       let iptal = 0;

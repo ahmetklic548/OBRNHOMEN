@@ -48,3 +48,6 @@ public/hajj_man_animated.glb
 # personal notes
 .obsidian/
 hafıza/
+
+.vercel
+.env*

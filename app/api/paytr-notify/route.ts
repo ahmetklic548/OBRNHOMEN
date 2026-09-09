@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export async function POST(req: NextRequest) {
   try {
@@ -28,21 +30,33 @@ export async function POST(req: NextRequest) {
 
     if (status === "success") {
       // SMS bildirimi gönder (arka planda, hata olsa da devam et)
-      const phone = params.get("email") ?? ""; // PayTR email alanı
-      if (phone) {
-        fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://obrnhomen.com"}/api/send-sms`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            type: "order_confirm",
-            data: {
-              phone,
-              orderId: merchant_oid,
-              name: params.get("email") ?? "",
-              total: (Number(total_amount) / 100).toLocaleString("tr-TR"),
-            },
-          }),
-        }).catch(() => {});
+      // PayTR bildirimi telefon/isim döndürmüyor; checkout anında saklanan kaydı okuyoruz.
+      if (db) {
+        try {
+          const ref  = doc(db, "siparisTakip", merchant_oid);
+          const snap = await getDoc(ref);
+          const info = snap.exists() ? (snap.data() as { name?: string; phone?: string }) : null;
+
+          if (info?.phone) {
+            await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://obrnhomen.com"}/api/send-sms`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                type: "order_confirm",
+                data: {
+                  phone: info.phone,
+                  orderId: merchant_oid,
+                  name: info.name ?? "",
+                  total: (Number(total_amount) / 100).toLocaleString("tr-TR"),
+                },
+              }),
+            }).catch(() => {});
+          }
+
+          if (snap.exists()) await deleteDoc(ref);
+        } catch (err) {
+          console.error("siparisTakip okuma hatası:", err);
+        }
       }
     } else {
       console.error(`PayTR ödeme başarısız: ${merchant_oid} — durum: ${status}`);

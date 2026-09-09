@@ -1,16 +1,29 @@
 # Güncel Durum
 
-## Son Oturum — 2026-05-07
+## Son Oturum — 2026-05-12
 
 ### Tamamlanan
-- `@anthropic-ai/sdk` paketi kuruldu
-- `.env.local` → `ANTHROPIC_API_KEY` gerçek key girildi ✅
-- `app/api/social-content/route.ts` → POST endpoint, ürün slug veya serbest konu alır, Claude Sonnet 4.6 ile 3 platform için JSON üretir
-- `app/admin/sosyal-medya/page.tsx` → Admin UI tam çalışır halde:
-  - Ürün dropdown + serbest konu modu
-  - Kopyala + JSON indir
-  - **İçerik geçmişi** (localStorage): son 10 üretim saklanır, tıkla → yeniden yükle, temizle butonu
-- `app/admin/page.tsx` → "Sosyal Medya İçerik Üreteci" linki eklendi
+
+**Firebase Auth Düzeltmeleri**
+- `signInWithPopup` primary, COOP ortamında `signInWithRedirect` fallback
+- Admin layout `useAuth` hook ile yeniden yazıldı (timing sorunu çözüldü)
+- `next.config.ts` www redirect kaldırıldı (ERR_TOO_MANY_REDIRECTS fix)
+- Vercel env variables eklendi → redeploy yapıldı
+
+**Admin Güvenliği**
+- `/admin` sadece `ahmet.klic548@gmail.com` erişebilir
+- Navbar'da Admin Panel linki eklendi (altın renkli, sadece admin maile görünür)
+
+**Search Bar**
+- `app/components/SearchBar.tsx` — yeni component
+- 105 ürün isim + kategori üzerinden anlık filtreleme
+- localStorage'dan geçmiş aramalar (bar'a basınca açılır, X ile tek tek silinir)
+- Ok tuşu + Enter navigasyonu
+- NavbarClient'a eklendi
 
 ### Bekleyen
-- Test: `localhost:3000/admin/sosyal-medya` açılıp ürün seçilerek üret butonuna basılacak (dev server zaten çalışıyor)
+
+1. **Google Sign-In test** — production'da popup çalışıyor mu kontrol et
+2. **Search bar test** — Vercel build başarılı mı, arama çalışıyor mu
+3. **Anthropic API kredisi** — sosyal medya üreteci için `console.anthropic.com`
+4. **Search Console** — `sitemap.xml` submit et

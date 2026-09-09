@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export async function POST(req: NextRequest) {
   try {
@@ -91,6 +93,18 @@ export async function POST(req: NextRequest) {
     if (data.status !== "success") {
       console.error("PayTR hata:", data);
       return NextResponse.json({ error: data.reason ?? "Token alınamadı" }, { status: 400 });
+    }
+
+    // Bildirim (notify) webhook'u PayTR'den telefon/isim bilgisi almıyor,
+    // bu yüzden SMS gönderebilmek için burada saklıyoruz.
+    if (db) {
+      try {
+        await setDoc(doc(db, "siparisTakip", merchant_oid), {
+          name, phone, email, total, createdAt: Date.now(),
+        });
+      } catch (err) {
+        console.error("siparisTakip kaydı başarısız:", err);
+      }
     }
 
     return NextResponse.json({ token: data.token, merchant_oid });
