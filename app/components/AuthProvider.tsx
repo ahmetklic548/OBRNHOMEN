@@ -45,14 +45,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signInWithGoogle = async () => {
-    if (!auth || !googleProvider) return;
+    if (!auth || !googleProvider) {
+      console.error("Google ile giriş başarısız: Firebase auth başlatılmamış (auth veya googleProvider null). Konsoldaki önceki Firebase hatasına bak.");
+      return;
+    }
     try {
       await signInWithPopup(auth, googleProvider);
     } catch (err: unknown) {
       const code = (err as { code?: string })?.code;
       if (code === "auth/popup-blocked" || code === "auth/popup-closed-by-user") return;
-      // COOP ortamında popup çalışmıyorsa redirect'e geç
-      await signInWithRedirect(auth, googleProvider);
+      console.error("signInWithPopup başarısız, redirect'e geçiliyor:", err);
+      try {
+        await signInWithRedirect(auth, googleProvider);
+      } catch (redirectErr) {
+        console.error("signInWithRedirect de başarısız:", redirectErr);
+      }
     }
   };
 

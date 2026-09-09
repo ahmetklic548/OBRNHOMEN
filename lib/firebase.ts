@@ -19,10 +19,24 @@ if (isConfigured) {
     messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
     appId:             process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   };
-  app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-  auth = getAuth(app);
-  db = getFirestore(app);
-  googleProvider = new GoogleAuthProvider();
+
+  const missing = Object.entries(firebaseConfig)
+    .filter(([, v]) => !v)
+    .map(([k]) => k);
+  if (missing.length > 0) {
+    console.error("Firebase yapılandırması eksik env değişkenleri:", missing);
+  }
+
+  try {
+    app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+    auth = getAuth(app);
+    db = getFirestore(app);
+    googleProvider = new GoogleAuthProvider();
+  } catch (err) {
+    console.error("Firebase başlatma hatası:", err);
+  }
+} else {
+  console.error("Firebase yapılandırılmamış: NEXT_PUBLIC_FIREBASE_API_KEY eksik veya placeholder.");
 }
 
 export { auth, db, googleProvider };
