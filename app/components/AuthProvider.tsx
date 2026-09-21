@@ -53,7 +53,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await signInWithPopup(auth, googleProvider);
     } catch (err: unknown) {
       const code = (err as { code?: string })?.code;
-      if (code === "auth/popup-blocked" || code === "auth/popup-closed-by-user") return;
+      // Kullanıcı popup'ı bilerek kapattıysa yeniden deneme dayatma.
+      if (code === "auth/popup-closed-by-user") return;
+      // popup-blocked dahil diğer tüm hatalarda redirect'e düş — popup'ın
+      // engellendiği durumda (mobil tarayıcılar, Instagram/WhatsApp in-app
+      // browser, popup engelleyiciler) önceden burada sessizce return
+      // ediliyordu ve buton hiçbir şey yapmıyormuş gibi görünüyordu.
       console.error("signInWithPopup başarısız, redirect'e geçiliyor:", err);
       try {
         await signInWithRedirect(auth, googleProvider);

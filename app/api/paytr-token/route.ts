@@ -100,7 +100,7 @@ export async function POST(req: NextRequest) {
     if (db) {
       try {
         await setDoc(doc(db, "siparisTakip", merchant_oid), {
-          name, phone, email, total, createdAt: Date.now(),
+          name, phone, email, address, items, total, createdAt: Date.now(),
         });
       } catch (err) {
         console.error("siparisTakip kaydı başarısız:", err);

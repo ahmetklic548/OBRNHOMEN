@@ -36,6 +36,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <nav className="hidden md:flex items-center gap-5">
               {[
                 { href: "/admin", label: "Genel Bakış" },
+                { href: "/admin/siparisler", label: "Siparişler" },
                 { href: "/admin/urunler", label: "Ürünler" },
                 { href: "/admin/urunler/yeni", label: "+ Yeni Ürün" },
                 { href: "/admin/trendyol", label: "Trendyol" },

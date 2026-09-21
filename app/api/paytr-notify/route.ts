@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
-import { doc, getDoc, deleteDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export async function POST(req: NextRequest) {
@@ -35,7 +35,9 @@ export async function POST(req: NextRequest) {
         try {
           const ref  = doc(db, "siparisTakip", merchant_oid);
           const snap = await getDoc(ref);
-          const info = snap.exists() ? (snap.data() as { name?: string; phone?: string }) : null;
+          const info = snap.exists()
+            ? (snap.data() as { name?: string; phone?: string; email?: string; address?: string; items?: unknown })
+            : null;
 
           if (info?.phone) {
             await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://obrnhomen.com"}/api/send-sms`, {
@@ -51,6 +53,24 @@ export async function POST(req: NextRequest) {
                 },
               }),
             }).catch(() => {});
+          }
+
+          // Kalıcı sipariş kaydı — daha önce siparisTakip anlık SMS için kullanılıp
+          // hemen siliniyordu, hiçbir yerde sipariş geçmişi tutulmuyordu.
+          try {
+            await setDoc(doc(db, "siparisler", merchant_oid), {
+              orderId: merchant_oid,
+              name: info?.name ?? "",
+              phone: info?.phone ?? "",
+              email: info?.email ?? "",
+              address: info?.address ?? "",
+              items: info?.items ?? [],
+              total: Number(total_amount) / 100,
+              status: "success",
+              paidAt: Date.now(),
+            });
+          } catch (err) {
+            console.error("siparisler kaydı başarısız:", err);
           }
 
           if (snap.exists()) await deleteDoc(ref);
