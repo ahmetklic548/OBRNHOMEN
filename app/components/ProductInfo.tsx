@@ -6,6 +6,7 @@ import { useCart } from "./CartContext";
 import { trackView } from "./RecentlyViewed";
 import { trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 import type { Product } from "@/lib/products";
+import { salePrice, DISCOUNT_PERCENT } from "@/lib/pricing";
 
 /* ── Icon set (outline SVG, Lucide-style) ─────────────────── */
 const TruckIcon = () => (
@@ -108,15 +109,15 @@ export default function ProductInfo({ product }: { product: Product }) {
   };
 
   const handleAdd = () => {
-    add({ slug: product.slug, name: product.name, price: product.price, image: product.images[0] ?? "" });
-    trackAddToCart({ slug: product.slug, name: product.name, price: product.price, category: product.category });
+    add({ slug: product.slug, name: product.name, price: salePrice(product.price), image: product.images[0] ?? "" });
+    trackAddToCart({ slug: product.slug, name: product.name, price: salePrice(product.price), category: product.category });
     setAdded(true);
     setTimeout(() => setAdded(false), 2500);
   };
 
   const handleBuy = () => {
-    add({ slug: product.slug, name: product.name, price: product.price, image: product.images[0] ?? "" });
-    trackBeginCheckout(product.price, [{ slug: product.slug, name: product.name, price: product.price, qty: 1 }]);
+    add({ slug: product.slug, name: product.name, price: salePrice(product.price), image: product.images[0] ?? "" });
+    trackBeginCheckout(salePrice(product.price), [{ slug: product.slug, name: product.name, price: salePrice(product.price), qty: 1 }]);
     router.push("/checkout");
   };
 
@@ -160,7 +161,7 @@ export default function ProductInfo({ product }: { product: Product }) {
         </p>
       </div>
 
-      {/* Price — %20 indirimli */}
+      {/* Price — indirimli */}
       <div className="mb-6 pb-6 border-b" style={{ borderColor: "#efefef" }}>
         <div className="flex items-baseline gap-3 mb-1">
           <span
@@ -171,13 +172,13 @@ export default function ProductInfo({ product }: { product: Product }) {
               color: "#0a0a0a",
             }}
           >
-            {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
+            {salePrice(product.price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
           </span>
           <span
             className="text-[10px] tracking-widest uppercase px-2 py-0.5"
             style={{ background: "#0a0a0a", color: "#ffffff" }}
           >
-            %20 İndirim
+            %{DISCOUNT_PERCENT} İndirim
           </span>
         </div>
         <p className="text-sm line-through" style={{ color: "#bbb" }}>

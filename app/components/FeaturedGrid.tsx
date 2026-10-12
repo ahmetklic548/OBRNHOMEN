@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Product } from "@/lib/products";
+import { salePrice } from "@/lib/pricing";
 
 const ease = [0.25, 0.46, 0.45, 0.94] as const;
 
@@ -103,7 +104,7 @@ export default function FeaturedGrid({ products }: { products: Product[] }) {
                 </h3>
                 <div className="flex items-baseline gap-2">
                   <p className="text-sm font-medium" style={{ color: "#0a0a0a" }}>
-                    {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
+                    {salePrice(product.price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
                   </p>
                   <p className="text-xs line-through" style={{ color: "#bbb" }}>
                     {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺

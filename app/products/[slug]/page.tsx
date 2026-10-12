@@ -6,6 +6,7 @@ import StackedImages from "@/app/components/StackedImages";
 import ProductInfo from "@/app/components/ProductInfo";
 import RecentlyViewed from "@/app/components/RecentlyViewed";
 import ProductReviews from "@/app/components/ProductReviews";
+import { salePrice } from "@/lib/pricing";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -76,7 +77,7 @@ export default async function ProductPage({
         "@type": "Offer",
         url: `https://obrnhomen.com/products/${product.slug}`,
         priceCurrency: "TRY",
-        price: product.price.toFixed(2),
+        price: salePrice(product.price).toFixed(2),
         availability: product.inStock
           ? "https://schema.org/InStock"
           : "https://schema.org/OutOfStock",
@@ -157,7 +158,7 @@ export default async function ProductPage({
                   <p className="text-xs font-medium line-clamp-2 mb-1" style={{ color: "#1D1D1F" }}>{p.name}</p>
                   <div className="flex items-baseline gap-1.5">
                     <p className="text-xs font-medium" style={{ color: "#1D1D1F" }}>
-                      {(p.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
+                      {salePrice(p.price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
                     </p>
                     <p className="text-[10px] line-through" style={{ color: "#86868B" }}>
                       {p.price.toLocaleString("tr-TR")} ₺

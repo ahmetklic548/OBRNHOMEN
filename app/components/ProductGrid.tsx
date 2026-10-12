@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWishlist } from "./WishlistContext";
 import type { Product } from "@/lib/products";
+import { salePrice } from "@/lib/pricing";
 
 const ease = "easeOut" as const;
 
@@ -238,7 +239,7 @@ export default function ProductGrid({
                 </h2>
                 <div className="flex items-baseline gap-2">
                   <p className="text-sm font-medium" style={{ color: "#0a0a0a" }}>
-                    {(product.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
+                    {salePrice(product.price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
                   </p>
                   <p className="text-xs line-through" style={{ color: "#bbb" }}>
                     {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺

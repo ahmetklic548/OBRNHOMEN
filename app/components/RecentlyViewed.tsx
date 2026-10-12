@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { salePrice } from "@/lib/pricing";
 
 interface RecentItem {
   slug: string;
@@ -60,7 +61,7 @@ export default function RecentlyViewed({ currentSlug }: { currentSlug: string })
               <p className="text-[9px] tracking-[0.25em] uppercase mb-1" style={{ color: "#c9a84c" }}>{p.category}</p>
               <p className="text-xs text-stone-700 line-clamp-2 leading-snug">{p.name}</p>
               <p className="text-xs font-medium mt-1" style={{ color: "#1D1D1F" }}>
-                {(p.price * 0.8).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
+                {salePrice(p.price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
               </p>
             </Link>
           ))}

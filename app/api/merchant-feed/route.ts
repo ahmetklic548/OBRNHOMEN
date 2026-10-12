@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAllProducts } from "@/lib/products";
+import { salePrice } from "@/lib/pricing";
 
 export const dynamic = "force-static";
 export const revalidate = 86400; // 24 saat
@@ -10,7 +11,7 @@ export async function GET() {
 
   const items = products
     .map((p) => {
-      const discountedPrice = (p.price * 0.8).toFixed(2);
+      const discountedPrice = salePrice(p.price).toFixed(2);
       const originalPrice = p.price.toFixed(2);
       return `
     <item>
