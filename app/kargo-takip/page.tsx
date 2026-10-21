@@ -34,7 +34,7 @@ export default function KargoTakipPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "#F5F5F7" }}>
-      <div className="max-w-lg mx-auto px-6 pt-40 pb-20">
+      <div className="max-w-lg mx-auto px-6 pt-10 pb-20">
 
         <div className="text-center mb-12">
           <p className="text-[10px] tracking-[0.5em] uppercase font-medium mb-3" style={{ color: "#86868B" }}>

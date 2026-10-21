@@ -63,7 +63,7 @@ export default function ReturnsPage() {
   return (
     <div className="min-h-screen" style={{ background: "#fafaf8" }}>
       {/* Header */}
-      <div className="pt-40 pb-10 px-6 border-b" style={{ borderColor: "#efefef" }}>
+      <div className="pt-10 pb-10 px-6 border-b" style={{ borderColor: "#efefef" }}>
         <div className="max-w-2xl mx-auto">
           <p className="text-[9px] tracking-[0.55em] uppercase mb-4" style={{ color: "#c9a84c" }}>
             Politika

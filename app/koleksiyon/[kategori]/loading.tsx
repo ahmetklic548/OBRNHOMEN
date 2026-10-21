@@ -1,7 +1,7 @@
 export default function KategoriLoading() {
   return (
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
-      <div className="max-w-6xl mx-auto px-6 pt-36 pb-2">
+      <div className="max-w-6xl mx-auto px-6 pt-10 pb-2">
         <div className="h-3 w-48 rounded animate-pulse" style={{ background: "#F5F5F7" }} />
       </div>
       <div className="pb-8 px-6 pt-4 text-center" style={{ background: "#F5F5F7", marginTop: "1rem" }}>

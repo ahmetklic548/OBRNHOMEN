@@ -2,7 +2,7 @@ export default function KoleksiyonLoading() {
   return (
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
       {/* Header skeleton */}
-      <div className="pt-36 pb-8 px-6 text-center" style={{ background: "#F5F5F7" }}>
+      <div className="pt-10 pb-8 px-6 text-center" style={{ background: "#F5F5F7" }}>
         <div className="h-3 w-20 rounded mx-auto mb-4 animate-pulse" style={{ background: "#e0e0e0" }} />
         <div className="h-8 w-48 rounded mx-auto mb-3 animate-pulse" style={{ background: "#e0e0e0" }} />
         <div className="h-3 w-32 rounded mx-auto animate-pulse" style={{ background: "#e0e0e0" }} />

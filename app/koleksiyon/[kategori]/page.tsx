@@ -107,7 +107,7 @@ export default async function KategoriPage({
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       {/* Breadcrumb */}
-      <div className="max-w-6xl mx-auto px-6 pt-36 pb-2">
+      <div className="max-w-6xl mx-auto px-6 pt-10 pb-2">
         <nav className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>
           <Link href="/" className="hover:text-black transition-colors">Anasayfa</Link>
           <span>/</span>

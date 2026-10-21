@@ -25,7 +25,7 @@ export default function KoleksiyonPage() {
   return (
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
       {/* Header */}
-      <div className="pt-40 pb-10 px-6" style={{ background: "#fafaf8", borderBottom: "1px solid #efefef" }}>
+      <div className="pt-10 pb-10 px-6" style={{ background: "#fafaf8", borderBottom: "1px solid #efefef" }}>
         <div className="max-w-6xl mx-auto">
           <p className="text-[9px] tracking-[0.55em] uppercase mb-4" style={{ color: "#c9a84c" }}>
             OBRNHOMEN

@@ -162,7 +162,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
       {/* Header */}
-      <div className="pt-36 pb-12 px-6 text-center" style={{ background: "#F5F5F7" }}>
+      <div className="pt-10 pb-12 px-6 text-center" style={{ background: "#F5F5F7" }}>
         <p className="text-[10px] tracking-[0.5em] uppercase font-medium mb-3" style={{ color: "#86868B" }}>
           OBRNHOMEN
         </p>

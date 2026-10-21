@@ -1,15 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
-import { getFeaturedProducts, getCategoryPreview, getAllProducts } from "@/lib/products";
-import HomeHero from "@/app/components/HomeHero";
-import FeaturedGrid from "@/app/components/FeaturedGrid";
-import BentoFeatures from "@/app/components/BentoFeatures";
-import CategoryCards from "@/app/components/CategoryCards";
-import CategoryStrip from "@/app/components/CategoryStrip";
-import StatsBar from "@/app/components/StatsBar";
-import MarqueeStrip from "@/app/components/MarqueeStrip";
-import BestSellers from "@/app/components/BestSellers";
+import { getProductsByCategory, getProductBySlug, type Product } from "@/lib/products";
+import HeroSlider, { type HeroSlide } from "@/app/components/store/HeroSlider";
+import ProductCarousel from "@/app/components/store/ProductCarousel";
 import Testimonials from "@/app/components/Testimonials";
+import { WHATSAPP_URL } from "@/lib/storeNav";
 
 export const metadata: Metadata = {
   title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
@@ -77,14 +73,87 @@ const jsonLd = [
   },
 ];
 
-export default function Home() {
-  const featured   = getFeaturedProducts();
-  const tesbihler  = getCategoryPreview("Tesbih", 3);
-  const seccadeler = getCategoryPreview("Seccade", 3);
-  const hediyeler  = getCategoryPreview("Konsept Hediyelik", 3);
-  const marqueeProducts = getAllProducts().filter(p => p.images[0]).slice(0, 14);
+// Bu ürünlerin Trendyol CDN görseli 404 veriyor (2026-10-21); yeni görsel gelene kadar vitrinde gösterme
+const DEAD_IMAGE_SLUGS = new Set([
+  "misvak-vakumlu-yas",
+  "dikis-kutusu-igne-iplik-mezura-makas-seyahat-seti",
+  "50-adet-kina-cerez-kesesi-kirmizi-kucuk-boy",
+  "1250gr-100-pamuk-hac-umre-erkek-ihram",
+]);
 
-  const heroProduct = getAllProducts().find(p => p.slug === "4-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti") ?? featured[0];
+const available = (cat: string) =>
+  getProductsByCategory(cat).filter((p) => p.inStock && p.images[0] && !DEAD_IMAGE_SLUGS.has(p.slug));
+const img = (p?: Product) => p?.images[0] ?? "";
+
+/** Kategorilerden sırayla birer ürün alarak karışık "seçtiklerimiz" listesi */
+function picksFor(cats: string[], n: number): Product[] {
+  const pools = cats.map(available);
+  const out: Product[] = [];
+  for (let i = 0; out.length < n && pools.some((p) => p[i]); i++) {
+    for (const pool of pools) if (pool[i] && out.length < n) out.push(pool[i]);
+  }
+  return out;
+}
+
+const CATEGORY_TILES = [
+  { cat: "Konsept Hediyelik", label: "Hediyelik Setler" },
+  { cat: "Seccade", label: "Seccade" },
+  { cat: "Tesbih", label: "Tesbih" },
+  { cat: "İhram", label: "İhram" },
+  { cat: "Misvak", label: "Misvak" },
+  { cat: "Din Kitabı", label: "Din Kitabı" },
+];
+
+const catHref = (cat: string) => `/koleksiyon/${encodeURIComponent(cat)}`;
+
+/** Hero/banner için elle seçilmiş, üzerinde yazı olmayan ortam fotoğrafları */
+const imagesOf = (...slugs: string[]) => slugs.map((s) => img(getProductBySlug(s))).filter(Boolean);
+
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    title: "Sevdiklerinize anlamlı hediyeler",
+    subtitle: "Hediyelik Setler",
+    href: catHref("Konsept Hediyelik"),
+    images: imagesOf(
+      "kadife-kapli-yasin-i-serif-ve-tesbih-set-mevlit-kitabi",
+      "mini-kuran-tasli-zikirmatik-inci-tesbih-seti-mikro",
+      "isimlikli-canta-boy-kadife-kapli-yasini-serif-kitabi-dogum-cenaze",
+    ),
+  },
+  {
+    title: "Huzurla kılınan namazlar için",
+    subtitle: "Seccade Koleksiyonu",
+    href: catHref("Seccade"),
+    images: imagesOf(
+      "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen",
+      "karma-renk-hic-desensiz-kadife-seccade-namazlik-dodya-imalat-sik-dokuma-sik-550-600-gram",
+      "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-seccade",
+    ),
+  },
+  {
+    title: "Her tanesinde bir zikir",
+    subtitle: "Tesbih Çeşitleri",
+    href: catHref("Tesbih"),
+    images: imagesOf(
+      "krem-mini-kuran-inci-tesbih-tasli-zikirmatik-seti",
+      "kesede-inci-tesbih-seti",
+      "kesede-beyaz-inci-tesbih-allah-lafizli-gold-detayli",
+    ),
+  },
+].filter((s) => s.images.length === 3);
+
+const BULK_BANNER_IMAGES = imagesOf(
+  "4-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
+  "karma-simli-goblen-seccade-namazlik-renk-secenekli_2",
+  "renkli-namaz-takkesi-41-li-set",
+);
+const SECCADE_BANNER = getProductBySlug("sade-desensiz-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen");
+
+export default function Home() {
+  const hediyelik = available("Konsept Hediyelik");
+  const seccade = available("Seccade");
+  const tesbih = available("Tesbih");
+  const picks = picksFor(["Konsept Hediyelik", "Seccade", "Tesbih", "İhram", "Misvak", "Eşarp"], 15);
 
   return (
     <>
@@ -96,76 +165,110 @@ export default function Home() {
         />
       ))}
 
-      {/* 1 — Hero */}
-      <HomeHero
-        heroImage={heroProduct?.images[0]}
-        heroProductName={heroProduct?.name}
-      />
+      <h1 className="sr-only">OBRNHOMEN — El İşi Tesbih, Seccade ve Hac Umre Hediyelikleri</h1>
 
-      {/* 2 — Stats */}
-      <StatsBar />
+      <HeroSlider slides={HERO_SLIDES} />
 
-      {/* 3 — Featured products */}
-      <FeaturedGrid products={featured} />
+      <TrustBar />
 
-      {/* 4 — Marquee product strip */}
-      <MarqueeStrip products={marqueeProducts} />
+      <ProductCarousel title="Sizin İçin Seçtiklerimiz" products={picks} href="/koleksiyon" />
 
-      {/* 5 — Bento features */}
-      <BentoFeatures />
-
-      {/* 6 — Best sellers from Trendyol data */}
-      <BestSellers />
-
-      {/* 7 — Category showcase */}
-      <CategoryCards />
-
-      {/* 8 — Category strips */}
-      <section className="py-24 px-6" style={{ background: "#f5f0eb" }}>
-        <div className="max-w-7xl mx-auto">
-          <CategoryStrip category="Tesbih" products={tesbihler} index={0} />
-          <CategoryStrip category="Seccade" products={seccadeler} index={1} />
-          <CategoryStrip category="Konsept Hediyelik" products={hediyeler} index={2} />
+      {/* Kategori kartları */}
+      <section className="pb-12">
+        <div className="mx-auto grid max-w-[1500px] grid-cols-3 gap-3 px-4 md:grid-cols-6 md:gap-4 md:px-6">
+          {CATEGORY_TILES.map(({ cat, label }) => {
+            // "Seçtiklerimiz" ilk ürünü kullanıyor; kartta farklı görsel olsun
+            const pool = available(cat);
+            const p = pool[2] ?? pool[1] ?? pool[0];
+            if (!p) return null;
+            return (
+              <Link key={cat} href={catHref(cat)} className="group block text-center">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#efece6]">
+                  <Image src={img(p)} alt={label} fill sizes="(max-width: 768px) 33vw, 16vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <p className="mt-3 text-[12px] text-stone-800 md:text-[13px]">{label} ›</p>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
-      {/* 9 — Testimonials */}
-      <Testimonials />
-
-      {/* 10 — Bottom CTA */}
-      <section className="py-32 px-6 text-center" style={{ background: "#0a0a0a" }}>
-        <div className="max-w-2xl mx-auto">
-          <p
-            className="text-[9px] tracking-[0.55em] uppercase mb-6"
-            style={{ color: "#c9a84c" }}
-          >
-            OBRNHOMEN
-          </p>
-          <h2
-            className="mb-6"
-            style={{
-              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-              fontWeight: 400,
-              fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
-              color: "#ffffff",
-              lineHeight: 1.05,
-            }}
-          >
-            Alışverişe<br />Başlayın
+      {/* Toplu sipariş banner */}
+      <section className="relative h-[52vw] max-h-[560px] min-h-[320px] overflow-hidden bg-[#1a1208]">
+        <div className="absolute inset-0 grid grid-cols-3 opacity-80">
+          {BULK_BANNER_IMAGES.map((src, i) => (
+            <div key={i} className="relative">
+              <Image src={src} alt="" fill sizes="34vw" className="object-cover" />
+            </div>
+          ))}
+        </div>
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="relative flex h-full flex-col items-center justify-center px-6 text-center text-white">
+          <p className="mb-3 text-[11px] uppercase tracking-[0.4em] text-[#e9d48f]">Mevlüt · Hac · Umre · Düğün</p>
+          <h2 className="text-4xl uppercase leading-none md:text-7xl" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+            Toplu Hediyelikte
+            <br />
+            <span className="text-[#e9d48f]">Obrnhomen</span>
           </h2>
-          <div className="mx-auto mb-8" style={{ width: 40, height: 1, background: "#c9a84c" }} />
-          <p className="mb-10 text-sm tracking-wide" style={{ color: "#555" }}>
-            198+ ürün, güvenli ödeme, hızlı teslimat.
+          <p className="mt-5 max-w-md text-sm text-white/80">
+            Misafirleriniz için özel paketlenmiş setler. Adet ve bütçenize göre teklif alın.
           </p>
-          <Link
-            href="/koleksiyon"
-            className="inline-block px-10 py-3.5 text-[10px] tracking-[0.3em] uppercase font-medium border transition-all duration-200 hover:bg-white hover:text-black"
-            style={{ borderColor: "#ffffff", color: "#ffffff" }}
+          <a
+            href={`${WHATSAPP_URL}?text=${encodeURIComponent("Merhaba, toplu hediyelik sipariş için bilgi almak istiyorum.")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 bg-white px-8 py-3 text-[13px] uppercase tracking-[0.15em] text-black transition-colors hover:bg-[#e9d48f]"
           >
-            Tüm Koleksiyonu Gör
-          </Link>
+            Teklif Alın
+          </a>
         </div>
       </section>
+
+      <ProductCarousel title="Hediyelik Setler" products={hediyelik.slice(0, 15)} href={catHref("Konsept Hediyelik")} />
+
+      {/* Seccade banner */}
+      {SECCADE_BANNER && (
+        <section className="mx-auto max-w-[1500px] px-4 md:px-6">
+          <Link href={catHref("Seccade")} className="group relative grid overflow-hidden bg-[#2b3a2c] md:grid-cols-2">
+            <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[440px]">
+              <Image src={img(SECCADE_BANNER)} alt="Seccade koleksiyonu" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="flex flex-col items-start justify-center gap-4 p-8 text-white md:p-14">
+              <p className="text-[11px] uppercase tracking-[0.4em] text-[#e9d48f]">{seccade.length}+ model</p>
+              <p className="text-4xl italic leading-tight md:text-6xl" style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}>
+                Seccade koleksiyonunu keşfedin
+              </p>
+              <span className="mt-2 border-b border-white pb-1 text-[13px] uppercase tracking-[0.15em]">Alışverişe Başla</span>
+            </div>
+          </Link>
+        </section>
+      )}
+
+      <ProductCarousel title="Seccade" products={seccade.slice(0, 15)} href={catHref("Seccade")} />
+      <ProductCarousel title="Tesbih" products={tesbih.slice(0, 15)} href={catHref("Tesbih")} />
+
+      <Testimonials />
     </>
+  );
+}
+
+function TrustBar() {
+  const items = [
+    { t: "Ücretsiz Kargo", d: "1000 ₺ üzeri siparişlerde" },
+    { t: "14 Gün İade", d: "İade garantisi" },
+    { t: "Güvenli Ödeme", d: "PayTR altyapısı ile" },
+    { t: "WhatsApp Destek", d: "Pzt–Cmt 09:00–21:00" },
+  ];
+  return (
+    <section className="border-b border-stone-200 bg-white">
+      <div className="mx-auto grid max-w-[1500px] grid-cols-2 gap-y-4 px-4 py-5 md:grid-cols-4 md:px-6">
+        {items.map(({ t, d }) => (
+          <div key={t} className="text-center">
+            <p className="text-[13px] font-semibold uppercase tracking-wide text-stone-900">{t}</p>
+            <p className="text-[12px] text-stone-500">{d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

@@ -103,7 +103,7 @@ export default async function ProductPage({
       ))}
 
       {/* Breadcrumb */}
-      <div className="max-w-screen-xl mx-auto px-6 pt-36 pb-4">
+      <div className="max-w-screen-xl mx-auto px-6 pt-10 pb-4">
         <nav className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>
           <Link href="/" className="hover:text-black transition-colors">Anasayfa</Link>
           <span>/</span>

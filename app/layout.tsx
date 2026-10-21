@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Cormorant_Garamond } from "next/font/google";
 import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { CartProvider } from "@/app/components/CartContext";
@@ -9,17 +9,26 @@ import NavbarClient from "@/app/components/NavbarClient";
 import LiveChatWidget from "@/app/components/LiveChatWidget";
 import NewsletterPopup from "@/app/components/NewsletterPopup";
 import ScrollToTop from "@/app/components/ScrollToTop";
+import { CATEGORY_LINKS, UTILITY_LINKS, WHATSAPP_URL, INSTAGRAM_URL } from "@/lib/storeNav";
 import "./globals.css";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const playfair = Playfair_Display({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-playfair",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500"],
+  style: ["italic"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
@@ -48,72 +57,87 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr" className={`h-full ${inter.variable} ${playfair.variable}`}>
+    <html lang="tr" className={`h-full ${inter.variable} ${playfair.variable} ${cormorant.variable}`}>
       <body className="min-h-full flex flex-col">
         <CartProvider>
           <WishlistProvider>
           <AuthProvider>
 
-            {/* Fixed header: announcement bar + navbar stacked */}
-            <div className="fixed top-0 inset-x-0 z-40">
-              <div className="w-full py-2 px-4 text-center text-[10px] tracking-[0.25em] uppercase" style={{ background: "#000000", color: "#ffffff" }}>
-                İlk siparişinizde %10 indirim&nbsp;·&nbsp;
-                <span className="font-medium tracking-widest" style={{ color: "#c9a84c" }}>HOSGELDIN10</span>
-                &nbsp;·&nbsp; 1000 ₺ üzeri kargo ücretsiz
+            {/* Duyuru şeridi */}
+            <div className="bg-gradient-to-r from-[#e9d48f] via-[#f3e3a6] to-[#e9d48f] text-[#3b2c08]">
+              <div className="mx-auto flex max-w-[1500px] items-center justify-center gap-6 px-4 py-2 text-[12px] md:justify-between md:px-6">
+                <p className="text-center">
+                  Tüm ürünlerde <strong>%10 indirim</strong> · 1000 ₺ üzeri <strong>ücretsiz kargo</strong>
+                </p>
+                <nav className="hidden items-center divide-x divide-[#3b2c08]/30 md:flex">
+                  {UTILITY_LINKS.map(({ href, label }) => (
+                    <Link key={href} href={href} className="px-3 last:pr-0 hover:underline">
+                      {label}
+                    </Link>
+                  ))}
+                </nav>
               </div>
+            </div>
+
+            <div className="sticky top-0 z-40">
               <NavbarClient />
             </div>
 
             <main className="flex-1">{children}</main>
 
-            {/* Footer */}
-            <footer style={{ background: "#0a0a0a", borderTop: "1px solid #1a1a1a" }}>
-              <div className="max-w-6xl mx-auto px-6 py-16">
-                <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-14">
-                  {/* Brand */}
-                  <div>
-                    <p
-                      className="text-2xl tracking-[0.35em] uppercase mb-4"
-                      style={{ color: "#ffffff", fontFamily: "var(--font-playfair), serif", fontWeight: 400, letterSpacing: "0.35em" }}
-                    >
-                      OBRNHOMEN
-                    </p>
-                    <p className="text-xs leading-relaxed max-w-xs tracking-wide" style={{ color: "#555" }}>
-                      El işçiliği ve özgün tasarımla hazırlanan<br />özel hediye koleksiyonları.
-                    </p>
-                    <div className="mt-5 w-8 h-px" style={{ background: "#c9a84c" }} />
-                  </div>
-
-                  {/* Links */}
-                  <div className="grid grid-cols-2 gap-x-16 gap-y-4 text-[11px] tracking-[0.2em] uppercase">
-                    {[
-                      { href: "/koleksiyon", label: "Koleksiyon" },
-                      { href: "/blog",       label: "Blog" },
-                      { href: "/about",      label: "Hakkımızda" },
-                      { href: "/returns",    label: "İade Şartları" },
-                      { href: "/payment",    label: "Güvenli Ödeme" },
-                      { href: "/hesap",      label: "Hesabım" },
-                      { href: "/kargo-takip", label: "Kargo Takip" },
-                    ].map(({ href, label }) => (
-                      <Link
-                        key={href}
-                        href={href}
-                        className="transition-colors duration-200 hover:text-white"
-                        style={{ color: "#555" }}
-                      >
-                        {label}
-                      </Link>
-                    ))}
+            <footer className="border-t border-stone-200 bg-[#f6f4ef] text-stone-700">
+              <div className="mx-auto grid max-w-[1500px] gap-10 px-4 py-14 sm:grid-cols-2 md:px-6 lg:grid-cols-4">
+                <div>
+                  <p
+                    className="mb-4 text-xl uppercase text-[#7a5c17]"
+                    style={{ fontFamily: "var(--font-playfair), serif", letterSpacing: "0.3em" }}
+                  >
+                    Obrnhomen
+                  </p>
+                  <p className="max-w-xs text-[13px] leading-relaxed text-stone-500">
+                    Hac, umre, mevlüt ve düğün için el işçiliğiyle hazırlanan tesbih, seccade ve hediyelik setler.
+                  </p>
+                  <div className="mt-5 flex gap-3">
+                    <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-[13px] underline-offset-4 hover:underline">
+                      Instagram
+                    </a>
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[13px] underline-offset-4 hover:underline">
+                      WhatsApp
+                    </a>
                   </div>
                 </div>
 
-                {/* Bottom */}
-                <div
-                  className="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-3 text-[10px] tracking-[0.2em] uppercase"
-                  style={{ borderColor: "#1a1a1a", color: "#333" }}
-                >
+                <div>
+                  <p className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-stone-900">Kategoriler</p>
+                  <ul className="space-y-2.5 text-[13px]">
+                    {CATEGORY_LINKS.slice(0, 7).map(({ href, label }) => (
+                      <li key={href}><Link href={href} className="hover:text-[#b8902e]">{label}</Link></li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-stone-900">Kurumsal</p>
+                  <ul className="space-y-2.5 text-[13px]">
+                    {[...UTILITY_LINKS, { href: "/blog", label: "Blog" }, { href: "/hesap", label: "Hesabım" }].map(({ href, label }) => (
+                      <li key={href}><Link href={href} className="hover:text-[#b8902e]">{label}</Link></li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-stone-900">İletişim</p>
+                  <ul className="space-y-2.5 text-[13px]">
+                    <li>WhatsApp: <a href={WHATSAPP_URL} className="hover:text-[#b8902e]">0531 689 38 49</a></li>
+                    <li>Pzt–Cmt 09:00 – 21:00</li>
+                    <li>Toplu hediyelik siparişleriniz için bize yazın.</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="border-t border-stone-200">
+                <div className="mx-auto flex max-w-[1500px] flex-col items-center justify-between gap-2 px-4 py-5 text-[12px] text-stone-500 md:flex-row md:px-6">
                   <span>© {new Date().getFullYear()} OBRNHOMEN. Tüm hakları saklıdır.</span>
-                  <span>obrnhomen.com</span>
+                  <span>Güvenli ödeme · PayTR</span>
                 </div>
               </div>
             </footer>

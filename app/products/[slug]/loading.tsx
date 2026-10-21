@@ -2,7 +2,7 @@ export default function ProductLoading() {
   return (
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
       {/* Breadcrumb */}
-      <div className="max-w-screen-xl mx-auto px-6 pt-36 pb-4">
+      <div className="max-w-screen-xl mx-auto px-6 pt-10 pb-4">
         <div className="h-3 w-64 rounded animate-pulse" style={{ background: "#F5F5F7" }} />
       </div>
 

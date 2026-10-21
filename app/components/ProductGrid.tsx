@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWishlist } from "./WishlistContext";
 import type { Product } from "@/lib/products";
-import { salePrice } from "@/lib/pricing";
+import ProductCard from "./store/ProductCard";
 
 const ease = "easeOut" as const;
 
@@ -41,7 +39,7 @@ export default function ProductGrid({
   });
 
   return (
-    <div className="py-20">
+    <div className="py-8">
       {/* ── Section header ── */}
       <div className="mb-16">
         <motion.p
@@ -158,7 +156,7 @@ export default function ProductGrid({
 
       {/* ── Product grid ── */}
       <motion.div
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-12"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 md:gap-x-4 gap-y-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -172,80 +170,28 @@ export default function ProductGrid({
               layout
               className="group"
             >
-              <Link href={`/products/${product.slug}`} className="block">
-                {/* Image */}
-                <div className="relative aspect-[3/4] bg-stone-50 overflow-hidden mb-4">
-                  {product.images[0] ? (
-                    <Image
-                      src={product.images[0]}
-                      alt={product.name}
-                      fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-stone-300 text-xs tracking-widest uppercase">
-                      Görsel Yok
-                    </div>
-                  )}
-
-                  {!product.inStock && (
-                    <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
-                      <span className="text-[9px] tracking-[0.3em] uppercase text-stone-400">Tükendi</span>
-                    </div>
-                  )}
-
-                  {product.inStock && product.stock <= 10 && (
-                    <div className="absolute top-2 left-2">
-                      <span
-                        className="text-[8px] tracking-widest uppercase px-2 py-1"
-                        style={{ background: "#0a0a0a", color: "#ffffff" }}
-                      >
-                        Son {product.stock} adet
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Wishlist */}
-                  <button
-                    onClick={(e) => { e.preventDefault(); toggle(product.slug); }}
-                    className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center bg-white transition-all opacity-0 group-hover:opacity-100"
-                    aria-label="Favorilere ekle"
-                  >
-                    <svg
-                      width="13"
-                      height="13"
-                      viewBox="0 0 24 24"
-                      fill={has(product.slug) ? "#c9a84c" : "none"}
-                      stroke={has(product.slug) ? "#c9a84c" : "#0a0a0a"}
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                  </button>
-                </div>
-
-                {/* Info */}
-                <p className="text-[8px] tracking-[0.3em] uppercase mb-1" style={{ color: "#999" }}>
-                  {product.category}
-                </p>
-                <h2
-                  className="text-sm leading-snug mb-2 transition-colors line-clamp-2"
-                  style={{ color: "#0a0a0a", minHeight: "2.6rem" }}
+              <div className="relative">
+                <ProductCard product={product} />
+                {/* Wishlist */}
+                <button
+                  onClick={() => toggle(product.slug)}
+                  className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 transition-opacity md:opacity-0 md:group-hover:opacity-100"
+                  aria-label="Favorilere ekle"
                 >
-                  {product.name}
-                </h2>
-                <div className="flex items-baseline gap-2">
-                  <p className="text-sm font-medium" style={{ color: "#0a0a0a" }}>
-                    {salePrice(product.price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
-                  </p>
-                  <p className="text-xs line-through" style={{ color: "#bbb" }}>
-                    {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
-                  </p>
-                </div>
-              </Link>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill={has(product.slug) ? "#c9a84c" : "none"}
+                    stroke={has(product.slug) ? "#c9a84c" : "#0a0a0a"}
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                  </svg>
+                </button>
+              </div>
             </motion.div>
           ))}
         </AnimatePresence>

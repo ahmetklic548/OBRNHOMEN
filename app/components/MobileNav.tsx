@@ -3,62 +3,71 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-
-const links = [
-  { href: "/koleksiyon", label: "Koleksiyon" },
-  { href: "/about", label: "Hakkımızda" },
-  { href: "/returns", label: "İade" },
-  { href: "/payment", label: "Ödeme" },
-];
+import { CATEGORY_LINKS, UTILITY_LINKS, WHATSAPP_URL } from "@/lib/storeNav";
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
 
   return (
     <>
-      <button
-        onClick={() => setOpen(!open)}
-        className="md:hidden flex flex-col gap-[5px] p-1"
-        aria-label="Menü"
-      >
-        <span
-          className={`block w-5 h-px bg-black transition-all duration-200 ${open ? "rotate-45 translate-y-[6px]" : ""}`}
-        />
-        <span
-          className={`block w-5 h-px bg-black transition-all duration-200 ${open ? "opacity-0" : ""}`}
-        />
-        <span
-          className={`block w-5 h-px bg-black transition-all duration-200 ${open ? "-rotate-45 -translate-y-[6px]" : ""}`}
-        />
+      <button onClick={() => setOpen(true)} className="flex flex-col gap-[5px] p-1 md:hidden" aria-label="Menü">
+        <span className="block h-px w-5 bg-black" />
+        <span className="block h-px w-5 bg-black" />
+        <span className="block h-px w-5 bg-black" />
       </button>
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-black/10 z-40"
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-          >
-            {links.map((link, i) => (
-              <motion.div
-                key={link.href}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.12, delay: i * 0.04 }}
-              >
+          <>
+            <motion.div
+              className="fixed inset-0 z-50 bg-black/40 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={close}
+            />
+            <motion.aside
+              className="fixed inset-y-0 left-0 z-50 flex w-[82%] max-w-sm flex-col overflow-y-auto bg-white md:hidden"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4">
+                <span className="text-sm uppercase tracking-[0.3em] text-[#7a5c17]">Menü</span>
+                <button onClick={close} aria-label="Kapat" className="text-2xl leading-none text-stone-500">
+                  ×
+                </button>
+              </div>
+              {CATEGORY_LINKS.map((link) => (
                 <Link
+                  key={link.href}
                   href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block px-6 py-4 text-[10px] tracking-[0.25em] uppercase text-black/60 hover:text-black hover:bg-stone-50 transition-colors border-b border-black/5"
+                  onClick={close}
+                  className="flex items-center justify-between border-b border-stone-100 px-5 py-4 text-sm uppercase text-stone-800"
                 >
                   {link.label}
+                  <span className="text-stone-400">›</span>
                 </Link>
-              </motion.div>
-            ))}
-          </motion.div>
+              ))}
+              <div className="mt-2 bg-[#f6f4ef] px-5 py-3">
+                {UTILITY_LINKS.map((link) => (
+                  <Link key={link.href} href={link.href} onClick={close} className="block py-2 text-[13px] text-stone-600">
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="m-5 rounded-full bg-[#25d366] py-3 text-center text-sm font-medium text-white"
+              >
+                WhatsApp&apos;tan Yazın
+              </a>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
     </>

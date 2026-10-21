@@ -118,7 +118,7 @@ export default function CheckoutPage() {
   const currentIdx = STEPS.findIndex(s => s.key === (step === "error" ? "form" : step));
 
   return (
-    <div className="min-h-screen pt-32 pb-20 px-6" style={{ background: "#fafaf8" }}>
+    <div className="min-h-screen pt-10 pb-20 px-6" style={{ background: "#fafaf8" }}>
       <div className="max-w-5xl mx-auto">
 
         {/* Progress steps */}

@@ -719,7 +719,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     <div className="min-h-screen" style={{ background: "#ffffff" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Header */}
-      <div className="pt-36 pb-12 px-6" style={{ background: "#F5F5F7" }}>
+      <div className="pt-10 pb-12 px-6" style={{ background: "#F5F5F7" }}>
         <div className="max-w-2xl mx-auto">
           <nav className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase mb-6" style={{ color: "#86868B" }}>
             <Link href="/" className="hover:text-black transition-colors">Anasayfa</Link>
