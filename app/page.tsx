@@ -73,16 +73,7 @@ const jsonLd = [
   },
 ];
 
-// Bu ürünlerin Trendyol CDN görseli 404 veriyor (2026-10-21); yeni görsel gelene kadar vitrinde gösterme
-const DEAD_IMAGE_SLUGS = new Set([
-  "misvak-vakumlu-yas",
-  "dikis-kutusu-igne-iplik-mezura-makas-seyahat-seti",
-  "50-adet-kina-cerez-kesesi-kirmizi-kucuk-boy",
-  "1250gr-100-pamuk-hac-umre-erkek-ihram",
-]);
-
-const available = (cat: string) =>
-  getProductsByCategory(cat).filter((p) => p.inStock && p.images[0] && !DEAD_IMAGE_SLUGS.has(p.slug));
+const available = (cat: string) => getProductsByCategory(cat).filter((p) => p.inStock && p.images[0]);
 const img = (p?: Product) => p?.images[0] ?? "";
 
 /** Kategorilerden sırayla birer ürün alarak karışık "seçtiklerimiz" listesi */
@@ -143,7 +134,7 @@ const HERO_SLIDES: HeroSlide[] = [
 ].filter((s) => s.images.length === 3);
 
 const BULK_BANNER_IMAGES = imagesOf(
-  "4-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti",
+  "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz",
   "karma-simli-goblen-seccade-namazlik-renk-secenekli_2",
   "renkli-namaz-takkesi-41-li-set",
 );

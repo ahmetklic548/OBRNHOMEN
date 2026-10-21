@@ -1,4 +1,5 @@
 import productsData from "@/data/products.json";
+import { HIDDEN_SLUGS, COVER_IMAGE_INDEX } from "@/lib/productCuration";
 
 export interface Product {
   id: string;
@@ -18,14 +19,23 @@ export interface Product {
   quantity?: number;
 }
 
-const products = productsData as Product[];
+function withCover(p: Product): Product {
+  const i = COVER_IMAGE_INDEX[p.slug];
+  if (!i || !p.images[i]) return p;
+  return { ...p, images: [p.images[i], ...p.images.filter((_, j) => j !== i)] };
+}
+
+/** Tüm ürünler — ürün sayfaları gizli ürünlerde de açılsın diye */
+const allProducts = (productsData as Product[]).map(withCover);
+/** Vitrinde görünenler — listeler, arama, sitemap, feed */
+const products = allProducts.filter((p) => !HIDDEN_SLUGS.has(p.slug));
 
 export function getAllProducts(): Product[] {
   return products;
 }
 
 export function getProductBySlug(slug: string): Product | undefined {
-  return products.find((p) => p.slug === slug);
+  return allProducts.find((p) => p.slug === slug);
 }
 
 export function getProductsByCategory(category: string): Product[] {
@@ -36,8 +46,9 @@ export function getAllCategories(): string[] {
   return [...new Set(products.map((p) => p.category))].sort();
 }
 
+/** Statik üretilecek tüm ürün sayfaları (gizliler dahil) */
 export function getAllSlugs(): string[] {
-  return products.map((p) => p.slug);
+  return allProducts.map((p) => p.slug);
 }
 
 export function getFeaturedProducts(): Product[] {

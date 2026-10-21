@@ -7,4 +7,5 @@
 - [x] Açık renkli footer, koleksiyon grid'i yeni ürün kartına geçti
 - [x] Header artık fixed değil (sticky); iç sayfalardaki pt-36/40 → pt-10
 - [ ] Preview onaylanınca main'e merge → canlı
-- [ ] 4 ürünün Trendyol görseli 404 (misvak-vakumlu-yas, dikis-kutusu..., 50-adet-kina-cerez..., 1250gr-...-ihram) — yeni görsel lazım
+- [x] Zayıf fotoğraflı 42 ürün vitrinden gizlendi ([[productCuration]] HIDDEN_SLUGS), 2 seccadenin kapak görseli değişti; 63 ürün görünür
+- [ ] Gizlenen çok satanlara yeni fotoğraf: Misvak vakumlu, Dikiş kutusu, 50li kına kesesi, 1250gr ihram, asetat çantalı başörtü seti

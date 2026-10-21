@@ -1,10 +1,10 @@
-import { getAllSlugs, getAllCategories } from "@/lib/products";
+import { getAllProducts, getAllCategories } from "@/lib/products";
 import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://obrnhomen.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const productUrls = getAllSlugs().map((slug) => ({
+  const productUrls = getAllProducts().map(({ slug }) => ({
     url: `${BASE_URL}/products/${slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
