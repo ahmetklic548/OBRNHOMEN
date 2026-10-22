@@ -5,6 +5,8 @@ import { getProductsByCategory, getProductBySlug, type Product } from "@/lib/pro
 import HeroSlider, { type HeroSlide } from "@/app/components/store/HeroSlider";
 import ProductCarousel from "@/app/components/store/ProductCarousel";
 import Testimonials from "@/app/components/Testimonials";
+import IntroSplash from "@/app/components/IntroSplash";
+import { INTRO_PREPAINT_SCRIPT } from "@/lib/intro";
 import { WHATSAPP_URL } from "@/lib/storeNav";
 
 export const metadata: Metadata = {
@@ -155,6 +157,10 @@ export default function Home() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
+
+      {/* Açılış animasyonu: bu oturumda görüldüyse ilk boyamadan önce gizle */}
+      <script dangerouslySetInnerHTML={{ __html: INTRO_PREPAINT_SCRIPT }} />
+      <IntroSplash />
 
       <h1 className="sr-only">OBRNHOMEN — El İşi Tesbih, Seccade ve Hac Umre Hediyelikleri</h1>
 
