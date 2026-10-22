@@ -59,15 +59,20 @@ export default function NavbarClient() {
         <Link href="/" className="flex flex-col items-center text-center transition-opacity hover:opacity-80">
           <svg
             viewBox="0 0 64 64"
-            className={`text-[#b8902e] transition-all duration-300 ${scrolled ? "h-0 w-0 md:h-0" : "h-8 w-8 md:h-12 md:w-12"}`}
+            className={`text-[#b8902e] transition-all duration-300 ${scrolled ? "h-0 w-0 md:h-0" : "h-10 w-10 md:h-14 md:w-14"}`}
             aria-hidden
           >
-            <g fill="none" stroke="currentColor" strokeWidth="1.6">
-              <rect x="14" y="14" width="36" height="36" />
-              <rect x="14" y="14" width="36" height="36" transform="rotate(45 32 32)" />
-              <circle cx="32" cy="32" r="9" />
-            </g>
-            <circle cx="32" cy="32" r="3" fill="currentColor" />
+            {/* Mihrap kemeri içinde Kâbe */}
+            <path d="M12 59V31C12 18 21 9 32 4c11 5 20 14 20 27v28" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M8 59h48" stroke="currentColor" strokeWidth="1.5" />
+            {/* Kâbe: sol yüz, sağ yüz, üst */}
+            <path d="M19 31l13 5.5V56l-13-5.5z" fill="#1d1a14" />
+            <path d="M32 36.5L45 31v19.5L32 56z" fill="#2c2820" />
+            <path d="M19 31l13-5.5L45 31l-13 5.5z" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+            {/* Altın kuşak (hizam) */}
+            <path d="M19 35l13 5.5L45 35" fill="none" stroke="currentColor" strokeWidth="1.8" />
+            {/* Kapı */}
+            <path d="M36.5 45.6l4-1.7v6l-4 1.7z" fill="currentColor" />
           </svg>
           <span
             className="mt-1 text-[15px] uppercase tracking-[0.2em] text-[#7a5c17] md:mr-[-0.32em] md:text-[26px] md:tracking-[0.32em]"
