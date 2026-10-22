@@ -49,6 +49,14 @@ const jsonLd = [
     description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
     telephone: "+905316893849",
     priceRange: "₺₺",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Beyazıt Mah., Mahmutpaşa Yokuşu, Büyük Çorapçı Han D:219/10-1",
+      addressLocality: "Fatih",
+      addressRegion: "İstanbul",
+      postalCode: "34116",
+      addressCountry: "TR",
+    },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],

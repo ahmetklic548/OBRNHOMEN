@@ -9,7 +9,7 @@ import NavbarClient from "@/app/components/NavbarClient";
 import LiveChatWidget from "@/app/components/LiveChatWidget";
 import NewsletterPopup from "@/app/components/NewsletterPopup";
 import ScrollToTop from "@/app/components/ScrollToTop";
-import { CATEGORY_LINKS, UTILITY_LINKS, WHATSAPP_URL, INSTAGRAM_URL } from "@/lib/storeNav";
+import { CATEGORY_LINKS, UTILITY_LINKS, WHATSAPP_URL, INSTAGRAM_URL, STORE_ADDRESS } from "@/lib/storeNav";
 import "./globals.css";
 
 const inter = Inter({
@@ -129,6 +129,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <p className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-stone-900">İletişim</p>
                   <ul className="space-y-2.5 text-[13px]">
                     <li>WhatsApp: <a href={WHATSAPP_URL} className="hover:text-[#b8902e]">0531 689 38 49</a></li>
+                    <li>
+                      <a href={STORE_ADDRESS.mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#b8902e]">
+                        Mağaza (Eminönü): {STORE_ADDRESS.line1}, {STORE_ADDRESS.line2}
+                      </a>
+                    </li>
                     <li>Pzt–Cmt 09:00 – 21:00</li>
                     <li>Toplu hediyelik siparişleriniz için bize yazın.</li>
                   </ul>
