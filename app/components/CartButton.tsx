@@ -1,11 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "./CartContext";
 import CartDrawer from "./CartDrawer";
+
+/** Sayfanın herhangi bir yerinden sepet/teklif çekmecesini açar */
+export const OPEN_CART_EVENT = "obrn:open-cart";
+export const openCart = () => window.dispatchEvent(new Event(OPEN_CART_EVENT));
 
 export default function CartButton() {
   const { count } = useCart();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onOpen = () => setOpen(true);
+    window.addEventListener(OPEN_CART_EVENT, onOpen);
+    return () => window.removeEventListener(OPEN_CART_EVENT, onOpen);
+  }, []);
 
   return (
     <>

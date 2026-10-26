@@ -35,7 +35,7 @@ export default function CartDrawer({
           {/* Backdrop */}
           <motion.div
             key="backdrop"
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-[79]"
             style={{ background: "rgba(0,0,0,0.4)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -47,7 +47,7 @@ export default function CartDrawer({
           {/* Drawer */}
           <motion.div
             key="drawer"
-            className="fixed top-0 right-0 h-full w-full max-w-sm z-50 flex flex-col"
+            className="fixed top-0 right-0 h-full w-full max-w-sm z-[80] flex flex-col"
             style={{ background: "#fff" }}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -57,8 +57,8 @@ export default function CartDrawer({
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b" style={{ borderColor: "#efefef" }}>
               <div>
-                <p className="text-[9px] tracking-[0.4em] uppercase mb-0.5" style={{ color: "#999" }}>Sepet</p>
-                <p className="text-sm" style={{ color: "#0a0a0a" }}>{count} ürün</p>
+                <p className="text-[9px] tracking-[0.4em] uppercase mb-0.5" style={{ color: "#999" }}>Sepet · Teklif Sepeti</p>
+                <p className="text-sm" style={{ color: "#0a0a0a" }}>{items.length} çeşit · {count} adet</p>
               </div>
               <button
                 onClick={onClose}
@@ -70,6 +70,14 @@ export default function CartDrawer({
                   <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               </button>
+            </div>
+
+            {/* Toptan akışı */}
+            <div className="px-6 py-3 text-[11px] leading-snug" style={{ background: "#fffbf0", color: "#5c4710" }}>
+              <strong>Toptan mı alıyorsunuz?</strong> ① Ürünlerinizi seçin ② Adetleri girin ③ Aşağıdan tek tıkla toptan fiyat alın.
+              {items.length > 0 && (
+                <Link href="/koleksiyon" onClick={onClose} className="ml-1 underline">Ürün eklemeye devam et</Link>
+              )}
             </div>
 
             {/* Items */}
@@ -181,7 +189,7 @@ export default function CartDrawer({
                     ? { background: "#1f9d55", color: "#ffffff" }
                     : { border: "1px solid #1f9d55", color: "#1f9d55" }}
                 >
-                  Toptan Fiyat İste (WhatsApp)
+                  Sepetteki {count} Adet İçin Toptan Fiyat Al
                 </a>
                 <button
                   onClick={clear}

@@ -1,32 +1,28 @@
 "use client";
 
 import { WHOLESALE_TIERS, QUOTE_FROM_QTY, unitPriceFor, tierPct } from "@/lib/pricing";
-import { WHATSAPP_URL } from "@/lib/storeNav";
 
 const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 /** Ürün sayfası toptan tablosu — kademeler lib/pricing.ts WHOLESALE_TIERS'tan gelir. */
 export default function WholesaleBox({
-  productName,
   unitPrice,
   qty,
   onPickQty,
+  onAddToQuote,
 }: {
-  productName: string;
   /** Site birim fiyatı (salePrice) */
   unitPrice: number;
   qty: number;
   onPickQty: (qty: number) => void;
+  /** Seçili adetle sepete ekleyip teklif sepetini açar */
+  onAddToQuote: () => void;
 }) {
   const rows = [
     { min: 1, max: WHOLESALE_TIERS[0].min - 1, pct: 0 },
     ...WHOLESALE_TIERS.map((t, i) => ({ min: t.min, max: (WHOLESALE_TIERS[i + 1]?.min ?? 0) - 1, pct: t.pct })),
   ];
   const active = tierPct(qty);
-
-  const message =
-    `Merhaba, "${productName}" ürününden ${qty} adet almak istiyorum. ` +
-    `Toptan fiyat alabilir miyim?`;
 
   return (
     <div className="border" style={{ borderColor: "#e9d9a6", background: "#fffbf0" }}>
@@ -65,16 +61,21 @@ export default function WholesaleBox({
         })}
       </div>
 
-      <a
-        href={`${WHATSAPP_URL}?text=${encodeURIComponent(message)}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center justify-between gap-3 px-4 py-3 border-t text-xs transition-opacity hover:opacity-80"
-        style={{ borderColor: "#efe3bd", color: "#1f6f43" }}
-      >
-        <span>{QUOTE_FROM_QTY}+ adet veya karışık liste için daha iyi fiyat — WhatsApp&apos;tan teklif isteyin</span>
-        <span className="shrink-0 font-medium">Teklif →</span>
-      </a>
+      {/* Teklif sepeti — karışık ürünleri tek listede toplayıp fiyat istemek için */}
+      <div className="px-4 py-3 border-t" style={{ borderColor: "#efe3bd" }}>
+        <p className="text-[11px] leading-relaxed mb-2.5" style={{ color: "#5c4710" }}>
+          <strong>Birden fazla üründen mi alacaksınız?</strong> {QUOTE_FROM_QTY}+ adette daha iyi fiyat veriyoruz:
+          <span className="block mt-1">① Ürünleri seçin &nbsp;② Adetleri girin &nbsp;③ Sepetten toptan fiyat alın</span>
+        </p>
+        <button
+          type="button"
+          onClick={onAddToQuote}
+          className="w-full py-2.5 text-[10px] tracking-[0.2em] uppercase font-medium text-white transition-opacity hover:opacity-80"
+          style={{ background: "#1f9d55" }}
+        >
+          {qty} Adet Teklif Sepetine Ekle
+        </button>
+      </div>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analyti
 import type { Product } from "@/lib/products";
 import { salePrice, DISCOUNT_PERCENT, unitPriceFor, tierPct } from "@/lib/pricing";
 import WholesaleBox from "./WholesaleBox";
+import { openCart } from "./CartButton";
 
 /* ── Icon set (outline SVG, Lucide-style) ─────────────────── */
 const TruckIcon = () => (
@@ -276,7 +277,12 @@ export default function ProductInfo({ product }: { product: Product }) {
           </button>
 
           {/* Toptan satış — adet kademeleri + WhatsApp teklif */}
-          <WholesaleBox productName={product.name} unitPrice={unit} qty={qty} onPickQty={setQty} />
+          <WholesaleBox
+            unitPrice={unit}
+            qty={qty}
+            onPickQty={setQty}
+            onAddToQuote={() => { handleAdd(); openCart(); }}
+          />
         </div>
       ) : (
         <div

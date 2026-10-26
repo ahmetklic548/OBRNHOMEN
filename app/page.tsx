@@ -7,7 +7,7 @@ import ProductCarousel from "@/app/components/store/ProductCarousel";
 import Testimonials from "@/app/components/Testimonials";
 import IntroSplash from "@/app/components/IntroSplash";
 import { INTRO_PREPAINT_SCRIPT } from "@/lib/intro";
-import { WHATSAPP_URL } from "@/lib/storeNav";
+import { WHOLESALE_TIERS } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
@@ -172,6 +172,29 @@ export default function Home() {
 
       <h1 className="sr-only">OBRNHOMEN — El İşi Tesbih, Seccade ve Hac Umre Hediyelikleri</h1>
 
+      {/* Toptan alıcılar — ilk ekranda görünsün diye slider'ın üstünde */}
+      <section className="bg-[#1a1208] text-white">
+        <div className="mx-auto flex max-w-[1500px] flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between md:gap-6 md:px-6">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.35em] text-[#e9d48f]">Toptan alıcılar için</p>
+            <p className="mt-1 text-[15px] md:text-lg" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+              {WHOLESALE_TIERS.map((t) => `${t.min}+ adette %${t.pct}`).join(" · ")} ek indirim
+            </p>
+          </div>
+          <ol className="flex flex-wrap gap-x-5 gap-y-1 text-[12px] text-white/80">
+            <li><span className="text-[#e9d48f]">①</span> Ürünlerinizi seçin</li>
+            <li><span className="text-[#e9d48f]">②</span> Adetleri girin</li>
+            <li><span className="text-[#e9d48f]">③</span> Sepetten toptan fiyat alın</li>
+          </ol>
+          <Link
+            href="/koleksiyon"
+            className="self-start bg-[#e9d48f] px-6 py-2.5 text-[12px] uppercase tracking-[0.15em] text-black transition-colors hover:bg-white md:self-auto"
+          >
+            Toptan Alışverişe Başla
+          </Link>
+        </div>
+      </section>
+
       <HeroSlider slides={HERO_SLIDES} />
 
       <TrustBar />
@@ -216,16 +239,14 @@ export default function Home() {
             <span className="text-[#e9d48f]">Obrnhomen</span>
           </h2>
           <p className="mt-5 max-w-md text-sm text-white/80">
-            Misafirleriniz için özel paketlenmiş setler. Adet ve bütçenize göre teklif alın.
+            Ürünlerinizi seçin, adetleri girin, sepetinizden tek tıkla toptan fiyat alın.
           </p>
-          <a
-            href={`${WHATSAPP_URL}?text=${encodeURIComponent("Merhaba, toplu hediyelik sipariş için bilgi almak istiyorum.")}`}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/koleksiyon"
             className="mt-7 bg-white px-8 py-3 text-[13px] uppercase tracking-[0.15em] text-black transition-colors hover:bg-[#e9d48f]"
           >
-            Teklif Alın
-          </a>
+            Ürünleri Seç, Fiyat Al
+          </Link>
         </div>
       </section>
 
