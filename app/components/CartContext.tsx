@@ -16,6 +16,8 @@ interface CartCtx {
   clear: () => void;
   total: number;
   count: number;
+  /** localStorage'daki sepet okundu mu — okunmadan items boş görünür */
+  ready: boolean;
 }
 
 const CartContext = createContext<CartCtx | null>(null);
@@ -51,7 +53,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const count = mounted ? items.reduce((s, i) => s + i.qty, 0) : 0;
 
   return (
-    <CartContext.Provider value={{ items: mounted ? items : [], add, remove, clear, total, count }}>
+    <CartContext.Provider value={{ items: mounted ? items : [], add, remove, clear, total, count, ready: mounted }}>
       {children}
     </CartContext.Provider>
   );

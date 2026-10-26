@@ -16,7 +16,7 @@ const STEPS = [
 ];
 
 export default function CheckoutPage() {
-  const { items, total } = useCart();
+  const { items, total, ready } = useCart();
   // Giriş zorunlu değil — misafir de ödeme yapabilir; girişliyse form profilden dolar.
   const { profile } = useAuth();
   const router   = useRouter();
@@ -55,8 +55,8 @@ export default function CheckoutPage() {
   }, [profile]);
 
   useEffect(() => {
-    if (items.length === 0 && step === "form") router.replace("/");
-  }, [items, step, router]);
+    if (ready && items.length === 0 && step === "form") router.replace("/");
+  }, [ready, items, step, router]);
 
   useEffect(() => {
     if (step !== "paying" || !token || !iframeRef.current) return;
