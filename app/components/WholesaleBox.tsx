@@ -1,17 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { WHOLESALE_TIERS, QUOTE_FROM_QTY, unitPriceFor, tierPct } from "@/lib/pricing";
 import { WHATSAPP_URL } from "@/lib/storeNav";
 
-/** Adet kademeleri — rakam verilmez, fiyat WhatsApp'tan teklifle konuşulur. */
-const TIERS = [
-  { range: "1 – 9 adet",   label: "Site fiyatı" },
-  { range: "10 – 49 adet", label: "Toptan fiyat" },
-  { range: "50+ adet",     label: "Özel fiyat + toplu paketleme" },
-];
+const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-export default function WholesaleBox({ productName, unitPrice }: { productName: string; unitPrice: string }) {
-  const [qty, setQty] = useState(10);
+/** Ürün sayfası toptan tablosu — kademeler lib/pricing.ts WHOLESALE_TIERS'tan gelir. */
+export default function WholesaleBox({
+  productName,
+  unitPrice,
+  qty,
+  onPickQty,
+}: {
+  productName: string;
+  /** Site birim fiyatı (salePrice) */
+  unitPrice: number;
+  qty: number;
+  onPickQty: (qty: number) => void;
+}) {
+  const rows = [
+    { min: 1, max: WHOLESALE_TIERS[0].min - 1, pct: 0 },
+    ...WHOLESALE_TIERS.map((t, i) => ({ min: t.min, max: (WHOLESALE_TIERS[i + 1]?.min ?? 0) - 1, pct: t.pct })),
+  ];
+  const active = tierPct(qty);
 
   const message =
     `Merhaba, "${productName}" ürününden ${qty} adet almak istiyorum. ` +
@@ -24,47 +35,46 @@ export default function WholesaleBox({ productName, unitPrice }: { productName: 
           Toptan Satış
         </p>
         <p className="text-sm leading-snug" style={{ color: "#3b2c08" }}>
-          Mevlüt, düğün, hac/umre kafilesi veya mağazanız için toplu alıyorsanız adet arttıkça fiyat düşer.
+          Mevlüt, düğün, hac/umre kafilesi veya mağazanız için toplu alıyorsanız adet arttıkça fiyat otomatik düşer.
         </p>
       </div>
 
       <div className="border-t" style={{ borderColor: "#efe3bd" }}>
-        {TIERS.map(({ range, label }, i) => (
-          <div
-            key={range}
-            className="flex justify-between px-4 py-2 text-xs"
-            style={{ borderTop: i ? "1px solid #f3eacb" : undefined, color: "#5c4710" }}
-          >
-            <span>{range}</span>
-            <span className="font-medium">{i === 0 ? `${unitPrice} / adet` : label}</span>
-          </div>
-        ))}
+        {rows.map(({ min, max, pct }) => {
+          const on = pct === active;
+          return (
+            <button
+              key={min}
+              type="button"
+              onClick={() => onPickQty(min)}
+              className="w-full flex justify-between items-center px-4 py-2 text-xs text-left transition-colors"
+              style={{
+                borderTop: min > 1 ? "1px solid #f3eacb" : undefined,
+                color: "#5c4710",
+                background: on ? "#f6e9bf" : undefined,
+                fontWeight: on ? 600 : 400,
+              }}
+            >
+              <span>{max > 0 ? `${min} – ${max} adet` : `${min}+ adet`}</span>
+              <span>
+                {tl(unitPriceFor(unitPrice, min))} ₺ / adet
+                {pct > 0 && <span className="ml-1.5" style={{ color: "#1f9d55" }}>-%{pct}</span>}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
-      <div className="flex gap-2 px-4 py-3 border-t" style={{ borderColor: "#efe3bd" }}>
-        <label className="flex items-center border bg-white" style={{ borderColor: "#e0d2a4" }}>
-          <span className="sr-only">Adet</span>
-          <input
-            type="number"
-            min={10}
-            step={10}
-            value={qty}
-            onChange={e => setQty(Math.max(1, Math.floor(Number(e.target.value)) || 1))}
-            className="w-16 px-2 py-2.5 text-sm text-center outline-none"
-            style={{ color: "#0a0a0a" }}
-          />
-          <span className="pr-2 text-[10px]" style={{ color: "#9a7a2c" }}>adet</span>
-        </label>
-        <a
-          href={`${WHATSAPP_URL}?text=${encodeURIComponent(message)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center py-2.5 text-[10px] tracking-[0.2em] uppercase font-medium text-white transition-opacity hover:opacity-80"
-          style={{ background: "#1f9d55" }}
-        >
-          Toptan Fiyat Al
-        </a>
-      </div>
+      <a
+        href={`${WHATSAPP_URL}?text=${encodeURIComponent(message)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-between gap-3 px-4 py-3 border-t text-xs transition-opacity hover:opacity-80"
+        style={{ borderColor: "#efe3bd", color: "#1f6f43" }}
+      >
+        <span>{QUOTE_FROM_QTY}+ adet veya karışık liste için daha iyi fiyat — WhatsApp&apos;tan teklif isteyin</span>
+        <span className="shrink-0 font-medium">Teklif →</span>
+      </a>
     </div>
   );
 }

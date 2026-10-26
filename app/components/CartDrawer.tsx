@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "./CartContext";
 import Image from "next/image";
+import { unitPriceFor, tierPct, nextTier, QUOTE_FROM_QTY } from "@/lib/pricing";
+import { WHATSAPP_URL } from "@/lib/storeNav";
 
 const springConfig = { type: "spring", stiffness: 320, damping: 32, mass: 0.8 } as const;
 
@@ -14,15 +16,16 @@ export default function CartDrawer({
   open: boolean;
   onClose: () => void;
 }) {
-  const { items, remove, clear, total, count } = useCart();
+  const { items, setQty, remove, clear, total, count } = useCart();
   const router = useRouter();
+  const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const bigOrder = count >= QUOTE_FROM_QTY;
 
+  // Teklif sepeti: listeyi adetleriyle WhatsApp'a gönderir, son fiyatı mağaza verir
   const waText = encodeURIComponent(
-    "Merhaba! OBRNHOMEN'den sipariş vermek istiyorum:\n\n" +
-      items
-        .map((i) => `• ${i.name} (x${i.qty}) — ${(i.price * i.qty).toLocaleString("tr-TR")} ₺`)
-        .join("\n") +
-      `\n\nToplam: ${total.toLocaleString("tr-TR")} ₺\n\nAdres ve ödeme bilgilerini paylaşabilir misiniz?`
+    "Merhaba! OBRNHOMEN'den toptan almak istiyorum:\n\n" +
+      items.map((i) => `• ${i.name} — ${i.qty} adet`).join("\n") +
+      `\n\nSitedeki tutar: ${tl(total)} ₺\nBu liste için toptan fiyat alabilir miyim?`
   );
 
   return (
@@ -101,7 +104,32 @@ export default function CartDrawer({
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs text-stone-700 leading-snug line-clamp-2 mb-1">{item.name}</p>
-                      <p className="text-xs text-stone-400">x{item.qty} · {(item.price * item.qty).toLocaleString("tr-TR")} ₺</p>
+                      <p className="text-xs text-stone-400 mb-2">
+                        {tl(unitPriceFor(item.price, item.qty))} ₺ / adet · <span className="text-stone-700">{tl(unitPriceFor(item.price, item.qty) * item.qty)} ₺</span>
+                        {tierPct(item.qty) > 0 && (
+                          <span className="ml-1.5 px-1.5 py-0.5 text-[9px] font-medium" style={{ background: "#fffbf0", color: "#9a7a2c" }}>
+                            Toptan -%{tierPct(item.qty)}
+                          </span>
+                        )}
+                      </p>
+                      <div className="flex items-center border w-fit" style={{ borderColor: "#e5e5e5" }}>
+                        <button onClick={() => setQty(item.slug, item.qty - 1)} className="w-7 h-7 text-stone-500 hover:text-black" aria-label="Azalt">−</button>
+                        <input
+                          type="number"
+                          min={1}
+                          value={item.qty}
+                          onChange={(e) => setQty(item.slug, Number(e.target.value))}
+                          className="w-12 h-7 text-center text-xs outline-none border-x"
+                          style={{ borderColor: "#e5e5e5" }}
+                          aria-label="Adet"
+                        />
+                        <button onClick={() => setQty(item.slug, item.qty + 1)} className="w-7 h-7 text-stone-500 hover:text-black" aria-label="Artır">+</button>
+                      </div>
+                      {nextTier(item.qty) && (
+                        <p className="text-[10px] mt-1.5" style={{ color: "#9a7a2c" }}>
+                          {nextTier(item.qty)!.min - item.qty} adet daha ekle → toptan %{nextTier(item.qty)!.pct}
+                        </p>
+                      )}
                     </div>
                     <button
                       onClick={() => remove(item.slug)}
@@ -128,9 +156,14 @@ export default function CartDrawer({
                       color: "#0a0a0a",
                     }}
                   >
-                    {total.toLocaleString("tr-TR")} ₺
+                    {tl(total)} ₺
                   </span>
                 </div>
+                {bigOrder && (
+                  <p className="text-[11px] leading-snug mb-4 px-3 py-2" style={{ background: "#fffbf0", color: "#7a5f1a" }}>
+                    {QUOTE_FROM_QTY}+ adetlik siparişlerde daha iyi fiyat verebiliriz — listeyi gönderin, teklif hazırlayalım.
+                  </p>
+                )}
                 <button
                   onClick={() => { onClose(); router.push("/checkout"); }}
                   className="block w-full py-4 text-[10px] tracking-[0.25em] uppercase text-center transition-opacity hover:opacity-75 mb-3"
@@ -140,13 +173,15 @@ export default function CartDrawer({
                 </button>
 
                 <a
-                  href={`https://wa.me/905316893849?text=${waText}`}
+                  href={`${WHATSAPP_URL}?text=${waText}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full py-3 border text-[10px] tracking-[0.2em] uppercase text-center transition-colors duration-200 mb-3 hover:border-black hover:text-black"
-                  style={{ borderColor: "#e0e0e0", color: "#888" }}
+                  className="block w-full py-3 text-[10px] tracking-[0.2em] uppercase text-center transition-opacity duration-200 mb-3 hover:opacity-80"
+                  style={bigOrder
+                    ? { background: "#1f9d55", color: "#ffffff" }
+                    : { border: "1px solid #1f9d55", color: "#1f9d55" }}
                 >
-                  WhatsApp ile Sipariş Ver
+                  Toptan Fiyat İste (WhatsApp)
                 </a>
                 <button
                   onClick={clear}

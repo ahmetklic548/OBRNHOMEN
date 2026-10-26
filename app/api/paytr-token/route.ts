@@ -3,7 +3,7 @@ import crypto from "crypto";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { getProductBySlug } from "@/lib/products";
-import { salePrice, orderTotals, VALID_COUPONS } from "@/lib/pricing";
+import { salePrice, unitPriceFor, orderTotals, VALID_COUPONS } from "@/lib/pricing";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,8 +15,9 @@ export async function POST(req: NextRequest) {
     const lines = reqItems.map(({ slug, qty }) => {
       const p = getProductBySlug(String(slug));
       const n = Math.floor(Number(qty));
-      if (!p || !p.inStock || !(n >= 1 && n <= 100)) return null;
-      return { slug: p.slug, name: p.name, price: salePrice(p.price), qty: n };
+      if (!p || !p.inStock || !(n >= 1 && n <= 1000)) return null;
+      // Toptan kademe sunucuda da aynı formülle — istemci fiyatına güvenilmez
+      return { slug: p.slug, name: p.name, price: unitPriceFor(salePrice(p.price), n), qty: n };
     });
     if (lines.length === 0 || lines.some(l => l === null)) {
       return NextResponse.json({ error: "Sepetteki bir ürün artık satışta değil. Sepetinizi kontrol edin." }, { status: 400 });

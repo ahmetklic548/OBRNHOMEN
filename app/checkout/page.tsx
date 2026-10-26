@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCart } from "@/app/components/CartContext";
 import { useAuth } from "@/app/components/AuthProvider";
 import { trackBeginCheckout } from "@/lib/analytics";
-import { FREE_SHIPPING_OVER, VALID_COUPONS, orderTotals } from "@/lib/pricing";
+import { FREE_SHIPPING_OVER, VALID_COUPONS, orderTotals, unitPriceFor, tierPct } from "@/lib/pricing";
 
 type Step = "form" | "paying" | "error";
 
@@ -31,6 +31,8 @@ export default function CheckoutPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", address: "" });
 
   const { discountRate, discountAmount, shipping, grandTotal } = orderTotals(total, couponApplied);
+  // Ara toplam zaten kademeli; bilgi olarak kademesiz farkı göster
+  const wholesaleSaving = Math.round((items.reduce((s, i) => s + i.price * i.qty, 0) - total) * 100) / 100;
 
   const applyCoupon = () => {
     const code = couponInput.trim().toUpperCase();
@@ -241,7 +243,10 @@ export default function CheckoutPage() {
                       <span style={{ color: "#bbb" }}>x{item.qty}</span>
                     </span>
                     <span className="shrink-0" style={{ color: "#0a0a0a" }}>
-                      {(item.price * item.qty).toLocaleString("tr-TR")} ₺
+                      {(unitPriceFor(item.price, item.qty) * item.qty).toLocaleString("tr-TR", { maximumFractionDigits: 2 })} ₺
+                      {tierPct(item.qty) > 0 && (
+                        <span className="ml-1 text-[10px]" style={{ color: "#9a7a2c" }}>(-%{tierPct(item.qty)})</span>
+                      )}
                     </span>
                   </div>
                 ))}
@@ -288,8 +293,14 @@ export default function CheckoutPage() {
               <div className="border-t pt-4 space-y-2.5 mb-4" style={{ borderColor: "#efefef" }}>
                 <div className="flex justify-between text-sm">
                   <span style={{ color: "#999" }}>Ara Toplam</span>
-                  <span style={{ color: "#555" }}>{total.toLocaleString("tr-TR")} ₺</span>
+                  <span style={{ color: "#555" }}>{total.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} ₺</span>
                 </div>
+                {wholesaleSaving > 0 && (
+                  <div className="flex justify-between text-sm">
+                    <span style={{ color: "#9a7a2c" }}>Toptan kazancınız</span>
+                    <span style={{ color: "#9a7a2c" }}>{wholesaleSaving.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} ₺</span>
+                  </div>
+                )}
                 {discountAmount > 0 && (
                   <div className="flex justify-between text-sm">
                     <span style={{ color: "#16a34a" }}>İndirim (%{discountRate})</span>

@@ -6,7 +6,7 @@ import { useCart } from "./CartContext";
 import { trackView } from "./RecentlyViewed";
 import { trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 import type { Product } from "@/lib/products";
-import { salePrice, DISCOUNT_PERCENT } from "@/lib/pricing";
+import { salePrice, DISCOUNT_PERCENT, unitPriceFor, tierPct } from "@/lib/pricing";
 import WholesaleBox from "./WholesaleBox";
 
 /* ── Icon set (outline SVG, Lucide-style) ─────────────────── */
@@ -81,6 +81,7 @@ export default function ProductInfo({ product }: { product: Product }) {
   const router   = useRouter();
   const [added, setAdded] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [qty, setQty] = useState(1);
 
   useEffect(() => {
     trackView({
@@ -109,16 +110,18 @@ export default function ProductInfo({ product }: { product: Product }) {
     }
   };
 
+  const unit = salePrice(product.price);
+
   const handleAdd = () => {
-    add({ slug: product.slug, name: product.name, price: salePrice(product.price), image: product.images[0] ?? "" });
-    trackAddToCart({ slug: product.slug, name: product.name, price: salePrice(product.price), category: product.category });
+    add({ slug: product.slug, name: product.name, price: unit, image: product.images[0] ?? "" }, qty);
+    trackAddToCart({ slug: product.slug, name: product.name, price: unit, category: product.category });
     setAdded(true);
     setTimeout(() => setAdded(false), 2500);
   };
 
   const handleBuy = () => {
-    add({ slug: product.slug, name: product.name, price: salePrice(product.price), image: product.images[0] ?? "" });
-    trackBeginCheckout(salePrice(product.price), [{ slug: product.slug, name: product.name, price: salePrice(product.price), qty: 1 }]);
+    add({ slug: product.slug, name: product.name, price: unit, image: product.images[0] ?? "" }, qty);
+    trackBeginCheckout(unitPriceFor(unit, qty) * qty, [{ slug: product.slug, name: product.name, price: unitPriceFor(unit, qty), qty }]);
     router.push("/checkout");
   };
 
@@ -231,6 +234,28 @@ export default function ProductInfo({ product }: { product: Product }) {
       {/* CTA */}
       {product.inStock ? (
         <div className="flex flex-col gap-3 mb-8">
+          {/* Adet — toptan kademe buna göre uygulanır */}
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center border" style={{ borderColor: "#e0e0e0" }}>
+              <button type="button" onClick={() => setQty(q => Math.max(1, q - 1))} className="w-10 h-11 text-lg text-stone-500 hover:text-black" aria-label="Azalt">−</button>
+              <input
+                type="number"
+                min={1}
+                max={1000}
+                value={qty}
+                onChange={e => setQty(Math.min(1000, Math.max(1, Math.floor(Number(e.target.value)) || 1)))}
+                className="w-16 h-11 text-center text-sm outline-none border-x"
+                style={{ borderColor: "#e0e0e0", color: "#0a0a0a" }}
+                aria-label="Adet"
+              />
+              <button type="button" onClick={() => setQty(q => Math.min(1000, q + 1))} className="w-10 h-11 text-lg text-stone-500 hover:text-black" aria-label="Artır">+</button>
+            </div>
+            <p className="text-right text-xs leading-snug" style={{ color: "#555" }}>
+              {qty} adet: <strong style={{ color: "#0a0a0a" }}>{(unitPriceFor(unit, qty) * qty).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺</strong>
+              {tierPct(qty) > 0 && <span className="block" style={{ color: "#1f9d55" }}>Toptan -%{tierPct(qty)} uygulandı</span>}
+            </p>
+          </div>
+
           <button
             onClick={handleBuy}
             className="w-full py-4 text-[10px] tracking-[0.3em] uppercase font-medium text-white transition-opacity duration-200 hover:opacity-75"
@@ -251,10 +276,7 @@ export default function ProductInfo({ product }: { product: Product }) {
           </button>
 
           {/* Toptan satış — adet kademeleri + WhatsApp teklif */}
-          <WholesaleBox
-            productName={product.name}
-            unitPrice={`${salePrice(product.price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺`}
-          />
+          <WholesaleBox productName={product.name} unitPrice={unit} qty={qty} onPickQty={setQty} />
         </div>
       ) : (
         <div

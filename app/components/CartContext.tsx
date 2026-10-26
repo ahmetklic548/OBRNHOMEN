@@ -1,9 +1,11 @@
 "use client";
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { unitPriceFor } from "@/lib/pricing";
 
 export interface CartItem {
   slug: string;
   name: string;
+  /** Site birim fiyatı (salePrice) — toptan kademe unitPriceFor ile ayrıca uygulanır */
   price: number;
   image: string;
   qty: number;
@@ -11,7 +13,8 @@ export interface CartItem {
 
 interface CartCtx {
   items: CartItem[];
-  add: (item: Omit<CartItem, "qty">) => void;
+  add: (item: Omit<CartItem, "qty">, qty?: number) => void;
+  setQty: (slug: string, qty: number) => void;
   remove: (slug: string) => void;
   clear: () => void;
   total: number;
@@ -39,21 +42,29 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("obrnhomen-cart", JSON.stringify(items));
   }, [items, mounted]);
 
-  const add = (item: Omit<CartItem, "qty">) => {
+  const add = (item: Omit<CartItem, "qty">, qty = 1) => {
     setItems((prev) => {
       const exists = prev.find((i) => i.slug === item.slug);
-      if (exists) return prev.map((i) => i.slug === item.slug ? { ...i, qty: i.qty + 1 } : i);
-      return [...prev, { ...item, qty: 1 }];
+      if (exists) return prev.map((i) => i.slug === item.slug ? { ...i, qty: i.qty + qty } : i);
+      return [...prev, { ...item, qty }];
     });
+  };
+
+  const setQty = (slug: string, qty: number) => {
+    const n = Math.min(1000, Math.max(1, Math.floor(qty) || 1));
+    setItems((prev) => prev.map((i) => i.slug === slug ? { ...i, qty: n } : i));
   };
 
   const remove = (slug: string) => setItems((prev) => prev.filter((i) => i.slug !== slug));
   const clear = () => setItems([]);
-  const total = mounted ? items.reduce((s, i) => s + i.price * i.qty, 0) : 0;
+  // Toptan kademe satır bazında uygulanır
+  const total = mounted
+    ? Math.round(items.reduce((s, i) => s + unitPriceFor(i.price, i.qty) * i.qty, 0) * 100) / 100
+    : 0;
   const count = mounted ? items.reduce((s, i) => s + i.qty, 0) : 0;
 
   return (
-    <CartContext.Provider value={{ items: mounted ? items : [], add, remove, clear, total, count, ready: mounted }}>
+    <CartContext.Provider value={{ items: mounted ? items : [], add, setQty, remove, clear, total, count, ready: mounted }}>
       {children}
     </CartContext.Provider>
   );
