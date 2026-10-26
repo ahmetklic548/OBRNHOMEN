@@ -32,3 +32,4 @@
 - [x] Teklif sepeti akışı: ürün sayfası "N Adet Teklif Sepetine Ekle" → sepet açılır ([[CartButton]] openCart), sepet = Teklif Sepeti, "Sepetteki N Adet İçin Toptan Fiyat Al" tüm listeyi WhatsApp'a yollar
 - [x] Ana sayfa ilk ekran: slider üstünde toptan alıcı bandı (kademeler + 3 adım + "Toptan Alışverişe Başla")
 - [x] CartDrawer body'ye portal ile çiziliyor (sohbet balonu üstüne biniyordu)
+- [x] Teklif mesajı: renk/ebat + ürün kodu + "her adet tek ürün" + ürün linki (aynı isimli seccadeler ayırt edilsin); görünür 55 ilanın hepsi tek adetlik
