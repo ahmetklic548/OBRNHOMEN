@@ -22,3 +22,10 @@
 - [x] Ürün sayfasına "Toplu mu alacaksınız? 10+ adet" WhatsApp teklif kutusu ([[ProductInfo]])
 - [x] Search Console sitemap zaten gönderilmiş (21 Eki okundu, 137 sayfa)
 - [ ] RESEND_API_KEY Vercel'de yok → bülten hoş geldin e-postası gitmiyor
+
+## 2026-10-26 — Toptan satış modeli (tekli fiyat kalır + toptan teklif)
+- [x] [[WholesaleBox]]: ürün sayfasında 1–9 / 10–49 / 50+ kademe tablosu, adet girişi, WhatsApp "Toptan Fiyat Al" (rakam yok, teklifle)
+- [x] Ürün kartlarında "10+ adette toptan fiyat", duyuru şeridi "Toptan satış: 10 adet ve üzerine özel fiyat"
+- [x] 8 paket ilanı (5'li/10'lu/41'li…) + 6 zayıf görselli ürün gizlendi ([[productCuration]])
+- [ ] Kademe indirim oranları kullanıcıdan gelirse sepette otomatik uygula
+- [ ] /toptan landing sayfası + toptan anahtar kelime reklamı
