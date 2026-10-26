@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useCart } from "./CartContext";
+import { useCart, cartMeta } from "./CartContext";
 import { trackView } from "./RecentlyViewed";
 import { trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 import type { Product } from "@/lib/products";
@@ -114,14 +114,14 @@ export default function ProductInfo({ product }: { product: Product }) {
   const unit = salePrice(product.price);
 
   const handleAdd = () => {
-    add({ slug: product.slug, name: product.name, price: unit, image: product.images[0] ?? "" }, qty);
+    add({ slug: product.slug, name: product.name, price: unit, image: product.images[0] ?? "", ...cartMeta(product) }, qty);
     trackAddToCart({ slug: product.slug, name: product.name, price: unit, category: product.category });
     setAdded(true);
     setTimeout(() => setAdded(false), 2500);
   };
 
   const handleBuy = () => {
-    add({ slug: product.slug, name: product.name, price: unit, image: product.images[0] ?? "" }, qty);
+    add({ slug: product.slug, name: product.name, price: unit, image: product.images[0] ?? "", ...cartMeta(product) }, qty);
     trackBeginCheckout(unitPriceFor(unit, qty) * qty, [{ slug: product.slug, name: product.name, price: unitPriceFor(unit, qty), qty }]);
     router.push("/checkout");
   };

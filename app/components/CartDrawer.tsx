@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const noopSubscribe = () => () => {};
+const SITE_URL = "https://www.obrnhomen.com";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "./CartContext";
@@ -29,8 +30,16 @@ export default function CartDrawer({
   // Teklif sepeti: listeyi adetleriyle WhatsApp'a gönderir, son fiyatı mağaza verir
   const waText = encodeURIComponent(
     "Merhaba! OBRNHOMEN'den toptan almak istiyorum:\n\n" +
-      items.map((i) => `• ${i.name} — ${i.qty} adet`).join("\n") +
-      `\n\nSitedeki tutar: ${tl(total)} ₺\nBu liste için toptan fiyat alabilir miyim?`
+      items
+        .map((i, n) =>
+          `${n + 1}) ${i.name}` +
+          (i.variant ? `\n   Renk/Ebat: ${i.variant}` : "") +
+          (i.code ? `\n   Ürün kodu: ${i.code}` : "") +
+          `\n   Adet: ${i.qty} (her adet tek ürün)` +
+          `\n   ${SITE_URL}/products/${i.slug}`
+        )
+        .join("\n\n") +
+      `\n\nToplam: ${items.length} çeşit, ${count} adet\nSitedeki tutar: ${tl(total)} ₺\nBu liste için toptan fiyat alabilir miyim?`
   );
 
   // Header sticky/z-index'li bir katman; çekmece onun içinde kalırsa sohbet ve
@@ -120,6 +129,11 @@ export default function CartDrawer({
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs text-stone-700 leading-snug line-clamp-2 mb-1">{item.name}</p>
+                      {(item.variant || item.code) && (
+                        <p className="text-[10px] text-stone-400 mb-1">
+                          {[item.variant, item.code && `Kod: ${item.code}`].filter(Boolean).join(" · ")}
+                        </p>
+                      )}
                       <p className="text-xs text-stone-400 mb-2">
                         {tl(unitPriceFor(item.price, item.qty))} ₺ / adet · <span className="text-stone-700">{tl(unitPriceFor(item.price, item.qty) * item.qty)} ₺</span>
                         {tierPct(item.qty) > 0 && (

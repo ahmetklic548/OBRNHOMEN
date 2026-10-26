@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Product } from "@/lib/products";
 import { salePrice, DISCOUNT_PERCENT } from "@/lib/pricing";
-import { useCart } from "@/app/components/CartContext";
+import { useCart, cartMeta } from "@/app/components/CartContext";
 import { trackAddToCart } from "@/lib/analytics";
 
 export function formatTL(n: number) {
@@ -17,7 +17,7 @@ export default function ProductCard({ product, priority = false }: { product: Pr
 
   const quickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
-    add({ slug: product.slug, name: product.name, price, image: product.images[0] ?? "" });
+    add({ slug: product.slug, name: product.name, price, image: product.images[0] ?? "", ...cartMeta(product) });
     trackAddToCart({ slug: product.slug, name: product.name, price, category: product.category });
   };
 
