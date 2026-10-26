@@ -1,5 +1,9 @@
 "use client";
+import { useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
+
+const noopSubscribe = () => () => {};
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "./CartContext";
@@ -18,6 +22,7 @@ export default function CartDrawer({
 }) {
   const { items, setQty, remove, clear, total, count } = useCart();
   const router = useRouter();
+  const isClient = useSyncExternalStore(noopSubscribe, () => true, () => false);
   const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const bigOrder = count >= QUOTE_FROM_QTY;
 
@@ -28,7 +33,10 @@ export default function CartDrawer({
       `\n\nSitedeki tutar: ${tl(total)} ₺\nBu liste için toptan fiyat alabilir miyim?`
   );
 
-  return (
+  // Header sticky/z-index'li bir katman; çekmece onun içinde kalırsa sohbet ve
+  // yukarı-çık butonları üstüne biniyor — bu yüzden body'ye portal ile çiziliyor.
+  if (!isClient) return null;
+  return createPortal(
     <AnimatePresence>
       {open && (
         <>
@@ -203,6 +211,7 @@ export default function CartDrawer({
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
