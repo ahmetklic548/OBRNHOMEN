@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { db } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
@@ -11,11 +12,15 @@ export default function NewsletterPopup() {
   const [done, setDone]       = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const pathname = usePathname();
+  // Ödeme/giriş akışını bölmesin
+  const blocked = /^\/(checkout|odeme|payment|hesap|admin)/.test(pathname ?? "");
+
   useEffect(() => {
-    if (sessionStorage.getItem("nl_seen")) return;
+    if (blocked || sessionStorage.getItem("nl_seen")) return;
     const t = setTimeout(() => setVisible(true), 10000);
     return () => clearTimeout(t);
-  }, []);
+  }, [blocked]);
 
   const close = () => {
     sessionStorage.setItem("nl_seen", "1");

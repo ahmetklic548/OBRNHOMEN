@@ -2,11 +2,35 @@ import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { getProductBySlug } from "@/lib/products";
+import { salePrice, orderTotals, VALID_COUPONS } from "@/lib/pricing";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { items, total, name, email, phone, address } = body;
+    const { name, email, phone, address } = body;
+
+    /* Fiyatları istemciye güvenmeden ürün verisinden hesapla */
+    const reqItems: { slug: string; qty: number }[] = Array.isArray(body.items) ? body.items : [];
+    const lines = reqItems.map(({ slug, qty }) => {
+      const p = getProductBySlug(String(slug));
+      const n = Math.floor(Number(qty));
+      if (!p || !p.inStock || !(n >= 1 && n <= 100)) return null;
+      return { slug: p.slug, name: p.name, price: salePrice(p.price), qty: n };
+    });
+    if (lines.length === 0 || lines.some(l => l === null)) {
+      return NextResponse.json({ error: "Sepetteki bir ürün artık satışta değil. Sepetinizi kontrol edin." }, { status: 400 });
+    }
+    const valid = lines as { slug: string; name: string; price: number; qty: number }[];
+    const subtotal = Math.round(valid.reduce((s, i) => s + i.price * i.qty, 0) * 100) / 100;
+    const coupon = typeof body.coupon === "string" && VALID_COUPONS[body.coupon] ? body.coupon : null;
+    const { discountRate, shipping, grandTotal: total } = orderTotals(subtotal, coupon);
+
+    /* PayTR sepeti — kupon indirimi satır fiyatlarına yansıtılır */
+    const items = [
+      ...valid.map(i => ({ ...i, price: Math.round(i.price * (1 - discountRate / 100) * 100) / 100 })),
+      ...(shipping > 0 ? [{ slug: "kargo", name: "Kargo Ücreti", price: shipping, qty: 1 }] : []),
+    ];
 
     const merchant_id   = process.env.PAYTR_MERCHANT_ID!;
     const merchant_key  = process.env.PAYTR_MERCHANT_KEY!;
@@ -28,7 +52,7 @@ export async function POST(req: NextRequest) {
     const payment_amount = Math.round(total * 100).toString();
 
     /* Sepet: [[isim, fiyat, adet], ...] */
-    const basket = items.map((i: { name: string; price: number; qty: number }) => [
+    const basket = items.map((i) => [
       i.name.substring(0, 60),
       (i.price * 100).toFixed(0),
       i.qty,
@@ -100,14 +124,14 @@ export async function POST(req: NextRequest) {
     if (db) {
       try {
         await setDoc(doc(db, "siparisTakip", merchant_oid), {
-          name, phone, email, address, items, total, createdAt: Date.now(),
+          name, phone, email, address, items, total, coupon, createdAt: Date.now(),
         });
       } catch (err) {
         console.error("siparisTakip kaydı başarısız:", err);
       }
     }
 
-    return NextResponse.json({ token: data.token, merchant_oid });
+    return NextResponse.json({ token: data.token, merchant_oid, total });
   } catch (err) {
     console.error("PayTR token hatası:", err);
     return NextResponse.json({ error: "Sunucu hatası" }, { status: 500 });

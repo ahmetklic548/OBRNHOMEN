@@ -5,10 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCart } from "@/app/components/CartContext";
 import { useAuth } from "@/app/components/AuthProvider";
 import { trackBeginCheckout } from "@/lib/analytics";
-
-const SHIPPING_FEE       = 200;
-const FREE_SHIPPING_OVER = 1000;
-const VALID_COUPONS: Record<string, number> = { HOSGELDIN10: 10 };
+import { FREE_SHIPPING_OVER, VALID_COUPONS, orderTotals } from "@/lib/pricing";
 
 type Step = "form" | "paying" | "error";
 
@@ -20,7 +17,8 @@ const STEPS = [
 
 export default function CheckoutPage() {
   const { items, total } = useCart();
-  const { user, profile, loading: authLoading } = useAuth();
+  // Giriş zorunlu değil — misafir de ödeme yapabilir; girişliyse form profilden dolar.
+  const { profile } = useAuth();
   const router   = useRouter();
   const iframeRef = useRef<HTMLDivElement>(null);
 
@@ -32,10 +30,7 @@ export default function CheckoutPage() {
   const [error, setError] = useState<string>("");
   const [form, setForm] = useState({ name: "", email: "", phone: "", address: "" });
 
-  const discountRate   = couponApplied ? (VALID_COUPONS[couponApplied] ?? 0) : 0;
-  const discountAmount = Math.round(total * discountRate / 100);
-  const shipping       = total >= FREE_SHIPPING_OVER ? 0 : SHIPPING_FEE;
-  const grandTotal     = total - discountAmount + shipping;
+  const { discountRate, discountAmount, shipping, grandTotal } = orderTotals(total, couponApplied);
 
   const applyCoupon = () => {
     const code = couponInput.trim().toUpperCase();
@@ -58,10 +53,6 @@ export default function CheckoutPage() {
       })));
     }
   }, [profile]);
-
-  useEffect(() => {
-    if (!authLoading && !user) router.replace("/hesap");
-  }, [authLoading, user, router]);
 
   useEffect(() => {
     if (items.length === 0 && step === "form") router.replace("/");
@@ -90,14 +81,16 @@ export default function CheckoutPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    const basketItems = shipping > 0
-      ? [...items, { name: "Kargo Ücreti", price: shipping, qty: 1 }]
-      : items;
     try {
+      // Fiyatlar sunucuda ürün verisinden yeniden hesaplanır; burada sadece slug/adet gider.
       const res = await fetch("/api/paytr-token", {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({ items: basketItems, total: grandTotal, ...form }),
+        body:    JSON.stringify({
+          items:  items.map(i => ({ slug: i.slug, qty: i.qty })),
+          coupon: couponApplied,
+          ...form,
+        }),
       });
       const data = await res.json();
       if (!res.ok || !data.token) {
@@ -106,8 +99,9 @@ export default function CheckoutPage() {
         return;
       }
       setToken(data.token);
-      trackBeginCheckout(grandTotal, items.map(i => ({ slug: i.slug, name: i.name, price: i.price, qty: i.qty })));
-      localStorage.setItem("obrnhomen-pending-total", String(grandTotal));
+      const paidTotal = typeof data.total === "number" ? data.total : grandTotal;
+      trackBeginCheckout(paidTotal, items.map(i => ({ slug: i.slug, name: i.name, price: i.price, qty: i.qty })));
+      localStorage.setItem("obrnhomen-pending-total", String(paidTotal));
       setStep("paying");
     } catch {
       setError("Bağlantı hatası. Lütfen tekrar deneyin.");
