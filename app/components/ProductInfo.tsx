@@ -7,6 +7,7 @@ import { trackView } from "./RecentlyViewed";
 import { trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 import type { Product } from "@/lib/products";
 import { salePrice, DISCOUNT_PERCENT } from "@/lib/pricing";
+import { WHATSAPP_URL } from "@/lib/storeNav";
 
 /* ── Icon set (outline SVG, Lucide-style) ─────────────────── */
 const TruckIcon = () => (
@@ -248,6 +249,20 @@ export default function ProductInfo({ product }: { product: Product }) {
           >
             {added ? "Sepete Eklendi ✓" : "Sepete Ekle"}
           </button>
+
+          {/* Toplu alım yönlendirmesi — mevlüt/düğün/hac kafilesi gibi çok adetli alımlar */}
+          <a
+            href={`${WHATSAPP_URL}?text=${encodeURIComponent(`Merhaba, "${product.name}" ürününden toplu almak istiyorum. 10+ adet için fiyat alabilir miyim?`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between gap-3 px-4 py-3 border-l-2 transition-opacity hover:opacity-80"
+            style={{ borderColor: "#c9a84c", background: "#fffbf0" }}
+          >
+            <span className="text-xs leading-snug" style={{ color: "#7a5f1a" }}>
+              <strong className="font-medium">Toplu mu alacaksınız?</strong> 10 adet ve üzeri için özel fiyat — WhatsApp&apos;tan teklif alın
+            </span>
+            <span className="text-[10px] tracking-[0.2em] uppercase shrink-0" style={{ color: "#7a5f1a" }}>Teklif →</span>
+          </a>
         </div>
       ) : (
         <div
