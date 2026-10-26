@@ -57,6 +57,25 @@ export const HIDDEN_SLUGS = new Set<string>([
   "tasli-dijital-zikirmatik-10-lu-karisik-renk-set-hatirasi",
   "duzrenk-ceyizlik-flamli-pamuk-esarp-yazma",
   "dogal-taze-misvak-kaliteli-paketli-agiz-bakim-urunu",
+
+  // 2026-10-26 — çoklu paket ilanları (5'li/10'lu/41'li…): toplu alım artık ürün
+  // sayfasındaki toptan teklif kutusundan yürüyor, tekli ürün + toptan fiyat modeli
+  "10-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti_2",
+  "5-li-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti_2",
+  "10-lu-basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik_2",
+  "10-kadife-seccade-500-gr",
+  "renkli-namaz-takkesi-41-li-set",
+  "renkli-namaz-takkesi-12-lu-set",
+  "renkli-namaz-takkesi-10-lu-set",
+  "10-adett-cocuk-bileklik-bilezik-cocuk-takisi",
+
+  // 2026-10-26 — zayıf görsel: beyaz fon kolaj, üstü yazılı/afişli, raf fotoğrafı
+  "basortu-seti-tasli-zikirmatik-inci-tesbih-ceyizlik-seti_2",
+  "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen_2",
+  "karisik-kadife-seccade-500-gr",
+  "karma-kadife-seccade-500-gr",
+  "basortu-tasli-zikirmatik-inci-cam-tesbih-ceyizlik-gelin-flamli-bas-ortu-set_2",
+  "pratik-esarp-namazlik-kendinden-baslikli-namaz-elbisesi-jilesi-likrali-penye-kumas",
 ]);
 
 /** Kapak görseli zayıf ama galeride iyi fotoğrafı olan ürünler: slug → öne alınacak görsel sırası */

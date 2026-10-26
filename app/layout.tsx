@@ -67,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="bg-gradient-to-r from-[#e9d48f] via-[#f3e3a6] to-[#e9d48f] text-[#3b2c08]">
               <div className="mx-auto flex max-w-[1500px] items-center justify-center gap-6 px-4 py-2 text-[12px] md:justify-between md:px-6">
                 <p className="text-center">
-                  Tüm ürünlerde <strong>%10 indirim</strong> · 1000 ₺ üzeri <strong>ücretsiz kargo</strong>
+                  <strong>Toptan satış:</strong> 10 adet ve üzerine özel fiyat · 1000 ₺ üzeri <strong>ücretsiz kargo</strong>
                 </p>
                 <nav className="hidden items-center divide-x divide-[#3b2c08]/30 md:flex">
                   {UTILITY_LINKS.map(({ href, label }) => (
