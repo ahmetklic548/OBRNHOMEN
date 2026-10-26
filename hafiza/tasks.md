@@ -27,5 +27,5 @@
 - [x] [[WholesaleBox]]: ürün sayfasında 1–9 / 10–49 / 50+ kademe tablosu, adet girişi, WhatsApp "Toptan Fiyat Al" (rakam yok, teklifle)
 - [x] Ürün kartlarında "10+ adette toptan fiyat", duyuru şeridi "Toptan satış: 10 adet ve üzerine özel fiyat"
 - [x] 8 paket ilanı (5'li/10'lu/41'li…) + 6 zayıf görselli ürün gizlendi ([[productCuration]])
-- [ ] Kademe indirim oranları kullanıcıdan gelirse sepette otomatik uygula
+- [x] Kademe indirimi canlıda: 10+ %5, 25+ %10, 50+ %15 (site fiyatı üstüne), [[pricing]] WHOLESALE_TIERS; sepette adet −/+ ve "Toptan Fiyat İste" WhatsApp teklif sepeti
 - [ ] /toptan landing sayfası + toptan anahtar kelime reklamı
