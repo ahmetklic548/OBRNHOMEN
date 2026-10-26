@@ -29,3 +29,6 @@
 - [x] 8 paket ilanı (5'li/10'lu/41'li…) + 6 zayıf görselli ürün gizlendi ([[productCuration]])
 - [x] Kademe indirimi canlıda: 10+ %5, 25+ %10, 50+ %15 (site fiyatı üstüne), [[pricing]] WHOLESALE_TIERS; sepette adet −/+ ve "Toptan Fiyat İste" WhatsApp teklif sepeti
 - [ ] /toptan landing sayfası + toptan anahtar kelime reklamı
+- [x] Teklif sepeti akışı: ürün sayfası "N Adet Teklif Sepetine Ekle" → sepet açılır ([[CartButton]] openCart), sepet = Teklif Sepeti, "Sepetteki N Adet İçin Toptan Fiyat Al" tüm listeyi WhatsApp'a yollar
+- [x] Ana sayfa ilk ekran: slider üstünde toptan alıcı bandı (kademeler + 3 adım + "Toptan Alışverişe Başla")
+- [x] CartDrawer body'ye portal ile çiziliyor (sohbet balonu üstüne biniyordu)
