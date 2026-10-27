@@ -33,3 +33,5 @@
 - [x] Ana sayfa ilk ekran: slider üstünde toptan alıcı bandı (kademeler + 3 adım + "Toptan Alışverişe Başla")
 - [x] CartDrawer body'ye portal ile çiziliyor (sohbet balonu üstüne biniyordu)
 - [x] Teklif mesajı: renk/ebat + ürün kodu + "her adet tek ürün" + ürün linki (aynı isimli seccadeler ayırt edilsin); görünür 55 ilanın hepsi tek adetlik
+- [x] 2026-10-27 PayTR tutar kontrolü: notify beklenen vs ödenen tutarı karşılaştırır, /admin/siparisler rozetleri
+- [ ] Sıradaki: aynı isimli ~20 ilanın adına renk ekle
