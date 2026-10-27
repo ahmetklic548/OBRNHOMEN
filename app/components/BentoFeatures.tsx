@@ -48,7 +48,7 @@ const cards = [
     ),
     label: "Hızlı Kargo",
     title: "1–3 iş günü\nteslimat",
-    desc: "1000 ₺ üzeri ücretsiz kargo.",
+    desc: "2000 ₺ üzeri ücretsiz kargo.",
   },
   {
     id: "return",

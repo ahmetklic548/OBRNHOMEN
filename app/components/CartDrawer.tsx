@@ -3,14 +3,14 @@ import { useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-const noopSubscribe = () => () => {};
-const SITE_URL = "https://www.obrnhomen.com";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "./CartContext";
+import { useWholesaleList } from "./WholesaleListContext";
 import Image from "next/image";
 import { unitPriceFor, tierPct, nextTier, QUOTE_FROM_QTY } from "@/lib/pricing";
-import { WHATSAPP_URL } from "@/lib/storeNav";
+
+const noopSubscribe = () => () => {};
 
 const springConfig = { type: "spring", stiffness: 320, damping: 32, mass: 0.8 } as const;
 
@@ -25,22 +25,18 @@ export default function CartDrawer({
   const router = useRouter();
   const isClient = useSyncExternalStore(noopSubscribe, () => true, () => false);
   const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  // Toptan fiyat talebi sepetten değil /toptan sayfasından (min. tutarlı) yapılır
   const bigOrder = count >= QUOTE_FROM_QTY;
+  const wholesale = useWholesaleList();
 
-  // Teklif sepeti: listeyi adetleriyle WhatsApp'a gönderir, son fiyatı mağaza verir
-  const waText = encodeURIComponent(
-    "Merhaba! OBRNHOMEN'den toptan almak istiyorum:\n\n" +
-      items
-        .map((i, n) =>
-          `${n + 1}) ${i.name}` +
-          (i.variant ? `\n   Renk/Ebat: ${i.variant}` : "") +
-          (i.code ? `\n   Ürün kodu: ${i.code}` : "") +
-          `\n   Adet: ${i.qty} (her adet tek ürün)` +
-          `\n   ${SITE_URL}/products/${i.slug}`
-        )
-        .join("\n\n") +
-      `\n\nToplam: ${items.length} çeşit, ${count} adet\nSitedeki tutar: ${tl(total)} ₺\nBu liste için toptan fiyat alabilir miyim?`
-  );
+  const moveToWholesale = () => {
+    for (const i of items) {
+      wholesale.add({ slug: i.slug, name: i.name, price: i.price, image: i.image, code: i.code, variant: i.variant }, i.qty);
+    }
+    clear();
+    onClose();
+    router.push("/toptan");
+  };
 
   // Header sticky/z-index'li bir katman; çekmece onun içinde kalırsa sohbet ve
   // yukarı-çık butonları üstüne biniyor — bu yüzden body'ye portal ile çiziliyor.
@@ -74,7 +70,7 @@ export default function CartDrawer({
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b" style={{ borderColor: "#efefef" }}>
               <div>
-                <p className="text-[9px] tracking-[0.4em] uppercase mb-0.5" style={{ color: "#999" }}>Sepet · Teklif Sepeti</p>
+                <p className="text-[9px] tracking-[0.4em] uppercase mb-0.5" style={{ color: "#999" }}>Sepet</p>
                 <p className="text-sm" style={{ color: "#0a0a0a" }}>{items.length} çeşit · {count} adet</p>
               </div>
               <button
@@ -89,13 +85,15 @@ export default function CartDrawer({
               </button>
             </div>
 
-            {/* Toptan akışı */}
-            <div className="px-6 py-3 text-[11px] leading-snug" style={{ background: "#fffbf0", color: "#5c4710" }}>
-              <strong>Toptan mı alıyorsunuz?</strong> ① Ürünlerinizi seçin ② Adetleri girin ③ Aşağıdan tek tıkla toptan fiyat alın.
-              {items.length > 0 && (
-                <Link href="/koleksiyon" onClick={onClose} className="ml-1 underline">Ürün eklemeye devam et</Link>
-              )}
-            </div>
+            {/* Toptan alıcıları ayrı akışa yönlendir */}
+            <Link
+              href="/toptan"
+              onClick={onClose}
+              className="block px-6 py-2.5 text-[11px] leading-snug hover:underline"
+              style={{ background: "#fffbf0", color: "#5c4710" }}
+            >
+              <strong>Kafile, mevlüt, dernek veya mağaza için mi?</strong> Toptan Sipariş sayfasından özel fiyat alın →
+            </Link>
 
             {/* Items */}
             <div className="flex-1 overflow-y-auto px-6 py-4 space-y-5">
@@ -190,9 +188,17 @@ export default function CartDrawer({
                   </span>
                 </div>
                 {bigOrder && (
-                  <p className="text-[11px] leading-snug mb-4 px-3 py-2" style={{ background: "#fffbf0", color: "#7a5f1a" }}>
-                    {QUOTE_FROM_QTY}+ adetlik siparişlerde daha iyi fiyat verebiliriz — listeyi gönderin, teklif hazırlayalım.
-                  </p>
+                  <div className="text-[11px] leading-snug mb-4 px-3 py-2.5" style={{ background: "#fffbf0", color: "#7a5f1a" }}>
+                    Büyük bir sipariş gibi görünüyor — toptan alıcıysanız daha iyi fiyat verebiliriz.
+                    <button
+                      type="button"
+                      onClick={moveToWholesale}
+                      className="mt-2 block w-full py-2 text-[10px] uppercase tracking-[0.15em] text-white"
+                      style={{ background: "#1a1208" }}
+                    >
+                      Sepeti Toptan Listeme Taşı
+                    </button>
+                  </div>
                 )}
                 <button
                   onClick={() => { onClose(); router.push("/checkout"); }}
@@ -202,17 +208,6 @@ export default function CartDrawer({
                   Güvenli Ödeme Yap
                 </button>
 
-                <a
-                  href={`${WHATSAPP_URL}?text=${waText}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full py-3 text-[10px] tracking-[0.2em] uppercase text-center transition-opacity duration-200 mb-3 hover:opacity-80"
-                  style={bigOrder
-                    ? { background: "#1f9d55", color: "#ffffff" }
-                    : { border: "1px solid #1f9d55", color: "#1f9d55" }}
-                >
-                  Sepetteki {count} Adet İçin Toptan Fiyat Al
-                </a>
                 <button
                   onClick={clear}
                   className="block w-full text-center text-[9px] tracking-widest uppercase transition-opacity hover:opacity-50 py-1"

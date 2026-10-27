@@ -9,6 +9,7 @@ export const CATEGORY_LINKS = [
   { href: "/koleksiyon/E%C5%9Farp", label: "Eşarp" },
   { href: "/koleksiyon/Din%20Kitab%C4%B1", label: "Din Kitabı" },
   { href: "/blog", label: "Hac & Umre Rehberi" },
+  { href: "/toptan", label: "Toptan Sipariş" },
 ];
 
 export const UTILITY_LINKS = [

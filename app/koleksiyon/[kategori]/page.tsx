@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 const categoryMeta: Record<string, { title: string; description: string; keywords: string[] }> = {
   Tesbih: {
     title: "Tesbih Çeşitleri | El İşi & Hediyelik Tesbih",
-    description: "İnci, akik, kuka ve ahşap tesbih modelleri. Hac, umre, mevlüt hediyeliği için özel kutulu tesbihler. Ücretsiz kargo 1000₺ üzeri.",
+    description: "İnci, akik, kuka ve ahşap tesbih modelleri. Hac, umre, mevlüt hediyeliği için özel kutulu tesbihler. Ücretsiz kargo 2000₺ üzeri.",
     keywords: ["tesbih", "hediyelik tesbih", "inci tesbih", "akik tesbih", "kutulu tesbih", "mevlüt tesbih"],
   },
   Seccade: {

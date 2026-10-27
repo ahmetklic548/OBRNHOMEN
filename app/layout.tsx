@@ -5,6 +5,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { CartProvider } from "@/app/components/CartContext";
 import { AuthProvider } from "@/app/components/AuthProvider";
 import { WishlistProvider } from "@/app/components/WishlistContext";
+import { WholesaleListProvider } from "@/app/components/WholesaleListContext";
 import NavbarClient from "@/app/components/NavbarClient";
 import LiveChatWidget from "@/app/components/LiveChatWidget";
 import NewsletterPopup from "@/app/components/NewsletterPopup";
@@ -61,13 +62,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col">
         <CartProvider>
           <WishlistProvider>
+          <WholesaleListProvider>
           <AuthProvider>
 
             {/* Duyuru şeridi */}
             <div className="bg-gradient-to-r from-[#e9d48f] via-[#f3e3a6] to-[#e9d48f] text-[#3b2c08]">
               <div className="mx-auto flex max-w-[1500px] items-center justify-center gap-6 px-4 py-2 text-[12px] md:justify-between md:px-6">
                 <p className="text-center">
-                  <strong>Toptan satış:</strong> 10 adet ve üzerine özel fiyat · 1000 ₺ üzeri <strong>ücretsiz kargo</strong>
+                  <Link href="/toptan" className="hover:underline"><strong>Toptan sipariş:</strong> Hac/umre kafilesi, mevlüt, dernek ve mağazalara özel fiyat →</Link>
+                  <span className="hidden sm:inline"> · 2000 ₺ üzeri <strong>ücretsiz kargo</strong></span>
                 </p>
                 <nav className="hidden items-center divide-x divide-[#3b2c08]/30 md:flex">
                   {UTILITY_LINKS.map(({ href, label }) => (
@@ -151,6 +154,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <NewsletterPopup />
             <ScrollToTop />
           </AuthProvider>
+          </WholesaleListProvider>
           </WishlistProvider>
         </CartProvider>
         <GoogleAnalytics gaId="G-EZ3ZCTGL48" />

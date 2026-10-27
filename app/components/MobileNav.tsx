@@ -45,7 +45,7 @@ export default function MobileNav() {
                   key={link.href}
                   href={link.href}
                   onClick={close}
-                  className="flex items-center justify-between border-b border-stone-100 px-5 py-4 text-sm uppercase text-stone-800"
+                  className={`flex items-center justify-between border-b border-stone-100 px-5 py-4 text-sm uppercase ${link.href === "/toptan" ? "font-semibold text-[#b8902e]" : "text-stone-800"}`}
                 >
                   {link.label}
                   <span className="text-stone-400">›</span>

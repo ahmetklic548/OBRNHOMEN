@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAllProducts } from "@/lib/products";
-import { salePrice } from "@/lib/pricing";
+import { salePrice, FREE_SHIPPING_OVER, SHIPPING_FEE } from "@/lib/pricing";
 
 export const dynamic = "force-static";
 export const revalidate = 86400; // 24 saat
@@ -30,7 +30,7 @@ export async function GET() {
       <g:product_type><![CDATA[${p.category}]]></g:product_type>
       <g:shipping>
         <g:country>TR</g:country>
-        <g:price>${p.price >= 1000 ? "0.00" : "200.00"} TRY</g:price>
+        <g:price>${salePrice(p.price) >= FREE_SHIPPING_OVER ? "0.00" : SHIPPING_FEE.toFixed(2)} TRY</g:price>
       </g:shipping>
       <g:identifier_exists>false</g:identifier_exists>
       ${p.color ? `<g:color><![CDATA[${p.color}]]></g:color>` : ""}

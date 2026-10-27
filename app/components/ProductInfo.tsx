@@ -8,7 +8,6 @@ import { trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analyti
 import type { Product } from "@/lib/products";
 import { salePrice, DISCOUNT_PERCENT, unitPriceFor, tierPct } from "@/lib/pricing";
 import WholesaleBox from "./WholesaleBox";
-import { openCart } from "./CartButton";
 
 /* ── Icon set (outline SVG, Lucide-style) ─────────────────── */
 const TruckIcon = () => (
@@ -34,7 +33,7 @@ const BadgeCheckIcon = () => (
 );
 
 const TRUST_ITEMS = [
-  { Icon: TruckIcon,      label: "1000 ₺ üzeri ücretsiz kargo" },
+  { Icon: TruckIcon,      label: "2000 ₺ üzeri ücretsiz kargo" },
   { Icon: ShieldIcon,     label: "256-bit SSL güvenli ödeme"   },
   { Icon: ReturnIcon,     label: "14 gün koşulsuz iade"         },
   { Icon: BadgeCheckIcon, label: "Orijinal ve garantili ürün"  },
@@ -278,10 +277,9 @@ export default function ProductInfo({ product }: { product: Product }) {
 
           {/* Toptan satış — adet kademeleri + WhatsApp teklif */}
           <WholesaleBox
-            unitPrice={unit}
+            item={{ slug: product.slug, name: product.name, price: unit, image: product.images[0] ?? "", ...cartMeta(product) }}
             qty={qty}
             onPickQty={setQty}
-            onAddToQuote={() => { handleAdd(); openCart(); }}
           />
         </div>
       ) : (
@@ -337,8 +335,8 @@ export default function ProductInfo({ product }: { product: Product }) {
 
         <Accordion title="Kargo & Teslimat">
           <div className="space-y-2">
-            <p>1000 ₺ ve üzeri siparişlerde kargo ücretsizdir.</p>
-            <p>1000 ₺ altı siparişlerde 200 ₺ kargo ücreti uygulanır.</p>
+            <p>2000 ₺ ve üzeri siparişlerde kargo ücretsizdir.</p>
+            <p>2000 ₺ altı siparişlerde 200 ₺ kargo ücreti uygulanır.</p>
             <p>Siparişler 1–3 iş günü içinde kargoya verilir.</p>
             <p>Teslimat süresi kargo firmasına göre 1–3 iş günüdür.</p>
           </div>

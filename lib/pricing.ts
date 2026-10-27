@@ -32,7 +32,9 @@ export function unitPriceFor(saleUnit: number, qty: number): number {
 }
 
 export const SHIPPING_FEE       = 200;
-export const FREE_SHIPPING_OVER = 1000;
+export const FREE_SHIPPING_OVER = 2000;
+/** Toptan Sipariş sayfasında WhatsApp fiyat talebi için minimum liste tutarı (site fiyatlarıyla) */
+export const WHOLESALE_MIN_TOTAL = 5000;
 export const VALID_COUPONS: Record<string, number> = { HOSGELDIN10: 10 };
 
 /** Sepet toplamı (indirimli fiyatlarla) → kupon indirimi, kargo, ödenecek tutar.

@@ -64,7 +64,7 @@ export default function ProductCard({ product, priority = false }: { product: Pr
         <span className="mr-2 text-stone-400 line-through">{formatTL(product.price)}</span>
         <span className="font-medium text-[#d23c3c]">{formatTL(price)}</span>
       </p>
-      <p className="mt-1 text-[11px] text-[#9a7a2c]">10+ adette %5&apos;ten başlayan toptan indirim</p>
+      <p className="mt-1 text-[11px] text-[#9a7a2c]">10+ adette %5&apos;ten başlayan indirim</p>
     </Link>
   );
 }

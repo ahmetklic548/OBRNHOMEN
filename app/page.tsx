@@ -7,11 +7,11 @@ import ProductCarousel from "@/app/components/store/ProductCarousel";
 import Testimonials from "@/app/components/Testimonials";
 import IntroSplash from "@/app/components/IntroSplash";
 import { INTRO_PREPAINT_SCRIPT } from "@/lib/intro";
-import { WHOLESALE_TIERS } from "@/lib/pricing";
+import { WHOLESALE_MIN_TOTAL } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
-  description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler. 198+ ürün, ücretsiz kargo 1000₺ üzeri, 14 gün iade garantisi.",
+  description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler. 198+ ürün, ücretsiz kargo 2000₺ üzeri, 14 gün iade garantisi.",
   keywords: ["tesbih", "seccade", "hac hediyeliği", "umre hediyeliği", "mevlüt hediyeliği", "hediyelik set", "el işi hediye", "namaz örtüsü", "çeyizlik tesbih", "toplu hediyelik", "ramazan hediyesi", "düğün hediyesi dini", "misvak", "ihram", "obrnhomen"],
   openGraph: {
     title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
@@ -176,21 +176,21 @@ export default function Home() {
       <section className="bg-[#1a1208] text-white">
         <div className="mx-auto flex max-w-[1500px] flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between md:gap-6 md:px-6">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.35em] text-[#e9d48f]">Toptan alıcılar için</p>
+            <p className="text-[10px] uppercase tracking-[0.35em] text-[#e9d48f]">Toptan sipariş</p>
             <p className="mt-1 text-[15px] md:text-lg" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-              {WHOLESALE_TIERS.map((t) => `${t.min}+ adette %${t.pct}`).join(" · ")} ek indirim
+              Hac/umre kafilesi, mevlüt, cami/dernek veya mağaza mısınız?
             </p>
           </div>
           <ol className="flex flex-wrap gap-x-5 gap-y-1 text-[12px] text-white/80">
-            <li><span className="text-[#e9d48f]">①</span> Ürünlerinizi seçin</li>
-            <li><span className="text-[#e9d48f]">②</span> Adetleri girin</li>
-            <li><span className="text-[#e9d48f]">③</span> Sepetten toptan fiyat alın</li>
+            <li><span className="text-[#e9d48f]">①</span> Ürünleri tek tek seçin</li>
+            <li><span className="text-[#e9d48f]">②</span> Adetleri yazın</li>
+            <li><span className="text-[#e9d48f]">③</span> WhatsApp&apos;tan fiyat alın</li>
           </ol>
           <Link
-            href="/koleksiyon"
+            href="/toptan"
             className="self-start bg-[#e9d48f] px-6 py-2.5 text-[12px] uppercase tracking-[0.15em] text-black transition-colors hover:bg-white md:self-auto"
           >
-            Toptan Alışverişe Başla
+            Toptan Sipariş Ver
           </Link>
         </div>
       </section>
@@ -239,13 +239,14 @@ export default function Home() {
             <span className="text-[#e9d48f]">Obrnhomen</span>
           </h2>
           <p className="mt-5 max-w-md text-sm text-white/80">
-            Ürünlerinizi seçin, adetleri girin, sepetinizden tek tıkla toptan fiyat alın.
+            Farklı ürünleri istediğiniz adette seçin, listenizi gönderin, size özel toptan fiyatı WhatsApp&apos;tan iletelim.
+            <span className="mt-1 block text-[12px] text-white/60">Minimum liste tutarı {WHOLESALE_MIN_TOTAL.toLocaleString("tr-TR")} ₺</span>
           </p>
           <Link
-            href="/koleksiyon"
+            href="/toptan"
             className="mt-7 bg-white px-8 py-3 text-[13px] uppercase tracking-[0.15em] text-black transition-colors hover:bg-[#e9d48f]"
           >
-            Ürünleri Seç, Fiyat Al
+            Toptan Sipariş Ver
           </Link>
         </div>
       </section>
@@ -280,7 +281,7 @@ export default function Home() {
 
 function TrustBar() {
   const items = [
-    { t: "Ücretsiz Kargo", d: "1000 ₺ üzeri siparişlerde" },
+    { t: "Ücretsiz Kargo", d: "2000 ₺ üzeri siparişlerde" },
     { t: "14 Gün İade", d: "İade garantisi" },
     { t: "Güvenli Ödeme", d: "PayTR altyapısı ile" },
     { t: "WhatsApp Destek", d: "Pzt–Cmt 09:00–21:00" },

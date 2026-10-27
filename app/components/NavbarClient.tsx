@@ -87,7 +87,7 @@ export default function NavbarClient() {
                 <Link
                   href={href}
                   className={`block py-3 text-[13px] uppercase tracking-[0.04em] transition-colors hover:text-[#b8902e] lg:text-sm ${
-                    active ? "text-[#b8902e]" : "text-stone-800"
+                    active || href === "/toptan" ? "text-[#b8902e] font-semibold" : "text-stone-800"
                   }`}
                 >
                   {label}
