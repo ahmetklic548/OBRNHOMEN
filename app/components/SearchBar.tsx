@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { prepare, searchProducts, fold } from "@/lib/search";
 import { WHATSAPP_URL } from "@/lib/storeNav";
+import { categoryHref } from "@/lib/categories";
+import { useHiddenSlugs } from "@/lib/hidden";
 
 const HISTORY_KEY = "search-history";
 const MAX_HISTORY = 8;
@@ -51,8 +53,6 @@ function loadIndex(): Promise<void> {
   return loading;
 }
 
-const catHref = (cat: string, sub?: string) =>
-  `/koleksiyon/${encodeURIComponent(cat)}${sub ? `?alt=${encodeURIComponent(sub)}` : ""}`;
 
 export default function SearchBar() {
   const router = useRouter();
@@ -71,7 +71,11 @@ export default function SearchBar() {
     setTimeout(() => inputRef.current?.focus(), 50);
   };
 
-  const all = useMemo(() => (indexReady && query.trim() ? searchProducts(index, query) : []), [query, indexReady]);
+  const hidden = useHiddenSlugs();
+  const all = useMemo(
+    () => (indexReady && query.trim() ? searchProducts(index, query).filter((r) => !hidden.has(r.slug)) : []),
+    [query, indexReady, hidden]
+  );
   const results = all.slice(0, 6);
 
   // Sonuçların en çok düştüğü alt gruplar → "şu bölümde ara" önerisi
@@ -120,7 +124,7 @@ export default function SearchBar() {
   const goGroup = (cat: string, sub: string) => {
     saveHistory(query.trim());
     close();
-    router.push(catHref(cat, sub));
+    router.push(categoryHref(cat, sub));
   };
 
   const pick = (term: string) => {

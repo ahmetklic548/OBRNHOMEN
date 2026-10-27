@@ -8,6 +8,8 @@ import { cartMeta } from "@/app/components/CartContext";
 import { WHOLESALE_MIN_TOTAL } from "@/lib/pricing";
 import { WHATSAPP_URL } from "@/lib/storeNav";
 import { prepare, searchProducts } from "@/lib/search";
+import { useHiddenSlugs } from "@/lib/hidden";
+import Hint from "@/app/components/Hint";
 
 export interface ToptanProduct {
   slug: string;
@@ -35,7 +37,18 @@ const CUSTOMER_TYPES = [
   "Diğer",
 ];
 
-const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const RECOMMENDED = "Hac & Umre İçin Önerilenler";
+/** Toptana uygunluk puanı: paket/dağıtmalık/kafile/mevlüt ürünleri önce */
+const WHOLESALE_CATS = new Set(["Hac Umre Kafile Setleri", "Hediyelik Setler", "Tesbih", "Zikirmatik", "Misvak, Esans & Sürme", "Takke & Yüzük", "Eşarp, Yazma & Örtü", "Yasin & Dini Kitaplar"]);
+function wholesaleScore(p: ToptanProduct): number {
+  const t = p.name.toLocaleLowerCase("tr-TR");
+  let s = 0;
+  if (/\d+\s*(adet|'?l[iıuü]\b|kişilik)/.test(t)) s += 3;
+  if (/dağıtmalık|dagitmalik|toplu|kafile|kişilik/.test(t)) s += 3;
+  if (/hac|umre|mevl[iüu]t|mevlid/.test(t)) s += 2;
+  if (WHOLESALE_CATS.has(p.category)) s += 2;
+  return s;
+}
 const toItem = (p: ToptanProduct): Omit<WholesaleItem, "qty"> => ({
   slug: p.slug, name: p.name, price: p.price, image: p.image, ...cartMeta({ id: p.code, color: p.color, size: p.size }),
 });
@@ -44,9 +57,11 @@ const FORM_KEY = "obrnhomen-toptan-form";
 type Form = { name: string; city: string; type: string; org: string; date: string; note: string };
 const EMPTY_FORM: Form = { name: "", city: "", type: "", org: "", date: "", note: "" };
 
-export default function ToptanClient({ products, categories }: { products: ToptanProduct[]; categories: string[] }) {
+export default function ToptanClient({ products: allProducts, categories }: { products: ToptanProduct[]; categories: string[] }) {
+  const hidden = useHiddenSlugs();
+  const products = useMemo(() => allProducts.filter(p => !hidden.has(p.slug)), [allProducts, hidden]);
   const list = useWholesaleList();
-  const [cat, setCat] = useState<string>("Tümü");
+  const [cat, setCat] = useState<string>(RECOMMENDED);
   const [q, setQ] = useState("");
   const [form, setForm] = useState<Form>(EMPTY_FORM);
   const [formLoaded, setFormLoaded] = useState(false);
@@ -70,6 +85,11 @@ export default function ToptanClient({ products, categories }: { products: Topta
   const prepared = useMemo(() => prepare(products.map(p => ({ ...p, id: p.code }))), [products]);
   const visible = useMemo(() => {
     const base = q.trim() ? searchProducts(prepared, q) : products;
+    if (cat === RECOMMENDED) {
+      // Önerilenler: toptana uygun olanlar puan sırasıyla (arama varsa alaka sırası korunur)
+      const scored = base.filter(p => wholesaleScore(p) >= 4);
+      return q.trim() ? scored : [...scored].sort((a, b) => wholesaleScore(b) - wholesaleScore(a));
+    }
     return cat === "Tümü" ? base : base.filter(p => p.category === cat);
   }, [prepared, products, cat, q]);
 
@@ -105,10 +125,9 @@ export default function ToptanClient({ products, categories }: { products: Topta
       lines.join("\n\n"),
       "",
       `Toplam: ${list.items.length} çeşit, ${list.count} adet`,
-      `Liste tutarı (site fiyatıyla): ${tl(list.total)} ₺`,
       "Bu liste için toptan fiyat alabilir miyim?",
     ].filter(l => l !== null).join("\n");
-  }, [list.items, list.count, list.total, form]);
+  }, [list.items, list.count, form]);
 
   const send = () => {
     setTried(true);
@@ -123,7 +142,7 @@ export default function ToptanClient({ products, categories }: { products: Topta
       {/* ── Giriş ─────────────────────────────────────────── */}
       <section className="bg-[#1a1208] text-white">
         <div className="mx-auto max-w-[1400px] px-4 py-10 md:px-6 md:py-14">
-          <p className="text-[10px] uppercase tracking-[0.4em] text-[#e9d48f]">OBRNHOMEN · Toptan</p>
+          <p className="text-[13px] uppercase tracking-[0.04em] text-[#e9d48f]">OBRNHOMEN · Toptan</p>
           <h1 className="mt-3 text-3xl leading-tight md:text-5xl" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
             Toptan Sipariş
           </h1>
@@ -149,7 +168,7 @@ export default function ToptanClient({ products, categories }: { products: Topta
           </ol>
 
           <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-white/70">
-            <span>✓ Minimum liste tutarı <strong className="text-[#e9d48f]">{tl(WHOLESALE_MIN_TOTAL)} ₺</strong> (site fiyatlarıyla)</span>
+            <span>✓ Fiyatlar size özel teklifle belirlenir, sitedeki perakende fiyatlardan <strong className="text-[#e9d48f]">belirgin şekilde düşüktür</strong></span>
             <span>✓ Farklı ürünler bir arada</span>
             <span>✓ Toplu paketleme imkânı</span>
             <span>✓ Ödeme ve kargo WhatsApp&apos;ta netleşir</span>
@@ -175,7 +194,7 @@ export default function ToptanClient({ products, categories }: { products: Topta
           </div>
 
           <div className="mb-5 flex gap-2 overflow-x-auto pb-1">
-            {["Tümü", ...categories].map(c => (
+            {[RECOMMENDED, "Tümü", ...categories].map(c => (
               <button
                 key={c}
                 type="button"
@@ -206,17 +225,17 @@ export default function ToptanClient({ products, categories }: { products: Topta
                     <Link href={`/products/${p.slug}`} target="_blank" className="relative block aspect-square bg-[#efece6]">
                       {p.image && <Image src={p.image} alt={p.name} fill sizes="(max-width: 640px) 50vw, 20vw" className="object-cover" />}
                       {qty > 0 && (
-                        <span className="absolute left-2 top-2 bg-[#1f9d55] px-2 py-0.5 text-[11px] font-semibold text-white">
+                        <span className="absolute left-2 top-2 bg-[#1f9d55] px-2 py-0.5 text-[13px] font-semibold text-white">
                           Listede: {qty}
                         </span>
                       )}
                     </Link>
                     <div className="flex flex-1 flex-col p-3">
                       <p className="line-clamp-2 text-[12px] leading-snug text-stone-900">{p.name}</p>
-                      <p className="mt-1 text-[10px] text-stone-400">
+                      <p className="mt-1 text-[13px] text-stone-400">
                         {[variant, `Kod: ${p.code}`].filter(Boolean).join(" · ")}
                       </p>
-                      <p className="mt-1.5 text-[12px] text-stone-600">{tl(p.price)} ₺ <span className="text-[10px] text-stone-400">/ adet</span></p>
+                      <p className="mt-1.5 text-[13px] font-medium text-[#9a7a2c]">Toptan fiyat: teklifle</p>
 
                       <div className="mt-auto pt-3">
                         <div className="flex items-center border" style={{ borderColor: "#e0e0e0" }}>
@@ -240,7 +259,7 @@ export default function ToptanClient({ products, categories }: { products: Topta
                               key={n}
                               type="button"
                               onClick={() => list.add(toItem(p), n)}
-                              className="border py-1 text-[10px] text-stone-600 transition-colors hover:border-black hover:text-black"
+                              className="border py-1 text-[13px] text-stone-600 transition-colors hover:border-black hover:text-black"
                               style={{ borderColor: "#e5e5e5" }}
                             >
                               +{n}
@@ -262,11 +281,11 @@ export default function ToptanClient({ products, categories }: { products: Topta
           <div className="border bg-white lg:max-h-[calc(100vh-140px)] lg:overflow-y-auto" style={{ borderColor: "#e9d9a6" }}>
             <div className="flex items-center justify-between px-5 py-4" style={{ background: "#fffbf0" }}>
               <div>
-                <p className="text-[10px] uppercase tracking-[0.3em]" style={{ color: "#9a7a2c" }}>2 · Toptan Listem</p>
+                <p className="text-[13px] uppercase tracking-[0.04em]" style={{ color: "#9a7a2c" }}>2 · Toptan Listem</p>
                 <p className="mt-0.5 text-sm text-stone-800">{list.items.length} çeşit · {list.count} adet</p>
               </div>
               {list.items.length > 0 && (
-                <button type="button" onClick={list.clear} className="text-[10px] uppercase tracking-widest text-stone-400 hover:text-red-500">
+                <button type="button" onClick={list.clear} className="text-[13px] uppercase tracking-widest text-stone-400 hover:text-red-500">
                   Temizle
                 </button>
               )}
@@ -285,7 +304,7 @@ export default function ToptanClient({ products, categories }: { products: Topta
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="line-clamp-1 text-xs text-stone-800">{i.name}</p>
-                      <p className="text-[10px] text-stone-400">{[i.variant, i.code && `Kod: ${i.code}`].filter(Boolean).join(" · ")}</p>
+                      <p className="text-[13px] text-stone-400">{[i.variant, i.code && `Kod: ${i.code}`].filter(Boolean).join(" · ")}</p>
                       <div className="mt-1.5 flex items-center justify-between gap-2">
                         <input
                           type="number"
@@ -296,7 +315,7 @@ export default function ToptanClient({ products, categories }: { products: Topta
                           style={{ borderColor: "#e0e0e0" }}
                           aria-label={`${i.name} adet`}
                         />
-                        <span className="text-xs text-stone-600">{tl(i.price * i.qty)} ₺</span>
+                        <span className="text-[13px] text-stone-500">adet</span>
                       </div>
                     </div>
                     <button type="button" onClick={() => list.remove(i.slug)} className="self-start text-sm text-stone-300 hover:text-red-400" aria-label={`${i.name} çıkar`}>✕</button>
@@ -307,24 +326,23 @@ export default function ToptanClient({ products, categories }: { products: Topta
 
             {/* Tutar + minimum */}
             <div className="border-t px-5 py-4" style={{ borderColor: "#efefef" }}>
-              <div className="flex items-baseline justify-between">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-stone-500">Liste tutarı</span>
-                <span className="text-xl" style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0a0a0a" }}>{tl(list.total)} ₺</span>
+              <div className="flex items-center text-[15px] font-medium text-stone-800">
+                Toptan teklif için listeniz
+                <Hint>Toptan fiyat verebilmemiz için listenin belirli bir büyüklükte olması gerekir. Çubuk dolunca &ldquo;Fiyat Al&rdquo; düğmesi açılır. Fiyatınızı WhatsApp&apos;tan size özel iletiriz.</Hint>
               </div>
-              <p className="mt-0.5 text-[10px] text-stone-400">Site fiyatlarıyla — toptan fiyatınız bu tutarın altında olur.</p>
-              <div className="mt-3 h-1.5 w-full bg-stone-100">
+              <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-stone-100">
                 <div className="h-full transition-all" style={{ width: `${progress}%`, background: remaining ? "#c9a84c" : "#1f9d55" }} />
               </div>
-              <p className="mt-1.5 text-[11px]" style={{ color: remaining ? "#9a7a2c" : "#1f9d55" }}>
+              <p className="mt-1.5 text-[13px]" style={{ color: remaining ? "#9a7a2c" : "#1f9d55" }}>
                 {remaining
-                  ? `Toptan fiyat için ${tl(remaining)} ₺ daha ekleyin (min. ${tl(WHOLESALE_MIN_TOTAL)} ₺)`
-                  : "✓ Minimum tutar tamam — toptan fiyat alabilirsiniz"}
+                  ? `%${Math.round(progress)} doldu — birkaç ürün ya da adet daha ekleyin`
+                  : "✓ Listeniz hazır — toptan fiyat alabilirsiniz"}
               </p>
             </div>
 
             {/* Bilgiler */}
             <div className="space-y-3 border-t px-5 py-4" style={{ borderColor: "#efefef" }}>
-              <p className="text-[10px] uppercase tracking-[0.3em]" style={{ color: "#9a7a2c" }}>3 · Bilgileriniz</p>
+              <p className="text-[13px] uppercase tracking-[0.04em]" style={{ color: "#9a7a2c" }}>3 · Bilgileriniz</p>
               <input className={field} style={{ borderColor: tried && !form.name.trim() ? "#dc2626" : "#e0e0e0" }} placeholder="Ad Soyad *" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
               <input className={field} style={{ borderColor: tried && !form.city.trim() ? "#dc2626" : "#e0e0e0" }} placeholder="Şehir *" value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))} />
               <select className={field} style={{ borderColor: tried && !form.type ? "#dc2626" : "#e0e0e0", color: form.type ? "#0a0a0a" : "#999" }} value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value }))}>
@@ -333,7 +351,7 @@ export default function ToptanClient({ products, categories }: { products: Topta
               </select>
               <input className={field} style={{ borderColor: "#e0e0e0" }} placeholder="Firma / Kurum adı (isteğe bağlı)" value={form.org} onChange={e => setForm(f => ({ ...f, org: e.target.value }))} />
               <label className="block">
-                <span className="mb-1 block text-[10px] text-stone-400">Ne zamana lazım? (isteğe bağlı)</span>
+                <span className="mb-1 block text-[13px] text-stone-400">Ne zamana lazım? (isteğe bağlı)</span>
                 <input type="date" className={field} style={{ borderColor: "#e0e0e0" }} value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} />
               </label>
               <textarea rows={2} className={`${field} resize-none`} style={{ borderColor: "#e0e0e0" }} placeholder="Not: paketleme, isim baskısı, teslimat vb. (isteğe bağlı)" value={form.note} onChange={e => setForm(f => ({ ...f, note: e.target.value }))} />
@@ -341,22 +359,22 @@ export default function ToptanClient({ products, categories }: { products: Topta
               <button
                 type="button"
                 onClick={send}
-                className="w-full py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-white transition-opacity"
+                className="w-full py-3.5 text-[13px] font-medium uppercase tracking-[0.04em] text-white transition-opacity"
                 style={{ background: canSend ? "#1f9d55" : "#9ca3af", cursor: canSend ? "pointer" : "not-allowed" }}
                 aria-disabled={!canSend}
               >
                 WhatsApp&apos;tan Toptan Fiyat Al
               </button>
               {tried && !canSend && (
-                <p className="text-[11px] text-red-600">
+                <p className="text-[13px] text-red-600">
                   {list.items.length === 0
                     ? "Önce listenize ürün ekleyin."
                     : remaining
-                      ? `Liste tutarı en az ${tl(WHOLESALE_MIN_TOTAL)} ₺ olmalı.`
+                      ? "Toptan teklif için listeniz biraz daha büyümeli (çubuk dolmalı)."
                       : `Lütfen doldurun: ${missing.join(", ")}.`}
                 </p>
               )}
-              <p className="text-[10px] leading-relaxed text-stone-400">
+              <p className="text-[13px] leading-relaxed text-stone-400">
                 Butona basınca listeniz WhatsApp&apos;ta hazır mesaj olarak açılır; göndermeniz yeterli.
                 Az adetli alımlar için <Link href="/koleksiyon" className="underline">mağazadan</Link> hemen sipariş verebilirsiniz.
               </p>
@@ -372,12 +390,12 @@ export default function ToptanClient({ products, categories }: { products: Topta
         style={{ borderColor: "#e9d9a6" }}
       >
         <span className="text-xs text-stone-700">
-          <strong>{list.items.length}</strong> çeşit · <strong>{list.count}</strong> adet · {tl(list.total)} ₺
-          <span className="block text-[10px]" style={{ color: remaining ? "#9a7a2c" : "#1f9d55" }}>
-            {remaining ? `Min. tutara ${tl(remaining)} ₺ kaldı` : "✓ Fiyat alabilirsiniz"}
+          <strong>{list.items.length}</strong> çeşit · <strong>{list.count}</strong> adet
+          <span className="block text-[13px]" style={{ color: remaining ? "#9a7a2c" : "#1f9d55" }}>
+            {remaining ? `Liste %${Math.round(progress)} doldu` : "✓ Fiyat alabilirsiniz"}
           </span>
         </span>
-        <span className="shrink-0 bg-[#1a1208] px-4 py-2 text-[11px] uppercase tracking-[0.15em] text-[#e9d48f]">Listeyi gör</span>
+        <span className="shrink-0 bg-[#1a1208] px-4 py-2 text-[13px] uppercase tracking-[0.15em] text-[#e9d48f]">Listeyi gör</span>
       </a>
     </div>
   );

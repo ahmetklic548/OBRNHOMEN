@@ -8,10 +8,14 @@ import CartButton from "./CartButton";
 import MobileNav from "./MobileNav";
 import SearchBar from "./SearchBar";
 import KaabaMark from "./KaabaMark";
-import { CATEGORY_LINKS, INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/storeNav";
+import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/storeNav";
+import { NAV_GROUPS, categoryHref } from "@/lib/categories";
+
+const navItem = "block py-3 text-[14px] tracking-[0.02em] transition-colors hover:text-[#b8902e]";
 
 export default function NavbarClient() {
   const [scrolled, setScrolled] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -77,24 +81,71 @@ export default function NavbarClient() {
         </div>
       </div>
 
-      {/* Kategori menüsü */}
-      <nav className="hidden border-y border-stone-200 bg-[#f1efea] md:block">
-        <ul className="mx-auto flex max-w-[1500px] items-center justify-center gap-x-7 px-6 lg:gap-x-9">
-          {CATEGORY_LINKS.map(({ href, label }) => {
-            const active = decodeURIComponent(pathname) === decodeURIComponent(href);
+      {/* Kategori menüsü — gruplar; çok kategorili grup üzerine gelince/tıklayınca açılır */}
+      <nav className="relative hidden border-y border-stone-200 bg-[#f1efea] md:block" onMouseLeave={() => setOpenGroup(null)}>
+        <ul className="mx-auto flex max-w-[1500px] items-center justify-center gap-x-6 px-6 lg:gap-x-8">
+          <li>
+            <Link href="/koleksiyon" className={`${navItem} ${pathname === "/koleksiyon" ? "text-[#b8902e]" : "text-stone-800"}`}>
+              Tüm Ürünler
+            </Link>
+          </li>
+          {NAV_GROUPS.map((g) => {
+            const single = g.categories.length === 1 ? g.categories[0] : null;
+            const active = g.categories.some((c) => pathname === `/koleksiyon/${c.slug}`);
+            const isOpen = openGroup === g.label;
+            if (single) {
+              return (
+                <li key={g.label}>
+                  <Link href={`/koleksiyon/${single.slug}`} onMouseEnter={() => setOpenGroup(null)} className={`${navItem} ${active ? "text-[#b8902e]" : "text-stone-800"}`}>
+                    {g.label}
+                  </Link>
+                </li>
+              );
+            }
             return (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className={`block py-3 text-[13px] uppercase tracking-[0.04em] transition-colors hover:text-[#b8902e] lg:text-sm ${
-                    active || href === "/toptan" ? "text-[#b8902e] font-semibold" : "text-stone-800"
-                  }`}
+              <li key={g.label} onMouseEnter={() => setOpenGroup(g.label)}>
+                <button
+                  type="button"
+                  onClick={() => setOpenGroup(isOpen ? null : g.label)}
+                  aria-expanded={isOpen}
+                  className={`${navItem} flex items-center gap-1 ${active || isOpen ? "text-[#b8902e]" : "text-stone-800"}`}
                 >
-                  {label}
-                </Link>
+                  {g.label}
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+                {isOpen && (
+                  // Panel menü çubuğuna göre ortalanır (öğeye göre ortalayınca kenardan taşıyordu)
+                  <div className="absolute inset-x-0 top-full z-40 flex justify-center px-4 pt-1">
+                    <div className="flex max-w-full flex-wrap justify-center gap-8 rounded-lg border border-stone-200 bg-white px-7 py-6 shadow-xl">
+                      {g.categories.map((c) => (
+                        <div key={c.slug} className="min-w-[190px]">
+                          <Link href={`/koleksiyon/${c.slug}`} onClick={() => setOpenGroup(null)} className="mb-2.5 block text-[15px] font-semibold text-stone-900 hover:text-[#b8902e]">
+                            {c.name} →
+                          </Link>
+                          <ul className="space-y-1.5">
+                            {c.subs.map((s) => (
+                              <li key={s}>
+                                <Link href={categoryHref(c.name, s)} onClick={() => setOpenGroup(null)} className="block text-[14px] text-stone-600 hover:text-[#b8902e]">
+                                  {s}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </li>
             );
           })}
+          <li>
+            <Link href="/toptan" onMouseEnter={() => setOpenGroup(null)} className={`${navItem} font-semibold text-[#b8902e]`}>
+              Toptan Sipariş
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>

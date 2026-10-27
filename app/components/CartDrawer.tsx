@@ -70,7 +70,7 @@ export default function CartDrawer({
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b" style={{ borderColor: "#efefef" }}>
               <div>
-                <p className="text-[9px] tracking-[0.4em] uppercase mb-0.5" style={{ color: "#999" }}>Sepet</p>
+                <p className="text-[12px] tracking-[0.04em] uppercase mb-0.5" style={{ color: "#999" }}>Sepet</p>
                 <p className="text-sm" style={{ color: "#0a0a0a" }}>{items.length} çeşit · {count} adet</p>
               </div>
               <button
@@ -89,7 +89,7 @@ export default function CartDrawer({
             <Link
               href="/toptan"
               onClick={onClose}
-              className="block px-6 py-2.5 text-[11px] leading-snug hover:underline"
+              className="block px-6 py-2.5 text-[13px] leading-snug hover:underline"
               style={{ background: "#fffbf0", color: "#5c4710" }}
             >
               <strong>Kafile, mevlüt, dernek veya mağaza için mi?</strong> Toptan Sipariş sayfasından özel fiyat alın →
@@ -104,12 +104,12 @@ export default function CartDrawer({
                   </svg>
                   <div>
                     <p className="text-xs tracking-widest uppercase text-stone-400 mb-1">Sepetiniz boş</p>
-                    <p className="text-[11px] text-stone-300">Koleksiyonumuza göz atın</p>
+                    <p className="text-[13px] text-stone-300">Koleksiyonumuza göz atın</p>
                   </div>
                   <Link
                     href="/koleksiyon"
                     onClick={onClose}
-                    className="mt-2 px-6 py-2.5 text-[10px] tracking-[0.2em] uppercase transition-opacity hover:opacity-75"
+                    className="mt-2 px-6 py-2.5 text-[13px] tracking-[0.04em] uppercase transition-opacity hover:opacity-75"
                     style={{ background: "#0a0a0a", color: "#ffffff" }}
                   >
                     Koleksiyonu Gör
@@ -128,14 +128,14 @@ export default function CartDrawer({
                     <div className="flex-1 min-w-0">
                       <p className="text-xs text-stone-700 leading-snug line-clamp-2 mb-1">{item.name}</p>
                       {(item.variant || item.code) && (
-                        <p className="text-[10px] text-stone-400 mb-1">
+                        <p className="text-[13px] text-stone-400 mb-1">
                           {[item.variant, item.code && `Kod: ${item.code}`].filter(Boolean).join(" · ")}
                         </p>
                       )}
                       <p className="text-xs text-stone-400 mb-2">
                         {tl(unitPriceFor(item.price, item.qty))} ₺ / adet · <span className="text-stone-700">{tl(unitPriceFor(item.price, item.qty) * item.qty)} ₺</span>
                         {tierPct(item.qty) > 0 && (
-                          <span className="ml-1.5 px-1.5 py-0.5 text-[9px] font-medium" style={{ background: "#fffbf0", color: "#9a7a2c" }}>
+                          <span className="ml-1.5 px-1.5 py-0.5 text-[12px] font-medium" style={{ background: "#fffbf0", color: "#9a7a2c" }}>
                             Toptan -%{tierPct(item.qty)}
                           </span>
                         )}
@@ -154,7 +154,7 @@ export default function CartDrawer({
                         <button onClick={() => setQty(item.slug, item.qty + 1)} className="w-7 h-7 text-stone-500 hover:text-black" aria-label="Artır">+</button>
                       </div>
                       {nextTier(item.qty) && (
-                        <p className="text-[10px] mt-1.5" style={{ color: "#9a7a2c" }}>
+                        <p className="text-[13px] mt-1.5" style={{ color: "#9a7a2c" }}>
                           {nextTier(item.qty)!.min - item.qty} adet daha ekle → toptan %{nextTier(item.qty)!.pct}
                         </p>
                       )}
@@ -175,7 +175,7 @@ export default function CartDrawer({
             {items.length > 0 && (
               <div className="px-6 py-6 border-t" style={{ borderColor: "#efefef" }}>
                 <div className="flex justify-between items-center mb-5">
-                  <span className="text-[9px] tracking-[0.3em] uppercase" style={{ color: "#999" }}>Toplam</span>
+                  <span className="text-[12px] tracking-[0.04em] uppercase" style={{ color: "#999" }}>Toplam</span>
                   <span
                     style={{
                       fontSize: "1.4rem",
@@ -188,12 +188,12 @@ export default function CartDrawer({
                   </span>
                 </div>
                 {bigOrder && (
-                  <div className="text-[11px] leading-snug mb-4 px-3 py-2.5" style={{ background: "#fffbf0", color: "#7a5f1a" }}>
+                  <div className="text-[13px] leading-snug mb-4 px-3 py-2.5" style={{ background: "#fffbf0", color: "#7a5f1a" }}>
                     Büyük bir sipariş gibi görünüyor — toptan alıcıysanız daha iyi fiyat verebiliriz.
                     <button
                       type="button"
                       onClick={moveToWholesale}
-                      className="mt-2 block w-full py-2 text-[10px] uppercase tracking-[0.15em] text-white"
+                      className="mt-2 block w-full py-2 text-[13px] uppercase tracking-[0.15em] text-white"
                       style={{ background: "#1a1208" }}
                     >
                       Sepeti Toptan Listeme Taşı
@@ -202,15 +202,18 @@ export default function CartDrawer({
                 )}
                 <button
                   onClick={() => { onClose(); router.push("/checkout"); }}
-                  className="block w-full py-4 text-[10px] tracking-[0.25em] uppercase text-center transition-opacity hover:opacity-75 mb-3"
+                  className="block w-full py-4 text-[13px] tracking-[0.04em] uppercase text-center transition-opacity hover:opacity-75 mb-3"
                   style={{ background: "#0a0a0a", color: "#ffffff" }}
                 >
-                  Güvenli Ödeme Yap
+                  Siparişi Tamamla →
                 </button>
+                <p className="-mt-1 mb-3 text-center text-[13px] text-stone-500">
+                  Bir sonraki adımda adres ve kart bilgilerinizi gireceksiniz.
+                </p>
 
                 <button
                   onClick={clear}
-                  className="block w-full text-center text-[9px] tracking-widest uppercase transition-opacity hover:opacity-50 py-1"
+                  className="block w-full text-center text-[12px] tracking-widest uppercase transition-opacity hover:opacity-50 py-1"
                   style={{ color: "#bbb" }}
                 >
                   Sepeti Temizle

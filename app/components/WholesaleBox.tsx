@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Hint from "./Hint";
 import Link from "next/link";
 import { WHOLESALE_TIERS, WHOLESALE_MIN_TOTAL, unitPriceFor, tierPct } from "@/lib/pricing";
 import { useWholesaleList, type WholesaleItem } from "./WholesaleListContext";
@@ -41,8 +42,9 @@ export default function WholesaleBox({
     <div className="flex flex-col gap-3">
       {/* Adet indirimi — normal sepet */}
       <div className="border" style={{ borderColor: "#efefef", background: "#fff" }}>
-        <p className="px-4 pt-3 pb-2 text-[9px] tracking-[0.35em] uppercase" style={{ color: "#999" }}>
-          Adet indirimi · sepette otomatik
+        <p className="flex items-center px-4 pt-3 pb-2 text-[14px] font-medium text-stone-700">
+          Çok alana indirim
+          <Hint>Aynı üründen 10 veya daha fazla alırsanız fiyat sepette kendiliğinden düşer, bir şey yapmanıza gerek yok. Satıra tıklayınca o adet seçilir.</Hint>
         </p>
         {rows.map(({ min, max, pct }) => {
           const on = pct === active;
@@ -67,7 +69,7 @@ export default function WholesaleBox({
       {/* Toptan alıcılar */}
       <div className="border" style={{ borderColor: "#e9d9a6", background: "#fffbf0" }}>
         <div className="px-4 pt-4 pb-3">
-          <p className="text-[9px] tracking-[0.35em] uppercase mb-1" style={{ color: "#9a7a2c" }}>Toptan alıcı mısınız?</p>
+          <p className="text-[12px] tracking-[0.04em] uppercase mb-1" style={{ color: "#9a7a2c" }}>Toptan alıcı mısınız?</p>
           <p className="text-[13px] leading-snug" style={{ color: "#3b2c08" }}>
             Hac/umre kafilesi, mevlüt, cami/dernek veya mağaza için alıyorsanız ürünleri <strong>Toptan Listenize</strong> ekleyin,
             listeniz {tl(WHOLESALE_MIN_TOTAL)} ₺&apos;yi geçince WhatsApp&apos;tan özel fiyat alın.
@@ -77,20 +79,20 @@ export default function WholesaleBox({
           <button
             type="button"
             onClick={addToList}
-            className="w-full py-3 text-[10px] tracking-[0.2em] uppercase font-medium text-white transition-opacity hover:opacity-85"
+            className="w-full py-3 text-[13px] tracking-[0.04em] uppercase font-medium text-white transition-opacity hover:opacity-85"
             style={{ background: "#1a1208" }}
           >
             {qty} Adet Toptan Listeme Ekle
           </button>
           {(justAdded > 0 || inList > 0) && (
-            <p className="text-[11px]" style={{ color: "#1f6f43" }}>
+            <p className="text-[13px]" style={{ color: "#1f6f43" }}>
               {justAdded > 0 ? `✓ ${justAdded} adet eklendi. ` : ""}Bu üründen listenizde {inList} adet var
               {" · "}{list.items.length} çeşit, {tl(list.total)} ₺
             </p>
           )}
           <Link
             href="/toptan"
-            className="text-center text-[11px] underline underline-offset-2"
+            className="text-center text-[13px] underline underline-offset-2"
             style={{ color: "#7a5f1a" }}
           >
             Toptan Sipariş sayfasına git → (tüm ürünleri tek ekranda seçin)

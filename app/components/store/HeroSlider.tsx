@@ -47,10 +47,10 @@ export default function HeroSlider({ slides }: { slides: HeroSlide[] }) {
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
           <div className="absolute inset-x-0 bottom-14 px-6 text-center text-white md:bottom-16">
-            <p className="mb-2 text-[11px] uppercase tracking-[0.35em] text-white/80 md:text-xs">{s.subtitle}</p>
+            <p className="mb-3 text-[13px] uppercase tracking-[0.2em] text-white/90 md:text-sm">{s.subtitle}</p>
             <p
-              className="text-4xl italic leading-tight drop-shadow md:text-7xl"
-              style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
+              className="text-3xl font-medium leading-tight drop-shadow md:text-6xl"
+              style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
               {s.title}
             </p>

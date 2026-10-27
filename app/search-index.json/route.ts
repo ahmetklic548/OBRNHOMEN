@@ -15,7 +15,7 @@ export function GET() {
       color: p.color,
       size: p.size,
       brand: p.brand,
-      id: p.id,
+      id: p.sku ?? p.id,
       image: p.images[0] ?? "",
       price: salePrice(p.price),
     }))

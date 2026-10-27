@@ -3,11 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { CATEGORY_LINKS, UTILITY_LINKS, WHATSAPP_URL } from "@/lib/storeNav";
+import { UTILITY_LINKS, WHATSAPP_URL } from "@/lib/storeNav";
+import { NAV_GROUPS } from "@/lib/categories";
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
+  const [group, setGroup] = useState<string | null>(null);
+  const close = () => { setOpen(false); setGroup(null); };
 
   return (
     <>
@@ -40,17 +42,39 @@ export default function MobileNav() {
                   ×
                 </button>
               </div>
-              {CATEGORY_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={close}
-                  className={`flex items-center justify-between border-b border-stone-100 px-5 py-4 text-sm uppercase ${link.href === "/toptan" ? "font-semibold text-[#b8902e]" : "text-stone-800"}`}
-                >
-                  {link.label}
-                  <span className="text-stone-400">›</span>
-                </Link>
-              ))}
+              <Link href="/koleksiyon" onClick={close} className="flex items-center justify-between border-b border-stone-100 px-5 py-4 text-[15px] text-stone-800">
+                Tüm Ürünler <span className="text-stone-400">›</span>
+              </Link>
+              {NAV_GROUPS.map((g) =>
+                g.categories.length === 1 ? (
+                  <Link key={g.label} href={`/koleksiyon/${g.categories[0].slug}`} onClick={close} className="flex items-center justify-between border-b border-stone-100 px-5 py-4 text-[15px] text-stone-800">
+                    {g.label} <span className="text-stone-400">›</span>
+                  </Link>
+                ) : (
+                  <div key={g.label} className="border-b border-stone-100">
+                    <button
+                      onClick={() => setGroup(group === g.label ? null : g.label)}
+                      aria-expanded={group === g.label}
+                      className="flex w-full items-center justify-between px-5 py-4 text-left text-[15px] text-stone-800"
+                    >
+                      {g.label}
+                      <span className={`text-stone-400 transition-transform ${group === g.label ? "rotate-90" : ""}`}>›</span>
+                    </button>
+                    {group === g.label && (
+                      <div className="bg-[#faf9f6] pb-2">
+                        {g.categories.map((c) => (
+                          <Link key={c.slug} href={`/koleksiyon/${c.slug}`} onClick={close} className="block px-8 py-3 text-[15px] text-stone-700">
+                            {c.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              )}
+              <Link href="/toptan" onClick={close} className="flex items-center justify-between border-b border-stone-100 px-5 py-4 text-[15px] font-semibold text-[#b8902e]">
+                Toptan Sipariş <span>›</span>
+              </Link>
               <div className="mt-2 bg-[#f6f4ef] px-5 py-3">
                 {UTILITY_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} onClick={close} className="block py-2 text-[13px] text-stone-600">

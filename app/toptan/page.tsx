@@ -29,7 +29,7 @@ export default function ToptanPage() {
       category: p.category,
       price: salePrice(p.price),
       image: p.images[0] ?? "",
-      code: p.id,
+      code: p.sku ?? p.id,
       color: p.color,
       size: p.size,
       subcategory: p.subcategory,

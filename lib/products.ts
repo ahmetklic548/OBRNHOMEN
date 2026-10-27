@@ -1,5 +1,6 @@
 import productsData from "@/data/products.json";
 import { HIDDEN_SLUGS, COVER_IMAGE_INDEX } from "@/lib/productCuration";
+import { CATEGORIES } from "@/lib/categories";
 
 export interface Product {
   id: string;
@@ -19,6 +20,8 @@ export interface Product {
   quantity?: number;
   /** Kategori içi ürün tipi (scripts/subcategories.mjs) — benzer ürünler yan yana dizilir */
   subcategory?: string;
+  /** Ürün kodu: OBR-<KATEGORİ>-0001 (scripts/classify.mjs, data/sku-map.json) */
+  sku?: string;
 }
 
 function withCover(p: Product): Product {
@@ -44,9 +47,10 @@ export function getProductsByCategory(category: string): Product[] {
   return products.filter((p) => p.category === category);
 }
 
+/** Ürünü olan kategori adları, menü sırasıyla (data/categories.json) */
 export function getAllCategories(): string[] {
-  // products.json menü sırasıyla dizili (scripts/subcategories.mjs)
-  return [...new Set(products.map((p) => p.category))];
+  const present = new Set(products.map((p) => p.category));
+  return CATEGORIES.map((c) => c.name).filter((n) => present.has(n));
 }
 
 /** Statik üretilecek tüm ürün sayfaları (gizliler dahil) */
@@ -55,7 +59,7 @@ export function getAllSlugs(): string[] {
 }
 
 export function getFeaturedProducts(): Product[] {
-  const picks = ["Tesbih & Zikirmatik", "Seccade", "Hediyelik Setler", "Kuran & Dini Kitaplar"];
+  const picks = ["Tesbih", "Seccade", "Hediyelik Setler", "Kur'an-ı Kerim"];
   return picks
     .map((cat) => products.find((p) => p.category === cat && p.inStock))
     .filter(Boolean) as Product[];

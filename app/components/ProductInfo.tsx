@@ -1,13 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart, cartMeta } from "./CartContext";
 import { trackView } from "./RecentlyViewed";
 import { trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 import type { Product } from "@/lib/products";
-import { salePrice, DISCOUNT_PERCENT, unitPriceFor, tierPct } from "@/lib/pricing";
+import { salePrice, unitPriceFor, tierPct } from "@/lib/pricing";
 import WholesaleBox from "./WholesaleBox";
+import AdminProductTools, { useIsAdmin } from "./AdminProductTools";
+import { useHiddenSlugs } from "@/lib/hidden";
 
 /* ── Icon set (outline SVG, Lucide-style) ─────────────────── */
 const TruckIcon = () => (
@@ -61,7 +64,7 @@ function Accordion({ title, children }: { title: string; children: React.ReactNo
         onClick={() => setOpen(o => !o)}
         className="w-full flex items-center justify-between py-4 text-left transition-opacity hover:opacity-50"
       >
-        <span className="text-[9px] tracking-[0.35em] uppercase" style={{ color: "#0a0a0a" }}>
+        <span className="text-[12px] tracking-[0.04em] uppercase" style={{ color: "#0a0a0a" }}>
           {title}
         </span>
         <ChevronIcon open={open} />
@@ -82,6 +85,9 @@ export default function ProductInfo({ product }: { product: Product }) {
   const [added, setAdded] = useState(false);
   const [copied, setCopied] = useState(false);
   const [qty, setQty] = useState(1);
+  const isAdmin = useIsAdmin();
+  const hiddenSlugs = useHiddenSlugs();
+  const isHiddenForCustomer = hiddenSlugs.has(product.slug) && !isAdmin;
 
   useEffect(() => {
     trackView({
@@ -127,112 +133,68 @@ export default function ProductInfo({ product }: { product: Product }) {
 
   return (
     <div className="flex flex-col">
+      <AdminProductTools slug={product.slug} name={product.name} />
+      {isHiddenForCustomer && (
+        <div className="mb-5 rounded-lg border border-stone-200 bg-stone-50 px-4 py-3 text-[15px] text-stone-700">
+          Bu ürün şu an satışta değil. Benzer ürünler için <Link href="/koleksiyon" className="underline">tüm ürünlere</Link> göz atabilirsiniz.
+        </div>
+      )}
 
-      {/* Category label */}
-      <p
-        className="text-[9px] tracking-[0.5em] uppercase mb-4"
-        style={{ color: "#c9a84c" }}
-      >
-        {product.brand} · {product.category}
+      {/* Kategori */}
+      <p className="mb-3 text-[13px] text-[#9a7a2c]">
+        {product.category}{product.subcategory ? ` · ${product.subcategory}` : ""}
       </p>
 
-      {/* Title */}
-      <h1
-        className="mb-4 leading-tight"
-        style={{
-          fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
-          fontWeight: 400,
-          fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
-          color: "#0a0a0a",
-          lineHeight: 1.1,
-        }}
-      >
+      {/* Başlık */}
+      <h1 className="mb-3 text-[26px] font-medium leading-snug text-stone-900 md:text-[32px]">
         {product.name}
       </h1>
 
-      {/* Quantity + SKU */}
-      <div className="flex items-center gap-4 mb-6">
-        {product.quantity && product.quantity > 1 && (
-          <span
-            className="text-[9px] tracking-widest uppercase px-3 py-1 border"
-            style={{ borderColor: "#e0e0e0", color: "#666" }}
-          >
-            {product.quantity} Adet / Paket
-          </span>
+      {/* Ürün kodu + paket */}
+      <div className="mb-5 flex flex-wrap items-center gap-3 text-[13px] text-stone-500">
+        {product.sku && (
+          <span title="Siparişte veya WhatsApp'ta bu kodu söylemeniz yeterli">Ürün kodu: <strong className="font-medium text-stone-700">{product.sku}</strong></span>
         )}
-        <p className="text-[9px] tracking-widest uppercase" style={{ color: "#bbb" }}>
-          SKU: {product.id}
+        {product.quantity && product.quantity > 1 && (
+          <span className="rounded border border-stone-300 px-2 py-0.5 text-stone-700">Pakette {product.quantity} adet</span>
+        )}
+      </div>
+
+      {/* Fiyat — net, indirim rozeti yok */}
+      <div className="mb-6 border-b pb-6" style={{ borderColor: "#efefef" }}>
+        <p className="text-[32px] font-semibold leading-none text-stone-900">
+          {salePrice(product.price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
+        </p>
+        <p className="mt-2 text-[13px] text-stone-500">
+          KDV dahil{product.quantity && product.quantity > 1 ? ` · paket fiyatı (${product.quantity} adet)` : ""} · 2.000 ₺ üzeri kargo bedava
         </p>
       </div>
 
-      {/* Price — indirimli */}
-      <div className="mb-6 pb-6 border-b" style={{ borderColor: "#efefef" }}>
-        <div className="flex items-baseline gap-3 mb-1">
-          <span
-            style={{
-              fontSize: "2rem",
-              fontWeight: 400,
-              fontFamily: "var(--font-playfair, 'Playfair Display'), Georgia, serif",
-              color: "#0a0a0a",
-            }}
-          >
-            {salePrice(product.price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
-          </span>
-          <span
-            className="text-[10px] tracking-widest uppercase px-2 py-0.5"
-            style={{ background: "#0a0a0a", color: "#ffffff" }}
-          >
-            %{DISCOUNT_PERCENT} İndirim
-          </span>
-        </div>
-        <p className="text-sm line-through" style={{ color: "#bbb" }}>
-          {product.price.toLocaleString("tr-TR", { minimumFractionDigits: 2 })} ₺
-        </p>
-        <p className="text-[10px] tracking-wide mt-1" style={{ color: "#bbb" }}>KDV dahil</p>
-      </div>
-
-      {/* Attributes */}
+      {/* Özellikler */}
       {(product.color || product.size) && (
-        <div className="flex flex-wrap gap-6 mb-6 text-sm">
+        <dl className="mb-5 flex flex-wrap gap-x-8 gap-y-2 text-[15px]">
           {product.color && (
-            <div>
-              <span className="text-[9px] tracking-[0.3em] uppercase block mb-1" style={{ color: "#999" }}>Renk</span>
-              <span style={{ color: "#0a0a0a" }}>{product.color}</span>
-            </div>
+            <div><dt className="text-[13px] text-stone-500">Renk</dt><dd className="text-stone-900">{product.color}</dd></div>
           )}
           {product.size && (
-            <div>
-              <span className="text-[9px] tracking-[0.3em] uppercase block mb-1" style={{ color: "#999" }}>Ebat</span>
-              <span style={{ color: "#0a0a0a" }}>{product.size}</span>
-            </div>
+            <div><dt className="text-[13px] text-stone-500">Ebat</dt><dd className="text-stone-900">{product.size}</dd></div>
           )}
-        </div>
+        </dl>
       )}
 
-      {/* Stock + urgency */}
-      <div className="flex items-center gap-3 mb-3">
-        <span
-          className={`w-1.5 h-1.5 ${product.inStock ? "bg-emerald-400" : "bg-stone-300"}`}
-        />
-        <span className="text-[9px] tracking-widest uppercase" style={{ color: product.inStock ? "#34d399" : "#bbb" }}>
-          {product.inStock ? "Stokta Var" : "Tükendi"}
-        </span>
-        {product.inStock && product.stock <= 20 && (
-          <span className="text-[9px] tracking-widest uppercase px-2 py-0.5" style={{ background: "#0a0a0a", color: "#ffffff" }}>
-            Son {product.stock} adet
-          </span>
-        )}
-      </div>
+      {/* Stok */}
+      <p className={`mb-4 flex items-center gap-2 text-[14px] ${product.inStock ? "text-emerald-700" : "text-stone-500"}`}>
+        <span className={`h-2 w-2 rounded-full ${product.inStock ? "bg-emerald-500" : "bg-stone-300"}`} />
+        {product.inStock ? (product.stock <= 20 ? `Stokta — son ${product.stock} adet` : "Stokta var, hemen kargoya verilir") : "Şu an stokta yok"}
+      </p>
 
-      {/* Description */}
+      {/* Açıklama */}
       {product.metaDescription && (
-        <p className="text-sm leading-relaxed mb-6" style={{ color: "#86868B" }}>
-          {product.metaDescription}
-        </p>
+        <p className="mb-6 text-[15px] leading-relaxed text-stone-600">{product.metaDescription}</p>
       )}
 
       {/* CTA */}
-      {product.inStock ? (
+      {product.inStock && !isHiddenForCustomer ? (
         <div className="flex flex-col gap-3 mb-8">
           {/* Adet — toptan kademe buna göre uygulanır */}
           <div className="flex items-center justify-between gap-3">
@@ -258,14 +220,14 @@ export default function ProductInfo({ product }: { product: Product }) {
 
           <button
             onClick={handleBuy}
-            className="w-full py-4 text-[10px] tracking-[0.3em] uppercase font-medium text-white transition-opacity duration-200 hover:opacity-75"
+            className="w-full py-4 text-[13px] tracking-[0.04em] uppercase font-medium text-white transition-opacity duration-200 hover:opacity-75"
             style={{ background: "#0a0a0a" }}
           >
             Satın Al
           </button>
           <button
             onClick={handleAdd}
-            className="w-full py-4 text-[10px] tracking-[0.3em] uppercase font-medium transition-all duration-200 border"
+            className="w-full py-4 text-[13px] tracking-[0.04em] uppercase font-medium transition-all duration-200 border"
             style={
               added
                 ? { background: "#f0fdf4", color: "#16a34a", borderColor: "#16a34a" }
@@ -284,7 +246,7 @@ export default function ProductInfo({ product }: { product: Product }) {
         </div>
       ) : (
         <div
-          className="w-full py-4 text-[10px] tracking-[0.3em] uppercase text-center mb-8 border"
+          className="w-full py-4 text-[13px] tracking-[0.04em] uppercase text-center mb-8 border"
           style={{ borderColor: "#e0e0e0", color: "#bbb" }}
         >
           Stokta Yok
@@ -294,7 +256,7 @@ export default function ProductInfo({ product }: { product: Product }) {
       {/* Paylaş */}
       <button
         onClick={handleShare}
-        className="flex items-center gap-2 text-[9px] tracking-[0.25em] uppercase mb-6 transition-opacity hover:opacity-50"
+        className="flex items-center gap-2 text-[12px] tracking-[0.04em] uppercase mb-6 transition-opacity hover:opacity-50"
         style={{ color: "#999" }}
       >
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -313,7 +275,7 @@ export default function ProductInfo({ product }: { product: Product }) {
             style={{ borderColor: "#efefef", background: "#fafaf8" }}
           >
             <span style={{ color: "#999", flexShrink: 0 }}><Icon /></span>
-            <span className="text-[10px] leading-snug" style={{ color: "#666" }}>{label}</span>
+            <span className="text-[13px] leading-snug" style={{ color: "#666" }}>{label}</span>
           </div>
         ))}
       </div>

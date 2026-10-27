@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { categoryHref } from "@/lib/categories";
 import type { Metadata } from "next";
 import { getAllSlugs, getProductBySlug, getProductsByCategory } from "@/lib/products";
 import StackedImages from "@/app/components/StackedImages";
@@ -90,7 +91,7 @@ export default async function ProductPage({
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Anasayfa", item: "https://obrnhomen.com" },
         { "@type": "ListItem", position: 2, name: "Koleksiyon", item: "https://obrnhomen.com/koleksiyon" },
-        { "@type": "ListItem", position: 3, name: product.category, item: `https://obrnhomen.com/koleksiyon/${encodeURIComponent(product.category)}` },
+        { "@type": "ListItem", position: 3, name: product.category, item: `https://obrnhomen.com${categoryHref(product.category)}` },
         { "@type": "ListItem", position: 4, name: product.name, item: `https://obrnhomen.com/products/${product.slug}` },
       ],
     },
@@ -104,19 +105,16 @@ export default async function ProductPage({
 
       {/* Breadcrumb */}
       <div className="max-w-screen-xl mx-auto px-6 pt-10 pb-4">
-        <nav className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>
+        <nav className="flex flex-wrap items-center gap-2 text-[13px] text-stone-500" aria-label="Konum">
           <Link href="/" className="hover:text-black transition-colors">Anasayfa</Link>
-          <span>/</span>
-          <Link href="/koleksiyon" className="hover:text-black transition-colors">Koleksiyon</Link>
-          <span>/</span>
-          <Link
-            href={`/koleksiyon?kategori=${encodeURIComponent(product.category)}`}
-            className="hover:text-black transition-colors"
-          >
-            {product.category}
-          </Link>
-          <span>/</span>
-          <span className="text-black line-clamp-1">{product.name}</span>
+          <span>›</span>
+          <Link href={categoryHref(product.category)} className="hover:text-black transition-colors">{product.category}</Link>
+          {product.subcategory && (
+            <>
+              <span>›</span>
+              <Link href={categoryHref(product.category, product.subcategory)} className="hover:text-black transition-colors">{product.subcategory}</Link>
+            </>
+          )}
         </nav>
       </div>
 

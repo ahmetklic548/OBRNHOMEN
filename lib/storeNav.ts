@@ -1,16 +1,7 @@
-/** Header kategori menüsü ve mobil menü aynı listeyi kullanır. */
-export const CATEGORY_LINKS = [
-  { href: "/koleksiyon", label: "Tüm Ürünler" },
-  { href: "/koleksiyon/Hediyelik%20Setler", label: "Hediyelik Setler" },
-  { href: "/koleksiyon/Kuran%20%26%20Dini%20Kitaplar", label: "Kuran & Kitap" },
-  { href: "/koleksiyon/Seccade", label: "Seccade" },
-  { href: "/koleksiyon/Tesbih%20%26%20Zikirmatik", label: "Tesbih" },
-  { href: "/koleksiyon/Namaz%20Elbisesi%20%26%20Tesett%C3%BCr", label: "Namaz Elbisesi" },
-  { href: "/koleksiyon/E%C5%9Farp%20%26%20%C3%96rt%C3%BC", label: "Eşarp" },
-  { href: "/koleksiyon/%C4%B0hram%20%26%20Hac%20Umre", label: "İhram & Hac" },
-  { href: "/koleksiyon/Misvak%2C%20Esans%20%26%20S%C3%BCrme", label: "Misvak & Esans" },
-  { href: "/toptan", label: "Toptan Sipariş" },
-];
+import { CATEGORIES } from "@/lib/categories";
+
+/** Tüm kategori linkleri (altbilgi). Üst menü grupları: lib/categories.ts NAV_GROUPS */
+export const CATEGORY_LINKS = CATEGORIES.map((c) => ({ href: `/koleksiyon/${c.slug}`, label: c.name }));
 
 export const UTILITY_LINKS = [
   { href: "/about", label: "Hakkımızda" },

@@ -9,16 +9,16 @@ export interface CartItem {
   price: number;
   image: string;
   qty: number;
-  /** Ürün kodu (products.json id) — aynı isimli ilanları WhatsApp teklifinde ayırt etmek için */
+  /** Ürün kodu (OBR-XXX-0001) — aynı isimli ilanları WhatsApp teklifinde ayırt etmek için */
   code?: string;
   /** Renk/ebat, ör. "Yeşil · 70 x 110" */
   variant?: string;
 }
 
 /** Sepete eklerken ürün kodu + renk/ebat bilgisini çıkarır */
-export function cartMeta(p: { id: string; color: string | null; size: string | null }) {
+export function cartMeta(p: { id: string; sku?: string; color: string | null; size: string | null }) {
   const variant = [p.color, p.size && p.size !== "Tek Ebat" ? p.size : null].filter(Boolean).join(" · ");
-  return { code: p.id, variant: variant || undefined };
+  return { code: p.sku ?? p.id, variant: variant || undefined };
 }
 
 interface CartCtx {

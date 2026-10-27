@@ -5,6 +5,19 @@ import { db } from "@/lib/firebase";
 import { getProductBySlug } from "@/lib/products";
 import { salePrice, unitPriceFor, tierPct, orderTotals, VALID_COUPONS } from "@/lib/pricing";
 
+/** Admin'in sitede sildiği ürünler (build'den sonra silinenler dahil) — satılmasın */
+async function fetchHiddenSlugs(): Promise<Set<string>> {
+  try {
+    const project = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "obrnhomen-73ed9";
+    const r = await fetch(`https://firestore.googleapis.com/v1/projects/${project}/databases/(default)/documents/products/_site_hidden`, { cache: "no-store" });
+    if (!r.ok) return new Set();
+    const d = await r.json();
+    return new Set((d.fields?.slugs?.arrayValue?.values ?? []).map((v: { stringValue?: string }) => v.stringValue ?? ""));
+  } catch {
+    return new Set();
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -12,8 +25,9 @@ export async function POST(req: NextRequest) {
 
     /* Fiyatları istemciye güvenmeden ürün verisinden hesapla */
     const reqItems: { slug: string; qty: number }[] = Array.isArray(body.items) ? body.items : [];
+    const hidden = await fetchHiddenSlugs();
     const lines = reqItems.map(({ slug, qty }) => {
-      const p = getProductBySlug(String(slug));
+      const p = hidden.has(String(slug)) ? undefined : getProductBySlug(String(slug));
       const n = Math.floor(Number(qty));
       if (!p || !p.inStock || !(n >= 1 && n <= 1000)) return null;
       // Toptan kademe sunucuda da aynı formülle — istemci fiyatına güvenilmez

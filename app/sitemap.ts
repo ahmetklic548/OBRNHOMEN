@@ -1,4 +1,5 @@
-import { getAllProducts, getAllCategories } from "@/lib/products";
+import { getAllProducts, getProductsByCategory } from "@/lib/products";
+import { CATEGORIES } from "@/lib/categories";
 import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://obrnhomen.com";
@@ -11,8 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const categoryUrls = getAllCategories().map((cat) => ({
-    url: `${BASE_URL}/koleksiyon/${encodeURIComponent(cat)}`,
+  const categoryUrls = CATEGORIES.filter((c) => getProductsByCategory(c.name).length).map(({ slug }) => ({
+    url: `${BASE_URL}/koleksiyon/${slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7,

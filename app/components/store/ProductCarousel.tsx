@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import type { Product } from "@/lib/products";
 import ProductCard from "./ProductCard";
+import { useHiddenSlugs } from "@/lib/hidden";
 
 export default function ProductCarousel({
   title,
@@ -15,6 +16,7 @@ export default function ProductCarousel({
   href?: string;
 }) {
   const track = useRef<HTMLDivElement>(null);
+  const hidden = useHiddenSlugs();
 
   const scroll = (dir: 1 | -1) => {
     const el = track.current;
@@ -40,7 +42,7 @@ export default function ProductCarousel({
             ref={track}
             className="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-2 md:gap-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            {products.map((p, i) => (
+            {products.filter((p) => !hidden.has(p.slug)).map((p, i) => (
               <div key={p.id} className="w-[46%] shrink-0 snap-start sm:w-[31%] lg:w-[19%]">
                 <ProductCard product={p} priority={i < 2} />
               </div>

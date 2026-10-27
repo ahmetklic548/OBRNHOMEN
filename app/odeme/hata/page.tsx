@@ -12,7 +12,7 @@ export default function OdemeHata() {
           <IslamicStar size={24} color="#c9a84c" opacity={0.5} />
         </div>
 
-        <h1 className="text-2xl font-light tracking-[0.2em] uppercase text-stone-700 mb-4">
+        <h1 className="text-2xl font-light tracking-[0.04em] uppercase text-stone-700 mb-4">
           Ödeme Tamamlanamadı
         </h1>
 
@@ -24,7 +24,7 @@ export default function OdemeHata() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/checkout"
-            className="px-8 py-3 text-xs tracking-[0.3em] uppercase text-white transition-colors"
+            className="px-8 py-3 text-xs tracking-[0.04em] uppercase text-white transition-colors"
             style={{ background: "#1a1208" }}
           >
             Tekrar Dene
@@ -33,7 +33,7 @@ export default function OdemeHata() {
             href="https://wa.me/905316893849"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 text-xs tracking-[0.3em] uppercase border border-stone-300 text-stone-500 hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors"
+            className="px-8 py-3 text-xs tracking-[0.04em] uppercase border border-stone-300 text-stone-500 hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors"
           >
             WhatsApp ile Sipariş Ver
           </a>

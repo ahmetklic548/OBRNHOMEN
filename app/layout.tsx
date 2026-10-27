@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Cormorant_Garamond } from "next/font/google";
+import { Inter, Lora } from "next/font/google";
 import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { CartProvider } from "@/app/components/CartContext";
@@ -19,17 +19,12 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+// Başlık fontu: Lora — okunaklı, ciddi, rakamları düz hizalı (Playfair'in "zıplayan" rakamları ve
+// italik Cormorant çocukça duruyordu). Değişken adı eski kodla uyum için --font-playfair kaldı.
+const playfair = Lora({
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
   variable: "--font-playfair",
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
-  style: ["italic"],
-  variable: "--font-cormorant",
   display: "swap",
 });
 
@@ -58,7 +53,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr" suppressHydrationWarning className={`h-full ${inter.variable} ${playfair.variable} ${cormorant.variable}`}>
+    <html lang="tr" suppressHydrationWarning className={`h-full ${inter.variable} ${playfair.variable}`}>
       <body className="min-h-full flex flex-col">
         <CartProvider>
           <WishlistProvider>
@@ -67,11 +62,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             {/* Duyuru şeridi */}
             <div className="bg-gradient-to-r from-[#e9d48f] via-[#f3e3a6] to-[#e9d48f] text-[#3b2c08]">
-              <div className="mx-auto flex max-w-[1500px] items-center justify-center gap-6 px-4 py-2 text-[12px] md:justify-between md:px-6">
-                <p className="text-center">
-                  <Link href="/toptan" className="hover:underline"><strong>Toptan sipariş:</strong> Hac/umre kafilesi, mevlüt, dernek ve mağazalara özel fiyat →</Link>
-                  <span className="hidden sm:inline"> · 2000 ₺ üzeri <strong>ücretsiz kargo</strong></span>
-                </p>
+              <div className="mx-auto flex max-w-[1500px] items-center justify-center gap-6 px-4 py-2 text-[13px] md:justify-between md:px-6">
+                {/* İki ayrı mesaj: kargo tüm siparişler için, toptan ayrı bölüm */}
+                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
+                  <span className="flex items-center gap-1.5">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M1 3h15v13H1z" /><path d="M16 8h4l3 3v5h-7V8z" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" /></svg>
+                    Tüm siparişlerde <strong>2.000 ₺ üzeri kargo bedava</strong>
+                  </span>
+                  <span className="hidden h-4 w-px bg-[#3b2c08]/30 sm:block" aria-hidden="true" />
+                  <Link href="/toptan" className="hidden items-center gap-1.5 hover:underline sm:flex">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M3 7h18v13H3z" /><path d="M8 7V4h8v3" /></svg>
+                    <strong>Toptan alım</strong> mı? Kafile, mevlüt ve mağazalara özel fiyat →
+                  </Link>
+                </div>
                 <nav className="hidden items-center divide-x divide-[#3b2c08]/30 md:flex">
                   {UTILITY_LINKS.map(({ href, label }) => (
                     <Link key={href} href={href} className="px-3 last:pr-0 hover:underline">
@@ -112,8 +115,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                 <div>
                   <p className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-stone-900">Kategoriler</p>
-                  <ul className="space-y-2.5 text-[13px]">
-                    {CATEGORY_LINKS.slice(1, 9).map(({ href, label }) => (
+                  <ul className="grid grid-cols-1 gap-y-2.5 text-[13px] sm:grid-cols-2 sm:gap-x-4">
+                    {CATEGORY_LINKS.map(({ href, label }) => (
                       <li key={href}><Link href={href} className="hover:text-[#b8902e]">{label}</Link></li>
                     ))}
                   </ul>

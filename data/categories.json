@@ -1,0 +1,195 @@
+[
+  {
+    "name": "Hediyelik Setler",
+    "slug": "hediyelik-setler",
+    "code": "HED",
+    "group": "Hediyelik",
+    "subs": [
+      "Yasin & Tesbih Setleri",
+      "Mini Kuran & Tesbih Setleri",
+      "Başörtü & Tesbih Setleri",
+      "Zikirmatik & Tesbih Setleri",
+      "Diğer Hediyelik Setler"
+    ],
+    "title": "Hediyelik Setler | Yasin, Mini Kuran ve Tesbih Setleri",
+    "description": "Mevlüt, hac ve umre için yasin-tesbih, mini Kuran-tesbih ve başörtü-tesbih hediyelik setleri. Toptan alımda özel fiyat."
+  },
+  {
+    "name": "Çeyiz & Bohça Setleri",
+    "slug": "ceyiz-bohca-setleri",
+    "code": "CEY",
+    "group": "Hediyelik",
+    "subs": [
+      "Seccade Setleri",
+      "Gelin & Damat Bohçası",
+      "İbadet & Namaz Setleri",
+      "Diğer Çeyiz Setleri"
+    ],
+    "title": "Çeyiz ve Bohça Setleri | Gelin, Damat ve Seccade Setleri",
+    "description": "Gelin ve damat bohçası, çeyizlik seccade setleri, ibadet setleri. Kutulu, şık ve anlamlı çeyiz hediyeleri."
+  },
+  {
+    "name": "Hac Umre Kafile Setleri",
+    "slug": "hac-umre-kafile-setleri",
+    "code": "KAF",
+    "group": "Hediyelik",
+    "subs": [
+      "20 Kişilik Setler",
+      "30–40 Kişilik Setler",
+      "50 Kişi ve Üzeri"
+    ],
+    "title": "Hac Umre Kafile Setleri | 20–100 Kişilik Hediyelik Setler",
+    "description": "Hac ve umre kafileleri için 20, 30, 40, 50 ve 100 kişilik hazır hediyelik setler: seccade, tesbih, yazma, takke, esans."
+  },
+  {
+    "name": "Hediyelik Eşya & Dekor",
+    "slug": "hediyelik-esya-dekor",
+    "code": "DEK",
+    "group": "Hediyelik",
+    "subs": [
+      "Dekor & Biblo",
+      "Çocuk Hediyelikleri",
+      "Kına & Diğer"
+    ],
+    "title": "İslami Dekor ve Hediyelik Eşya | Kâbe Maketi, Zemzem Takımı",
+    "description": "Kâbe ve Mescid-i Aksa maketleri, zemzem takımları, çocuk hediyelikleri ve kına."
+  },
+  {
+    "name": "Kur'an-ı Kerim",
+    "slug": "kuran-i-kerim",
+    "code": "KUR",
+    "group": "Kur'an & Kitap",
+    "subs": [
+      "Cep Boy",
+      "Orta Boy",
+      "Hafız Boy",
+      "Cami & Rahle Boy",
+      "Meal & Tefsir",
+      "Diğer Kur'an-ı Kerimler"
+    ],
+    "title": "Kur'an-ı Kerim Çeşitleri | Cep, Orta, Hafız, Cami Boy ve Mealli",
+    "description": "Bilgisayar hatlı, Medine hatlı, tecvidli ve mealli Kur'an-ı Kerim; cep, orta, hafız, rahle ve cami boy seçenekleri."
+  },
+  {
+    "name": "Yasin & Dini Kitaplar",
+    "slug": "yasin-dini-kitaplar",
+    "code": "KIT",
+    "group": "Kur'an & Kitap",
+    "subs": [
+      "Yasin & Cüz",
+      "Cevşen & Dua Kitapları",
+      "Elifba & Eğitim",
+      "Mevlid & Diğer Kitaplar"
+    ],
+    "title": "Yasin, Cevşen ve Dini Kitaplar | Elifba, Dua Kitapları",
+    "description": "Yasin-i Şerif ve cüzler, Cevşen, dua kitapları, Elifba ve Kur'an eğitim setleri. Mevlüt için toptan yasin."
+  },
+  {
+    "name": "Seccade",
+    "slug": "seccade",
+    "code": "SEC",
+    "group": "Seccade",
+    "subs": [
+      "Kadife, Tafta & Peluş Seccade",
+      "Simli Goblen Seccade",
+      "Şönil & Halı Seccade",
+      "Cep & Seyahat Seccadesi",
+      "Çocuk Seccadesi",
+      "Diğer Seccadeler"
+    ],
+    "title": "Seccade Modelleri | Kadife, Simli Goblen, Şönil, Cep Seccadesi",
+    "description": "Kadife, tafta, peluş, simli goblen ve şönil seccadeler; cep ve çocuk seccadesi. 14 gün iade."
+  },
+  {
+    "name": "Tesbih",
+    "slug": "tesbih",
+    "code": "TES",
+    "group": "Tesbih & Zikirmatik",
+    "subs": [
+      "İnci & Cam Tesbih",
+      "Kristal Tesbih",
+      "Kehribar, Kuka & Erkek Tesbih",
+      "Tavaf & Dağıtmalık Tesbih"
+    ],
+    "title": "Tesbih Çeşitleri | İnci, Cam, Kristal, Kehribar ve Kuka",
+    "description": "99'luk ve 33'lük inci, cam, kristal, kehribar ve kuka tesbihler; dağıtmalık ve tavaf tesbihleri."
+  },
+  {
+    "name": "Zikirmatik",
+    "slug": "zikirmatik",
+    "code": "ZIK",
+    "group": "Tesbih & Zikirmatik",
+    "subs": [
+      "Dijital Zikirmatik",
+      "Taşlı & Süslü Zikirmatik"
+    ],
+    "title": "Zikirmatik Çeşitleri | Dijital ve Taşlı Zikirmatik",
+    "description": "Dijital, ışıklı, yüzük tipi ve taşlı süslü zikirmatikler. Hac, umre ve mevlüt hediyeliği."
+  },
+  {
+    "name": "Namaz Elbisesi & Tesettür",
+    "slug": "namaz-elbisesi-tesettur",
+    "code": "GIY",
+    "group": "Giyim",
+    "subs": [
+      "Çift Parça Namaz Elbisesi",
+      "Tek Parça & Pratik Namaz Elbisesi",
+      "Bone & Kolluk"
+    ],
+    "title": "Namaz Elbisesi | Çift Parça ve Pratik Kadın Namaz Kıyafeti",
+    "description": "Terletmeyen çift parça işlemeli namaz elbiseleri, tek parça pratik namaz elbisesi, hazır bone ve kolluk."
+  },
+  {
+    "name": "Eşarp, Yazma & Örtü",
+    "slug": "esarp-yazma-ortu",
+    "code": "ESA",
+    "group": "Giyim",
+    "subs": [
+      "Eşarp",
+      "Namaz & Mevlüt Örtüsü",
+      "Dağıtmalık Yazma & Eşarp"
+    ],
+    "title": "Eşarp, Yazma ve Namaz Örtüsü | Oyalı Tülbent",
+    "description": "Düz flamlı eşarp, oyalı namaz ve mevlüt örtüsü, dağıtmalık yazma."
+  },
+  {
+    "name": "İhram & Hac Malzemeleri",
+    "slug": "ihram-hac-malzemeleri",
+    "code": "IHR",
+    "group": "Hac & Umre",
+    "subs": [
+      "Erkek İhram",
+      "Çocuk İhramı",
+      "İhram Kemeri",
+      "Kokusuz Bakım",
+      "Patik, Çorap & Atlet"
+    ],
+    "title": "İhram ve Hac Umre Malzemeleri | Pamuk, Bambu, Çocuk İhramı",
+    "description": "Pamuk ve bambu erkek ihramı, çocuk ihramı, ihram kemeri, kokusuz sabun ve pudra, tavaf patiği."
+  },
+  {
+    "name": "Takke & Yüzük",
+    "slug": "takke-yuzuk",
+    "code": "TAK",
+    "group": "Hac & Umre",
+    "subs": [
+      "Takke",
+      "Yüzük"
+    ],
+    "title": "Takke ve Yüzük | Hac Umre Hediyelik",
+    "description": "Örgü takke, akik ve taşlı erkek yüzükleri. Hac, umre ve mevlüt için dağıtmalık."
+  },
+  {
+    "name": "Misvak, Esans & Sürme",
+    "slug": "misvak-esans-surme",
+    "code": "MIS",
+    "group": "Hac & Umre",
+    "subs": [
+      "Misvak",
+      "Esans",
+      "Sürme"
+    ],
+    "title": "Misvak, Esans ve Sürme | Hac Umre Dağıtmalık",
+    "description": "Vakumlu taze misvak, alkolsüz esans paketleri ve göz sürmesi."
+  }
+]

@@ -38,6 +38,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 { href: "/admin", label: "Genel Bakış" },
                 { href: "/admin/siparisler", label: "Siparişler" },
                 { href: "/admin/urunler", label: "Ürünler" },
+                { href: "/admin/gizlenen", label: "Gizlenen Ürünler" },
                 { href: "/admin/urunler/yeni", label: "+ Yeni Ürün" },
                 { href: "/admin/trendyol", label: "Trendyol" },
                 { href: "/admin/sosyal-medya", label: "Sosyal Medya" },

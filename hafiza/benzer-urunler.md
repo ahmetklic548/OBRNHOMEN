@@ -1,0 +1,200 @@
+# Benzer / tekrar eden ürünler — 2026-10-27
+
+## Kaldırılan kesin tekrarlar (3) — fiyatı yüksek olan kaldı
+- ✗ — · Hafız Boy Bilgisayar Hatlı Arapça Kenar Yaldızlı Termo Deri Kuran-ı Kerim - Pembe / 9786256000117 · 599 TL
+  - kalan: OBR-KUR-0085 · Hafız Boy Bilgisayar Hatlı Arapça Kenar Yaldızlı Termo Deri Kuran-ı Kerim Pembe · 659 TL
+- ✗ — · Rahle Boy Bilgisayar Hatlı Arapça Cilt Bezi Mıklepli Kuran-ı Kerim Bordo · 529 TL
+  - kalan: OBR-KUR-0110 · Rahle Boy Bilgisayar Hatlı Arapça Cilt Bezi Mıklepli Kuran-ı Kerim - Bordo / 9786256527027 · 599 TL
+- ✗ — · Orta Boy Medine Hatlı Flemenkçe Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Gold · 499 TL
+  - kalan: OBR-KUR-0194 · Orta Boy Medine Hatlı Flemenkçe Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Gold (13674) · 723.99 TL
+
+## Benzer olabilecek ürünler (63) — kontrol edin, gereksizse admin panelinden silin
+- %92 benzer
+  - OBR-KUR-0025 · FN Orta Boy Bilgisayar Hatlı İri Yazılı Arapça Sıvama Kapak Kuran-ı Kerim - Bordo · 1299 TL
+  - OBR-KUR-0026 · FN Orta Boy Bilgisayar Hatlı İri Yazılı Arapça Sıvama Kapak Kuran-ı Kerim Kabe · 1299 TL
+- %92 benzer
+  - OBR-KUR-0025 · FN Orta Boy Bilgisayar Hatlı İri Yazılı Arapça Sıvama Kapak Kuran-ı Kerim - Bordo · 1299 TL
+  - OBR-KUR-0065 · Orta Boy Bilgisayar Hatlı Çok İri Yazılı Arapça Sıvama Kapak Kuran-ı Kerim Bordo · 1299 TL
+- %92 benzer
+  - OBR-KUR-0025 · FN Orta Boy Bilgisayar Hatlı İri Yazılı Arapça Sıvama Kapak Kuran-ı Kerim - Bordo · 1299 TL
+  - OBR-KUR-0066 · Orta Boy Bilgisayar Hatlı Iri Yazılı Arapça Sıvama Kapak Kuran-ı Kerim Lacivert · 1299 TL
+- %92 benzer
+  - OBR-KUR-0025 · FN Orta Boy Bilgisayar Hatlı İri Yazılı Arapça Sıvama Kapak Kuran-ı Kerim - Bordo · 1299 TL
+  - OBR-KUR-0067 · Orta Boy Bilgisayar Hatlı İri Yazılı Arapça Sıvama Kapak Kuran-ı Kerim Yeşil · 1299 TL
+- %91 benzer
+  - OBR-KUR-0007 · Küçük Cep Boy Medine Hatlı Arapça Sıvama Kapak Kuran-ı Kerim Gold · 439 TL
+  - OBR-KUR-0008 · Küçük Cep Boy Medine Hatlı Arapça Sıvama Kapak Kuran-ı Kerim Kabe · 439 TL
+- %91 benzer
+  - OBR-KUR-0049 · Orta Boy Bilgisayar Hatlı Arapça Cilt Bezi Mıklepli Kuran-ı Kerim - Bordo / 9786256601925 · 499 TL
+  - OBR-KUR-0052 · Orta Boy Bilgisayar Hatlı Arapça Cilt Bezi Mıklepli Kuran-ı Kerim Kabe · 499 TL
+- %91 benzer
+  - OBR-KUR-0052 · Orta Boy Bilgisayar Hatlı Arapça Cilt Bezi Mıklepli Kuran-ı Kerim Kabe · 499 TL
+  - OBR-KUR-0050 · Orta Boy Bilgisayar Hatlı Arapça Cilt Bezi Mıklepli Kuran-ı Kerim Kırmızı · 399 TL
+- %91 benzer
+  - OBR-KUR-0052 · Orta Boy Bilgisayar Hatlı Arapça Cilt Bezi Mıklepli Kuran-ı Kerim Kabe · 499 TL
+  - OBR-KUR-0051 · Orta Boy Bilgisayar Hatlı Arapça Cilt Bezi Mıklepli Kuran-ı Kerim Yeşil · 499 TL
+- %91 benzer
+  - OBR-KUR-0070 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Açık Pembe - Ayfa Yayınevi - Bilgisayar Hatlı · 539 TL
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+- %91 benzer
+  - OBR-KUR-0071 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Ayfa Yayınevi - Bilgisayar Hatlı · 449 TL
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+- %91 benzer
+  - OBR-KUR-0072 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Beyaz Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 699 TL
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+- %91 benzer
+  - OBR-KUR-0073 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Bordo Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 539.99 TL
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+- %91 benzer
+  - OBR-KUR-0074 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Fuşya Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 554.99 TL
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+- %91 benzer
+  - OBR-KUR-0075 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 539.99 TL
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+- %91 benzer
+  - OBR-KUR-0076 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Kırmızı Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 559.99 TL
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+- %91 benzer
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+  - OBR-KUR-0077 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Mavi Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 529.99 TL
+- %91 benzer
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+  - OBR-KUR-0078 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Mor Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 629 TL
+- %91 benzer
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+  - OBR-KUR-0079 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Pembe Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 534.99 TL
+- %91 benzer
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+  - OBR-KUR-0080 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Siyah Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 554.99 TL
+- %91 benzer
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+  - OBR-KUR-0081 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Turkuaz Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 539.99 TL
+- %91 benzer
+  - OBR-KUR-0069 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 519.99 TL
+  - OBR-KUR-0082 · Tecvidli Kuranı Kerim - Termo Deri - Orta Boy - Yeşil Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 589.99 TL
+- %91 benzer
+  - OBR-KUR-0122 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Beyaz Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 859 TL
+  - OBR-KUR-0120 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 699 TL
+- %91 benzer
+  - OBR-KUR-0123 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Bordo Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 699 TL
+  - OBR-KUR-0120 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 699 TL
+- %91 benzer
+  - OBR-KUR-0121 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar Hatl · 629 TL
+  - OBR-KUR-0120 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 699 TL
+- %91 benzer
+  - OBR-KUR-0124 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Kırmızı Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 699 TL
+  - OBR-KUR-0120 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 699 TL
+- %91 benzer
+  - OBR-KUR-0120 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 699 TL
+  - OBR-KUR-0125 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Lacivert Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 689 TL
+- %91 benzer
+  - OBR-KUR-0120 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 699 TL
+  - OBR-KUR-0126 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Lila Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 689 TL
+- %91 benzer
+  - OBR-KUR-0120 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 699 TL
+  - OBR-KUR-0127 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Turkuaz Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 589 TL
+- %91 benzer
+  - OBR-KUR-0120 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Koyu Kahverengi Renkli - Ayfa Yayınevi - Bilgisayar · 699 TL
+  - OBR-KUR-0128 · Tecvidli Kuranı Kerim - Termo Deri - Rahle Boy - Yeşil Renkli - Ayfa Yayınevi - Bilgisayar Hatlı · 599 TL
+- %89 benzer
+  - OBR-KUR-0037 · Kalem Ile Yazılabilen Gölgeli Kuranı Kerim Orta Boy 3 Renk Seçenekli ( Beyaz,Yeşil Ve Siyah )17*24 · 449 TL
+  - OBR-KUR-0035 · Kalem Ile Yazılabilen Gölgeli Kuranı Kerim Orta Boy - Beyaz · 539 TL
+- %89 benzer
+  - OBR-KUR-0037 · Kalem Ile Yazılabilen Gölgeli Kuranı Kerim Orta Boy 3 Renk Seçenekli ( Beyaz,Yeşil Ve Siyah )17*24 · 449 TL
+  - OBR-KUR-0036 · Kalem Ile Yazılabilen Gölgeli Kuranı Kerim Orta Boy - Siyah · 519.99 TL
+- %88 benzer
+  - OBR-KIT-0019 · Münacat Cüzü Yasini Şerif Ve Dualar, 17x24 Cm. Orta Boy, · 199 TL
+  - OBR-KIT-0020 · Münacat Cüzü Yasini Şerif Ve Dualar Orta Boy · 149 TL
+- %88 benzer
+  - OBR-KIT-0028 · Gölgeli Elif ba Arapça güzel yazı defteri · 148 TL
+  - OBR-KIT-0035 · Yazılabilir Gölgeli Elif Ba - Arapça Güzel Yazı Defteri · 194.49 TL
+- %87 benzer
+  - OBR-HED-0041 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Bor · 449 TL
+  - OBR-HED-0042 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Kre · 446 TL
+- %87 benzer
+  - OBR-HED-0041 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Bor · 449 TL
+  - OBR-HED-0040 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Beb · 449 TL
+- %87 benzer
+  - OBR-HED-0041 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Bor · 449 TL
+  - OBR-HED-0043 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Lac · 499 TL
+- %87 benzer
+  - OBR-HED-0041 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Bor · 449 TL
+  - OBR-HED-0044 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Pud · 499 TL
+- %87 benzer
+  - OBR-HED-0041 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Bor · 449 TL
+  - OBR-HED-0045 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Siy · 444 TL
+- %87 benzer
+  - OBR-HED-0042 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Kre · 446 TL
+  - OBR-HED-0040 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Beb · 449 TL
+- %87 benzer
+  - OBR-HED-0042 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Kre · 446 TL
+  - OBR-HED-0043 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Lac · 499 TL
+- %87 benzer
+  - OBR-HED-0042 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Kre · 446 TL
+  - OBR-HED-0044 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Pud · 499 TL
+- %87 benzer
+  - OBR-HED-0042 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Kre · 446 TL
+  - OBR-HED-0045 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Siy · 444 TL
+- %87 benzer
+  - OBR-HED-0040 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Beb · 449 TL
+  - OBR-HED-0043 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Lac · 499 TL
+- %87 benzer
+  - OBR-HED-0040 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Beb · 449 TL
+  - OBR-HED-0044 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Pud · 499 TL
+- %87 benzer
+  - OBR-HED-0040 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Beb · 449 TL
+  - OBR-HED-0045 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Siy · 444 TL
+- %87 benzer
+  - OBR-HED-0043 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Lac · 499 TL
+  - OBR-HED-0044 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Pud · 499 TL
+- %87 benzer
+  - OBR-HED-0043 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Lac · 499 TL
+  - OBR-HED-0045 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Siy · 444 TL
+- %87 benzer
+  - OBR-HED-0044 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Pud · 499 TL
+  - OBR-HED-0045 · Orta Boy Bilgisayar Hatlı Arapça Kadife Kuran + Şeffaf Asetat Kutu + Cam İnci Tesbih Hediye Seti Siy · 444 TL
+- %87 benzer
+  - OBR-KUR-0183 · Kuranı Kerim 7 Özellikli Arapça Satır Arası Türkçe Okunuş Kelime Anlamı Meal Tecvidli Cami Boy · 879.99 TL
+  - OBR-KUR-0184 · Kuranı Kerim 7 Özellikli Arapça Satır Arası Türkçe Okunuş Kelime Anlamı Meal Tecvidli Orta Boy · 429.99 TL
+- %87 benzer
+  - OBR-KUR-0183 · Kuranı Kerim 7 Özellikli Arapça Satır Arası Türkçe Okunuş Kelime Anlamı Meal Tecvidli Cami Boy · 879.99 TL
+  - OBR-KUR-0185 · Kuranı Kerim 7 Özellikli Arapça Satır Arası Türkçe Okunuş Kelime Anlamı Meal Tecvidli Rahle Boy · 579.99 TL
+- %87 benzer
+  - OBR-KUR-0184 · Kuranı Kerim 7 Özellikli Arapça Satır Arası Türkçe Okunuş Kelime Anlamı Meal Tecvidli Orta Boy · 429.99 TL
+  - OBR-KUR-0185 · Kuranı Kerim 7 Özellikli Arapça Satır Arası Türkçe Okunuş Kelime Anlamı Meal Tecvidli Rahle Boy · 579.99 TL
+- %86 benzer
+  - OBR-CEY-0084 · 5 Adet Karma Seccade, Tesbih, Zikirmatik ve Yasin Kitabı Hediye Seti | 5 li İbadet Seti | Kutulu Hediyelik · 1495 TL
+  - OBR-CEY-0089 · 10 Adet Seccade, Tesbih, Zikirmatik ve Yasin Kitabı Hediye Seti | 5 li İbadet Seti | Kutulu Hediyelik · 2990 TL
+- %86 benzer
+  - OBR-CEY-0089 · 10 Adet Seccade, Tesbih, Zikirmatik ve Yasin Kitabı Hediye Seti | 5 li İbadet Seti | Kutulu Hediyelik · 2990 TL
+  - OBR-CEY-0092 · Seccade, Tesbih, Zikirmatik ve Yasin Kitabı Hediye Seti | 5 li İbadet Seti | Kutulu Hediyelikk – Çok Renkli · 340 TL
+- %86 benzer
+  - OBR-KUR-0140 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Açık Vizon · 529 TL
+  - OBR-KUR-0150 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Su Yeşili · 539 TL
+- %86 benzer
+  - OBR-KUR-0141 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Beyaz · 529 TL
+  - OBR-KUR-0150 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Su Yeşili · 539 TL
+- %86 benzer
+  - OBR-KUR-0142 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Fuşya · 519 TL
+  - OBR-KUR-0150 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Su Yeşili · 539 TL
+- %86 benzer
+  - OBR-KUR-0143 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Gold · 609.99 TL
+  - OBR-KUR-0150 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Su Yeşili · 539 TL
+- %86 benzer
+  - OBR-KUR-0144 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Gümüş · 609.99 TL
+  - OBR-KUR-0150 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Su Yeşili · 539 TL
+- %86 benzer
+  - OBR-KUR-0145 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Lacivert · 529 TL
+  - OBR-KUR-0150 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Su Yeşili · 539 TL
+- %86 benzer
+  - OBR-KUR-0146 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Mavi · 609.99 TL
+  - OBR-KUR-0150 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Su Yeşili · 539 TL
+- %86 benzer
+  - OBR-KUR-0147 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Mor · 609.99 TL
+  - OBR-KUR-0150 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Su Yeşili · 539 TL
+- %86 benzer
+  - OBR-KUR-0148 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Pembe · 609.99 TL
+  - OBR-KUR-0150 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Su Yeşili · 539 TL
+- %86 benzer
+  - OBR-KUR-0149 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Siyah · 529 TL
+  - OBR-KUR-0150 · Hafız Boy Medine Hatlı Fransızca Tepe Varaklı Termo Deri Kuran-ı Kerim Meali Su Yeşili · 539 TL

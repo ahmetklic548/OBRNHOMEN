@@ -8,6 +8,7 @@ import Testimonials from "@/app/components/Testimonials";
 import IntroSplash from "@/app/components/IntroSplash";
 import { INTRO_PREPAINT_SCRIPT } from "@/lib/intro";
 import { WHOLESALE_MIN_TOTAL } from "@/lib/pricing";
+import { categoryHref } from "@/lib/categories";
 
 export const metadata: Metadata = {
   title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
@@ -99,49 +100,50 @@ function picksFor(cats: string[], n: number): Product[] {
 // Kategori kartları — her biri için elle seçilmiş, yazısız ortam fotoğrafı
 const CATEGORY_TILES = [
   { cat: "Hediyelik Setler", label: "Hediyelik Setler", slug: "mini-kuran-tesbih-seti-20-li-mevlut-hediyesi-beyaz" },
-  { cat: "Kuran & Dini Kitaplar", label: "Kuran & Kitap", slug: "30-cuz-kuran-arapca-iri-yazili-kurani-kerim-hatim-seti-cami-boy-ayfa" },
+  { cat: "Kur'an-ı Kerim", label: "Kur'an-ı Kerim", slug: "30-cuz-kuran-arapca-iri-yazili-kurani-kerim-hatim-seti-cami-boy-ayfa" },
   { cat: "Seccade", label: "Seccade", slug: "5-adet-sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen" },
-  { cat: "Tesbih & Zikirmatik", label: "Tesbih & Zikirmatik", slug: "10-adet-karma-renk-99-luk-ahsap-namaz-tesbihi-hac-umre-mevlut-ceyiz-bohca-hediyelik-dagitm" },
-  { cat: "Namaz Elbisesi & Tesettür", label: "Namaz Elbisesi", slug: "iki-parcali-tesettur-kadin-pratik-namaz-elbisesi-hac-umre-uygun-cift-parca-pratik-giy-cika" },
-  { cat: "Eşarp & Örtü", label: "Eşarp & Örtü", slug: "jawel-marka-flamli-20-li-yazma-hediyelik-dagitmalik-karisik-renk" },
-  { cat: "İhram & Hac Umre", label: "İhram & Hac Umre", slug: "1250gr-100-pamuk-hac-umre-icin-erkek-ihram" },
-  { cat: "Misvak, Esans & Sürme", label: "Misvak & Esans", slug: "40-li-hac-umre-mevlut-hediyelik-dagitmalik-esans-parfum-paket-karisik-lux-premium" },
+  { cat: "Tesbih", label: "Tesbih", slug: "10-adet-karma-renk-99-luk-ahsap-namaz-tesbihi-hac-umre-mevlut-ceyiz-bohca-hediyelik-dagitm" },
+  { cat: "Namaz Elbisesi & Tesettür", label: "Namaz Elbisesi", slug: "mevsimlik-cift-parca-kadin-tesettur-islemeli-namaz-elbisesi-terletmez-namaz-kiyafeti-bordo" },
+  { cat: "Çeyiz & Bohça Setleri", label: "Çeyiz & Bohça", slug: "luks-ceyizlik-kadife-sandikli-kur-an-i-kerim-seccade-tesbih-seti-pleksi-ayracli" },
+  { cat: "İhram & Hac Malzemeleri", label: "İhram & Hac", slug: "1250gr-100-pamuk-hac-umre-icin-erkek-ihram" },
+  { cat: "Hac Umre Kafile Setleri", label: "Kafile Setleri", slug: "20-kisilik-hac-umre-hediyelik-seti-seccade-yazma-tesbih-takke-esans-yuzuk" },
 ];
 
-const catHref = (cat: string) => `/koleksiyon/${encodeURIComponent(cat)}`;
+const catHref = (cat: string) => categoryHref(cat);
 
 /** Hero/banner için elle seçilmiş, üzerinde yazı olmayan ortam fotoğrafları */
 const imagesOf = (...slugs: string[]) => slugs.map((s) => img(getProductBySlug(s))).filter(Boolean);
 
+// Her karede 3 farklı kategoriden fotoğraf; ilk (aydınlık) kare: namaz elbisesi + seccade + tesbih
 const HERO_SLIDES: HeroSlide[] = [
   {
+    title: "Huzurla kılınan namazlar için",
+    subtitle: "Namaz Elbisesi · Seccade · Tesbih",
+    href: catHref("Namaz Elbisesi & Tesettür"),
+    images: imagesOf(
+      "iki-parcali-tesettur-kadin-pratik-namaz-elbisesi-hac-umre-uygun-cift-parca-pratik-giy-cika",
+      "10-adet-tafta-pamuk-osmanli-seccade-namazlik-karma-renk-hac-umre-mevlut-hediyelik-dagitmal",
+      "10-adet-bordo-cam-inci-hediyelik-99-lu-vavli-tesbih",
+    ),
+  },
+  {
     title: "Sevdiklerinize anlamlı hediyeler",
-    subtitle: "Hediyelik Setler",
+    subtitle: "Çeyiz · Kur'an-ı Kerim · Hediyelik Setler",
     href: catHref("Hediyelik Setler"),
     images: imagesOf(
       "luks-ceyizlik-kadife-sandikli-kur-an-i-kerim-seccade-tesbih-seti-pleksi-ayracli",
-      "mini-kuran-tesbih-seti-20-li-mevlut-hediyesi-beyaz",
-      "10-adet-hediyelik-jelatinde-kadife-yasin-cuzu-ve-tesbih-seti-mevlit-hac-umre",
+      "30-cuz-kuran-arapca-iri-yazili-kurani-kerim-hatim-seti-cami-boy-ayfa",
+      "mini-kuran-tesbih-seti-20-li-mevlut-hediyesi-altin",
     ),
   },
   {
-    title: "Huzurla kılınan namazlar için",
-    subtitle: "Seccade Koleksiyonu",
-    href: catHref("Seccade"),
-    images: imagesOf(
-      "5-adet-sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen",
-      "10-adet-tafta-pamuk-osmanli-seccade-namazlik-karma-renk-hac-umre-mevlut-hediyelik-dagitmal",
-      "5-adet-karma-yumusak-sik-desensiz-duz-seccade-700-gr-hafif-namazlik",
-    ),
-  },
-  {
-    title: "Her tanesinde bir zikir",
-    subtitle: "Tesbih Çeşitleri",
-    href: catHref("Tesbih & Zikirmatik"),
+    title: "Mevlüt, hac ve umre için",
+    subtitle: "Tesbih · Seccade · Yasin Setleri",
+    href: "/toptan",
     images: imagesOf(
       "10-adet-cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-hac-umre-mevlut-hediyelik-dagitmalik-c",
-      "10-adet-karma-renk-99-luk-ahsap-namaz-tesbihi-hac-umre-mevlut-ceyiz-bohca-hediyelik-dagitm",
-      "10-adet-bordo-cam-inci-hediyelik-99-lu-vavli-tesbih",
+      "5-adet-karma-yumusak-sik-desensiz-duz-seccade-700-gr-hafif-namazlik",
+      "10-adet-hediyelik-jelatinde-kadife-yasin-cuzu-ve-tesbih-seti-mevlit-hac-umre",
     ),
   },
 ].filter((s) => s.images.length === 3);
@@ -156,9 +158,10 @@ const SECCADE_BANNER = getProductBySlug("10-adet-tafta-pamuk-osmanli-seccade-nam
 export default function Home() {
   const hediyelik = available("Hediyelik Setler");
   const seccade = available("Seccade");
-  const tesbih = available("Tesbih & Zikirmatik");
-  const kitap = available("Kuran & Dini Kitaplar");
-  const picks = picksFor(["Hediyelik Setler", "Seccade", "Tesbih & Zikirmatik", "Kuran & Dini Kitaplar", "Namaz Elbisesi & Tesettür", "İhram & Hac Umre"], 15);
+  const tesbih = available("Tesbih");
+  const kitap = available("Kur'an-ı Kerim");
+  const elbise = available("Namaz Elbisesi & Tesettür");
+  const picks = picksFor(["Hediyelik Setler", "Seccade", "Tesbih", "Kur'an-ı Kerim", "Namaz Elbisesi & Tesettür", "Çeyiz & Bohça Setleri"], 15);
 
   return (
     <>
@@ -264,7 +267,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-start justify-center gap-4 p-8 text-white md:p-14">
               <p className="text-[11px] uppercase tracking-[0.4em] text-[#e9d48f]">{seccade.length}+ model</p>
-              <p className="text-4xl italic leading-tight md:text-6xl" style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}>
+              <p className="text-3xl font-medium leading-tight md:text-5xl" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                 Seccade koleksiyonunu keşfedin
               </p>
               <span className="mt-2 border-b border-white pb-1 text-[13px] uppercase tracking-[0.15em]">Alışverişe Başla</span>
@@ -274,8 +277,9 @@ export default function Home() {
       )}
 
       <ProductCarousel title="Seccade" products={seccade.slice(0, 15)} href={catHref("Seccade")} />
-      <ProductCarousel title="Tesbih & Zikirmatik" products={tesbih.slice(0, 15)} href={catHref("Tesbih & Zikirmatik")} />
-      <ProductCarousel title="Kuran & Dini Kitaplar" products={kitap.slice(0, 15)} href={catHref("Kuran & Dini Kitaplar")} />
+      <ProductCarousel title="Tesbih" products={tesbih.slice(0, 15)} href={catHref("Tesbih")} />
+      <ProductCarousel title="Namaz Elbisesi" products={elbise.slice(0, 15)} href={catHref("Namaz Elbisesi & Tesettür")} />
+      <ProductCarousel title="Kur'an-ı Kerim" products={kitap.slice(0, 15)} href={catHref("Kur'an-ı Kerim")} />
 
       <Testimonials />
     </>

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sync:trendyol": "node scripts/sync-trendyol.mjs"
+    "sync:trendyol": "node scripts/sync-trendyol.mjs",
+    "prebuild": "node scripts/sync-hidden.mjs",
+    "classify": "node scripts/classify.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.0",

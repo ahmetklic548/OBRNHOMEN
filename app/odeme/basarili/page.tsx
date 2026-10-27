@@ -23,11 +23,11 @@ export default function OdemeBasarili() {
         >
           الْحَمْدُ لِلَّهِ
         </p>
-        <p className="text-[10px] tracking-[0.35em] uppercase mb-8" style={{ color: "rgba(139,105,20,0.6)" }}>
+        <p className="text-[13px] tracking-[0.04em] uppercase mb-8" style={{ color: "rgba(139,105,20,0.6)" }}>
           Elhamdülillah
         </p>
 
-        <h1 className="text-2xl font-light tracking-[0.2em] uppercase text-stone-800 mb-4">
+        <h1 className="text-2xl font-light tracking-[0.04em] uppercase text-stone-800 mb-4">
           Ödemeniz Alındı
         </h1>
 
@@ -40,7 +40,7 @@ export default function OdemeBasarili() {
 
         <Link
           href="/koleksiyon"
-          className="inline-block px-8 py-3 text-xs tracking-[0.3em] uppercase text-white transition-colors"
+          className="inline-block px-8 py-3 text-xs tracking-[0.04em] uppercase text-white transition-colors"
           style={{ background: "#1a1208" }}
         >
           Alışverişe Devam Et

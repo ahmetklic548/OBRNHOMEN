@@ -6,6 +6,7 @@ import type { Product } from "@/lib/products";
 import { salePrice } from "@/lib/pricing";
 import { prepare, searchProducts } from "@/lib/search";
 import ProductCard from "./store/ProductCard";
+import { useHiddenSlugs } from "@/lib/hidden";
 
 type Sort = "onerilen" | "fiyat-artan" | "fiyat-azalan";
 /** "Tümü" görünümünde her kategoriden gösterilecek ürün sayısı */
@@ -18,13 +19,15 @@ const PREVIEW = 8;
  * URL: ?q=arama (üst arama çubuğundan), ?alt=alt grup (arama önerilerinden)
  */
 export default function ProductGrid({
-  products,
+  products: allProducts,
   categories,
 }: {
   products: Product[];
   /** Boşsa tek kategori sayfasıdır: kategori sekmeleri gizlenir, alt gruplar gösterilir */
   categories: string[];
 }) {
+  const hidden = useHiddenSlugs();
+  const products = useMemo(() => allProducts.filter((p) => !hidden.has(p.slug)), [allProducts, hidden]);
   const singleCategory = categories.length === 0;
   const [active, setActive] = useState<string | null>(null);
   const [sub, setSub] = useState<string | null>(null);
