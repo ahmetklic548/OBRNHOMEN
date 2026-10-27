@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getAllProducts } from "@/lib/products";
 import { CATEGORIES } from "@/lib/categories";
 import { PHONE_DISPLAY, STORE_ADDRESS } from "@/lib/storeNav";
@@ -15,6 +14,9 @@ export const metadata: Metadata = {
  * Yazdırılabilir toptan kataloğu (fiyatsız) — kafile firmalarına, camilere WhatsApp'tan PDF olarak
  * gönderilir. Tarayıcıda "PDF olarak kaydet" ile indirilir.
  */
+/** Trendyol CDN'in küçültülmüş görseli — PDF hafif kalsın (442 KB → ~9 KB) */
+const thumb = (url: string) => url.replace("https://cdn.dsmcdn.com/", "https://cdn.dsmcdn.com/mnresize/240/240/");
+
 export default function KatalogPage() {
   const products = getAllProducts();
   const date = new Date().toLocaleDateString("tr-TR", { month: "long", year: "numeric" });
@@ -63,7 +65,10 @@ export default function KatalogPage() {
                 {list.map((p) => (
                   <div key={p.slug} className="urun">
                     <div className="relative aspect-square overflow-hidden rounded bg-stone-100">
-                      {p.images[0] && <Image src={p.images[0]} alt={p.name} fill sizes="160px" className="object-cover" />}
+                      {p.images[0] && (
+                        // eslint-disable-next-line @next/next/no-img-element -- yazdırma/PDF için küçük CDN görseli, optimizasyon gereksiz
+                        <img src={thumb(p.images[0])} alt={p.name} loading="eager" className="h-full w-full object-cover" />
+                      )}
                     </div>
                     <p className="mt-1.5 text-[12px] font-semibold text-stone-900">{p.sku}</p>
                     <p className="line-clamp-3 text-[11px] leading-snug text-stone-700">{p.name}</p>
