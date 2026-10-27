@@ -102,8 +102,9 @@ const CATEGORY_TILES = [
   { cat: "Tesbih", label: "Tesbih" },
   { cat: "İhram", label: "İhram" },
   { cat: "Misvak", label: "Misvak" },
-  { cat: "Din Kitabı", label: "Din Kitabı" },
-];
+  // Din Kitabı/Eşarp'ta görünür ürün kalmadı (2026-10-27) — yerine toptan sayfası kartı
+  { cat: "Konsept Hediyelik", label: "Toptan Sipariş", href: "/toptan", pick: 4 },
+] as { cat: string; label: string; href?: string; pick?: number }[];
 
 const catHref = (cat: string) => `/koleksiyon/${encodeURIComponent(cat)}`;
 
@@ -117,8 +118,8 @@ const HERO_SLIDES: HeroSlide[] = [
     href: catHref("Konsept Hediyelik"),
     images: imagesOf(
       "kadife-kapli-yasin-i-serif-ve-tesbih-set-mevlit-kitabi",
-      "mini-kuran-tasli-zikirmatik-inci-tesbih-seti-mikro",
-      "isimlikli-canta-boy-kadife-kapli-yasini-serif-kitabi-dogum-cenaze",
+      "mikro-kuran-tasli-zikirmatik-ve-inci-tesbih-seti",
+      "cocuk-bileklik-bilezik-hediyesi",
     ),
   },
   {
@@ -126,9 +127,9 @@ const HERO_SLIDES: HeroSlide[] = [
     subtitle: "Seccade Koleksiyonu",
     href: catHref("Seccade"),
     images: imagesOf(
-      "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen",
-      "karma-renk-hic-desensiz-kadife-seccade-namazlik-dodya-imalat-sik-dokuma-sik-550-600-gram",
       "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-seccade",
+      "karma-yumusak-sik-desensiz-duz-seccade-700-gr-hafif-namazlik",
+      "sade-az-desenli-luks-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen",
     ),
   },
   {
@@ -136,25 +137,25 @@ const HERO_SLIDES: HeroSlide[] = [
     subtitle: "Tesbih Çeşitleri",
     href: catHref("Tesbih"),
     images: imagesOf(
-      "krem-mini-kuran-inci-tesbih-tasli-zikirmatik-seti",
-      "kesede-inci-tesbih-seti",
-      "kesede-beyaz-inci-tesbih-allah-lafizli-gold-detayli",
+      "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz",
+      "tasli-zikirmatik-ve-99-lu-inci-tesbih-seti-ozel-tul-keseli",
+      "tasli-zikirmatik-ve-inci-tesbih-seti-kutulu-hediyeligi-karisik-renkli",
     ),
   },
 ].filter((s) => s.images.length === 3);
 
 const BULK_BANNER_IMAGES = imagesOf(
   "cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-dagitmalik-ceyiz",
-  "karma-simli-goblen-seccade-namazlik-renk-secenekli_2",
-  "renkli-namaz-takkesi-41-li-set",
+  "otantik-ultra-lux-sonil-seccade-yumusak-dokulu-kaymaz-taban-namazlik_2",
+  "tasli-zikirmatik-ve-inci-tesbih-seti-kutulu-hediyeligi-karisik-renkli",
 );
-const SECCADE_BANNER = getProductBySlug("sade-desensiz-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen");
+const SECCADE_BANNER = getProductBySlug("sade-az-desenli-luks-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen");
 
 export default function Home() {
   const hediyelik = available("Konsept Hediyelik");
   const seccade = available("Seccade");
   const tesbih = available("Tesbih");
-  const picks = picksFor(["Konsept Hediyelik", "Seccade", "Tesbih", "İhram", "Misvak", "Eşarp"], 15);
+  const picks = picksFor(["Konsept Hediyelik", "Seccade", "Tesbih", "İhram", "Misvak"], 15);
 
   return (
     <>
@@ -204,13 +205,13 @@ export default function Home() {
       {/* Kategori kartları */}
       <section className="pb-12">
         <div className="mx-auto grid max-w-[1500px] grid-cols-3 gap-3 px-4 md:grid-cols-6 md:gap-4 md:px-6">
-          {CATEGORY_TILES.map(({ cat, label }) => {
+          {CATEGORY_TILES.map(({ cat, label, href, pick = 2 }) => {
             // "Seçtiklerimiz" ilk ürünü kullanıyor; kartta farklı görsel olsun
             const pool = available(cat);
-            const p = pool[2] ?? pool[1] ?? pool[0];
+            const p = pool[pick] ?? pool[1] ?? pool[0];
             if (!p) return null;
             return (
-              <Link key={cat} href={catHref(cat)} className="group block text-center">
+              <Link key={label} href={href ?? catHref(cat)} className="group block text-center">
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#efece6]">
                   <Image src={img(p)} alt={label} fill sizes="(max-width: 768px) 33vw, 16vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>

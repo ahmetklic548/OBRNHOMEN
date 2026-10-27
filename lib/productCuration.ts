@@ -76,6 +76,27 @@ export const HIDDEN_SLUGS = new Set<string>([
   "karma-kadife-seccade-500-gr",
   "basortu-tasli-zikirmatik-inci-cam-tesbih-ceyizlik-gelin-flamli-bas-ortu-set_2",
   "pratik-esarp-namazlik-kendinden-baslikli-namaz-elbisesi-jilesi-likrali-penye-kumas",
+
+  // 2026-10-27 — kullanıcı ürün koduyla kaldırttı
+  "kesede-inci-tesbih-seti",
+  "karma-yumusak-sik-desensiz-duz-seccade-hafif-namazlik_2",
+  "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen",
+  "sade-desensiz-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen",
+  "sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-seccade_2",
+  "simli-goblen-namaz-seccade_8",
+  "siyah-kadife-seccade-500-gr",
+  "yesil-kadife-seccade-500-gr",
+  "karma-simli-goblen-seccade-namazlik-renk-secenekli",
+  "karma-renk-hic-desensiz-kadife-seccade-namazlik-dodya-imalat-sik-dokuma-sik-550-600-gram",
+  "karma-simli-goblen-seccade-namazlik-renk-secenekli_2",
+  "kadife-sipinger-seccade",
+  "mini-kuran-tasli-zikirmatik-inci-tesbih-seti-mikro",
+  "krem-mini-kuran-inci-tesbih-tasli-zikirmatik-seti",
+  "kesede-inci-tesbih",
+  "kesede-beyaz-inci-tesbih-allah-lafizli-gold-detayli",
+  "kesede-inci-tesbih_2",
+  "cocuk-bileklik-bilezik-cocuk-takisi",
+  "isimlikli-canta-boy-kadife-kapli-yasini-serif-kitabi-dogum-cenaze",
 ]);
 
 /** Kapak görseli zayıf ama galeride iyi fotoğrafı olan ürünler: slug → öne alınacak görsel sırası */
