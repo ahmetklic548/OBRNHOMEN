@@ -20,7 +20,12 @@ export default function NavbarClient() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    // Başlık küçülünce (~80px) sayfa kayıyor; tek eşik (40px) bu yüzden sürekli aç-kapa yapıp
+    // titretiyordu. İki eşik: 140px'te küçül, 20px'in altında büyü.
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled((s) => (s ? y > 20 : y > 140));
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
