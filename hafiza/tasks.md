@@ -41,3 +41,4 @@
 - [x] Sepetten toptan fiyat butonu kaldırıldı, büyük sepete "Toptan Listeme Taşı"
 - [x] Ücretsiz kargo 2000 ₺
 - [x] Menü/şerit/ana sayfa bantları → /toptan, sitemap
+- [x] 19 ürün kodla kaldırıldı (görünür 36), ana sayfa görselleri değişti, Eşarp/Din Kitabı menüden çıktı, boş kategori 500→404
