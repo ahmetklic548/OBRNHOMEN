@@ -39,10 +39,14 @@ export const VALID_COUPONS: Record<string, number> = { HOSGELDIN10: 10 };
 
 /** Sepet toplamı (indirimli fiyatlarla) → kupon indirimi, kargo, ödenecek tutar.
  *  Checkout ekranı ve PayTR token API'si aynı hesabı kullanır. */
-export function orderTotals(subtotal: number, coupon: string | null) {
+/** Kapıda ödeme hizmet bedeli (kargo firmasının tahsilat ücreti) */
+export const COD_FEE = 70;
+
+export function orderTotals(subtotal: number, coupon: string | null, cod = false) {
   const discountRate   = coupon ? (VALID_COUPONS[coupon] ?? 0) : 0;
   const discountAmount = Math.round(subtotal * discountRate / 100);
   const shipping       = subtotal >= FREE_SHIPPING_OVER ? 0 : SHIPPING_FEE;
-  const grandTotal     = subtotal - discountAmount + shipping;
-  return { discountRate, discountAmount, shipping, grandTotal };
+  const codFee         = cod ? COD_FEE : 0;
+  const grandTotal     = Math.round((subtotal - discountAmount + shipping + codFee) * 100) / 100;
+  return { discountRate, discountAmount, shipping, codFee, grandTotal };
 }

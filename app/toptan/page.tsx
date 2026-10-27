@@ -33,6 +33,7 @@ export default function ToptanPage() {
       color: p.color,
       size: p.size,
       subcategory: p.subcategory,
+      packQty: p.quantity ?? 1,
     }));
 
   return <ToptanClient products={products} categories={getAllCategories()} />;

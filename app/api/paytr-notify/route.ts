@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
           const ref  = doc(db, "siparisTakip", merchant_oid);
           const snap = await getDoc(ref);
           const info = snap.exists()
-            ? (snap.data() as { name?: string; phone?: string; email?: string; address?: string; items?: unknown; total?: number; coupon?: string | null })
+            ? (snap.data() as { name?: string; phone?: string; email?: string; address?: string; items?: unknown; total?: number; coupon?: string | null; giftWrap?: boolean; giftNote?: string })
             : null;
 
           // Tutar kontrolü: sitenin hesapladığı (toptan kademe + kupon + kargo) tutar ile
@@ -80,6 +80,9 @@ export async function POST(req: NextRequest) {
               beklenenTutar: beklenen,
               tutarUyumlu,
               coupon: info?.coupon ?? null,
+              giftWrap: info?.giftWrap ?? false,
+              giftNote: info?.giftNote ?? "",
+              paymentMethod: "kart",
               status: "success",
               paidAt: Date.now(),
             });

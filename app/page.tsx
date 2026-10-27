@@ -9,6 +9,7 @@ import IntroSplash from "@/app/components/IntroSplash";
 import { INTRO_PREPAINT_SCRIPT } from "@/lib/intro";
 import { WHOLESALE_MIN_TOTAL } from "@/lib/pricing";
 import { categoryHref } from "@/lib/categories";
+import TrendyolBadge from "@/app/components/TrendyolBadge";
 
 export const metadata: Metadata = {
   title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
@@ -205,6 +206,10 @@ export default function Home() {
       <HeroSlider slides={HERO_SLIDES} />
 
       <TrustBar />
+
+      <div className="mx-auto flex max-w-[1500px] justify-center px-4 pb-8 md:px-6">
+        <TrendyolBadge />
+      </div>
 
       <ProductCarousel title="Sizin İçin Seçtiklerimiz" products={picks} href="/koleksiyon" />
 

@@ -7,9 +7,10 @@ import { useAuth } from "@/app/components/AuthProvider";
 import { trackBeginCheckout } from "@/lib/analytics";
 import Hint from "@/app/components/Hint";
 import { WHATSAPP_URL } from "@/lib/storeNav";
-import { FREE_SHIPPING_OVER, VALID_COUPONS, orderTotals, unitPriceFor, tierPct } from "@/lib/pricing";
+import { FREE_SHIPPING_OVER, VALID_COUPONS, COD_FEE, orderTotals, unitPriceFor, tierPct } from "@/lib/pricing";
+import { saveLastOrder, type LastOrder } from "@/lib/lastOrder";
 
-type Step = "form" | "paying" | "error";
+type Step = "form" | "paying" | "error" | "done";
 
 const STEPS = [
   { key: "form",   label: "Bilgiler",   num: 1 },
@@ -18,7 +19,7 @@ const STEPS = [
 ];
 
 export default function CheckoutPage() {
-  const { items, total, ready } = useCart();
+  const { items, total, ready, clear } = useCart();
   // Giriş zorunlu değil — misafir de ödeme yapabilir; girişliyse form profilden dolar.
   const { profile } = useAuth();
   const router   = useRouter();
@@ -31,8 +32,12 @@ export default function CheckoutPage() {
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState<string>("");
   const [form, setForm] = useState({ name: "", email: "", phone: "", address: "" });
+  const [payMethod, setPayMethod] = useState<"kart" | "kapida">("kart");
+  const [giftWrap, setGiftWrap] = useState(false);
+  const [giftNote, setGiftNote] = useState("");
+  const [sending, setSending] = useState(false);
 
-  const { discountRate, discountAmount, shipping, grandTotal } = orderTotals(total, couponApplied);
+  const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(total, couponApplied, payMethod === "kapida");
   // Ara toplam zaten kademeli; bilgi olarak kademesiz farkı göster
   const wholesaleSaving = Math.round((items.reduce((s, i) => s + i.price * i.qty, 0) - total) * 100) / 100;
 
@@ -82,19 +87,54 @@ export default function CheckoutPage() {
     return () => { document.body.removeChild(script); };
   }, [step, token]);
 
+  /** Başarı sayfasında özet + WhatsApp onayı için siparişi bu tarayıcıda sakla */
+  const remember = (
+    orderId: string,
+    method: LastOrder["method"],
+    o: { total: number; shipping: number; codFee: number; discountAmount: number; lines?: { name: string; sku?: string; qty: number; price: number }[] }
+  ) => {
+    saveLastOrder({
+      orderId, method,
+      lines: o.lines ?? items.map(i => ({ name: i.name, sku: i.code, qty: i.qty, price: unitPriceFor(i.price, i.qty) })),
+      shipping: o.shipping, codFee: o.codFee, discountAmount: o.discountAmount, total: o.total,
+      customer: { name: form.name, phone: form.phone, address: form.address },
+      giftWrap, giftNote: giftNote.trim(), createdAt: Date.now(),
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setSending(true);
+    const payload = {
+      items:  items.map(i => ({ slug: i.slug, qty: i.qty })),
+      coupon: couponApplied,
+      ...form,
+      giftWrap,
+      giftNote: giftNote.trim(),
+    };
     try {
+      if (payMethod === "kapida") {
+        // Kapıda ödeme: sipariş oluştur → başarı sayfasında WhatsApp'tan onaylanır
+        const res = await fetch("/api/order-cod", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (!res.ok || !data.orderId) {
+          setError(data.error ?? "Sipariş oluşturulamadı. Lütfen tekrar deneyin.");
+          setStep("error");
+          return;
+        }
+        remember(data.orderId, "kapida", data);
+        setStep("done"); // sepet boşalınca ana sayfaya yönlendirme tetiklenmesin
+        clear();
+        router.push(`/odeme/basarili?oid=${data.orderId}&yontem=kapida`);
+        return;
+      }
+
       // Fiyatlar sunucuda ürün verisinden yeniden hesaplanır; burada sadece slug/adet gider.
       const res = await fetch("/api/paytr-token", {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({
-          items:  items.map(i => ({ slug: i.slug, qty: i.qty })),
-          coupon: couponApplied,
-          ...form,
-        }),
+        body:    JSON.stringify(payload),
       });
       const data = await res.json();
       if (!res.ok || !data.token) {
@@ -104,12 +144,15 @@ export default function CheckoutPage() {
       }
       setToken(data.token);
       const paidTotal = typeof data.total === "number" ? data.total : grandTotal;
+      remember(data.merchant_oid, "kart", { total: paidTotal, shipping, codFee: 0, discountAmount });
       trackBeginCheckout(paidTotal, items.map(i => ({ slug: i.slug, name: i.name, price: i.price, qty: i.qty })));
       localStorage.setItem("obrnhomen-pending-total", String(paidTotal));
       setStep("paying");
     } catch {
       setError("Bağlantı hatası. Lütfen tekrar deneyin.");
       setStep("error");
+    } finally {
+      setSending(false);
     }
   };
 
@@ -181,7 +224,7 @@ export default function CheckoutPage() {
             {/* Left — Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="rounded-lg border border-[#e9d9a6] bg-[#fffbf0] px-4 py-3 text-[14px] leading-relaxed text-[#5c4710]">
-                <strong>Siparişiniz 2 adımda tamamlanır:</strong> ① Aşağıya bilgilerinizi yazın ② &ldquo;Ödemeye Geç&rdquo;e basıp kart bilgilerinizi girin.
+                <strong>Siparişiniz 2 adımda tamamlanır:</strong> ① Aşağıya bilgilerinizi yazın ② Kartla ya da kapıda ödemeyi seçip siparişi tamamlayın.
                 Takıldığınız yerde <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="font-medium underline">WhatsApp&apos;tan yazın</a>, birlikte tamamlayalım.
               </div>
 
@@ -232,17 +275,68 @@ export default function CheckoutPage() {
                 />
               </div>
 
+              {/* Hediye */}
+              <fieldset className="rounded-lg border border-stone-200 bg-white p-4">
+                <label className="flex cursor-pointer items-start gap-3 text-[15px] text-stone-800">
+                  <input type="checkbox" checked={giftWrap} onChange={e => setGiftWrap(e.target.checked)} className="mt-1 h-5 w-5 accent-[#9a7a2c]" />
+                  <span>
+                    <strong className="font-medium">🎁 Hediye paketi yapılsın</strong> <span className="text-stone-500">(ücretsiz)</span>
+                    <span className="block text-[13px] text-stone-500">Fiyat etiketi çıkarılır, şık şekilde paketlenir.</span>
+                  </span>
+                </label>
+                {giftWrap && (
+                  <textarea
+                    rows={2}
+                    maxLength={300}
+                    value={giftNote}
+                    onChange={e => setGiftNote(e.target.value)}
+                    placeholder="Hediye notu (isteğe bağlı) — örn: Hayırlı hac dönüşleri, Ayşe teyzen"
+                    className="mt-3 w-full rounded-md border border-stone-300 px-3 py-2.5 text-[15px] focus:outline-none focus:border-black"
+                  />
+                )}
+              </fieldset>
+
+              {/* Ödeme yöntemi */}
+              <fieldset>
+                <legend className="mb-2 flex items-center text-[15px] font-medium text-stone-800">
+                  Nasıl ödemek istersiniz?
+                  <Hint>Kartla ödemede ödemeyi şimdi yaparsınız. Kapıda ödemede ürünü teslim alırken kargo görevlisine nakit veya kartla ödersiniz; kargo firması bunun için {COD_FEE} ₺ hizmet bedeli alır.</Hint>
+                </legend>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {([
+                    ["kart", "💳 Kartla öde", "Kredi/banka kartı, taksit imkânı"],
+                    ["kapida", "🚚 Kapıda öde", `Teslimatta nakit/kart · +${COD_FEE} ₺`],
+                  ] as const).map(([v, t, d]) => (
+                    <label
+                      key={v}
+                      className="flex cursor-pointer items-start gap-3 rounded-lg border-2 bg-white p-4 transition-colors"
+                      style={{ borderColor: payMethod === v ? "#0a0a0a" : "#e7e5e4" }}
+                    >
+                      <input type="radio" name="pay" checked={payMethod === v} onChange={() => setPayMethod(v)} className="mt-1 h-5 w-5 accent-black" />
+                      <span><span className="block text-[16px] font-medium text-stone-900">{t}</span><span className="block text-[13px] text-stone-500">{d}</span></span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
               <button
                 type="submit"
-                className="w-full rounded-md py-4 text-[16px] font-semibold text-white transition-opacity hover:opacity-85"
+                disabled={sending}
+                className="w-full rounded-md py-4 text-[16px] font-semibold text-white transition-opacity hover:opacity-85 disabled:opacity-60"
                 style={{ background: "#0a0a0a" }}
               >
-                Ödemeye Geç →
+                {sending
+                  ? "Lütfen bekleyin…"
+                  : payMethod === "kapida"
+                    ? `Siparişi Tamamla (${grandTotal.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺ kapıda) →`
+                    : "Kart Bilgilerine Geç →"}
               </button>
 
-              <p className="flex items-center justify-center gap-2 text-[13px] text-stone-500">
+              <p className="flex items-center justify-center gap-2 text-center text-[13px] text-stone-500">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
-                Kart bilgileriniz PayTR güvenli ödeme sayfasında girilir, bizde saklanmaz.
+                {payMethod === "kapida"
+                  ? "Siparişinizi son adımda WhatsApp'tan tek dokunuşla onaylayacaksınız."
+                  : "Kart bilgileriniz PayTR güvenli ödeme sayfasında girilir, bizde saklanmaz."}
               </p>
             </form>
 
@@ -324,6 +418,12 @@ export default function CheckoutPage() {
                     <span style={{ color: "#16a34a" }}>-{discountAmount.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺</span>
                   </div>
                 )}
+                {codFee > 0 && (
+                  <div className="flex justify-between text-sm">
+                    <span style={{ color: "#999" }}>Kapıda ödeme bedeli</span>
+                    <span style={{ color: "#555" }}>{codFee.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺</span>
+                  </div>
+                )}
                 <div className="flex justify-between text-sm">
                   <span style={{ color: "#999" }}>Kargo</span>
                   {shipping === 0
@@ -360,8 +460,8 @@ export default function CheckoutPage() {
                 <p className="text-[12px] tracking-[0.04em] uppercase mb-1" style={{ color: "#999" }}>
                   Ödeme Yöntemleri
                 </p>
-                <p className="text-xs leading-relaxed" style={{ color: "#aaa" }}>
-                  Kredi kartı, banka kartı ve taksit seçenekleri PayTR altyapısıyla güvenle sunulmaktadır.
+                <p className="text-[13px] leading-relaxed text-stone-500">
+                  Kartla (PayTR güvenli ödeme, taksit imkânı) veya kapıda nakit/kart ile ödeyebilirsiniz.
                 </p>
               </div>
             </div>

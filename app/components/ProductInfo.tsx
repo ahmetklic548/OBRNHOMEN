@@ -9,6 +9,8 @@ import { trackViewItem, trackAddToCart, trackBeginCheckout } from "@/lib/analyti
 import type { Product } from "@/lib/products";
 import { salePrice, unitPriceFor, tierPct } from "@/lib/pricing";
 import WholesaleBox from "./WholesaleBox";
+import TrendyolBadge from "./TrendyolBadge";
+import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/storeNav";
 import AdminProductTools, { useIsAdmin } from "./AdminProductTools";
 import { useHiddenSlugs } from "@/lib/hidden";
 
@@ -253,6 +255,14 @@ export default function ProductInfo({ product }: { product: Product }) {
         </div>
       )}
 
+      {/* Telefonla sipariş */}
+      <a
+        href={PHONE_HREF}
+        className="mb-6 flex items-center justify-center gap-2 rounded-md border-2 border-stone-300 py-3 text-[15px] font-medium text-stone-800 hover:border-stone-900"
+      >
+        <span aria-hidden="true">📞</span> Telefonla sipariş ver: <strong>{PHONE_DISPLAY}</strong>
+      </a>
+
       {/* Paylaş */}
       <button
         onClick={handleShare}
@@ -265,6 +275,8 @@ export default function ProductInfo({ product }: { product: Product }) {
         </svg>
         {copied ? "Link kopyalandı!" : "Paylaş"}
       </button>
+
+      <div className="mb-4"><TrendyolBadge compact /></div>
 
       {/* Trust badges */}
       <div className="grid grid-cols-2 gap-2 mb-8">

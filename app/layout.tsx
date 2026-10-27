@@ -6,6 +6,8 @@ import { CartProvider } from "@/app/components/CartContext";
 import { AuthProvider } from "@/app/components/AuthProvider";
 import { WishlistProvider } from "@/app/components/WishlistContext";
 import { WholesaleListProvider } from "@/app/components/WholesaleListContext";
+import CallButton from "@/app/components/CallButton";
+import { BIG_TEXT_PREPAINT } from "@/lib/bigText";
 import NavbarClient from "@/app/components/NavbarClient";
 import LiveChatWidget from "@/app/components/LiveChatWidget";
 import NewsletterPopup from "@/app/components/NewsletterPopup";
@@ -55,6 +57,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr" suppressHydrationWarning className={`h-full ${inter.variable} ${playfair.variable}`}>
       <body className="min-h-full flex flex-col">
+        {/* A+ tercihi ilk boyamadan önce uygulanır */}
+        <script dangerouslySetInnerHTML={{ __html: BIG_TEXT_PREPAINT }} />
         <CartProvider>
           <WishlistProvider>
           <WholesaleListProvider>
@@ -154,6 +158,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </footer>
 
             <LiveChatWidget />
+            <CallButton />
             <NewsletterPopup />
             <ScrollToTop />
           </AuthProvider>

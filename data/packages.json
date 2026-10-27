@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ekonomik",
+    "title": "Ekonomik Kafile Paketi",
+    "description": "Her kişiye seccade, tesbih, takke ve misvak. Kafile ve mevlüt dağıtımı için en çok tercih edilen paket.",
+    "items": [
+      {
+        "slug": "10-adet-tafta-pamuk-osmanli-seccade-namazlik-karma-renk-hac-umre-mevlut-hediyelik-dagitmal",
+        "label": "Tafta seccade"
+      },
+      {
+        "slug": "10-adet-tullu-plastik-inci-tesbih-99-lu-namaz-tesbihi-hac-umre-mevlut-hediyelik-ceyiz-dagi",
+        "label": "Tüllü inci tesbih (99'lu)"
+      },
+      {
+        "slug": "karisik-renk-baklava-desenli-orgu-takke-hac-umre-mevlit-hediyelik-12-adet",
+        "label": "Örgü takke"
+      },
+      {
+        "slug": "swak-misvak-vakumlu-paket-10-adet",
+        "label": "Vakumlu misvak"
+      }
+    ],
+    "imageSlug": "10-adet-cam-inci-tesbih-99-luk-namaz-tesbihi-tespih-hac-umre-mevlut-hediyelik-dagitmalik-c"
+  },
+  {
+    "id": "klasik",
+    "title": "Klasik Hac & Umre Paketi",
+    "description": "Ekonomik pakete ek olarak Yasin cüzü ve esans. Hac ve umre dönüşü hediyelik için eksiksiz set.",
+    "items": [
+      {
+        "slug": "10-adet-tafta-pamuk-osmanli-seccade-namazlik-karma-renk-hac-umre-mevlut-hediyelik-dagitmal",
+        "label": "Tafta seccade"
+      },
+      {
+        "slug": "10-adet-tullu-plastik-inci-tesbih-99-lu-namaz-tesbihi-hac-umre-mevlut-hediyelik-ceyiz-dagi",
+        "label": "Tüllü inci tesbih (99'lu)"
+      },
+      {
+        "slug": "karisik-renk-baklava-desenli-orgu-takke-hac-umre-mevlit-hediyelik-12-adet",
+        "label": "Örgü takke"
+      },
+      {
+        "slug": "yasin-cuzu-kitabi-10-adet-mevlut-hac-umre-dogum-cenaze-hediyelik-telefonda-sesli-dinleme-5",
+        "label": "Yasin cüzü"
+      },
+      {
+        "slug": "40-li-hac-umre-mevlut-hediyelik-dagitmalik-esans-parfum-paket-karisik-lux-premium",
+        "label": "Esans"
+      },
+      {
+        "slug": "swak-misvak-vakumlu-paket-10-adet",
+        "label": "Vakumlu misvak"
+      }
+    ],
+    "imageSlug": "20-kisilik-hac-umre-hediyelik-seti-seccade-yazma-tesbih-takke-esans-yuzuk"
+  },
+  {
+    "id": "hanim",
+    "title": "Hanımlar İçin Paket",
+    "description": "Seccade, yazma (başörtüsü), tesbih ve Yasin cüzü. Hanımlar kafilesi ve mevlütler için.",
+    "items": [
+      {
+        "slug": "10-adet-tafta-pamuk-osmanli-seccade-namazlik-karma-renk-hac-umre-mevlut-hediyelik-dagitmal",
+        "label": "Tafta seccade"
+      },
+      {
+        "slug": "duzrenk-dagitmalik-hac-umre-hediyelik-ceyizlik-flamli-pamuk-esarp-yazma-20-adet",
+        "label": "Flamlı pamuk yazma"
+      },
+      {
+        "slug": "10-adet-tullu-plastik-inci-tesbih-99-lu-namaz-tesbihi-hac-umre-mevlut-hediyelik-ceyiz-dagi",
+        "label": "Tüllü inci tesbih (99'lu)"
+      },
+      {
+        "slug": "yasin-cuzu-kitabi-10-adet-mevlut-hac-umre-dogum-cenaze-hediyelik-telefonda-sesli-dinleme-5",
+        "label": "Yasin cüzü"
+      }
+    ],
+    "imageSlug": "duzrenk-dagitmalik-hac-umre-hediyelik-ceyizlik-flamli-pamuk-esarp-yazma-20-adet"
+  }
+]

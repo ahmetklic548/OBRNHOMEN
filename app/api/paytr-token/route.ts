@@ -2,44 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { getProductBySlug } from "@/lib/products";
-import { salePrice, unitPriceFor, tierPct, orderTotals, VALID_COUPONS } from "@/lib/pricing";
-
-/** Admin'in sitede sildiği ürünler (build'den sonra silinenler dahil) — satılmasın */
-async function fetchHiddenSlugs(): Promise<Set<string>> {
-  try {
-    const project = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "obrnhomen-73ed9";
-    const r = await fetch(`https://firestore.googleapis.com/v1/projects/${project}/databases/(default)/documents/products/_site_hidden`, { cache: "no-store" });
-    if (!r.ok) return new Set();
-    const d = await r.json();
-    return new Set((d.fields?.slugs?.arrayValue?.values ?? []).map((v: { stringValue?: string }) => v.stringValue ?? ""));
-  } catch {
-    return new Set();
-  }
-}
+import { computeOrder, readCustomer } from "@/lib/order";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, phone, address } = body;
+    const { name, email, phone, address, giftWrap, giftNote } = readCustomer(body);
 
-    /* Fiyatları istemciye güvenmeden ürün verisinden hesapla */
-    const reqItems: { slug: string; qty: number }[] = Array.isArray(body.items) ? body.items : [];
-    const hidden = await fetchHiddenSlugs();
-    const lines = reqItems.map(({ slug, qty }) => {
-      const p = hidden.has(String(slug)) ? undefined : getProductBySlug(String(slug));
-      const n = Math.floor(Number(qty));
-      if (!p || !p.inStock || !(n >= 1 && n <= 1000)) return null;
-      // Toptan kademe sunucuda da aynı formülle — istemci fiyatına güvenilmez
-      return { slug: p.slug, name: p.name, price: unitPriceFor(salePrice(p.price), n), qty: n, tier: tierPct(n) };
-    });
-    if (lines.length === 0 || lines.some(l => l === null)) {
-      return NextResponse.json({ error: "Sepetteki bir ürün artık satışta değil. Sepetinizi kontrol edin." }, { status: 400 });
-    }
-    const valid = lines as { slug: string; name: string; price: number; qty: number; tier: number }[];
-    const subtotal = Math.round(valid.reduce((s, i) => s + i.price * i.qty, 0) * 100) / 100;
-    const coupon = typeof body.coupon === "string" && VALID_COUPONS[body.coupon] ? body.coupon : null;
-    const { discountRate, shipping, grandTotal: total } = orderTotals(subtotal, coupon);
+    /* Fiyatlar sunucuda ürün verisinden (lib/order.ts) — istemci fiyatına güvenilmez */
+    const order = await computeOrder(body.items, body.coupon);
+    if ("error" in order) return NextResponse.json({ error: order.error }, { status: 400 });
+    const { lines: valid, coupon, discountRate, shipping, total } = order;
 
     /* PayTR sepeti — kupon indirimi satır fiyatlarına yansıtılır */
     const items = [
@@ -139,7 +112,7 @@ export async function POST(req: NextRequest) {
     if (db) {
       try {
         await setDoc(doc(db, "siparisTakip", merchant_oid), {
-          name, phone, email, address, items, total, coupon, createdAt: Date.now(),
+          name, phone, email, address, items, total, coupon, giftWrap, giftNote, paymentMethod: "kart", createdAt: Date.now(),
         });
       } catch (err) {
         console.error("siparisTakip kaydı başarısız:", err);

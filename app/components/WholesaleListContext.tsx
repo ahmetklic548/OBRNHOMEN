@@ -11,6 +11,8 @@ export interface WholesaleItem {
   qty: number;
   code?: string;
   variant?: string;
+  /** Bir ilandaki adet (10'lu paket → 10); mesajda toplam adet hesabı için */
+  packQty?: number;
 }
 
 interface WholesaleListCtx {

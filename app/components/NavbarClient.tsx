@@ -7,8 +7,9 @@ import AuthButton from "./AuthButton";
 import CartButton from "./CartButton";
 import MobileNav from "./MobileNav";
 import SearchBar from "./SearchBar";
+import FontSizeToggle from "./FontSizeToggle";
 import KaabaMark from "./KaabaMark";
-import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/storeNav";
+import { INSTAGRAM_URL, WHATSAPP_URL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/storeNav";
 import { NAV_GROUPS, categoryHref } from "@/lib/categories";
 
 const navItem = "block py-3 text-[14px] tracking-[0.02em] transition-colors hover:text-[#b8902e]";
@@ -58,6 +59,10 @@ export default function NavbarClient() {
               />
             </svg>
           </a>
+          <a href={PHONE_HREF} className="hidden items-center gap-2 rounded-full border border-stone-300 px-3 py-1.5 text-[14px] text-stone-800 hover:border-[#9a7a2c] lg:flex" aria-label={`Telefonla sipariş: ${PHONE_DISPLAY}`}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></svg>
+            <span><span className="block text-[11px] leading-none text-stone-500">Telefonla sipariş</span><span className="font-semibold">{PHONE_DISPLAY}</span></span>
+          </a>
         </div>
 
         {/* Orta: logo */}
@@ -76,6 +81,7 @@ export default function NavbarClient() {
         {/* Sağ: arama, hesap, sepet */}
         <div className="flex items-center justify-end gap-3 md:gap-5">
           <SearchBar />
+          <FontSizeToggle />
           <AuthButton />
           <CartButton />
         </div>

@@ -17,6 +17,10 @@ interface FOrder {
   beklenenTutar?: number | null;
   tutarUyumlu?: boolean | null;
   coupon?: string | null;
+  paymentMethod?: string;
+  giftWrap?: boolean;
+  giftNote?: string;
+  codFee?: number;
   status: string;
   paidAt: number;
 }
@@ -84,6 +88,8 @@ export default function AdminSiparisler() {
                       {o.tutarUyumlu === true && <span className="ml-1.5 px-1.5 py-0.5 text-[10px]" style={{ background: "#f0fdf4", color: "#16a34a" }}>✓ tutar doğru</span>}
                       {o.tutarUyumlu === false && <span className="ml-1.5 px-1.5 py-0.5 text-[10px]" style={{ background: "#fef2f2", color: "#dc2626" }}>⚠ tutar farklı</span>}
                       {(o.items ?? []).some(it => (it.tier ?? 0) > 0) && <span className="ml-1.5 px-1.5 py-0.5 text-[10px]" style={{ background: "#fffbf0", color: "#9a7a2c" }}>Toptan</span>}
+                      {o.paymentMethod === "kapida-odeme" && <span className="ml-1.5 px-1.5 py-0.5 text-[10px]" style={{ background: "#eff6ff", color: "#1d4ed8" }}>Kapıda ödeme</span>}
+                      {o.giftWrap && <span className="ml-1.5 px-1.5 py-0.5 text-[10px]" style={{ background: "#fdf2f8", color: "#be185d" }}>🎁 Hediye</span>}
                     </td>
                     <td className="px-4 py-3 text-right">
                       <button
@@ -100,6 +106,8 @@ export default function AdminSiparisler() {
                       <td colSpan={5} className="px-4 py-4 text-xs" style={{ color: "#1D1D1F" }}>
                         <p className="mb-2"><strong>Adres:</strong> {o.address || "-"}</p>
                         <p className="mb-2"><strong>E-posta:</strong> {o.email || "-"}</p>
+                        {o.paymentMethod === "kapida-odeme" && <p className="mb-2"><strong>Ödeme:</strong> Kapıda ödeme (+{o.codFee ?? 70} ₺ dahil) — müşterinin WhatsApp onayını kontrol et</p>}
+                        {o.giftWrap && <p className="mb-2"><strong>Hediye paketi:</strong> Evet{o.giftNote ? ` — Not: "${o.giftNote}"` : ""}</p>}
                         {o.beklenenTutar != null && (
                           <p className="mb-2">
                             <strong>Tutar kontrolü:</strong> sitenin hesapladığı {o.beklenenTutar.toLocaleString("tr-TR")} ₺ · PayTR&apos;nin tahsil ettiği {o.odenenTutar?.toLocaleString("tr-TR")} ₺

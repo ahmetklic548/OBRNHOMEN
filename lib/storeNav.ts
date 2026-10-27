@@ -11,6 +11,9 @@ export const UTILITY_LINKS = [
 ];
 
 export const WHATSAPP_URL = "https://wa.me/905316893849";
+/** Telefonla sipariş — yaşlı müşteriler formla uğraşmadan arasın */
+export const PHONE_DISPLAY = "0531 689 38 49";
+export const PHONE_HREF = "tel:+905316893849";
 export const INSTAGRAM_URL = "https://www.instagram.com/obrnhomen";
 
 /** Müşteriye gösterilen mağaza (Eminönü / Mahmutpaşa). Depo adresi hiçbir yerde gösterilmez. */

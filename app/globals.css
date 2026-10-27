@@ -126,3 +126,6 @@ h1, h2, h3, h4 {
 @media (prefers-reduced-motion: reduce) {
   .intro-splash { display: none; }
 }
+
+/* ─── A+ büyük yazı (FontSizeToggle) ─────────────────────── */
+html.text-buyuk body { zoom: 1.15; }

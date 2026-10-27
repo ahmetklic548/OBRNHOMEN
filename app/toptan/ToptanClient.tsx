@@ -9,6 +9,7 @@ import { WHOLESALE_MIN_TOTAL } from "@/lib/pricing";
 import { WHATSAPP_URL } from "@/lib/storeNav";
 import { prepare, searchProducts } from "@/lib/search";
 import { useHiddenSlugs } from "@/lib/hidden";
+import PACKAGES from "@/data/packages.json";
 import Hint from "@/app/components/Hint";
 
 export interface ToptanProduct {
@@ -22,6 +23,8 @@ export interface ToptanProduct {
   color: string | null;
   size: string | null;
   subcategory?: string;
+  /** İlandaki adet (10'lu paket → 10) */
+  packQty?: number;
 }
 
 const SITE_URL = "https://www.obrnhomen.com";
@@ -50,7 +53,7 @@ function wholesaleScore(p: ToptanProduct): number {
   return s;
 }
 const toItem = (p: ToptanProduct): Omit<WholesaleItem, "qty"> => ({
-  slug: p.slug, name: p.name, price: p.price, image: p.image, ...cartMeta({ id: p.code, color: p.color, size: p.size }),
+  slug: p.slug, name: p.name, price: p.price, image: p.image, packQty: p.packQty, ...cartMeta({ id: p.code, color: p.color, size: p.size }),
 });
 
 const FORM_KEY = "obrnhomen-toptan-form";
@@ -61,6 +64,8 @@ export default function ToptanClient({ products: allProducts, categories }: { pr
   const hidden = useHiddenSlugs();
   const products = useMemo(() => allProducts.filter(p => !hidden.has(p.slug)), [allProducts, hidden]);
   const list = useWholesaleList();
+  // Paketli ilanlarda gerçek ürün sayısı (2 × 10'lu paket = 20 ürün)
+  const units = list.items.reduce((sum, i) => sum + i.qty * (i.packQty ?? 1), 0);
   const [cat, setCat] = useState<string>(RECOMMENDED);
   const [q, setQ] = useState("");
   const [form, setForm] = useState<Form>(EMPTY_FORM);
@@ -108,7 +113,7 @@ export default function ToptanClient({ products: allProducts, categories }: { pr
       `${n + 1}) ${i.name}` +
       (i.variant ? `\n   Renk/Ebat: ${i.variant}` : "") +
       (i.code ? `\n   Ürün kodu: ${i.code}` : "") +
-      `\n   Adet: ${i.qty}` +
+      `\n   Adet: ${i.qty}${(i.packQty ?? 1) > 1 ? ` paket (${i.packQty}'lu → toplam ${i.qty * (i.packQty ?? 1)} adet)` : ""}` +
       (withLinks ? `\n   ${SITE_URL}/products/${i.slug}` : "")
     );
     return [
@@ -124,10 +129,10 @@ export default function ToptanClient({ products: allProducts, categories }: { pr
       "Ürünler:",
       lines.join("\n\n"),
       "",
-      `Toplam: ${list.items.length} çeşit, ${list.count} adet`,
+      `Toplam: ${list.items.length} çeşit, ${units} ürün`,
       "Bu liste için toptan fiyat alabilir miyim?",
     ].filter(l => l !== null).join("\n");
-  }, [list.items, list.count, form]);
+  }, [list.items, units, form]);
 
   const send = () => {
     setTried(true);
@@ -172,11 +177,26 @@ export default function ToptanClient({ products: allProducts, categories }: { pr
             <span>✓ Farklı ürünler bir arada</span>
             <span>✓ Toplu paketleme imkânı</span>
             <span>✓ Ödeme ve kargo WhatsApp&apos;ta netleşir</span>
+            <Link href="/toptan/katalog" className="font-medium text-[#e9d48f] underline">📄 Ürün kataloğunu indir (PDF)</Link>
           </div>
         </div>
       </section>
 
       <div className="mx-auto grid max-w-[1400px] gap-8 px-4 py-8 md:px-6 lg:grid-cols-[1fr_400px]">
+        {/* ── Hazır kafile paketleri ─────────────────────── */}
+        <section aria-label="Hazır kafile paketleri" className="min-w-0 lg:col-span-2">
+          <h2 className="text-lg" style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: "#0a0a0a" }}>
+            Hazır Kafile Paketleri
+            <Hint>Kişi sayısını seçip &ldquo;Listeye Ekle&rdquo;ye basın; paketteki her üründen herkese bir tane düşecek şekilde listenize eklenir. Sonra listede adetleri değiştirebilir, ürün ekleyip çıkarabilirsiniz.</Hint>
+          </h2>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            {PACKAGES.map(pk => <PackageCard key={pk.id} pk={pk} products={allProducts} onAdd={(slug, qty) => {
+              const p = allProducts.find(x => x.slug === slug);
+              if (p) list.add(toItem(p), qty);
+            }} />)}
+          </div>
+        </section>
+
         {/* ── Ürün seçimi ─────────────────────────────────── */}
         <section aria-label="Ürün seçimi" className="min-w-0">
           <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
@@ -235,6 +255,7 @@ export default function ToptanClient({ products: allProducts, categories }: { pr
                       <p className="mt-1 text-[13px] text-stone-400">
                         {[variant, `Kod: ${p.code}`].filter(Boolean).join(" · ")}
                       </p>
+                      {(p.packQty ?? 1) > 1 && <p className="mt-1 text-[12px] text-stone-500">{p.packQty}&apos;lu paket</p>}
                       <p className="mt-1.5 text-[13px] font-medium text-[#9a7a2c]">Toptan fiyat: teklifle</p>
 
                       <div className="mt-auto pt-3">
@@ -282,7 +303,7 @@ export default function ToptanClient({ products: allProducts, categories }: { pr
             <div className="flex items-center justify-between px-5 py-4" style={{ background: "#fffbf0" }}>
               <div>
                 <p className="text-[13px] uppercase tracking-[0.04em]" style={{ color: "#9a7a2c" }}>2 · Toptan Listem</p>
-                <p className="mt-0.5 text-sm text-stone-800">{list.items.length} çeşit · {list.count} adet</p>
+                <p className="mt-0.5 text-sm text-stone-800">{list.items.length} çeşit · toplam {units} ürün</p>
               </div>
               {list.items.length > 0 && (
                 <button type="button" onClick={list.clear} className="text-[13px] uppercase tracking-widest text-stone-400 hover:text-red-500">
@@ -315,7 +336,7 @@ export default function ToptanClient({ products: allProducts, categories }: { pr
                           style={{ borderColor: "#e0e0e0" }}
                           aria-label={`${i.name} adet`}
                         />
-                        <span className="text-[13px] text-stone-500">adet</span>
+                        <span className="text-[13px] text-stone-500">{(i.packQty ?? 1) > 1 ? `paket (${i.packQty}'lu = ${i.qty * (i.packQty ?? 1)} adet)` : "adet"}</span>
                       </div>
                     </div>
                     <button type="button" onClick={() => list.remove(i.slug)} className="self-start text-sm text-stone-300 hover:text-red-400" aria-label={`${i.name} çıkar`}>✕</button>
@@ -390,13 +411,87 @@ export default function ToptanClient({ products: allProducts, categories }: { pr
         style={{ borderColor: "#e9d9a6" }}
       >
         <span className="text-xs text-stone-700">
-          <strong>{list.items.length}</strong> çeşit · <strong>{list.count}</strong> adet
+          <strong>{list.items.length}</strong> çeşit · <strong>{units}</strong> ürün
           <span className="block text-[13px]" style={{ color: remaining ? "#9a7a2c" : "#1f9d55" }}>
             {remaining ? `Liste %${Math.round(progress)} doldu` : "✓ Fiyat alabilirsiniz"}
           </span>
         </span>
         <span className="shrink-0 bg-[#1a1208] px-4 py-2 text-[13px] uppercase tracking-[0.15em] text-[#e9d48f]">Listeyi gör</span>
       </a>
+    </div>
+  );
+}
+
+const PEOPLE = [20, 30, 40, 50, 100];
+
+/** Hazır paket kartı: kişi sayısına göre her üründen kaç paket gerektiğini hesaplayıp listeye ekler */
+function PackageCard({
+  pk,
+  products,
+  onAdd,
+}: {
+  pk: { id: string; title: string; description: string; imageSlug?: string; items: { slug: string; label: string }[] };
+  products: ToptanProduct[];
+  onAdd: (slug: string, qty: number) => void;
+}) {
+  const [people, setPeople] = useState(40);
+  const [added, setAdded] = useState(false);
+  const rows = pk.items
+    .map(it => ({ ...it, p: products.find(x => x.slug === it.slug) }))
+    .filter((r): r is typeof r & { p: ToptanProduct } => !!r.p);
+  const packsFor = (p: ToptanProduct) => Math.ceil(people / Math.max(1, p.packQty ?? 1));
+  const image = products.find(x => x.slug === pk.imageSlug)?.image ?? rows[0]?.p.image;
+
+  const addAll = () => {
+    for (const r of rows) onAdd(r.p.slug, packsFor(r.p));
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2500);
+    document.getElementById("toptan-listem")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <div className="flex flex-col overflow-hidden rounded-xl border border-[#e9d9a6] bg-white">
+      {image && (
+        <div className="relative h-36 bg-[#efece6]">
+          <Image src={image} alt={pk.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+        </div>
+      )}
+      <div className="flex flex-1 flex-col p-4">
+        <p className="text-[16px] font-semibold text-stone-900">{pk.title}</p>
+        <p className="mt-1 text-[13px] leading-relaxed text-stone-600">{pk.description}</p>
+        <ul className="mt-3 space-y-1 text-[13px] text-stone-700">
+          {rows.map(r => (
+            <li key={r.slug} className="flex justify-between gap-2">
+              <span>• {r.label}</span>
+              <span className="shrink-0 text-stone-400">{people} adet</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-auto pt-4">
+          <p className="mb-1.5 text-[13px] font-medium text-stone-700">Kaç kişilik?</p>
+          <div className="mb-3 flex flex-wrap gap-1.5">
+            {PEOPLE.map(n => (
+              <button
+                key={n}
+                type="button"
+                onClick={() => setPeople(n)}
+                className="rounded-full border px-3 py-1.5 text-[13px]"
+                style={people === n ? { background: "#0a0a0a", color: "#fff", borderColor: "#0a0a0a" } : { borderColor: "#e0e0e0", color: "#444" }}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={addAll}
+            className="w-full rounded-md py-3 text-[14px] font-semibold text-white"
+            style={{ background: added ? "#1f9d55" : "#1a1208" }}
+          >
+            {added ? "✓ Listeye eklendi" : `${people} Kişilik Paketi Listeye Ekle`}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
