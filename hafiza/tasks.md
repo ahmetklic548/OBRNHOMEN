@@ -56,3 +56,10 @@
 - [x] Açılır menü, slug URL, Lora font, %10 rozeti kaldırıldı, Hint + ödeme rehberi
 - [x] Admin Sil / Gizlenen Ürünler; toptan önerilenler + fiyatsız görünüm
 - [ ] Kullanıcı Sil düğmesini ilk kez denesin (Firestore yazma izni teyidi)
+
+## 2026-10-27 gece — ödeme ve ek özellikler
+- [x] Kapıda ödeme +70 ₺ + WhatsApp onay (başarı sayfası), hediye paketi/not
+- [x] Kafile paketleri ([[packages]]), telefonla sipariş, A+, Trendyol puanı, /toptan/katalog + PDF (masaüstü)
+- [ ] Havale/EFT: şirket hesabı / PayTR havale kararı bekleniyor
+- [ ] Meta WhatsApp Cloud API ile otomatik sipariş mesajı
+- [ ] Kapıda ödeme Firestore kaydının admin panelde göründüğünü ilk gerçek siparişte kontrol et
