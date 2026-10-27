@@ -129,3 +129,6 @@ h1, h2, h3, h4 {
 
 /* ─── A+ büyük yazı (FontSizeToggle) ─────────────────────── */
 html.text-buyuk body { zoom: 1.15; }
+
+/* Yazdırma/PDF (ör. /toptan/katalog): site çubukları ve yüzen düğmeler çıkmasın */
+@media print { .print-hidden { display: none !important; } }

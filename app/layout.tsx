@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AuthProvider>
 
             {/* Duyuru şeridi */}
-            <div className="bg-gradient-to-r from-[#e9d48f] via-[#f3e3a6] to-[#e9d48f] text-[#3b2c08]">
+            <div className="print-hidden bg-gradient-to-r from-[#e9d48f] via-[#f3e3a6] to-[#e9d48f] text-[#3b2c08]">
               <div className="mx-auto flex max-w-[1500px] items-center justify-center gap-6 px-4 py-2 text-[13px] md:justify-between md:px-6">
                 {/* İki ayrı mesaj: kargo tüm siparişler için, toptan ayrı bölüm */}
                 <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
@@ -157,8 +157,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </footer>
 
-            <LiveChatWidget />
-            <CallButton />
+            <div className="print-hidden">
+              <LiveChatWidget />
+              <CallButton />
+            </div>
             <NewsletterPopup />
             <ScrollToTop />
           </AuthProvider>
