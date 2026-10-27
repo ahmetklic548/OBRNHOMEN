@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { getAllProducts } from "@/lib/products";
 
 const HISTORY_KEY = "search-history";
 const MAX_HISTORY = 8;
@@ -30,21 +29,25 @@ function removeHistory(term: string) {
   localStorage.setItem(HISTORY_KEY, JSON.stringify(getHistory().filter(h => h !== term)));
 }
 
-const allProducts: Result[] = getAllProducts().map(p => ({
-  slug: p.slug,
-  name: p.name,
-  category: p.category,
-  image: p.images[0] ?? "",
-  price: p.price,
-}));
+// Ürün listesi her sayfanın JS'ine gömülmesin diye arama ilk açıldığında
+// /search-index.json'dan yüklenir (app/search-index.json/route.ts).
+let allProducts: Result[] = [];
+let loading: Promise<void> | null = null;
+function loadIndex(): Promise<void> {
+  loading ??= fetch("/search-index.json")
+    .then(r => r.json())
+    .then((d: Result[]) => { allProducts = d; })
+    .catch(() => { loading = null; });
+  return loading;
+}
 
 function search(query: string): Result[] {
-  const q = query.toLowerCase().trim();
+  const q = query.toLocaleLowerCase("tr-TR").trim();
   if (!q) return [];
   return allProducts
     .filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      p.category.toLowerCase().includes(q)
+      p.name.toLocaleLowerCase("tr-TR").includes(q) ||
+      p.category.toLocaleLowerCase("tr-TR").includes(q)
     )
     .slice(0, 6);
 }
@@ -59,14 +62,18 @@ export default function SearchBar() {
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const [indexReady, setIndexReady] = useState(false);
+
   useEffect(() => {
-    if (open) setHistory(getHistory());
+    if (!open) return;
+    setHistory(getHistory());
+    loadIndex().then(() => setIndexReady(true));
   }, [open]);
 
   useEffect(() => {
     setResults(search(query));
     setActive(-1);
-  }, [query]);
+  }, [query, indexReady]);
 
   const close = useCallback(() => {
     setOpen(false);

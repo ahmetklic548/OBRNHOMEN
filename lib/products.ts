@@ -52,7 +52,7 @@ export function getAllSlugs(): string[] {
 }
 
 export function getFeaturedProducts(): Product[] {
-  const picks = ["Tesbih", "Seccade", "Konsept Hediyelik", "Eşarp"];
+  const picks = ["Tesbih & Zikirmatik", "Seccade", "Hediyelik Setler", "Kuran & Dini Kitaplar"];
   return picks
     .map((cat) => products.find((p) => p.category === cat && p.inStock))
     .filter(Boolean) as Product[];

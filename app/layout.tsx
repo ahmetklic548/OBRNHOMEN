@@ -113,7 +113,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div>
                   <p className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-stone-900">Kategoriler</p>
                   <ul className="space-y-2.5 text-[13px]">
-                    {CATEGORY_LINKS.slice(0, 7).map(({ href, label }) => (
+                    {CATEGORY_LINKS.slice(1, 9).map(({ href, label }) => (
                       <li key={href}><Link href={href} className="hover:text-[#b8902e]">{label}</Link></li>
                     ))}
                   </ul>

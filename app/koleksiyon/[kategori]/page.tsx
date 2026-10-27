@@ -5,45 +5,51 @@ import ProductGrid from "@/app/components/ProductGrid";
 import type { Metadata } from "next";
 
 const categoryMeta: Record<string, { title: string; description: string; keywords: string[] }> = {
-  Tesbih: {
-    title: "Tesbih Çeşitleri | El İşi & Hediyelik Tesbih",
-    description: "İnci, akik, kuka ve ahşap tesbih modelleri. Hac, umre, mevlüt hediyeliği için özel kutulu tesbihler. Ücretsiz kargo 2000₺ üzeri.",
-    keywords: ["tesbih", "hediyelik tesbih", "inci tesbih", "akik tesbih", "kutulu tesbih", "mevlüt tesbih"],
+  "Kuran & Dini Kitaplar": {
+    title: "Kur'an-ı Kerim, Yasin ve Dini Kitaplar | Cep, Orta, Cami Boy",
+    description: "Bilgisayar hatlı, mealli, tecvidli Kur'an-ı Kerim; Yasin-i Şerif, Cevşen, Elifba ve dini kitaplar. Mevlüt ve hac umre hediyeliği için toptan fiyat.",
+    keywords: ["kuran-ı kerim", "yasin kitabı", "cevşen", "elifba", "mealli kuran", "dini kitap", "toptan yasin"],
   },
   Seccade: {
-    title: "Seccade Modelleri | Kadife & Şipinger Namazlık",
-    description: "Kadife, şipinger ve özel desen seccade modelleri. Hac umre hediyeliği için toplu seccade seçenekleri. 14 gün iade garantisi.",
-    keywords: ["seccade", "namazlık", "kadife seccade", "şipinger seccade", "hac seccade", "toplu seccade"],
+    title: "Seccade Modelleri | Kadife, Şönil, Simli Goblen Namazlık",
+    description: "Kadife, şönil, simli goblen ve cep seccadesi modelleri. Hac umre ve mevlüt hediyeliği için toptan seccade seçenekleri. 14 gün iade.",
+    keywords: ["seccade", "namazlık", "kadife seccade", "goblen seccade", "cep seccadesi", "toptan seccade"],
   },
-  "Konsept Hediyelik": {
-    title: "Konsept Hediyelik Setler | Mevlüt & Hac Umre Hediyeleri",
-    description: "Mevlüt, hac, umre, düğün ve kına için özel hediyelik setler. Başörtü, tesbih, zikirmatik kombinasyonları. Toplu sipariş indirimi.",
-    keywords: ["hediyelik set", "mevlüt hediyeliği", "hac umre hediyesi", "düğün hediyeliği", "kına hediyeliği"],
+  "Tesbih & Zikirmatik": {
+    title: "Tesbih ve Zikirmatik Çeşitleri | İnci, Kristal, Kuka",
+    description: "99'luk ve 33'lük inci, kristal, kuka tesbihler; taşlı ve dijital zikirmatikler. Hac, umre, mevlüt hediyeliği için toptan tesbih.",
+    keywords: ["tesbih", "zikirmatik", "inci tesbih", "taşlı zikirmatik", "dağıtmalık tesbih", "toptan tesbih"],
   },
-  Eşarp: {
-    title: "Tesettür Eşarp & Başörtü Modelleri",
-    description: "Şifon, pamuk ve kadife eşarp modelleri. Namaz, mevlüt ve günlük kullanım için tesettür başörtüsü çeşitleri.",
-    keywords: ["eşarp", "başörtü", "tesettür eşarp", "şifon eşarp", "namaz örtüsü"],
+  "Hediyelik Setler": {
+    title: "Hediyelik Setler | Mevlüt, Hac Umre ve Çeyiz Hediyeleri",
+    description: "Yasin ve tesbih setleri, kutulu hediyelikler, hac umre setleri, zemzem takımları. Mevlüt, düğün ve kafile hediyeleri için toptan fiyat.",
+    keywords: ["hediyelik set", "mevlüt hediyeliği", "hac umre hediyesi", "çeyiz hediyeliği", "dağıtmalık hediye"],
   },
-  "Din Kitabı": {
-    title: "Dini Kitaplar | Delailü'l Hayrat & Kur'an-ı Kerim",
-    description: "Türkçe okunuşlu ve mealli dini kitaplar. Delailü'l Hayrat, Kur'an-ı Kerim ve namaz kitapları. Din eğitimi için ideal.",
-    keywords: ["dini kitap", "Delailü'l Hayrat", "Kuran", "namaz kitabı", "din eğitimi"],
+  "Namaz Elbisesi & Tesettür": {
+    title: "Namaz Elbisesi ve Tesettür Giyim | Pratik, Çift Parça",
+    description: "Pratik tek parça ve çift parça kadın namaz elbiseleri, hazır bone, kolluk. Hac umre için uygun, terletmeyen kumaşlar.",
+    keywords: ["namaz elbisesi", "namaz kıyafeti", "pratik namaz elbisesi", "tesettür", "hazır bone"],
   },
-  İhram: {
-    title: "Erkek İhram Çeşitleri | Hac & Umre İhramı",
-    description: "%100 pamuk hac ve umre ihramı. 1250gr kaliteli pamuk kumaş, nefes alabilir yapı. Hac sezonu için stok.",
-    keywords: ["ihram", "hac ihramı", "umre ihramı", "erkek ihram", "pamuk ihram"],
+  "Eşarp & Örtü": {
+    title: "Eşarp, Tülbent ve Namaz Örtüsü Modelleri",
+    description: "Düz flamlı eşarp, tülbent, oyalı namaz ve mevlüt örtüsü, dağıtmalık yazma. Toptan alımda özel fiyat.",
+    keywords: ["eşarp", "tülbent", "namaz örtüsü", "mevlüt örtüsü", "yazma", "başörtüsü"],
   },
-  Misvak: {
-    title: "Doğal Misvak | Vakumlu & Taze Misvak",
-    description: "Doğal ağaç misvakı, vakumlu ambalajda taze. Sünnet olan ağız bakımı için %100 doğal misvak çeşitleri.",
-    keywords: ["misvak", "vakumlu misvak", "doğal misvak", "ağız bakımı", "sünnet misvak"],
+  "İhram & Hac Umre": {
+    title: "İhram ve Hac Umre Malzemeleri | Pamuk & Bambu İhram",
+    description: "Pamuk ve bambu ihram, çocuk ihramı, ihram kemeri, kokusuz sabun ve pudra, takke, tavaf patiği. Hac ve umre için eksiksiz malzeme.",
+    keywords: ["ihram", "bambu ihram", "çocuk ihramı", "ihram kemeri", "kokusuz sabun", "hac malzemeleri"],
+  },
+  "Misvak, Esans & Sürme": {
+    title: "Misvak, Esans ve Sürme | Hac Umre Dağıtmalık",
+    description: "Vakumlu taze misvak, alkolsüz esans paketleri ve göz sürmesi. Hac umre ve mevlüt için dağıtmalık hediyelikler.",
+    keywords: ["misvak", "vakumlu misvak", "esans", "alkolsüz esans", "sürme", "dağıtmalık"],
   },
 };
 
 function slugToCategory(slug: string): string {
-  return decodeURIComponent(slug);
+  // Next parametreyi bazen kodlu ("Hediyelik%20Setler"), bazen çözülmüş verir
+  try { return decodeURIComponent(slug); } catch { return slug; }
 }
 
 // Sadece görünür ürünü olan kategoriler üretilir; boş/bilinmeyen kategori (ör. Eşarp)
@@ -51,9 +57,9 @@ function slugToCategory(slug: string): string {
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return getAllCategories().map((cat) => ({
-    kategori: encodeURIComponent(cat),
-  }));
+  // Ham ad verilir; URL kodlamasını Next yapar (önceden elle kodlanınca boşluk/&
+  // içeren kategoriler dynamicParams=false ile 404 veriyordu)
+  return getAllCategories().map((cat) => ({ kategori: cat }));
 }
 
 export async function generateMetadata({
