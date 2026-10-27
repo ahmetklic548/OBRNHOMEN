@@ -50,3 +50,9 @@
 - [x] /api/trendyol/products yeni apigw adresine geçti (canlıda 200, 3494 kayıt); stok/fiyat güncelleme (POST) gerçek veride denenmedi
 - [x] [[search]] güçlü arama: Türkçe/eş anlamlı/yazım hatası; arama çubuğu bölüm önerileri + tüm sonuçlar
 - [x] Alt gruplar ([[subcategories]]), listede başlıklı gruplar + alt grup çipleri + fiyat sıralaması
+
+## 2026-10-27 akşam — keskin kategoriler, kodlar, admin silme, erişilebilirlik
+- [x] [[classify]] 14 kategori + SKU + tekrar tespiti ([[benzer-urunler]] 63 benzer çift kontrol bekliyor)
+- [x] Açılır menü, slug URL, Lora font, %10 rozeti kaldırıldı, Hint + ödeme rehberi
+- [x] Admin Sil / Gizlenen Ürünler; toptan önerilenler + fiyatsız görünüm
+- [ ] Kullanıcı Sil düğmesini ilk kez denesin (Firestore yazma izni teyidi)
