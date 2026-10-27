@@ -7,6 +7,7 @@ import { useWholesaleList, type WholesaleItem } from "@/app/components/Wholesale
 import { cartMeta } from "@/app/components/CartContext";
 import { WHOLESALE_MIN_TOTAL } from "@/lib/pricing";
 import { WHATSAPP_URL } from "@/lib/storeNav";
+import { prepare, searchProducts } from "@/lib/search";
 
 export interface ToptanProduct {
   slug: string;
@@ -18,6 +19,7 @@ export interface ToptanProduct {
   code: string;
   color: string | null;
   size: string | null;
+  subcategory?: string;
 }
 
 const SITE_URL = "https://www.obrnhomen.com";
@@ -64,13 +66,12 @@ export default function ToptanClient({ products, categories }: { products: Topta
     try { localStorage.setItem(FORM_KEY, JSON.stringify(form)); } catch {}
   }, [form, formLoaded]);
 
+  // Site geneliyle aynı arama motoru (Türkçe karakter, eş anlamlı, yazım hatası toleransı)
+  const prepared = useMemo(() => prepare(products.map(p => ({ ...p, id: p.code }))), [products]);
   const visible = useMemo(() => {
-    const term = q.trim().toLocaleLowerCase("tr-TR");
-    return products.filter(p =>
-      (cat === "Tümü" || p.category === cat) &&
-      (!term || `${p.name} ${p.color ?? ""} ${p.code}`.toLocaleLowerCase("tr-TR").includes(term))
-    );
-  }, [products, cat, q]);
+    const base = q.trim() ? searchProducts(prepared, q) : products;
+    return cat === "Tümü" ? base : base.filter(p => p.category === cat);
+  }, [prepared, products, cat, q]);
 
   const remaining = Math.max(0, WHOLESALE_MIN_TOTAL - list.total);
   const progress = Math.min(100, (list.total / WHOLESALE_MIN_TOTAL) * 100);

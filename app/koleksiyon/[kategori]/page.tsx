@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getAllCategories, getProductsByCategory } from "@/lib/products";
+import { getAllCategories, getProductsByCategory, toCard } from "@/lib/products";
 import ProductGrid from "@/app/components/ProductGrid";
 import type { Metadata } from "next";
 
@@ -152,7 +152,7 @@ export default async function KategoriPage({
 
       {/* Grid */}
       <div className="max-w-6xl mx-auto px-6 py-12">
-        <ProductGrid products={products} categories={[]} />
+        <ProductGrid products={products.map(toCard)} categories={[]} />
       </div>
     </div>
   );

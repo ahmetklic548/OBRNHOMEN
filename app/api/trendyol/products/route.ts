@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { trendyolAuthHeader, TRENDYOL_BASE } from "@/lib/trendyol";
+import { trendyolAuthHeader } from "@/lib/trendyol";
+
+// Trendyol ürün/stok uçları eski sapigw adresinden kaldırıldı (2026-10'da 500 veriyordu);
+// yeni entegrasyon adresleri:
+const PRODUCT_BASE   = "https://apigw.trendyol.com/integration/product/sellers";
+const INVENTORY_BASE = "https://apigw.trendyol.com/integration/inventory/sellers";
 
 function isAuthorized(req: NextRequest) {
   return req.headers.get("x-admin-secret") === process.env.ADMIN_SECRET;
@@ -19,7 +24,7 @@ export async function GET(req: NextRequest) {
   const params = new URLSearchParams({ page, size });
   if (approved) params.set("approved", approved);
 
-  const res = await fetch(`${TRENDYOL_BASE}/suppliers/${supplierId}/products?${params}`, {
+  const res = await fetch(`${PRODUCT_BASE}/${supplierId}/products?${params}`, {
     headers: {
       Authorization: trendyolAuthHeader(),
       "User-Agent": `${supplierId} - SelfIntegration`,
@@ -28,7 +33,9 @@ export async function GET(req: NextRequest) {
     next: { revalidate: 0 },
   });
 
-  const data = await res.json();
+  const text = await res.text();
+  let data: unknown;
+  try { data = JSON.parse(text); } catch { data = { message: text.slice(0, 300) }; }
   if (!res.ok) return NextResponse.json({ error: data }, { status: res.status });
   return NextResponse.json(data);
 }
@@ -41,7 +48,7 @@ export async function POST(req: NextRequest) {
 
   const body = await req.json();
 
-  const res = await fetch(`${TRENDYOL_BASE}/suppliers/${supplierId}/products/price-and-inventory`, {
+  const res = await fetch(`${INVENTORY_BASE}/${supplierId}/products/price-and-inventory`, {
     method: "POST",
     headers: {
       Authorization: trendyolAuthHeader(),
@@ -52,7 +59,9 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify(body),
   });
 
-  const data = await res.json();
+  const text = await res.text();
+  let data: unknown;
+  try { data = JSON.parse(text); } catch { data = { message: text.slice(0, 300) }; }
   if (!res.ok) return NextResponse.json({ error: data }, { status: res.status });
   return NextResponse.json(data);
 }

@@ -1,4 +1,4 @@
-import { getAllProducts, getAllCategories } from "@/lib/products";
+import { getAllProducts, getAllCategories, toCard } from "@/lib/products";
 import ProductGrid from "@/app/components/ProductGrid";
 import type { Metadata } from "next";
 
@@ -50,7 +50,7 @@ export default function KoleksiyonPage() {
 
       {/* Grid */}
       <div className="max-w-6xl mx-auto px-6 py-12">
-        <ProductGrid products={products} categories={categories} />
+        <ProductGrid products={products.map(toCard)} categories={categories} />
       </div>
     </div>
   );

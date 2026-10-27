@@ -11,6 +11,11 @@ export function GET() {
       slug: p.slug,
       name: p.name,
       category: p.category,
+      subcategory: p.subcategory,
+      color: p.color,
+      size: p.size,
+      brand: p.brand,
+      id: p.id,
       image: p.images[0] ?? "",
       price: salePrice(p.price),
     }))

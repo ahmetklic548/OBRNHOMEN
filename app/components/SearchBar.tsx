@@ -1,16 +1,24 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { prepare, searchProducts, fold } from "@/lib/search";
+import { WHATSAPP_URL } from "@/lib/storeNav";
 
 const HISTORY_KEY = "search-history";
 const MAX_HISTORY = 8;
+const POPULAR = ["Kur'an-ı Kerim", "Yasin", "Seccade", "Tesbih", "Zikirmatik", "İhram", "Namaz elbisesi", "Misvak"];
 
 interface Result {
   slug: string;
   name: string;
   category: string;
+  subcategory?: string;
+  color?: string | null;
+  size?: string | null;
+  brand?: string;
+  id?: string;
   image: string;
   price: number;
 }
@@ -21,59 +29,65 @@ function getHistory(): string[] {
 }
 
 function saveHistory(term: string) {
-  const prev = getHistory().filter(h => h !== term);
-  localStorage.setItem(HISTORY_KEY, JSON.stringify([term, ...prev].slice(0, MAX_HISTORY)));
+  try {
+    const prev = getHistory().filter(h => h !== term);
+    localStorage.setItem(HISTORY_KEY, JSON.stringify([term, ...prev].slice(0, MAX_HISTORY)));
+  } catch {}
 }
 
 function removeHistory(term: string) {
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(getHistory().filter(h => h !== term)));
+  try { localStorage.setItem(HISTORY_KEY, JSON.stringify(getHistory().filter(h => h !== term))); } catch {}
 }
 
 // Ürün listesi her sayfanın JS'ine gömülmesin diye arama ilk açıldığında
 // /search-index.json'dan yüklenir (app/search-index.json/route.ts).
-let allProducts: Result[] = [];
+let index: ReturnType<typeof prepare<Result>> = [];
 let loading: Promise<void> | null = null;
 function loadIndex(): Promise<void> {
   loading ??= fetch("/search-index.json")
     .then(r => r.json())
-    .then((d: Result[]) => { allProducts = d; })
+    .then((d: Result[]) => { index = prepare(d); })
     .catch(() => { loading = null; });
   return loading;
 }
 
-function search(query: string): Result[] {
-  const q = query.toLocaleLowerCase("tr-TR").trim();
-  if (!q) return [];
-  return allProducts
-    .filter(p =>
-      p.name.toLocaleLowerCase("tr-TR").includes(q) ||
-      p.category.toLocaleLowerCase("tr-TR").includes(q)
-    )
-    .slice(0, 6);
-}
+const catHref = (cat: string, sub?: string) =>
+  `/koleksiyon/${encodeURIComponent(cat)}${sub ? `?alt=${encodeURIComponent(sub)}` : ""}`;
 
 export default function SearchBar() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<Result[]>([]);
   const [history, setHistory] = useState<string[]>([]);
   const [active, setActive] = useState(-1);
+  const [indexReady, setIndexReady] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const [indexReady, setIndexReady] = useState(false);
-
-  useEffect(() => {
-    if (!open) return;
+  const openSearch = () => {
+    setOpen(true);
     setHistory(getHistory());
     loadIndex().then(() => setIndexReady(true));
-  }, [open]);
+    setTimeout(() => inputRef.current?.focus(), 50);
+  };
 
-  useEffect(() => {
-    setResults(search(query));
-    setActive(-1);
-  }, [query, indexReady]);
+  const all = useMemo(() => (indexReady && query.trim() ? searchProducts(index, query) : []), [query, indexReady]);
+  const results = all.slice(0, 6);
+
+  // Sonuçların en çok düştüğü alt gruplar → "şu bölümde ara" önerisi
+  const groups = useMemo(() => {
+    const q = fold(query);
+    const counts = new Map<string, { cat: string; sub: string; n: number }>();
+    for (const r of all) {
+      const key = `${r.category}|${r.subcategory ?? ""}`;
+      const g = counts.get(key) ?? { cat: r.category, sub: r.subcategory ?? "", n: 0 };
+      g.n++;
+      counts.set(key, g);
+    }
+    return [...counts.values()]
+      .sort((a, b) => Number(fold(b.sub).includes(q)) - Number(fold(a.sub).includes(q)) || b.n - a.n)
+      .slice(0, 3);
+  }, [all, query]);
 
   const close = useCallback(() => {
     setOpen(false);
@@ -90,13 +104,28 @@ export default function SearchBar() {
   }, [close]);
 
   const goTo = (result: Result) => {
-    saveHistory(result.name);
+    saveHistory(query.trim() || result.name);
     close();
     router.push(`/products/${result.slug}`);
   };
 
-  const goHistoryItem = (term: string) => {
+  const goAll = (term = query) => {
+    const t = term.trim();
+    if (!t) return;
+    saveHistory(t);
+    close();
+    router.push(`/koleksiyon?q=${encodeURIComponent(t)}`);
+  };
+
+  const goGroup = (cat: string, sub: string) => {
+    saveHistory(query.trim());
+    close();
+    router.push(catHref(cat, sub));
+  };
+
+  const pick = (term: string) => {
     setQuery(term);
+    setActive(-1);
     inputRef.current?.focus();
   };
 
@@ -107,28 +136,27 @@ export default function SearchBar() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    const items = query ? results : [];
-    if (e.key === "ArrowDown") { e.preventDefault(); setActive(a => Math.min(a + 1, items.length - 1)); }
+    if (e.key === "ArrowDown") { e.preventDefault(); setActive(a => Math.min(a + 1, results.length - 1)); }
     else if (e.key === "ArrowUp") { e.preventDefault(); setActive(a => Math.max(a - 1, -1)); }
     else if (e.key === "Enter") {
-      if (active >= 0 && items[active]) { goTo(items[active]); }
-      else if (query.trim()) { saveHistory(query.trim()); close(); router.push(`/koleksiyon?q=${encodeURIComponent(query.trim())}`); }
+      if (active >= 0 && results[active]) goTo(results[active]);
+      else goAll();
     }
     else if (e.key === "Escape") close();
   };
 
-  const showDropdown = open && (query ? results.length > 0 : history.length > 0);
+  const searching = query.trim().length > 0;
 
   return (
     <div ref={containerRef} className="relative">
       {/* Search icon / input toggle */}
       <div
         className={`flex items-center gap-2 transition-all duration-200 overflow-hidden ${
-          open ? "w-52 border-b border-stone-300" : "w-8"
+          open ? "w-48 md:w-64 border-b border-stone-300" : "w-8"
         }`}
       >
         <button
-          onClick={() => { setOpen(true); setTimeout(() => inputRef.current?.focus(), 50); }}
+          onClick={openSearch}
           className="shrink-0 transition-opacity hover:opacity-60"
           aria-label="Ara"
         >
@@ -140,15 +168,16 @@ export default function SearchBar() {
           <input
             ref={inputRef}
             value={query}
-            onChange={e => setQuery(e.target.value)}
+            onChange={e => { setQuery(e.target.value); setActive(-1); }}
             onKeyDown={handleKeyDown}
-            placeholder="Ürün ara..."
-            className="flex-1 text-[12px] outline-none bg-transparent text-stone-800 placeholder:text-stone-400"
+            placeholder="Kuran, seccade, tesbih, ürün kodu…"
+            className="flex-1 text-[13px] outline-none bg-transparent text-stone-800 placeholder:text-stone-400"
             style={{ minWidth: 0 }}
+            enterKeyHint="search"
           />
         )}
         {open && query && (
-          <button onClick={() => setQuery("")} className="shrink-0 opacity-40 hover:opacity-70">
+          <button onClick={() => setQuery("")} className="shrink-0 opacity-40 hover:opacity-70" aria-label="Temizle">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
             </svg>
@@ -157,67 +186,107 @@ export default function SearchBar() {
       </div>
 
       {/* Dropdown */}
-      {showDropdown && (
+      {open && (
         <div
-          className="absolute right-0 top-10 z-50 rounded-xl overflow-hidden"
+          className="absolute right-0 top-10 z-50 overflow-hidden rounded-xl"
           style={{
-            width: 320,
+            width: "min(380px, calc(100vw - 24px))",
             background: "#fff",
             boxShadow: "0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07)",
           }}
         >
-          {/* Geçmiş */}
-          {!query && history.length > 0 && (
-            <div>
-              <p className="px-4 pt-3 pb-1 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>
-                Son Aramalar
-              </p>
-              {history.map((h, i) => (
-                <div
-                  key={h}
-                  onClick={() => goHistoryItem(h)}
-                  className={`flex items-center justify-between px-4 py-2.5 cursor-pointer transition-colors ${active === i ? "bg-stone-50" : "hover:bg-stone-50"}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ color: "#86868B" }}>
-                      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-                    </svg>
-                    <span className="text-sm" style={{ color: "#1D1D1F" }}>{h}</span>
-                  </div>
-                  <button
-                    onClick={e => deleteHistory(e, h)}
-                    className="opacity-30 hover:opacity-70 transition-opacity"
-                  >
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                    </svg>
-                  </button>
+          {!searching && (
+            <div className="pb-2">
+              {history.length > 0 && (
+                <div>
+                  <p className="px-4 pt-3 pb-1 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>Son Aramalar</p>
+                  {history.map(h => (
+                    <div key={h} onClick={() => pick(h)} className="flex items-center justify-between px-4 py-2 cursor-pointer hover:bg-stone-50">
+                      <span className="text-sm" style={{ color: "#1D1D1F" }}>{h}</span>
+                      <button onClick={e => deleteHistory(e, h)} className="opacity-30 hover:opacity-70" aria-label={`${h} sil`}>
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
+              <p className="px-4 pt-3 pb-2 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>Popüler Aramalar</p>
+              <div className="flex flex-wrap gap-1.5 px-4">
+                {POPULAR.map(t => (
+                  <button key={t} onClick={() => pick(t)} className="rounded-full border px-3 py-1 text-xs text-stone-700 hover:border-black" style={{ borderColor: "#e5e5e5" }}>
+                    {t}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 
-          {/* Sonuçlar */}
-          {query && results.length > 0 && (
+          {searching && !indexReady && (
+            <p className="px-4 py-4 text-xs text-stone-400">Aranıyor…</p>
+          )}
+
+          {searching && indexReady && all.length === 0 && (
+            <div className="px-4 py-4 text-sm text-stone-600">
+              <p>&ldquo;{query}&rdquo; için sonuç bulunamadı.</p>
+              <p className="mt-1 text-xs text-stone-400">Farklı bir kelime deneyin ya da bize sorun:</p>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {POPULAR.slice(0, 5).map(t => (
+                  <button key={t} onClick={() => pick(t)} className="rounded-full border px-3 py-1 text-xs text-stone-700 hover:border-black" style={{ borderColor: "#e5e5e5" }}>{t}</button>
+                ))}
+              </div>
+              <a
+                href={`${WHATSAPP_URL}?text=${encodeURIComponent(`Merhaba, sitede "${query}" aradım ama bulamadım. Bu ürün sizde var mı?`)}`}
+                target="_blank" rel="noopener noreferrer"
+                className="mt-3 inline-block text-xs font-medium text-[#1f9d55] underline"
+              >
+                WhatsApp&apos;tan sorun →
+              </a>
+            </div>
+          )}
+
+          {searching && all.length > 0 && (
             <div>
-              <p className="px-4 pt-3 pb-1 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>
-                Ürünler
-              </p>
+              {groups.length > 0 && (
+                <div className="border-b pb-2" style={{ borderColor: "#f2f2f2" }}>
+                  <p className="px-4 pt-3 pb-1 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>Bölümler</p>
+                  {groups.map(g => (
+                    <button key={`${g.cat}|${g.sub}`} onClick={() => goGroup(g.cat, g.sub)} className="flex w-full items-center justify-between px-4 py-1.5 text-left text-sm hover:bg-stone-50">
+                      <span style={{ color: "#1D1D1F" }}>
+                        {g.sub || g.cat}
+                        {g.sub && <span className="ml-1.5 text-[11px] text-stone-400">{g.cat}</span>}
+                      </span>
+                      <span className="text-[11px] text-stone-400">{g.n}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              <p className="px-4 pt-3 pb-1 text-[10px] tracking-[0.2em] uppercase" style={{ color: "#86868B" }}>Ürünler</p>
               {results.map((r, i) => (
                 <div
                   key={r.slug}
                   onClick={() => goTo(r)}
-                  className={`flex items-center gap-3 px-4 py-2.5 cursor-pointer transition-colors ${active === i ? "bg-stone-50" : "hover:bg-stone-50"}`}
+                  className={`flex items-center gap-3 px-4 py-2 cursor-pointer transition-colors ${active === i ? "bg-stone-50" : "hover:bg-stone-50"}`}
                 >
-                  {r.image && (
-                    <Image src={r.image} alt="" width={36} height={36} className="rounded object-cover shrink-0" />
-                  )}
+                  {r.image && <Image src={r.image} alt="" width={40} height={40} className="h-10 w-10 rounded object-cover shrink-0" />}
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm truncate" style={{ color: "#1D1D1F" }}>{r.name}</p>
-                    <p className="text-[11px]" style={{ color: "#86868B" }}>{r.category} · {r.price.toLocaleString("tr-TR")} ₺</p>
+                    <p className="text-[13px] leading-snug line-clamp-2" style={{ color: "#1D1D1F" }}>{r.name}</p>
+                    <p className="text-[11px]" style={{ color: "#86868B" }}>
+                      {r.subcategory ?? r.category} · {r.price.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} ₺
+                    </p>
                   </div>
                 </div>
               ))}
+
+              <button
+                onClick={() => goAll()}
+                className="block w-full border-t px-4 py-3 text-center text-[12px] font-medium hover:bg-stone-50"
+                style={{ borderColor: "#f2f2f2", color: "#9a7a2c" }}
+              >
+                Tüm sonuçları gör ({all.length}) →
+              </button>
             </div>
           )}
         </div>

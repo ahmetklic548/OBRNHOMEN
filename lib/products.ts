@@ -17,6 +17,8 @@ export interface Product {
   images: string[];
   metaDescription: string;
   quantity?: number;
+  /** Kategori içi ürün tipi (scripts/subcategories.mjs) — benzer ürünler yan yana dizilir */
+  subcategory?: string;
 }
 
 function withCover(p: Product): Product {
@@ -43,7 +45,8 @@ export function getProductsByCategory(category: string): Product[] {
 }
 
 export function getAllCategories(): string[] {
-  return [...new Set(products.map((p) => p.category))].sort();
+  // products.json menü sırasıyla dizili (scripts/subcategories.mjs)
+  return [...new Set(products.map((p) => p.category))];
 }
 
 /** Statik üretilecek tüm ürün sayfaları (gizliler dahil) */
@@ -60,4 +63,9 @@ export function getFeaturedProducts(): Product[] {
 
 export function getCategoryPreview(category: string, count = 3): Product[] {
   return products.filter((p) => p.category === category && p.inStock).slice(0, count);
+}
+
+/** Liste/kart için hafif ürün — istemciye açıklama ve tüm görseller gönderilmesin */
+export function toCard(p: Product): Product {
+  return { ...p, features: [], metaDescription: "", images: p.images.slice(0, 1) };
 }
