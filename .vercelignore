@@ -2,4 +2,6 @@ public/kaaba.glb
 public/hajj_man_animated.glb
 public/masjid_al-haram_kaaba.glb
 hafiza/
-scripts/
+# scripts/ yüklenmeli: sync-hidden.mjs build öncesi çalışır (prebuild)
+scripts/classify.mjs
+scripts/sync-trendyol.mjs
