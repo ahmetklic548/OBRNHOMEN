@@ -36,8 +36,18 @@ export async function POST(req: NextRequest) {
           const ref  = doc(db, "siparisTakip", merchant_oid);
           const snap = await getDoc(ref);
           const info = snap.exists()
-            ? (snap.data() as { name?: string; phone?: string; email?: string; address?: string; items?: unknown })
+            ? (snap.data() as { name?: string; phone?: string; email?: string; address?: string; items?: unknown; total?: number; coupon?: string | null })
             : null;
+
+          // Tutar kontrolü: sitenin hesapladığı (toptan kademe + kupon + kargo) tutar ile
+          // PayTR'nin tahsil ettiği sipariş tutarı. payment_amount taksit farkı içermez;
+          // yoksa total_amount'a düşülür (taksitli ödemede fark çıkabilir).
+          const paid     = Number(params.get("payment_amount") || total_amount) / 100;
+          const beklenen = typeof info?.total === "number" ? info.total : null;
+          const tutarUyumlu = beklenen === null ? null : Math.abs(paid - beklenen) < 0.01;
+          if (tutarUyumlu === false) {
+            console.error(`PayTR tutar uyuşmazlığı: ${merchant_oid} beklenen ${beklenen} ödenen ${paid}`);
+          }
 
           if (info?.phone) {
             await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://obrnhomen.com"}/api/send-sms`, {
@@ -66,6 +76,10 @@ export async function POST(req: NextRequest) {
               address: info?.address ?? "",
               items: info?.items ?? [],
               total: Number(total_amount) / 100,
+              odenenTutar: paid,
+              beklenenTutar: beklenen,
+              tutarUyumlu,
+              coupon: info?.coupon ?? null,
               status: "success",
               paidAt: Date.now(),
             });

@@ -11,8 +11,12 @@ interface FOrder {
   phone: string;
   email: string;
   address: string;
-  items: { name: string; price: number; qty: number }[];
+  items: { name: string; price: number; qty: number; tier?: number }[];
   total: number;
+  odenenTutar?: number;
+  beklenenTutar?: number | null;
+  tutarUyumlu?: boolean | null;
+  coupon?: string | null;
   status: string;
   paidAt: number;
 }
@@ -75,7 +79,12 @@ export default function AdminSiparisler() {
                     <td className="px-4 py-3 hidden md:table-cell text-xs" style={{ color: "#86868B" }}>
                       {o.paidAt ? new Date(o.paidAt).toLocaleString("tr-TR") : "-"}
                     </td>
-                    <td className="px-4 py-3 text-xs" style={{ color: "#1D1D1F" }}>{o.total?.toLocaleString("tr-TR")} ₺</td>
+                    <td className="px-4 py-3 text-xs" style={{ color: "#1D1D1F" }}>
+                      {o.total?.toLocaleString("tr-TR")} ₺
+                      {o.tutarUyumlu === true && <span className="ml-1.5 px-1.5 py-0.5 text-[10px]" style={{ background: "#f0fdf4", color: "#16a34a" }}>✓ tutar doğru</span>}
+                      {o.tutarUyumlu === false && <span className="ml-1.5 px-1.5 py-0.5 text-[10px]" style={{ background: "#fef2f2", color: "#dc2626" }}>⚠ tutar farklı</span>}
+                      {(o.items ?? []).some(it => (it.tier ?? 0) > 0) && <span className="ml-1.5 px-1.5 py-0.5 text-[10px]" style={{ background: "#fffbf0", color: "#9a7a2c" }}>Toptan</span>}
+                    </td>
                     <td className="px-4 py-3 text-right">
                       <button
                         onClick={() => setOpen(open === o.id ? null : o.id)}
@@ -91,10 +100,19 @@ export default function AdminSiparisler() {
                       <td colSpan={5} className="px-4 py-4 text-xs" style={{ color: "#1D1D1F" }}>
                         <p className="mb-2"><strong>Adres:</strong> {o.address || "-"}</p>
                         <p className="mb-2"><strong>E-posta:</strong> {o.email || "-"}</p>
+                        {o.beklenenTutar != null && (
+                          <p className="mb-2">
+                            <strong>Tutar kontrolü:</strong> sitenin hesapladığı {o.beklenenTutar.toLocaleString("tr-TR")} ₺ · PayTR&apos;nin tahsil ettiği {o.odenenTutar?.toLocaleString("tr-TR")} ₺
+                            {o.coupon && <> · kupon {o.coupon}</>}
+                          </p>
+                        )}
                         <p><strong>Ürünler:</strong></p>
                         <ul className="list-disc pl-5">
                           {(o.items ?? []).map((it, i) => (
-                            <li key={i}>{it.name} — {it.qty} adet × {it.price?.toLocaleString("tr-TR")} ₺</li>
+                            <li key={i}>
+                              {it.name} — {it.qty} adet × {it.price?.toLocaleString("tr-TR")} ₺
+                              {(it.tier ?? 0) > 0 && <span style={{ color: "#9a7a2c" }}> (toptan -%{it.tier})</span>}
+                            </li>
                           ))}
                         </ul>
                       </td>

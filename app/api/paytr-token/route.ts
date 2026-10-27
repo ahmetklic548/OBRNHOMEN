@@ -3,7 +3,7 @@ import crypto from "crypto";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { getProductBySlug } from "@/lib/products";
-import { salePrice, unitPriceFor, orderTotals, VALID_COUPONS } from "@/lib/pricing";
+import { salePrice, unitPriceFor, tierPct, orderTotals, VALID_COUPONS } from "@/lib/pricing";
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,12 +17,12 @@ export async function POST(req: NextRequest) {
       const n = Math.floor(Number(qty));
       if (!p || !p.inStock || !(n >= 1 && n <= 1000)) return null;
       // Toptan kademe sunucuda da aynı formülle — istemci fiyatına güvenilmez
-      return { slug: p.slug, name: p.name, price: unitPriceFor(salePrice(p.price), n), qty: n };
+      return { slug: p.slug, name: p.name, price: unitPriceFor(salePrice(p.price), n), qty: n, tier: tierPct(n) };
     });
     if (lines.length === 0 || lines.some(l => l === null)) {
       return NextResponse.json({ error: "Sepetteki bir ürün artık satışta değil. Sepetinizi kontrol edin." }, { status: 400 });
     }
-    const valid = lines as { slug: string; name: string; price: number; qty: number }[];
+    const valid = lines as { slug: string; name: string; price: number; qty: number; tier: number }[];
     const subtotal = Math.round(valid.reduce((s, i) => s + i.price * i.qty, 0) * 100) / 100;
     const coupon = typeof body.coupon === "string" && VALID_COUPONS[body.coupon] ? body.coupon : null;
     const { discountRate, shipping, grandTotal: total } = orderTotals(subtotal, coupon);
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     /* PayTR sepeti — kupon indirimi satır fiyatlarına yansıtılır */
     const items = [
       ...valid.map(i => ({ ...i, price: Math.round(i.price * (1 - discountRate / 100) * 100) / 100 })),
-      ...(shipping > 0 ? [{ slug: "kargo", name: "Kargo Ücreti", price: shipping, qty: 1 }] : []),
+      ...(shipping > 0 ? [{ slug: "kargo", name: "Kargo Ücreti", price: shipping, qty: 1, tier: 0 }] : []),
     ];
 
     const merchant_id   = process.env.PAYTR_MERCHANT_ID!;
