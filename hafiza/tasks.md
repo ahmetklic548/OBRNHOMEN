@@ -47,3 +47,6 @@
 - [x] 14 koleksiyon → 689 ilan → 637 ürün (52 tekrar/büyük paket atıldı) — [[trendyol-aktarim-2026-10-27]]
 - [x] 8 yeni kategori, menü/ana sayfa/SEO güncellendi; arama hafifletildi
 - [ ] /api/trendyol/products eski sapigw ucunu kullanıyor (500) → apigw.trendyol.com/integration/product ile güncellenmeli
+- [x] /api/trendyol/products yeni apigw adresine geçti (canlıda 200, 3494 kayıt); stok/fiyat güncelleme (POST) gerçek veride denenmedi
+- [x] [[search]] güçlü arama: Türkçe/eş anlamlı/yazım hatası; arama çubuğu bölüm önerileri + tüm sonuçlar
+- [x] Alt gruplar ([[subcategories]]), listede başlıklı gruplar + alt grup çipleri + fiyat sıralaması
