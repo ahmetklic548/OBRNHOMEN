@@ -35,3 +35,9 @@
 - [x] Teklif mesajı: renk/ebat + ürün kodu + "her adet tek ürün" + ürün linki (aynı isimli seccadeler ayırt edilsin); görünür 55 ilanın hepsi tek adetlik
 - [x] 2026-10-27 PayTR tutar kontrolü: notify beklenen vs ödenen tutarı karşılaştırır, /admin/siparisler rozetleri
 - [ ] Sıradaki: aynı isimli ~20 ilanın adına renk ekle
+
+## 2026-10-27 — Toptan Sipariş sayfası (/toptan)
+- [x] [[WholesaleListContext]] ayrı toptan listesi, [[ToptanClient]] seçim + panel + form, min 5.000 ₺
+- [x] Sepetten toptan fiyat butonu kaldırıldı, büyük sepete "Toptan Listeme Taşı"
+- [x] Ücretsiz kargo 2000 ₺
+- [x] Menü/şerit/ana sayfa bantları → /toptan, sitemap
