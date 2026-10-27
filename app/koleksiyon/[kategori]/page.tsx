@@ -46,6 +46,10 @@ function slugToCategory(slug: string): string {
   return decodeURIComponent(slug);
 }
 
+// Sadece görünür ürünü olan kategoriler üretilir; boş/bilinmeyen kategori (ör. Eşarp)
+// anlık render'da Vercel'de 500 veriyordu — artık doğrudan 404.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return getAllCategories().map((cat) => ({
     kategori: encodeURIComponent(cat),
