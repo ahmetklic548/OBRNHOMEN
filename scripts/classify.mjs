@@ -232,6 +232,9 @@ if (process.argv[1]?.endsWith("classify.mjs")) {
   md += `## Benzer olabilecek ürünler (${similar.length}) — kontrol edin, gereksizse admin panelinden silin\n` +
     similar.sort((x, y) => y[2] - x[2]).map(([a, b, s]) => `- %${Math.round(s * 100)} benzer\n  - ${line(a)}\n  - ${line(b)}`).join("\n") + "\n";
   fs.writeFileSync(REPORT, md);
+  // Admin "Benzer Ürünler" sayfası için (fotoğraflı, Sil düğmeli)
+  fs.writeFileSync(new URL("data/similar.json", ROOT), JSON.stringify(
+    similar.sort((x, y) => y[2] - x[2]).map(([a, b, s]) => ({ a: a.slug, b: b.slug, score: Math.round(s * 100) })), null, 2) + "\n");
 
   const stats = {};
   for (const p of products) (stats[p.category] ??= {})[p.subcategory] = (stats[p.category][p.subcategory] ?? 0) + 1;

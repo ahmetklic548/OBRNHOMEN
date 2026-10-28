@@ -1,14 +1,26 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "@/app/components/AuthProvider";
 
 const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL ?? "";
 
+const ADMIN_LINKS = [
+  { href: "/admin", label: "Genel Bakış" },
+  { href: "/admin/siparisler", label: "Siparişler" },
+  { href: "/admin/gizlenen", label: "Gizlenen Ürünler" },
+  { href: "/admin/benzer", label: "Benzer Ürünler" },
+  { href: "/admin/trendyol", label: "Trendyol" },
+  { href: "/admin/urunler", label: "Ürünler (eski)" },
+  { href: "/admin/sosyal-medya", label: "Sosyal Medya" },
+];
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { user, loading } = useAuth();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (loading) return;
@@ -27,34 +39,31 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className="min-h-screen" style={{ background: "#F5F5F7" }}>
-      <div className="fixed top-0 inset-x-0 z-40 border-b" style={{ background: "#1D1D1F", borderColor: "rgba(255,255,255,0.06)" }}>
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <span className="text-xs tracking-[0.3em] uppercase font-medium" style={{ color: "#c9a84c" }}>
-              OBRNHOMEN Admin
-            </span>
-            <nav className="hidden md:flex items-center gap-5">
-              {[
-                { href: "/admin", label: "Genel Bakış" },
-                { href: "/admin/siparisler", label: "Siparişler" },
-                { href: "/admin/urunler", label: "Ürünler" },
-                { href: "/admin/gizlenen", label: "Gizlenen Ürünler" },
-                { href: "/admin/urunler/yeni", label: "+ Yeni Ürün" },
-                { href: "/admin/trendyol", label: "Trendyol" },
-                { href: "/admin/sosyal-medya", label: "Sosyal Medya" },
-              ].map(({ href, label }) => (
-                <a key={href} href={href} className="text-[11px] tracking-wide transition-colors hover:text-white" style={{ color: "#86868B" }}>
+      {/* Admin menüsü — site başlığının altında akışta durur (önceden sabitti, site başlığının altında
+          kalıp örtülüyordu ve telefonda gizliydi) */}
+      <div className="border-b" style={{ background: "#1D1D1F", borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="mx-auto flex max-w-6xl items-center gap-4 overflow-x-auto px-4 py-2.5 md:px-6">
+          <span className="shrink-0 text-[12px] font-semibold uppercase tracking-[0.2em]" style={{ color: "#c9a84c" }}>
+            Admin
+          </span>
+          <nav className="flex items-center gap-1.5">
+            {ADMIN_LINKS.map(({ href, label }) => {
+              const active = pathname === href;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className="shrink-0 rounded-md px-3 py-1.5 text-[14px] transition-colors"
+                  style={active ? { background: "#c9a84c", color: "#1D1D1F", fontWeight: 600 } : { color: "#e5e5e5" }}
+                >
                   {label}
-                </a>
-              ))}
-            </nav>
-          </div>
-          <a href="/" className="text-[11px] tracking-wide" style={{ color: "#86868B" }}>
-            ← Siteye Dön
-          </a>
+                </Link>
+              );
+            })}
+          </nav>
         </div>
       </div>
-      <div className="pt-14">{children}</div>
+      <div>{children}</div>
     </div>
   );
 }
