@@ -63,3 +63,5 @@
 - [ ] Havale/EFT: şirket hesabı / PayTR havale kararı bekleniyor
 - [ ] Meta WhatsApp Cloud API ile otomatik sipariş mesajı
 - [ ] Kapıda ödeme Firestore kaydının admin panelde göründüğünü ilk gerçek siparişte kontrol et
+
+- [x] 2026-10-28: 10'lu kutulu kadife Yasin-i Şerif setleri 11 renk geri eklendi (OBR-HED-0066..0076); Toptan Sipariş menüde çerçeveli düğme; yatay kaydırma çubuğu inceltildi
