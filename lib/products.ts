@@ -1,5 +1,5 @@
 import productsData from "@/data/products.json";
-import { HIDDEN_SLUGS, COVER_IMAGE_INDEX } from "@/lib/productCuration";
+import { HIDDEN_SLUGS, COVER_IMAGE_INDEX, TEXT_FIXES } from "@/lib/productCuration";
 import { CATEGORIES } from "@/lib/categories";
 
 export interface Product {
@@ -30,8 +30,19 @@ function withCover(p: Product): Product {
   return { ...p, images: [p.images[i], ...p.images.filter((_, j) => j !== i)] };
 }
 
+function withTextFix(p: Product): Product {
+  const fix = p.sku ? TEXT_FIXES[p.sku] : undefined;
+  if (!fix) return p;
+  return {
+    ...p,
+    name: fix(p.name),
+    metaDescription: fix(p.metaDescription),
+    features: p.features.map(fix),
+  };
+}
+
 /** Tüm ürünler — ürün sayfaları gizli ürünlerde de açılsın diye */
-const allProducts = (productsData as Product[]).map(withCover);
+const allProducts = (productsData as Product[]).map(withCover).map(withTextFix);
 /** Vitrinde görünenler — listeler, arama, sitemap, feed */
 const products = allProducts.filter((p) => !HIDDEN_SLUGS.has(p.slug));
 
