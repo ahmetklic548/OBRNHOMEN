@@ -1,12 +1,13 @@
 "use client";
 
 import { WHATSAPP_URL } from "@/lib/storeNav";
+import { qtyText } from "@/lib/pack";
 
 /** Son verilen sipariş — başarı sayfası özet ve WhatsApp onay mesajı için (yalnızca bu tarayıcıda) */
 export interface LastOrder {
   orderId: string;
   method: "kart" | "kapida";
-  lines: { name: string; sku?: string; qty: number; price: number }[];
+  lines: { name: string; sku?: string; qty: number; price: number; pack?: number }[];
   shipping: number;
   codFee: number;
   discountAmount: number;
@@ -36,7 +37,7 @@ const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, 
 
 /** Müşterinin mağazaya göndereceği hazır onay mesajı */
 export function confirmMessage(o: LastOrder): string {
-  const lines = o.lines.map((l, i) => `${i + 1}) ${l.name}${l.sku ? ` (${l.sku})` : ""} — ${l.qty} adet`);
+  const lines = o.lines.map((l, i) => `${i + 1}) ${l.name}${l.sku ? ` (${l.sku})` : ""} — ${qtyText(l.qty, l.pack)}`);
   return [
     o.method === "kapida"
       ? `Merhaba, KAPIDA ÖDEMELİ siparişimi onaylıyorum. Sipariş no: ${o.orderId}`

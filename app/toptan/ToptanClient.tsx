@@ -11,6 +11,7 @@ import { prepare, searchProducts } from "@/lib/search";
 import { useHiddenSlugs } from "@/lib/hidden";
 import PACKAGES from "@/data/packages.json";
 import Hint from "@/app/components/Hint";
+import { isPack } from "@/lib/pack";
 
 export interface ToptanProduct {
   slug: string;
@@ -53,7 +54,7 @@ function wholesaleScore(p: ToptanProduct): number {
   return s;
 }
 const toItem = (p: ToptanProduct): Omit<WholesaleItem, "qty"> => ({
-  slug: p.slug, name: p.name, price: p.price, image: p.image, packQty: p.packQty, ...cartMeta({ id: p.code, color: p.color, size: p.size }),
+  slug: p.slug, name: p.name, price: p.price, image: p.image, ...cartMeta({ id: p.code, color: p.color, size: p.size }), packQty: p.packQty,
 });
 
 const FORM_KEY = "obrnhomen-toptan-form";
@@ -274,8 +275,13 @@ export default function ToptanClient({ products: allProducts, categories }: { pr
                           />
                           <button type="button" onClick={() => list.setQty(toItem(p), qty + 1)} className="h-9 w-9 text-stone-500 hover:text-black" aria-label={`${p.name} artır`}>+</button>
                         </div>
+                        {isPack(p.packQty) && (
+                          <p className="mt-1 text-center text-[12px] text-stone-500">
+                            {qty ? <>{qty} paket = <strong className="text-stone-800">{qty * p.packQty!} adet</strong></> : "Kaç PAKET istediğinizi yazın"}
+                          </p>
+                        )}
                         <div className="mt-1.5 grid grid-cols-3 gap-1">
-                          {[10, 25, 50].map(n => (
+                          {(isPack(p.packQty) ? [1, 5, 10] : [10, 25, 50]).map(n => (
                             <button
                               key={n}
                               type="button"
@@ -283,7 +289,7 @@ export default function ToptanClient({ products: allProducts, categories }: { pr
                               className="border py-1 text-[13px] text-stone-600 transition-colors hover:border-black hover:text-black"
                               style={{ borderColor: "#e5e5e5" }}
                             >
-                              +{n}
+                              +{n}{isPack(p.packQty) ? " pk" : ""}
                             </button>
                           ))}
                         </div>

@@ -5,6 +5,7 @@ import Hint from "./Hint";
 import Link from "next/link";
 import { WHOLESALE_TIERS, WHOLESALE_MIN_TOTAL, unitPriceFor, tierPct } from "@/lib/pricing";
 import { useWholesaleList, type WholesaleItem } from "./WholesaleListContext";
+import { isPack, unitWord, qtyText } from "@/lib/pack";
 
 const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -32,6 +33,7 @@ export default function WholesaleBox({
     ...WHOLESALE_TIERS.map((t, i) => ({ min: t.min, max: (WHOLESALE_TIERS[i + 1]?.min ?? 0) - 1, pct: t.pct })),
   ];
   const active = tierPct(qty);
+  const unit = unitWord(item.packQty);
 
   const addToList = () => {
     list.add(item, qty);
@@ -44,7 +46,7 @@ export default function WholesaleBox({
       <div className="border" style={{ borderColor: "#efefef", background: "#fff" }}>
         <p className="flex items-center px-4 pt-3 pb-2 text-[14px] font-medium text-stone-700">
           Çok alana indirim
-          <Hint>Aynı üründen 10 veya daha fazla alırsanız fiyat sepette kendiliğinden düşer, bir şey yapmanıza gerek yok. Satıra tıklayınca o adet seçilir.</Hint>
+          <Hint>Aynı üründen 10 veya daha fazla{isPack(item.packQty) ? " paket" : ""} alırsanız fiyat sepette kendiliğinden düşer, bir şey yapmanıza gerek yok. Satıra tıklayınca o adet seçilir.</Hint>
         </p>
         {rows.map(({ min, max, pct }) => {
           const on = pct === active;
@@ -56,9 +58,9 @@ export default function WholesaleBox({
               className="w-full flex justify-between items-center px-4 py-2 text-xs text-left transition-colors"
               style={{ borderTop: "1px solid #f5f5f5", color: "#444", background: on ? "#f6f3ea" : undefined, fontWeight: on ? 600 : 400 }}
             >
-              <span>{max > 0 ? `${min} – ${max} adet` : `${min}+ adet`}</span>
+              <span>{max > 0 ? `${min} – ${max} ${unit}` : `${min}+ ${unit}`}</span>
               <span>
-                {tl(unitPriceFor(item.price, min))} ₺ / adet
+                {tl(unitPriceFor(item.price, min))} ₺ / {unit}
                 {pct > 0 && <span className="ml-1.5" style={{ color: "#1f9d55" }}>-%{pct}</span>}
               </span>
             </button>
@@ -82,11 +84,11 @@ export default function WholesaleBox({
             className="w-full py-3 text-[13px] tracking-[0.04em] uppercase font-medium text-white transition-opacity hover:opacity-85"
             style={{ background: "#1a1208" }}
           >
-            {qty} Adet Toptan Listeme Ekle
+            {isPack(item.packQty) ? `${qty} Paket (${qty * item.packQty!} adet)` : `${qty} Adet`} Toptan Listeme Ekle
           </button>
           {(justAdded > 0 || inList > 0) && (
             <p className="text-[13px]" style={{ color: "#1f6f43" }}>
-              {justAdded > 0 ? `✓ ${justAdded} adet eklendi. ` : ""}Bu üründen listenizde {inList} adet var
+              {justAdded > 0 ? `✓ ${qtyText(justAdded, item.packQty)} eklendi. ` : ""}Bu üründen listenizde {qtyText(inList, item.packQty)} var
               {" · "}{list.items.length} çeşit, {tl(list.total)} ₺
             </p>
           )}

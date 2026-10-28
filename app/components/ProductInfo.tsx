@@ -13,6 +13,7 @@ import TrendyolBadge from "./TrendyolBadge";
 import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/storeNav";
 import AdminProductTools, { useIsAdmin } from "./AdminProductTools";
 import { useHiddenSlugs } from "@/lib/hidden";
+import { isPack, qtyText } from "@/lib/pack";
 
 /* ── Icon set (outline SVG, Lucide-style) ─────────────────── */
 const TruckIcon = () => (
@@ -119,6 +120,8 @@ export default function ProductInfo({ product }: { product: Product }) {
   };
 
   const unit = salePrice(product.price);
+  // Paketli ilan (10'lu…): sayaç paket sayar, toplam adet yanında yazılır
+  const pack = isPack(product.quantity) ? product.quantity! : undefined;
 
   const handleAdd = () => {
     add({ slug: product.slug, name: product.name, price: unit, image: product.images[0] ?? "", ...cartMeta(product) }, qty);
@@ -210,12 +213,13 @@ export default function ProductInfo({ product }: { product: Product }) {
                 onChange={e => setQty(Math.min(1000, Math.max(1, Math.floor(Number(e.target.value)) || 1)))}
                 className="w-16 h-11 text-center text-sm outline-none border-x"
                 style={{ borderColor: "#e0e0e0", color: "#0a0a0a" }}
-                aria-label="Adet"
+                aria-label={pack ? "Paket sayısı" : "Adet"}
               />
               <button type="button" onClick={() => setQty(q => Math.min(1000, q + 1))} className="w-10 h-11 text-lg text-stone-500 hover:text-black" aria-label="Artır">+</button>
+              {pack && <span className="px-2 text-[13px] text-stone-600">paket</span>}
             </div>
             <p className="text-right text-xs leading-snug" style={{ color: "#555" }}>
-              {qty} adet: <strong style={{ color: "#0a0a0a" }}>{(unitPriceFor(unit, qty) * qty).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺</strong>
+              {qtyText(qty, pack)}: <strong style={{ color: "#0a0a0a" }}>{(unitPriceFor(unit, qty) * qty).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺</strong>
               {tierPct(qty) > 0 && <span className="block" style={{ color: "#1f9d55" }}>Toptan -%{tierPct(qty)} uygulandı</span>}
             </p>
           </div>

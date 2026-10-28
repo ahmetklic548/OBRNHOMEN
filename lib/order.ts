@@ -6,7 +6,8 @@ import { salePrice, unitPriceFor, tierPct, orderTotals, VALID_COUPONS } from "@/
  * Fiyatlar istemciden alınmaz; ürün verisinden ve kademe/kupon kurallarından hesaplanır.
  */
 
-export interface OrderLine { slug: string; name: string; sku?: string; price: number; qty: number; tier: number }
+/** qty = paket sayısı; pack = paketteki adet (paketli ilanlarda) */
+export interface OrderLine { slug: string; name: string; sku?: string; price: number; qty: number; tier: number; pack?: number }
 
 export interface ComputedOrder {
   lines: OrderLine[];
@@ -43,7 +44,7 @@ export async function computeOrder(
     const p = hidden.has(String(slug)) ? undefined : getProductBySlug(String(slug));
     const n = Math.floor(Number(qty));
     if (!p || !p.inStock || !(n >= 1 && n <= 1000)) return null;
-    return { slug: p.slug, name: p.name, sku: p.sku, price: unitPriceFor(salePrice(p.price), n), qty: n, tier: tierPct(n) };
+    return { slug: p.slug, name: p.name, sku: p.sku, price: unitPriceFor(salePrice(p.price), n), qty: n, tier: tierPct(n), ...((p.quantity ?? 1) > 1 ? { pack: p.quantity } : {}) };
   });
   if (lines.length === 0 || lines.some((l) => l === null)) {
     return { error: "Sepetteki bir ürün artık satışta değil. Sepetinizi kontrol edin." };

@@ -13,12 +13,14 @@ export interface CartItem {
   code?: string;
   /** Renk/ebat, ör. "Yeşil · 70 x 110" */
   variant?: string;
+  /** Paketteki adet (10'lu → 10); qty paket sayısıdır — lib/pack.ts */
+  packQty?: number;
 }
 
 /** Sepete eklerken ürün kodu + renk/ebat bilgisini çıkarır */
-export function cartMeta(p: { id: string; sku?: string; color: string | null; size: string | null }) {
+export function cartMeta(p: { id: string; sku?: string; color: string | null; size: string | null; quantity?: number }) {
   const variant = [p.color, p.size && p.size !== "Tek Ebat" ? p.size : null].filter(Boolean).join(" · ");
-  return { code: p.sku ?? p.id, variant: variant || undefined };
+  return { code: p.sku ?? p.id, variant: variant || undefined, packQty: (p.quantity ?? 1) > 1 ? p.quantity : undefined };
 }
 
 interface CartCtx {

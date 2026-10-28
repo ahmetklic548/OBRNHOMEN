@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { qtyText } from "@/lib/pack";
 
 interface FOrder {
   id: string;
@@ -11,7 +12,7 @@ interface FOrder {
   phone: string;
   email: string;
   address: string;
-  items: { name: string; price: number; qty: number; tier?: number }[];
+  items: { name: string; price: number; qty: number; tier?: number; pack?: number }[];
   total: number;
   odenenTutar?: number;
   beklenenTutar?: number | null;
@@ -118,7 +119,7 @@ export default function AdminSiparisler() {
                         <ul className="list-disc pl-5">
                           {(o.items ?? []).map((it, i) => (
                             <li key={i}>
-                              {it.name} — {it.qty} adet × {it.price?.toLocaleString("tr-TR")} ₺
+                              {it.name} — {qtyText(it.qty, it.pack)} × {it.price?.toLocaleString("tr-TR")} ₺
                               {(it.tier ?? 0) > 0 && <span style={{ color: "#9a7a2c" }}> (toptan -%{it.tier})</span>}
                             </li>
                           ))}

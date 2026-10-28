@@ -9,6 +9,7 @@ import { useCart } from "./CartContext";
 import { useWholesaleList } from "./WholesaleListContext";
 import Image from "next/image";
 import { unitPriceFor, tierPct, nextTier, QUOTE_FROM_QTY } from "@/lib/pricing";
+import { isPack, unitWord } from "@/lib/pack";
 
 const noopSubscribe = () => () => {};
 
@@ -27,11 +28,13 @@ export default function CartDrawer({
   const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   // Toptan fiyat talebi sepetten değil /toptan sayfasından (min. tutarlı) yapılır
   const bigOrder = count >= QUOTE_FROM_QTY;
+  // Paketli ilanlarda (10'lu…) toplam ürün adedi = paket × paketteki adet
+  const units = items.reduce((s, i) => s + i.qty * (i.packQty ?? 1), 0);
   const wholesale = useWholesaleList();
 
   const moveToWholesale = () => {
     for (const i of items) {
-      wholesale.add({ slug: i.slug, name: i.name, price: i.price, image: i.image, code: i.code, variant: i.variant }, i.qty);
+      wholesale.add({ slug: i.slug, name: i.name, price: i.price, image: i.image, code: i.code, variant: i.variant, packQty: i.packQty }, i.qty);
     }
     clear();
     onClose();
@@ -71,7 +74,7 @@ export default function CartDrawer({
             <div className="flex items-center justify-between px-6 py-5 border-b" style={{ borderColor: "#efefef" }}>
               <div>
                 <p className="text-[12px] tracking-[0.04em] uppercase mb-0.5" style={{ color: "#999" }}>Sepet</p>
-                <p className="text-sm" style={{ color: "#0a0a0a" }}>{items.length} çeşit · {count} adet</p>
+                <p className="text-sm" style={{ color: "#0a0a0a" }}>{items.length} çeşit · {units} adet ürün</p>
               </div>
               <button
                 onClick={onClose}
@@ -133,7 +136,7 @@ export default function CartDrawer({
                         </p>
                       )}
                       <p className="text-xs text-stone-400 mb-2">
-                        {tl(unitPriceFor(item.price, item.qty))} ₺ / adet · <span className="text-stone-700">{tl(unitPriceFor(item.price, item.qty) * item.qty)} ₺</span>
+                        {tl(unitPriceFor(item.price, item.qty))} ₺ / {unitWord(item.packQty)} · <span className="text-stone-700">{tl(unitPriceFor(item.price, item.qty) * item.qty)} ₺</span>
                         {tierPct(item.qty) > 0 && (
                           <span className="ml-1.5 px-1.5 py-0.5 text-[12px] font-medium" style={{ background: "#fffbf0", color: "#9a7a2c" }}>
                             Toptan -%{tierPct(item.qty)}
@@ -153,9 +156,14 @@ export default function CartDrawer({
                         />
                         <button onClick={() => setQty(item.slug, item.qty + 1)} className="w-7 h-7 text-stone-500 hover:text-black" aria-label="Artır">+</button>
                       </div>
+                      {isPack(item.packQty) && (
+                        <p className="text-[13px] mt-1 text-stone-600">
+                          {item.qty} paket = <strong>{item.qty * item.packQty!} adet</strong> ({item.packQty}&apos;lu)
+                        </p>
+                      )}
                       {nextTier(item.qty) && (
                         <p className="text-[13px] mt-1.5" style={{ color: "#9a7a2c" }}>
-                          {nextTier(item.qty)!.min - item.qty} adet daha ekle → toptan %{nextTier(item.qty)!.pct}
+                          {nextTier(item.qty)!.min - item.qty} {unitWord(item.packQty)} daha ekle → toptan %{nextTier(item.qty)!.pct}
                         </p>
                       )}
                     </div>

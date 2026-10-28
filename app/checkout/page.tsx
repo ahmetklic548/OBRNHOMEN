@@ -9,6 +9,7 @@ import Hint from "@/app/components/Hint";
 import { WHATSAPP_URL } from "@/lib/storeNav";
 import { FREE_SHIPPING_OVER, VALID_COUPONS, COD_FEE, orderTotals, unitPriceFor, tierPct } from "@/lib/pricing";
 import { saveLastOrder, type LastOrder } from "@/lib/lastOrder";
+import { qtyText } from "@/lib/pack";
 
 type Step = "form" | "paying" | "error" | "done";
 
@@ -91,11 +92,11 @@ export default function CheckoutPage() {
   const remember = (
     orderId: string,
     method: LastOrder["method"],
-    o: { total: number; shipping: number; codFee: number; discountAmount: number; lines?: { name: string; sku?: string; qty: number; price: number }[] }
+    o: { total: number; shipping: number; codFee: number; discountAmount: number; lines?: { name: string; sku?: string; qty: number; price: number; pack?: number }[] }
   ) => {
     saveLastOrder({
       orderId, method,
-      lines: o.lines ?? items.map(i => ({ name: i.name, sku: i.code, qty: i.qty, price: unitPriceFor(i.price, i.qty) })),
+      lines: o.lines ?? items.map(i => ({ name: i.name, sku: i.code, qty: i.qty, price: unitPriceFor(i.price, i.qty), pack: i.packQty })),
       shipping: o.shipping, codFee: o.codFee, discountAmount: o.discountAmount, total: o.total,
       customer: { name: form.name, phone: form.phone, address: form.address },
       giftWrap, giftNote: giftNote.trim(), createdAt: Date.now(),
@@ -351,7 +352,7 @@ export default function CheckoutPage() {
                   <div key={item.slug} className="flex justify-between text-sm gap-2">
                     <span className="line-clamp-1 flex-1" style={{ color: "#555" }}>
                       {item.name}{" "}
-                      <span style={{ color: "#bbb" }}>x{item.qty}</span>
+                      <span style={{ color: "#bbb" }}>× {qtyText(item.qty, item.packQty)}</span>
                     </span>
                     <span className="shrink-0" style={{ color: "#0a0a0a" }}>
                       {(unitPriceFor(item.price, item.qty) * item.qty).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺

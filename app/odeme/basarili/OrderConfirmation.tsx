@@ -3,6 +3,7 @@
 import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { readLastOrder, confirmUrl, type LastOrder } from "@/lib/lastOrder";
+import { qtyText } from "@/lib/pack";
 
 const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const noop = () => () => {};
@@ -69,7 +70,7 @@ export default function OrderConfirmation() {
           <ul className="space-y-2 text-[14px] text-stone-700">
             {order.lines.map((l, i) => (
               <li key={i} className="flex justify-between gap-3">
-                <span>{l.name} <span className="text-stone-400">× {l.qty}</span></span>
+                <span>{l.name} <span className="text-stone-400">× {qtyText(l.qty, l.pack)}</span></span>
                 <span className="shrink-0">{tl(l.price * l.qty)} ₺</span>
               </li>
             ))}

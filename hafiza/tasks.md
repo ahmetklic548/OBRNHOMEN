@@ -66,3 +66,4 @@
 
 - [x] 2026-10-28: 10'lu kutulu kadife Yasin-i Şerif setleri 11 renk geri eklendi (OBR-HED-0066..0076); Toptan Sipariş menüde çerçeveli düğme; yatay kaydırma çubuğu inceltildi
 - [x] 2026-10-28: 10'lu kutulu kadife Yasin setleri 849 TL, 5'li (OBR-HED-0011) 499 TL
+- [x] 2026-10-28: Paketli ilanlarda sayaç 'paket' sayar, her yerde '5 paket (50 adet)' yazar (lib/pack.ts)
