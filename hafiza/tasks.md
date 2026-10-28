@@ -65,3 +65,4 @@
 - [ ] Kapıda ödeme Firestore kaydının admin panelde göründüğünü ilk gerçek siparişte kontrol et
 
 - [x] 2026-10-28: 10'lu kutulu kadife Yasin-i Şerif setleri 11 renk geri eklendi (OBR-HED-0066..0076); Toptan Sipariş menüde çerçeveli düğme; yatay kaydırma çubuğu inceltildi
+- [x] 2026-10-28: 10'lu kutulu kadife Yasin setleri 849 TL, 5'li (OBR-HED-0011) 499 TL

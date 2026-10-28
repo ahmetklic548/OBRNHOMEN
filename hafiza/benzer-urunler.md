@@ -1,6 +1,9 @@
 # Benzer / tekrar eden ürünler — 2026-10-28
 
-## Benzer olabilecek ürünler (63) — kontrol edin, gereksizse admin panelinden silin
+## Benzer olabilecek ürünler (64) — kontrol edin, gereksizse admin panelinden silin
+- %100 benzer
+  - OBR-HED-0012 · 25 Adet Tesbih ve Yasin Kitabı Seti | Hac Umre Çeyiz Mevlüt Hediyeliği | Toplu Satış · 1299 TL
+  - OBR-HED-0077 · 50 Adet Tesbih ve Yasin Kitabı Seti | Hac Umre Çeyiz Mevlüt Hediyeliği | Toplu Satış – Beyaz · 2033.43 TL
 - %92 benzer
   - OBR-KUR-0025 · FN Orta Boy Bilgisayar Hatlı İri Yazılı Arapça Sıvama Kapak Kuran-ı Kerim - Bordo · 1299 TL
   - OBR-KUR-0026 · FN Orta Boy Bilgisayar Hatlı İri Yazılı Arapça Sıvama Kapak Kuran-ı Kerim Kabe · 1299 TL
