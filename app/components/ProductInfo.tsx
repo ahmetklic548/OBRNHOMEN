@@ -41,7 +41,7 @@ const BadgeCheckIcon = () => (
 const TRUST_ITEMS = [
   { Icon: TruckIcon,      label: "2000 ₺ üzeri ücretsiz kargo" },
   { Icon: ShieldIcon,     label: "256-bit SSL güvenli ödeme"   },
-  { Icon: ReturnIcon,     label: "14 gün koşulsuz iade"         },
+  { Icon: ReturnIcon,     label: "14 gün ücretsiz iade"          },
   { Icon: BadgeCheckIcon, label: "Orijinal ve garantili ürün"  },
 ];
 
@@ -322,7 +322,7 @@ export default function ProductInfo({ product }: { product: Product }) {
 
         <Accordion title="İade & Değişim">
           <div className="space-y-2">
-            <p>Teslim tarihinden itibaren 14 gün içinde iade veya değişim yapabilirsiniz.</p>
+            <p>Teslim tarihinden itibaren 14 gün içinde ücretsiz iade veya değişim yapabilirsiniz (iade koduyla, kargo ücreti bizden).</p>
             <p>Ürünün orijinal ambalajında ve kullanılmamış olması gerekmektedir.</p>
             <p>İade talepleriniz için canlı destek hattımızdan bize ulaşabilirsiniz.</p>
           </div>

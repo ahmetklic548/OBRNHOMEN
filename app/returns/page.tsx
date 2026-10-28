@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "İade & Değişim Şartları | OBRNHOMEN",
-  description: "OBRNHOMEN'de teslimden itibaren 14 gün içinde ücretsiz iade hakkı. Koşullar, süreç ve iletişim bilgileri.",
+  description: "OBRNHOMEN'de teslimden itibaren 14 gün içinde ücretsiz iade ve değişim. Anlaşmalı kargo iade koduyla kargo ücreti ödemeden iade edin.",
   openGraph: {
     title: "İade & Değişim Şartları | OBRNHOMEN",
-    description: "Teslimden itibaren 14 gün içinde iade hakkı. Ürün orijinal ambalajında, kullanılmamış olmalıdır.",
-    url: "https://obrnhomen.com/returns",
+    description: "Teslimden itibaren 14 gün içinde ücretsiz iade ve değişim.",
+    url: "https://www.obrnhomen.com/returns",
     type: "website",
   },
-  alternates: { canonical: "https://obrnhomen.com/returns" },
+  alternates: { canonical: "https://www.obrnhomen.com/returns" },
 };
 
 const sections = [
@@ -30,7 +30,8 @@ const sections = [
           "Ürün orijinal ambalajında ve kullanılmamış olmalıdır.",
           "Hijyen nedeniyle açılmış ürünlerde iade kabul edilmez.",
           "Hediye setlerinde tüm parçaların eksiksiz iade edilmesi gerekmektedir.",
-          "İade kargo ücreti alıcıya aittir.",
+          "İade kargo ücreti bize aittir: size verdiğimiz iade koduyla anlaşmalı kargomuza ücretsiz teslim edersiniz.",
+          "Kusurlu veya hasarlı gelen ürünlerde de iade/değişim ücretsizdir.",
         ].map((item, i) => (
           <li key={i} className="flex gap-4 text-sm">
             <span className="flex-shrink-0 mt-0.5" style={{ color: "#c9a84c" }}>—</span>
@@ -44,10 +45,12 @@ const sections = [
     title: "İade Süreci",
     content: (
       <p>
-        İade talebinizi WhatsApp veya e-posta yoluyla bildirmeniz yeterlidir.
-        Onaylanan iadeler, ürün tarafımıza ulaştıktan sonra{" "}
-        <strong style={{ color: "#0a0a0a" }}>3–5 iş günü</strong> içinde
-        ödeme yönteminize iade edilir.
+        İade talebinizi WhatsApp üzerinden sipariş numaranızla bildirin. Size{" "}
+        <strong style={{ color: "#0a0a0a" }}>iade kodu</strong> gönderiyoruz; ürünü bu kodla anlaşmalı
+        kargo şubesine <strong style={{ color: "#0a0a0a" }}>ücret ödemeden</strong> teslim edersiniz.
+        İsterseniz iade yerine başka bir ürünle değişim de yapabilirsiniz.
+        Ürün tarafımıza ulaşıp kontrol edildikten sonra en geç{" "}
+        <strong style={{ color: "#0a0a0a" }}>7 gün</strong> içinde ödeme yönteminize iade edilir.
       </p>
     ),
   },
@@ -79,6 +82,9 @@ export default function ReturnsPage() {
           >
             İade Şartları
           </h1>
+          <p className="mt-4 text-[15px]" style={{ color: "#555" }}>
+            14 gün içinde <strong style={{ color: "#0a0a0a" }}>ücretsiz iade</strong> ve değişim.
+          </p>
         </div>
       </div>
 
