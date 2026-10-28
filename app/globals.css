@@ -50,9 +50,11 @@ h1, h2, h3, h4 {
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────── */
-::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar       { width: 4px; height: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 99px; }
+/* Yatay kaydırma (kategori düğmeleri) — kalın sarı çubuk gibi görünmesin */
+::-webkit-scrollbar-thumb:horizontal { background: #d6d3d1; }
 
 /* ─── Line clamp ─────────────────────────────────────────── */
 .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }

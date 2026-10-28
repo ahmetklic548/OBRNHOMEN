@@ -153,7 +153,16 @@ export default function NavbarClient() {
             );
           })}
           <li>
-            <Link href="/toptan" onMouseEnter={() => setOpenGroup(null)} className={`${navItem} font-semibold text-[#b8902e]`}>
+            {/* Seçili sekme gibi görünmesin: çerçeveli düğme; yalnız /toptan'dayken dolu */}
+            <Link
+              href="/toptan"
+              onMouseEnter={() => setOpenGroup(null)}
+              className={`my-1.5 block rounded-full border px-4 py-1.5 text-[14px] tracking-[0.02em] transition-colors ${
+                pathname.startsWith("/toptan")
+                  ? "border-[#b8902e] bg-[#b8902e] text-white"
+                  : "border-[#b8902e] text-[#8a6a1c] hover:bg-[#b8902e] hover:text-white"
+              }`}
+            >
               Toptan Sipariş
             </Link>
           </li>
