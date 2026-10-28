@@ -51,3 +51,4 @@ hafıza/
 
 .vercel
 .env*
+.next-old-*

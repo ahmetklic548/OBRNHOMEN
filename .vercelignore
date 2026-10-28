@@ -5,3 +5,4 @@ hafiza/
 # scripts/ yüklenmeli: sync-hidden.mjs build öncesi çalışır (prebuild)
 scripts/classify.mjs
 scripts/sync-trendyol.mjs
+.next-old-*
