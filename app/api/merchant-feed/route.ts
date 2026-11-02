@@ -20,6 +20,37 @@ const GOOGLE_SUBCATEGORY: Record<string, number> = {
   "Yüzük": 200, "Misvak": 527, "Esans": 479,
 };
 
+const BOOK_CATEGORIES = new Set(["Kur'an-ı Kerim", "Yasin & Dini Kitaplar"]);
+
+/** Ad içinden "tarz" ifadeleri (Google kitaplar için Tarz bilgisi istiyor) */
+const BOOK_STYLES: [RegExp, string][] = [
+  [/tecvid/i, "Tecvidli"], [/meal/i, "Mealli"], [/kelime meal/i, "Kelime Mealli"],
+  [/bilgisayar hat/i, "Bilgisayar Hatlı"], [/medine hat/i, "Medine Hatlı"], [/hafız osman/i, "Hafız Osman Hatlı"],
+  [/termo deri/i, "Termo Deri Kapak"], [/kadife/i, "Kadife Kapak"], [/cilt bezi/i, "Cilt Bezi Kapak"],
+  [/sıvama/i, "Sıvama Kapak"], [/tepe varak/i, "Tepe Varaklı"], [/kenar yald/i, "Kenar Yaldızlı"],
+  [/m[iı]klep/i, "Mıklepli"], [/sesli|qr|kare kod/i, "Sesli (QR Kodlu)"], [/iri yaz/i, "İri Yazılı"],
+];
+
+/** Kitap ürünleri için sayfa sayısı, boyut, dil, yazar ve tarz (yalnızca veride olanlar) */
+function bookDetails(p: { name: string; features: string[] }) {
+  const feat = (key: string) => {
+    const f = p.features.find((x) => x.startsWith(key + ": "));
+    const v = f?.slice(key.length + 2).trim();
+    return v && v !== "Belirtilmemiş" ? v : undefined;
+  };
+  const pages = feat("Sayfa Sayısı") ?? p.features.join(" ").match(/Sayfa Sayısı:\s*(\d{2,4})/)?.[1];
+  const styles = [...new Set(BOOK_STYLES.filter(([re]) => re.test(p.name)).map(([, s]) => s))];
+  return [
+    ["Sayfa Sayısı", pages],
+    ["Boyut", feat("Boyut")],
+    ["Basım Dili", feat("Basım Dili")],
+    ["Yazar", feat("Yazar")],
+    ["Tarz", styles.join(", ") || undefined],
+  ].filter((d): d is [string, string] => Boolean(d[1]));
+}
+
+const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
 export async function GET() {
   const products = getAllProducts().filter((p) => p.inStock && p.images[0]);
   const BASE = "https://www.obrnhomen.com";
@@ -28,11 +59,14 @@ export async function GET() {
     .map((p) => {
       const discountedPrice = salePrice(p.price).toFixed(2);
       const originalPrice = p.price.toFixed(2);
+      const details = BOOK_CATEGORIES.has(p.category) ? bookDetails(p) : [];
+      const description = [p.metaDescription || p.name, ...details.map(([k, v]) => `${k}: ${v}.`)].join(" ");
       return `
     <item>
       <g:id>${p.id}</g:id>
       <g:title><![CDATA[${p.name.slice(0, 150)}]]></g:title>
-      <g:description><![CDATA[${p.metaDescription || p.name}]]></g:description>
+      <g:description><![CDATA[${description.slice(0, 5000)}]]></g:description>
+      ${details.map(([k, v]) => `<g:product_detail><g:section_name>Kitap Bilgileri</g:section_name><g:attribute_name>${esc(k)}</g:attribute_name><g:attribute_value>${esc(v)}</g:attribute_value></g:product_detail>`).join("")}
       <g:link>${BASE}/products/${p.slug}</g:link>
       <g:image_link>${p.images[0]}</g:image_link>
       ${p.images.slice(1, 11).map((u) => `<g:additional_image_link>${u}</g:additional_image_link>`).join("")}

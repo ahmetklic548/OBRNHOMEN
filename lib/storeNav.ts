@@ -15,6 +15,8 @@ export const WHATSAPP_URL = "https://wa.me/905316893849";
 export const PHONE_DISPLAY = "0531 689 38 49";
 export const PHONE_HREF = "tel:+905316893849";
 export const INSTAGRAM_URL = "https://www.instagram.com/obrnhomen";
+/** Müşteri e-postası — Namecheap yönlendirmesiyle obrnhomen.destek@gmail.com'a gider */
+export const CONTACT_EMAIL = "merhaba@obrnhomen.com";
 
 /** Müşteriye gösterilen mağaza (Eminönü / Mahmutpaşa). Depo adresi hiçbir yerde gösterilmez. */
 export const STORE_ADDRESS = {

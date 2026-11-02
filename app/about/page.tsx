@@ -27,6 +27,7 @@ const jsonLd = {
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+905316893849",
+      email: "merhaba@obrnhomen.com",
       contactType: "customer service",
       availableLanguage: "Turkish",
     },

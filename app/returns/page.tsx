@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "İade & Değişim Şartları | OBRNHOMEN",
-  description: "OBRNHOMEN'de teslimden itibaren 14 gün içinde ücretsiz iade ve değişim. Anlaşmalı kargo iade koduyla kargo ücreti ödemeden iade edin.",
+  description: "OBRNHOMEN'de teslimden itibaren 14 gün içinde ücretsiz iade ve değişim. HepsiJet iade koduyla kargo ücreti ödemeden iade edin.",
   openGraph: {
     title: "İade & Değişim Şartları | OBRNHOMEN",
     description: "Teslimden itibaren 14 gün içinde ücretsiz iade ve değişim.",
@@ -30,7 +30,7 @@ const sections = [
           "Ürün orijinal ambalajında ve kullanılmamış olmalıdır.",
           "Hijyen nedeniyle açılmış ürünlerde iade kabul edilmez.",
           "Hediye setlerinde tüm parçaların eksiksiz iade edilmesi gerekmektedir.",
-          "İade kargo ücreti bize aittir: size verdiğimiz iade koduyla anlaşmalı kargomuza ücretsiz teslim edersiniz.",
+          "İade kargo ücreti bize aittir: size verdiğimiz iade koduyla anlaşmalı kargo firmamız HepsiJet'e ücretsiz teslim edersiniz.",
           "Kusurlu veya hasarlı gelen ürünlerde de iade/değişim ücretsizdir.",
         ].map((item, i) => (
           <li key={i} className="flex gap-4 text-sm">
@@ -46,8 +46,9 @@ const sections = [
     content: (
       <p>
         İade talebinizi WhatsApp üzerinden sipariş numaranızla bildirin. Size{" "}
-        <strong style={{ color: "#0a0a0a" }}>iade kodu</strong> gönderiyoruz; ürünü bu kodla anlaşmalı
-        kargo şubesine <strong style={{ color: "#0a0a0a" }}>ücret ödemeden</strong> teslim edersiniz.
+        <strong style={{ color: "#0a0a0a" }}>iade kodu</strong> gönderiyoruz; ürünü bu kodla anlaşmalı kargo firmamız{" "}
+        <strong style={{ color: "#0a0a0a" }}>HepsiJet</strong>{" "}
+        şubesine veya kuryesine <strong style={{ color: "#0a0a0a" }}>ücret ödemeden</strong> teslim edersiniz.
         İsterseniz iade yerine başka bir ürünle değişim de yapabilirsiniz.
         Ürün tarafımıza ulaşıp kontrol edildikten sonra en geç{" "}
         <strong style={{ color: "#0a0a0a" }}>7 gün</strong> içinde ödeme yönteminize iade edilir.

@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Metadata } from "next";
 
 const CARGO_LINKS: Record<string, string> = {
+  hepsijet: "https://www.hepsijet.com/gonderi-takibi/",
   yurtici:  "https://www.yurticikargo.com/tr/online-islemler/gonderi-sorgula?code=",
   aras:     "https://www.araskargo.com.tr/tr/kargo-takip?trackingNumber=",
   mng:      "https://www.mngkargo.com.tr/wps/portal/mng/musteri/gonderiTakip?BARKOD_NO=",
@@ -13,6 +14,7 @@ const CARGO_LINKS: Record<string, string> = {
 };
 
 const CARGO_NAMES: Record<string, string> = {
+  hepsijet: "HepsiJet",
   yurtici: "Yurtiçi Kargo",
   aras:    "Aras Kargo",
   mng:     "MNG Kargo",
@@ -22,7 +24,7 @@ const CARGO_NAMES: Record<string, string> = {
 };
 
 export default function KargoTakipPage() {
-  const [company, setCompany] = useState("yurtici");
+  const [company, setCompany] = useState("hepsijet");
   const [code, setCode]       = useState("");
 
   const handleTrack = (e: React.FormEvent) => {
