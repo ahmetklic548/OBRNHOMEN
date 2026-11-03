@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
-import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { getDocRest, setDocRest, deleteDocRest } from "@/lib/firestoreRest";
 import { sendOrderEmails } from "@/lib/orderEmail";
 
 export async function POST(req: NextRequest) {
@@ -32,13 +31,10 @@ export async function POST(req: NextRequest) {
     if (status === "success") {
       // SMS bildirimi gönder (arka planda, hata olsa da devam et)
       // PayTR bildirimi telefon/isim döndürmüyor; checkout anında saklanan kaydı okuyoruz.
-      if (db) {
+      {
         try {
-          const ref  = doc(db, "siparisTakip", merchant_oid);
-          const snap = await getDoc(ref);
-          const info = snap.exists()
-            ? (snap.data() as { name?: string; phone?: string; email?: string; address?: string; items?: unknown; total?: number; coupon?: string | null; ortak?: unknown; giftWrap?: boolean; giftNote?: string })
-            : null;
+          const takipPath = `siparisTakip/${merchant_oid}`;
+          const info = (await getDocRest(takipPath)) as { name?: string; phone?: string; email?: string; address?: string; items?: unknown; total?: number; coupon?: string | null; ortak?: unknown; giftWrap?: boolean; giftNote?: string } | null;
 
           // Tutar kontrolü: sitenin hesapladığı (toptan kademe + kupon + kargo) tutar ile
           // PayTR'nin tahsil ettiği sipariş tutarı. payment_amount taksit farkı içermez;
@@ -68,8 +64,8 @@ export async function POST(req: NextRequest) {
 
           // Kalıcı sipariş kaydı — daha önce siparisTakip anlık SMS için kullanılıp
           // hemen siliniyordu, hiçbir yerde sipariş geçmişi tutulmuyordu.
-          try {
-            await setDoc(doc(db, "siparisler", merchant_oid), {
+          {
+            await setDocRest(`siparisler/${merchant_oid}`, {
               orderId: merchant_oid,
               name: info?.name ?? "",
               phone: info?.phone ?? "",
@@ -88,8 +84,6 @@ export async function POST(req: NextRequest) {
               status: "success",
               paidAt: Date.now(),
             });
-          } catch (err) {
-            console.error("siparisler kaydı başarısız:", err);
           }
 
           // E-posta: mağazaya bildirim + müşteriye onay. info yoksa (PayTR bildirimi tekrarı) gönderilmez.
@@ -113,9 +107,22 @@ export async function POST(req: NextRequest) {
               giftNote: info.giftNote,
               tutarUyumlu,
             });
+          } else {
+            // Ödeme alındı ama checkout kaydı okunamadı — siparişi kaçırmamak için en azından haber ver
+            await sendOrderEmails({
+              orderId: merchant_oid,
+              method: "kart",
+              name: "(müşteri bilgisi okunamadı — PayTR panelinden bakın)",
+              phone: "",
+              address: "-",
+              lines: [],
+              shipping: 0,
+              total: paid,
+              tutarUyumlu,
+            });
           }
 
-          if (snap.exists()) await deleteDoc(ref);
+          if (info) await deleteDocRest(takipPath);
         } catch (err) {
           console.error("siparisTakip okuma hatası:", err);
         }

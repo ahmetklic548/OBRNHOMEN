@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { setDocRest } from "@/lib/firestoreRest";
 import { computeOrder, readCustomer } from "@/lib/order";
 import { sendOrderEmails } from "@/lib/orderEmail";
 
@@ -21,10 +20,7 @@ export async function POST(req: NextRequest) {
     if ("error" in order) return NextResponse.json({ error: order.error }, { status: 400 });
 
     const orderId = `KO${Date.now()}`;
-    let saved = false;
-    if (db) {
-      try {
-        await setDoc(doc(db, "siparisler", orderId), {
+    const saved = await setDocRest(`siparisler/${orderId}`, {
           orderId,
           ...customer,
           items: order.lines,
@@ -37,12 +33,7 @@ export async function POST(req: NextRequest) {
           paymentMethod: "kapida-odeme",
           status: "kapida-odeme",
           paidAt: Date.now(),
-        });
-        saved = true;
-      } catch (err) {
-        console.error("Kapıda ödeme siparişi Firestore'a yazılamadı:", err);
-      }
-    }
+    });
 
     await sendOrderEmails({
       orderId,
