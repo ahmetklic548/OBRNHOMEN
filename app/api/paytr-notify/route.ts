@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { sendOrderEmails } from "@/lib/orderEmail";
 
 export async function POST(req: NextRequest) {
   try {
@@ -89,6 +90,29 @@ export async function POST(req: NextRequest) {
             });
           } catch (err) {
             console.error("siparisler kaydı başarısız:", err);
+          }
+
+          // E-posta: mağazaya bildirim + müşteriye onay. info yoksa (PayTR bildirimi tekrarı) gönderilmez.
+          if (info) {
+            type PItem = { slug?: string; name: string; sku?: string; qty: number; price: number; pack?: number };
+            const items = (Array.isArray(info.items) ? info.items : []) as PItem[];
+            const kargo = items.find((i) => i.slug === "kargo");
+            await sendOrderEmails({
+              orderId: merchant_oid,
+              method: "kart",
+              name: info.name ?? "",
+              email: info.email,
+              phone: info.phone ?? "",
+              address: info.address ?? "",
+              lines: items.filter((i) => i.slug !== "kargo"),
+              shipping: kargo ? kargo.price : 0,
+              coupon: info.coupon ?? null,
+              ortak: (info.ortak as { ad: string; komisyonTutari: number } | null) ?? null,
+              total: paid,
+              giftWrap: info.giftWrap,
+              giftNote: info.giftNote,
+              tutarUyumlu,
+            });
           }
 
           if (snap.exists()) await deleteDoc(ref);

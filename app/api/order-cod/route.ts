@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { computeOrder, readCustomer } from "@/lib/order";
+import { sendOrderEmails } from "@/lib/orderEmail";
 
 /**
  * Kapıda ödemeli sipariş. Tutar sunucuda hesaplanır (+70 ₺ kapıda ödeme bedeli).
@@ -42,6 +43,19 @@ export async function POST(req: NextRequest) {
         console.error("Kapıda ödeme siparişi Firestore'a yazılamadı:", err);
       }
     }
+
+    await sendOrderEmails({
+      orderId,
+      method: "kapida",
+      ...customer,
+      lines: order.lines,
+      shipping: order.shipping,
+      codFee: order.codFee,
+      discountAmount: order.discountAmount,
+      coupon: order.coupon,
+      ortak: order.ortak,
+      total: order.total,
+    });
 
     return NextResponse.json({ orderId, saved, ...order });
   } catch (err) {
