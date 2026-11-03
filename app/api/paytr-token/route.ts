@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     /* Fiyatlar sunucuda ürün verisinden (lib/order.ts) — istemci fiyatına güvenilmez */
     const order = await computeOrder(body.items, body.coupon);
     if ("error" in order) return NextResponse.json({ error: order.error }, { status: 400 });
-    const { lines: valid, coupon, discountRate, shipping, total } = order;
+    const { lines: valid, coupon, discountRate, shipping, total, ortak } = order;
 
     /* PayTR sepeti — kupon indirimi satır fiyatlarına yansıtılır */
     const items = [
@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
     if (db) {
       try {
         await setDoc(doc(db, "siparisTakip", merchant_oid), {
-          name, phone, email, address, items, total, coupon, giftWrap, giftNote, paymentMethod: "kart", createdAt: Date.now(),
+          name, phone, email, address, items, total, coupon, ortak, giftWrap, giftNote, paymentMethod: "kart", createdAt: Date.now(),
         });
       } catch (err) {
         console.error("siparisTakip kaydı başarısız:", err);

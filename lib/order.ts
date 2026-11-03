@@ -1,5 +1,6 @@
 import { getProductBySlug } from "@/lib/products";
-import { salePrice, unitPriceFor, tierPct, orderTotals, VALID_COUPONS } from "@/lib/pricing";
+import { salePrice, unitPriceFor, tierPct, orderTotals } from "@/lib/pricing";
+import { resolveCoupon, type OrtakTur } from "@/lib/partners";
 
 /**
  * Sunucu tarafı sipariş hesabı — kartlı (PayTR) ve kapıda ödeme aynı fonksiyonu kullanır.
@@ -18,6 +19,8 @@ export interface ComputedOrder {
   shipping: number;
   codFee: number;
   total: number;
+  /** Ortak (kafile/influencer) kodu kullanıldıysa: komisyon indirim sonrası ürün tutarı üzerinden */
+  ortak: { kod: string; ad: string; tur: OrtakTur; komisyonOrani: number; komisyonTutari: number } | null;
 }
 
 /** Admin'in sitede sildiği ürünler (build'den sonra silinenler dahil) — satılmasın */
@@ -51,9 +54,19 @@ export async function computeOrder(
   }
   const valid = lines as OrderLine[];
   const subtotal = Math.round(valid.reduce((s, i) => s + i.price * i.qty, 0) * 100) / 100;
-  const coupon = typeof rawCoupon === "string" && VALID_COUPONS[rawCoupon] ? rawCoupon : null;
-  const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(subtotal, coupon, cod);
-  return { lines: valid, subtotal, coupon, discountRate, discountAmount, shipping, codFee, total: grandTotal };
+  const resolved = await resolveCoupon(rawCoupon);
+  const coupon = resolved?.code ?? null;
+  const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(subtotal, resolved?.discountRate ?? 0, cod);
+  const ortak = resolved?.ortak
+    ? {
+        kod: resolved.code,
+        ad: resolved.ortak.ad,
+        tur: resolved.ortak.tur,
+        komisyonOrani: resolved.ortak.komisyon,
+        komisyonTutari: Math.round((subtotal - discountAmount) * resolved.ortak.komisyon / 100),
+      }
+    : null;
+  return { lines: valid, subtotal, coupon, discountRate, discountAmount, shipping, codFee, total: grandTotal, ortak };
 }
 
 /** Müşteri bilgisi + hediye seçenekleri (her iki ödeme yolunda aynı) */

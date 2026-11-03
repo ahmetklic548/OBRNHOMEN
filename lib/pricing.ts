@@ -42,8 +42,8 @@ export const VALID_COUPONS: Record<string, number> = { HOSGELDIN10: 10 };
 /** Kapıda ödeme hizmet bedeli (kargo firmasının tahsilat ücreti) */
 export const COD_FEE = 70;
 
-export function orderTotals(subtotal: number, coupon: string | null, cod = false) {
-  const discountRate   = coupon ? (VALID_COUPONS[coupon] ?? 0) : 0;
+/** discountRate: kupon/ortak kodunun indirim yüzdesi (kod çözümü lib/partners.ts resolveCoupon) */
+export function orderTotals(subtotal: number, discountRate: number, cod = false) {
   const discountAmount = Math.round(subtotal * discountRate / 100);
   const shipping       = subtotal >= FREE_SHIPPING_OVER ? 0 : SHIPPING_FEE;
   const codFee         = cod ? COD_FEE : 0;

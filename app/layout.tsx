@@ -12,6 +12,7 @@ import NavbarClient from "@/app/components/NavbarClient";
 import LiveChatWidget from "@/app/components/LiveChatWidget";
 import NewsletterPopup from "@/app/components/NewsletterPopup";
 import ScrollToTop from "@/app/components/ScrollToTop";
+import RefCapture from "@/app/components/RefCapture";
 import { CATEGORY_LINKS, UTILITY_LINKS, WHATSAPP_URL, INSTAGRAM_URL, STORE_ADDRESS, CONTACT_EMAIL } from "@/lib/storeNav";
 import "./globals.css";
 
@@ -164,6 +165,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
             <NewsletterPopup />
             <ScrollToTop />
+            <RefCapture />
           </AuthProvider>
           </WholesaleListProvider>
           </WishlistProvider>

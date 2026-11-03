@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
           total: order.total,
           beklenenTutar: order.total,
           coupon: order.coupon,
+          ortak: order.ortak,
           codFee: order.codFee,
           shipping: order.shipping,
           paymentMethod: "kapida-odeme",

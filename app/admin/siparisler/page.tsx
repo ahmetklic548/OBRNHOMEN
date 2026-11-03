@@ -18,6 +18,7 @@ interface FOrder {
   beklenenTutar?: number | null;
   tutarUyumlu?: boolean | null;
   coupon?: string | null;
+  ortak?: { kod: string; ad: string; komisyonTutari: number } | null;
   paymentMethod?: string;
   giftWrap?: boolean;
   giftNote?: string;
@@ -112,7 +113,7 @@ export default function AdminSiparisler() {
                         {o.beklenenTutar != null && (
                           <p className="mb-2">
                             <strong>Tutar kontrolü:</strong> sitenin hesapladığı {o.beklenenTutar.toLocaleString("tr-TR")} ₺ · PayTR&apos;nin tahsil ettiği {o.odenenTutar?.toLocaleString("tr-TR")} ₺
-                            {o.coupon && <> · kupon {o.coupon}</>}
+                            {o.coupon && <> · kupon {o.coupon}</>}{o.ortak && <> · ortak {o.ortak.ad} (komisyon {o.ortak.komisyonTutari} ₺)</>}
                           </p>
                         )}
                         <p><strong>Ürünler:</strong></p>

@@ -7,7 +7,8 @@ import { useAuth } from "@/app/components/AuthProvider";
 import { trackBeginCheckout } from "@/lib/analytics";
 import Hint from "@/app/components/Hint";
 import { WHATSAPP_URL } from "@/lib/storeNav";
-import { FREE_SHIPPING_OVER, VALID_COUPONS, COD_FEE, orderTotals, unitPriceFor, tierPct } from "@/lib/pricing";
+import { FREE_SHIPPING_OVER, COD_FEE, orderTotals, unitPriceFor, tierPct } from "@/lib/pricing";
+import { readRef, clearRef } from "@/lib/refCode";
 import { saveLastOrder, type LastOrder } from "@/lib/lastOrder";
 import { qtyText } from "@/lib/pack";
 
@@ -28,6 +29,8 @@ export default function CheckoutPage() {
 
   const [couponInput,   setCouponInput]   = useState("");
   const [couponApplied, setCouponApplied] = useState<string | null>(null);
+  const [couponRate,    setCouponRate]    = useState(0);
+  const [couponPartner, setCouponPartner] = useState<string | null>(null);
   const [couponError,   setCouponError]   = useState("");
   const [step,  setStep]  = useState<Step>("form");
   const [token, setToken] = useState<string | null>(null);
@@ -38,20 +41,38 @@ export default function CheckoutPage() {
   const [giftNote, setGiftNote] = useState("");
   const [sending, setSending] = useState(false);
 
-  const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(total, couponApplied, payMethod === "kapida");
+  const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(total, couponApplied ? couponRate : 0, payMethod === "kapida");
   // Ara toplam zaten kademeli; bilgi olarak kademesiz farkı göster
   const wholesaleSaving = Math.round((items.reduce((s, i) => s + i.price * i.qty, 0) - total) * 100) / 100;
 
-  const applyCoupon = () => {
-    const code = couponInput.trim().toUpperCase();
-    if (VALID_COUPONS[code]) {
-      setCouponApplied(code);
-      setCouponError("");
-    } else {
-      setCouponError("Geçersiz kupon kodu.");
-      setCouponApplied(null);
-    }
+  /** Kupon / kafile / influencer kodu — sunucuda doğrulanır (ortak kodları admin panelinden eklenir) */
+  const applyCoupon = async (raw = couponInput, silent = false) => {
+    const code = raw.trim();
+    if (!code) return;
+    try {
+      const r = await fetch(`/api/kupon?kod=${encodeURIComponent(code)}`);
+      const d = await r.json();
+      if (d.ok) {
+        setCouponApplied(d.kod);
+        setCouponRate(d.oran);
+        setCouponPartner(d.ortak);
+        setCouponError("");
+        return;
+      }
+    } catch {}
+    setCouponApplied(null);
+    setCouponRate(0);
+    setCouponPartner(null);
+    if (!silent) setCouponError("Geçersiz kupon kodu.");
+    else clearRef();
   };
+
+  // Referans linkiyle gelen müşteriye kodu kendiliğinden uygula
+  useEffect(() => {
+    const ref = readRef();
+    if (ref) { setCouponInput(ref); applyCoupon(ref, true); }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (profile) {
@@ -378,7 +399,7 @@ export default function CheckoutPage() {
                     />
                     <button
                       type="button"
-                      onClick={applyCoupon}
+                      onClick={() => applyCoupon()}
                       className="px-4 py-2 text-[12px] tracking-[0.04em] uppercase text-white transition-opacity hover:opacity-75"
                       style={{ background: "#0a0a0a" }}
                     >
@@ -387,10 +408,10 @@ export default function CheckoutPage() {
                   </div>
                 ) : (
                   <div className="flex items-center justify-between">
-                    <span className="text-xs" style={{ color: "#16a34a" }}>✓ {couponApplied} uygulandı</span>
+                    <span className="text-xs" style={{ color: "#16a34a" }}>✓ {couponApplied} uygulandı (%{couponRate}){couponPartner && <> · {couponPartner}</>}</span>
                     <button
                       type="button"
-                      onClick={() => { setCouponApplied(null); setCouponInput(""); }}
+                      onClick={() => { setCouponApplied(null); setCouponRate(0); setCouponPartner(null); setCouponInput(""); clearRef(); }}
                       className="text-[12px] underline transition-opacity hover:opacity-50"
                       style={{ color: "#999" }}
                     >

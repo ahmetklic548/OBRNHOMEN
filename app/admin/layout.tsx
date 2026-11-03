@@ -10,6 +10,7 @@ const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL ?? "";
 const ADMIN_LINKS = [
   { href: "/admin", label: "Genel Bakış" },
   { href: "/admin/siparisler", label: "Siparişler" },
+  { href: "/admin/ortaklar", label: "Ortak Kodları" },
   { href: "/admin/gizlenen", label: "Gizlenen Ürünler" },
   { href: "/admin/benzer", label: "Benzer Ürünler" },
   { href: "/admin/trendyol", label: "Trendyol" },
