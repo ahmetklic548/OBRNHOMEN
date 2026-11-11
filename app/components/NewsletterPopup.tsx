@@ -13,8 +13,8 @@ export default function NewsletterPopup() {
   const [loading, setLoading] = useState(false);
 
   const pathname = usePathname();
-  // Ödeme/giriş akışını bölmesin
-  const blocked = /^\/(checkout|odeme|payment|hesap|admin)/.test(pathname ?? "");
+  // Ödeme/giriş akışını bölmesin; kafile linkiyle gelen umreci kafile indirimiyle karıştırmasın
+  const blocked = /^\/(checkout|odeme|payment|hesap|admin|hediyelik-hazirla)/.test(pathname ?? "");
 
   useEffect(() => {
     if (blocked || sessionStorage.getItem("nl_seen")) return;
