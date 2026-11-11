@@ -21,11 +21,17 @@ export interface HazirlaUrun {
   packQty: number;
 }
 
+/** Aynı ürünün renk seçenekleri — tek kartta gösterilir */
+export interface Grup {
+  anahtar: string;
+  secenekler: HazirlaUrun[];
+}
+
 export interface Adim {
   id: string;
   baslik: string;
   aciklama: string;
-  urunler: HazirlaUrun[];
+  urunler: Grup[];
 }
 
 /** Ödeme ekranı bu anahtardan hediye kartı ismini okur (app/checkout) */
@@ -43,6 +49,7 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
   const [kartIsim, setKartIsim] = useState("");
   const [kafile, setKafile] = useState<string | null>(null);
   const [hazir, setHazir] = useState(false);
+  const [renk, setRenk] = useState<Record<string, string>>({}); // grup → seçili renk (slug)
 
   useEffect(() => {
     try {
@@ -70,7 +77,7 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
 
   const urunMap = useMemo(() => {
     const m = new Map<string, HazirlaUrun>();
-    adimlar.forEach((a) => a.urunler.forEach((u) => m.set(u.slug, u)));
+    adimlar.forEach((a) => a.urunler.forEach((g) => g.secenekler.forEach((u) => m.set(u.slug, u))));
     return m;
   }, [adimlar]);
 
@@ -82,6 +89,23 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
 
   const setN = (slug: string, n: number) =>
     setSecim((p) => ({ ...p, [slug]: Math.max(0, Math.min(1000, Math.floor(n) || 0)) }));
+
+  /** Kartta gösterilen renk: seçilen, yoksa adet girilmiş olan, yoksa ilk */
+  const aktif = (g: Grup) =>
+    g.secenekler.find((u) => u.slug === renk[g.anahtar]) ?? g.secenekler.find((u) => (secim[u.slug] ?? 0) > 0) ?? g.secenekler[0];
+  const grupSecili = (g: Grup) => g.secenekler.some((u) => (secim[u.slug] ?? 0) > 0);
+  /** Renk değişince girilen adet yeni renge taşınır */
+  const renkDegistir = (g: Grup, yeni: string) => {
+    const eski = aktif(g).slug;
+    setRenk((r) => ({ ...r, [g.anahtar]: yeni }));
+    setSecim((p) => {
+      const n = p[eski] ?? 0;
+      if (!n || eski === yeni) return p;
+      const q = { ...p, [yeni]: (p[yeni] ?? 0) + n };
+      delete q[eski];
+      return q;
+    });
+  };
 
   const ozet = adim >= adimlar.length;
   const a = adimlar[adim];
@@ -127,7 +151,7 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
       {/* Adım çubuğu */}
       <nav className="mb-6 flex gap-2 overflow-x-auto pb-2" aria-label="Adımlar">
         {[...adimlar.map((x) => x.baslik), "Özet"].map((b, i) => {
-          const say = i < adimlar.length ? adimlar[i].urunler.filter((u) => (secim[u.slug] ?? 0) > 0).length : 0;
+          const say = i < adimlar.length ? adimlar[i].urunler.filter(grupSecili).length : 0;
           return (
             <button
               key={b}
@@ -150,10 +174,11 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {a.urunler.map((u) => {
+            {a.urunler.map((g) => {
+              const u = aktif(g);
               const n = secim[u.slug] ?? 0;
               return (
-                <div key={u.slug} className={`flex gap-3 rounded-xl border bg-white p-3 ${n > 0 ? "border-[#9a7a2c] ring-1 ring-[#9a7a2c]" : "border-stone-200"}`}>
+                <div key={g.anahtar} className={`flex gap-3 rounded-xl border bg-white p-3 ${n > 0 ? "border-[#9a7a2c] ring-1 ring-[#9a7a2c]" : "border-stone-200"}`}>
                   <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg bg-stone-100">
                     {u.image && <Image src={u.image} alt={u.name} fill sizes="96px" className="object-cover" />}
                   </div>
@@ -162,6 +187,16 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
                     <p className="mt-1 text-[14px] font-semibold text-stone-900">
                       {tl(u.price)} <span className="text-[12px] font-normal text-stone-500">{isPack(u.packQty) ? `/ ${u.packQty}'lu paket` : "/ adet"}</span>
                     </p>
+                    {g.secenekler.length > 1 && (
+                      <select
+                        value={u.slug}
+                        onChange={(e) => renkDegistir(g, e.target.value)}
+                        className="mt-1 w-full rounded-md border border-stone-300 bg-white px-2 py-1 text-[13px]"
+                        aria-label="Renk"
+                      >
+                        {g.secenekler.map((v) => <option key={v.slug} value={v.slug}>Renk: {v.color ?? "Standart"}</option>)}
+                      </select>
+                    )}
                     <div className="mt-auto flex items-center gap-2 pt-2">
                       <button aria-label="Azalt" onClick={() => setN(u.slug, n - 1)} className="h-9 w-9 rounded-md border border-stone-300 text-lg">−</button>
                       <input
@@ -184,7 +219,7 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
             <div className="flex gap-2">
               {adim > 0 && <button onClick={() => setAdim(adim - 1)} className="rounded-md border border-stone-300 bg-white px-4 py-2.5 text-[14.5px]">Geri</button>}
               <button onClick={() => setAdim(adim + 1)} className="rounded-md bg-stone-900 px-5 py-2.5 text-[14.5px] font-medium text-white">
-                {a.urunler.some((u) => (secim[u.slug] ?? 0) > 0) ? "Devam et →" : "Bu adımı geç →"}
+                {a.urunler.some(grupSecili) ? "Devam et →" : "Bu adımı geç →"}
               </button>
             </div>
           </div>

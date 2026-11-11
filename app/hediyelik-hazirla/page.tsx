@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { getAllProducts } from "@/lib/products";
+import { getAllProducts, type Product } from "@/lib/products";
 import { salePrice } from "@/lib/pricing";
-import HazirlaClient, { type Adim, type HazirlaUrun } from "./HazirlaClient";
+import HazirlaClient, { type Adim, type Grup, type HazirlaUrun } from "./HazirlaClient";
 
 export const metadata: Metadata = {
   title: "Umre Dönüş Hediyeliğini Hazırla",
@@ -21,27 +21,42 @@ const ADIMLAR: { id: string; baslik: string; aciklama: string; sec: (c: string, 
   { id: "diger", baslik: "Diğer hediyelikler", aciklama: "Yasin, zikirmatik ve hazır setler (isteğe bağlı).", sec: (c, s) => (c === "Yasin & Dini Kitaplar" && s === "Yasin & Cüz") || c === "Zikirmatik" || (c === "Hediyelik Setler" && (s === "Yasin & Tesbih Setleri" || s === "Zikirmatik & Tesbih Setleri")) },
 ];
 
+/** Seccade adımında sadece tekli seccadeler (umreci tam adet yazsın); çocuk/sesli seccadeler hariç */
+const seccadeUygun = (p: Product) => (p.quantity ?? 1) === 1 && !/çocuk|sesli|kulaklık/i.test(p.name);
+
+/** Aynı ürünün renkleri tek kartta birleşsin: ad (renk çıkarılmış) + paket adedi + ebat */
+function grupAnahtari(p: Product): string {
+  let n = p.name.toLocaleLowerCase("tr-TR");
+  if (p.color) n = n.split(p.color.toLocaleLowerCase("tr-TR")).join("");
+  return `${n.replace(/[–\-|(),]/g, " ").replace(/\s+/g, " ").trim()}#${p.quantity ?? 1}#${p.size ?? ""}`;
+}
+
+const toUrun = (p: Product): HazirlaUrun => ({
+  slug: p.slug,
+  name: p.name,
+  price: salePrice(p.price),
+  image: p.images[0] ?? "",
+  code: p.sku ?? p.id,
+  color: p.color,
+  size: p.size,
+  packQty: p.quantity ?? 1,
+});
+
 export default function HediyelikHazirlaPage() {
   const tum = getAllProducts().filter((p) => p.inStock);
-  const adimlar: Adim[] = ADIMLAR.map((a) => ({
-    id: a.id,
-    baslik: a.baslik,
-    aciklama: a.aciklama,
-    urunler: tum
-      .filter((p) => a.sec(p.category, p.subcategory))
+  const adimlar: Adim[] = ADIMLAR.map((a) => {
+    const secilen = tum.filter((p) => a.sec(p.category, p.subcategory) && (a.id !== "seccade" || seccadeUygun(p)));
+    const gruplar = new Map<string, Product[]>();
+    for (const p of secilen) {
+      const k = grupAnahtari(p);
+      gruplar.set(k, [...(gruplar.get(k) ?? []), p]);
+    }
+    const urunler: Grup[] = [...gruplar.values()]
       // Paketli (dağıtmalık) ürünler önce
-      .sort((x, y) => (y.quantity ?? 1) - (x.quantity ?? 1))
-      .map<HazirlaUrun>((p) => ({
-        slug: p.slug,
-        name: p.name,
-        price: salePrice(p.price),
-        image: p.images[0] ?? "",
-        code: p.sku ?? p.id,
-        color: p.color,
-        size: p.size,
-        packQty: p.quantity ?? 1,
-      })),
-  })).filter((a) => a.urunler.length > 0);
+      .sort((x, y) => (y[0].quantity ?? 1) - (x[0].quantity ?? 1))
+      .map((g) => ({ anahtar: g[0].slug, secenekler: g.map(toUrun) }));
+    return { id: a.id, baslik: a.baslik, aciklama: a.aciklama, urunler };
+  }).filter((a) => a.urunler.length > 0);
 
   return <HazirlaClient adimlar={adimlar} />;
 }
