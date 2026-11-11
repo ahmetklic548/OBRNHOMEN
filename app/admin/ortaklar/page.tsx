@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteField } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { normalizeKod, MAX_INDIRIM, MAX_KOMISYON, type OrtakTur } from "@/lib/partners";
+import { normalizeKod, MAX_INDIRIM, MAX_KOMISYON, type OrtakTur, type OrtakModel } from "@/lib/partners";
+import { TOPTAN } from "@/lib/kafileToptan";
 
 /**
  * Kafile / influencer ortak kodları.
@@ -19,6 +20,8 @@ interface OrtakKayit {
   aktif: boolean;
   odenen?: number;
   olusturma?: string;
+  model?: OrtakModel;
+  whatsapp?: string;
 }
 
 interface SiparisOzet {
@@ -36,7 +39,9 @@ const TUR_ETIKET: Record<OrtakTur, string> = { kafile: "Kafile", influencer: "In
 const ref = () => doc(db!, "products", "_ortaklar");
 const tl = (n: number) => n.toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + " ₺";
 
-const BOS = { kod: "", ad: "", tur: "kafile" as OrtakTur, indirim: 10, komisyon: 10 };
+const BOS = { kod: "", ad: "", tur: "kafile" as OrtakTur, indirim: 10, komisyon: 10, model: "kod" as OrtakModel, whatsapp: "" };
+/** Kafileye verilen link: doğrudan hediyelik seçim ekranı */
+const linkOf = (kod: string, o?: { tur?: OrtakTur }) => (o?.tur === "kafile" ? `${SITE}/hediyelik-hazirla?ref=${kod}` : `${SITE}/?ref=${kod}`);
 
 export default function AdminOrtaklar() {
   const [kodlar, setKodlar] = useState<Record<string, OrtakKayit>>({});
@@ -88,8 +93,10 @@ export default function AdminOrtaklar() {
     const kayit: OrtakKayit = {
       ad: form.ad.trim().slice(0, 80),
       tur: form.tur,
-      indirim: Math.min(Math.max(Math.round(form.indirim), 0), MAX_INDIRIM),
-      komisyon: Math.min(Math.max(Math.round(form.komisyon), 0), MAX_KOMISYON),
+      indirim: form.model === "toptan" ? 0 : Math.min(Math.max(Math.round(form.indirim), 0), MAX_INDIRIM),
+      komisyon: form.model === "toptan" ? 0 : Math.min(Math.max(Math.round(form.komisyon), 0), MAX_KOMISYON),
+      model: form.tur === "kafile" ? form.model : "kod",
+      whatsapp: form.whatsapp.replace(/\D/g, "").replace(/^0/, "90").slice(0, 15),
       aktif: kodlar[kod]?.aktif ?? true,
       odenen: kodlar[kod]?.odenen ?? 0,
       olusturma: kodlar[kod]?.olusturma ?? new Date().toISOString().slice(0, 10),
@@ -98,7 +105,7 @@ export default function AdminOrtaklar() {
       await setDoc(ref(), { kodlar: { [kod]: kayit } }, { merge: true });
       setKodlar((k) => ({ ...k, [kod]: kayit }));
       setForm(BOS);
-      setMesaj(`${kod} kaydedildi. Link: ${SITE}/?ref=${kod}`);
+      setMesaj(`${kod} kaydedildi. Link: ${linkOf(kod, kayit)}`);
     } catch (e) {
       setHata("Kaydedilemedi: " + (e as Error).message);
     }
@@ -134,7 +141,7 @@ export default function AdminOrtaklar() {
 
   const kopyala = async (kod: string) => {
     try {
-      await navigator.clipboard.writeText(`${SITE}/?ref=${kod}`);
+      await navigator.clipboard.writeText(linkOf(kod, kodlar[kod]));
       setKopyalanan(kod);
       setTimeout(() => setKopyalanan(null), 1500);
     } catch {}
@@ -162,7 +169,7 @@ export default function AdminOrtaklar() {
       </p>
 
       {/* Yeni kod */}
-      <form onSubmit={kaydet} className="bg-white border p-4 mb-6 grid gap-3 md:grid-cols-[1fr_1.5fr_1fr_0.7fr_0.7fr_auto] items-end" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
+      <form onSubmit={kaydet} className="bg-white border p-4 mb-6 grid gap-3 md:grid-cols-[1fr_1.5fr_1fr_1.3fr_0.7fr_0.7fr_1.2fr_auto] items-end" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
         <label className="text-xs" style={{ color: "#86868B" }}>Kod
           <input className={input + " w-full mt-1 uppercase"} style={bc} value={form.kod} placeholder="ABCTUR"
             onChange={(e) => setForm({ ...form, kod: normalizeKod(e.target.value) })} />
@@ -182,6 +189,13 @@ export default function AdminOrtaklar() {
             <option value="diger">Diğer</option>
           </select>
         </label>
+        <label className="text-xs" style={{ color: "#86868B" }}>Çalışma şekli
+          <select className={input + " w-full mt-1"} style={bc} value={form.tur === "kafile" ? form.model : "kod"} disabled={form.tur !== "kafile"}
+            onChange={(e) => setForm({ ...form, model: e.target.value as OrtakModel })}>
+            <option value="kod">Yol 2 · Kod (indirim + komisyon)</option>
+            <option value="toptan">Yol 1 · Kafile satar (-%{TOPTAN.INDIRIM})</option>
+          </select>
+        </label>
         <label className="text-xs" style={{ color: "#86868B" }}>İndirim %
           <input type="number" min={0} max={MAX_INDIRIM} className={input + " w-full mt-1"} style={bc} value={form.indirim}
             onChange={(e) => setForm({ ...form, indirim: Number(e.target.value) })} />
@@ -189,6 +203,10 @@ export default function AdminOrtaklar() {
         <label className="text-xs" style={{ color: "#86868B" }}>Komisyon %
           <input type="number" min={0} max={MAX_KOMISYON} className={input + " w-full mt-1"} style={bc} value={form.komisyon}
             onChange={(e) => setForm({ ...form, komisyon: Number(e.target.value) })} />
+        </label>
+        <label className="text-xs" style={{ color: "#86868B" }}>Kafile WhatsApp
+          <input className={input + " w-full mt-1"} style={bc} value={form.whatsapp} placeholder="05xx xxx xx xx" inputMode="tel"
+            onChange={(e) => setForm({ ...form, whatsapp: e.target.value })} />
         </label>
         <button type="submit" className="px-5 py-2 text-sm font-medium" style={{ background: "#1D1D1F", color: "#fff" }}>Kaydet</button>
       </form>
@@ -228,7 +246,9 @@ export default function AdminOrtaklar() {
                         {TUR_ETIKET[o.tur] ?? o.tur}{o.olusturma && ` · ${o.olusturma}`}{!o.aktif && " · PASİF"}
                       </span>
                     </td>
-                    <td className="px-3 py-3 whitespace-nowrap">%{o.indirim} / %{o.komisyon}</td>
+                    <td className="px-3 py-3 whitespace-nowrap">
+                      {o.model === "toptan" ? <span style={{ color: "#9a7a2c" }}>Yol 1 · -%{TOPTAN.INDIRIM}</span> : <>%{o.indirim} / %{o.komisyon}</>}
+                    </td>
                     <td className="px-3 py-3 whitespace-nowrap">
                       {s?.adet ?? 0}
                       {s && <span className="block text-[11px]" style={{ color: "#86868B" }}>{s.kart} kart · {s.kapida} kapıda</span>}
@@ -241,7 +261,7 @@ export default function AdminOrtaklar() {
                     </td>
                     <td className="px-3 py-3 whitespace-nowrap text-right">
                       <button onClick={() => guncelle(kod, { aktif: !o.aktif })} className="text-[12px] underline mr-3">{o.aktif ? "Pasif yap" : "Aktif yap"}</button>
-                      <button onClick={() => setForm({ kod, ad: o.ad, tur: o.tur, indirim: o.indirim, komisyon: o.komisyon })} className="text-[12px] underline mr-3">Düzenle</button>
+                      <button onClick={() => setForm({ kod, ad: o.ad, tur: o.tur, indirim: o.indirim, komisyon: o.komisyon, model: o.model ?? "kod", whatsapp: o.whatsapp ?? "" })} className="text-[12px] underline mr-3">Düzenle</button>
                       {!s?.adet && <button onClick={() => sil(kod)} className="text-[12px] underline" style={{ color: "#dc2626" }}>Sil</button>}
                     </td>
                   </tr>
@@ -253,7 +273,8 @@ export default function AdminOrtaklar() {
       )}
       <p className="text-[12px] mt-4" style={{ color: "#86868B" }}>
         Kapıda ödemeli siparişler WhatsApp onayından önce de sayılır; komisyonu ödemeden önce siparişin teslim edildiğini Siparişler sayfasından kontrol et.
-        Sınırlar: indirim en fazla %{MAX_INDIRIM}, komisyon en fazla %{MAX_KOMISYON}.
+        Sınırlar: indirim en fazla %{MAX_INDIRIM}, komisyon en fazla %{MAX_KOMISYON}. Yol 1 (kafile satar) kodları sitede indirim vermez;
+        umreci listesini kafileye gönderir, listeler <a href="/admin/kafile-toptan" className="underline">Kafile Toptan</a> sayfasında toplanır.
       </p>
     </div>
   );

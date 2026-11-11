@@ -11,7 +11,7 @@ export const POSET_SLUG = "umre-hediye-poseti";
 export const HEDIYE_POSETI: Product = {
   id: "OBR-POSET-0001",
   slug: POSET_SLUG,
-  name: "Umre Hediye Poşeti (Hediye Kartı Dahil)",
+  name: "Kraft Hediye Poşeti (Hediye Kartı Dahil)",
   category: "Hediyelik Setler",
   brand: "OBRNHOMEN",
   price: 15,
@@ -21,7 +21,7 @@ export const HEDIYE_POSETI: Product = {
   color: null,
   size: null,
   features: [
-    "Dağıtacağınız her hediye için bir poşet",
+    "Dağıtacağınız her hediye için bir kraft kâğıt poşet",
     "İçinde adınızın ve kafilenizin yazdığı hediye kartı",
     "Hediyeler poşetlenmiş olarak gönderilir",
   ],

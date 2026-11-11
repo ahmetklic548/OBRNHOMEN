@@ -36,7 +36,8 @@ export default function AdminSiparisler() {
     (async () => {
       if (!db) { setLoading(false); return; }
       const snap = await getDocs(query(collection(db, "siparisler"), orderBy("paidAt", "desc")));
-      setOrders(snap.docs.map(d => ({ id: d.id, ...d.data() } as FOrder)));
+      // Yol 1 kafile listeleri ödeme değil — Kafile Toptan sayfasında
+      setOrders(snap.docs.map(d => ({ id: d.id, ...d.data() } as FOrder)).filter(o => o.paymentMethod !== "kafile-toptan"));
       setLoading(false);
     })();
   }, []);

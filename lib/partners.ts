@@ -8,6 +8,9 @@ import { VALID_COUPONS } from "@/lib/pricing";
  */
 
 export type OrtakTur = "kafile" | "influencer" | "diger";
+/** kod: Yol 2 — umreci siteden kendisi alır, indirim + komisyon.
+ *  toptan: Yol 1 — kafile satar (site fiyatı -%20, lib/kafileToptan.ts); umreci sitede ödeme yapmaz, listesini kafileye gönderir. */
+export type OrtakModel = "kod" | "toptan";
 
 export interface Ortak {
   ad: string;
@@ -18,6 +21,9 @@ export interface Ortak {
   komisyon: number;
   aktif: boolean;
   olusturma?: string;
+  model?: OrtakModel;
+  /** Kafilenin WhatsApp numarası (90… biçiminde) — umreci listesi doğrudan buraya gider */
+  whatsapp?: string;
 }
 
 export const MAX_INDIRIM = 15;
@@ -56,6 +62,8 @@ function parseOrtak(v: FsValue): Ortak | null {
     komisyon: clamp(num(f.komisyon), MAX_KOMISYON),
     aktif: f.aktif?.booleanValue !== false,
     olusturma: f.olusturma?.stringValue,
+    model: f.model?.stringValue === "toptan" ? "toptan" : "kod",
+    whatsapp: (f.whatsapp?.stringValue ?? "").replace(/\D/g, "").slice(0, 15) || undefined,
   };
 }
 
@@ -92,5 +100,16 @@ export async function resolveCoupon(raw: unknown): Promise<ResolvedCoupon | null
   const ortaklar = await fetchOrtaklar();
   const o = ortaklar[code];
   if (!o || !o.aktif) return null;
+  // Yol 1 (toptan) kodu umreciye sitede indirim vermez — kafile kendi satar
+  if (o.model === "toptan") return null;
   return { code, discountRate: o.indirim, ortak: { ad: o.ad, tur: o.tur, komisyon: o.komisyon } };
+}
+
+/** Herkese açık kod bilgisi (hediyelik-hazirla sayfası için): aktif değilse null */
+export async function ortakBilgi(raw: unknown): Promise<{ kod: string; ad: string; model: OrtakModel; indirim: number; whatsapp: string | null } | null> {
+  const kod = normalizeKod(raw);
+  if (!kod) return null;
+  const o = (await fetchOrtaklar())[kod];
+  if (!o || !o.aktif) return null;
+  return { kod, ad: o.ad, model: o.model ?? "kod", indirim: o.model === "toptan" ? 0 : o.indirim, whatsapp: o.whatsapp ?? null };
 }

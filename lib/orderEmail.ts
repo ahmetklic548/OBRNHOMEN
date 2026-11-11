@@ -143,3 +143,8 @@ export async function sendOrderEmails(o: OrderEmailData): Promise<{ magaza: bool
   ]);
   return { magaza: m.status === "fulfilled" && m.value, musteri: c.status === "fulfilled" && c.value };
 }
+
+/** Mağazaya serbest bildirim (ör. yeni kafile listesi). Hata fırlatmaz. */
+export async function sendStoreNotice(subject: string, html: string): Promise<boolean> {
+  return send({ to: NOTIFY_TO, subject, html });
+}

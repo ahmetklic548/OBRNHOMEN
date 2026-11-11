@@ -55,6 +55,11 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
   const [renk] = useState<Record<string, string>>({}); // grup → seçili renk (slug)
   /** Hediye poşeti adedi — null: otomatik (en çok alınan üründen kaç kişiye dağıtılacaksa) */
   const [posetN, setPosetN] = useState<number | null>(null);
+  /** Kafile kodunun bilgisi — toptan (Yol 1) ise umreci ödeme yapmaz, listesini kafileye gönderir */
+  const [kafileBilgi, setKafileBilgi] = useState<{ ad: string; model: "kod" | "toptan"; indirim: number; whatsapp: string | null } | null>(null);
+  const [umreciAd, setUmreciAd] = useState("");
+  const [umreciTel, setUmreciTel] = useState("");
+  const [gonderim, setGonderim] = useState<{ durum: "bos" | "gidiyor" | "tamam" | "hata"; mesaj?: string; listeNo?: string }>({ durum: "bos" });
 
   useEffect(() => {
     try {
@@ -67,9 +72,16 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
     } catch {}
     // ?ref=KOD RefCapture tarafından kaydedilir; aynı sayfa yüklemesinde URL'den de okunur
     const urlRef = new URLSearchParams(window.location.search).get("ref");
-    setKafile(urlRef ? urlRef.toUpperCase() : readRef());
+    const kod = urlRef ? urlRef.toUpperCase() : readRef();
+    setKafile(kod);
+    if (kod)
+      fetch(`/api/ortak-bilgi?kod=${encodeURIComponent(kod)}`)
+        .then((r) => r.json())
+        .then((d) => { if (d?.ok) setKafileBilgi({ ad: d.ad, model: d.model, indirim: d.indirim, whatsapp: d.whatsapp }); })
+        .catch(() => {});
     setHazir(true);
   }, []);
+  const toptan = kafileBilgi?.model === "toptan";
 
   useEffect(() => {
     if (!hazir) return;
@@ -129,6 +141,29 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
     router.push("/checkout");
   };
 
+  const listeyiGonder = async () => {
+    if (!umreciAd.trim() || umreciTel.replace(/\D/g, "").length < 10) {
+      setGonderim({ durum: "hata", mesaj: "Lütfen adınızı ve telefon numaranızı yazın." });
+      return;
+    }
+    setGonderim({ durum: "gidiyor" });
+    try {
+      const items = secilenler.map(({ u, n }) => ({ slug: u.slug, qty: n }));
+      if (posetAdet > 0) items.push({ slug: poset.slug, qty: posetAdet });
+      const r = await fetch("/api/kafile-liste", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kafile, name: umreciAd, phone: umreciTel, kartIsim, items }),
+      });
+      const d = await r.json();
+      if (!r.ok) throw new Error(d?.error || "Gönderilemedi");
+      setGonderim({ durum: "tamam", listeNo: d.listeNo });
+      try { localStorage.removeItem(SECIM_KEY); localStorage.removeItem(POSET_KEY); } catch {}
+    } catch (e) {
+      setGonderim({ durum: "hata", mesaj: (e as Error).message });
+    }
+  };
+
   const whatsappMetni = () => {
     const satirlar = secilenler.map(({ u, n }) => `• ${kisaAd(u.name)} (${u.code}) — ${isPack(u.packQty) ? `${n} paket = ${n * u.packQty} adet` : `${n} adet`}`);
     return [
@@ -137,7 +172,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
       posetAdet > 0 ? `• Hediye poşeti (kart dahil) — ${posetAdet} adet` : "• Hediye poşeti istemiyorum",
       `Toplam: ${toplamAdet} adet hediyelik${posetAdet > 0 ? ` + ${posetAdet} poşet` : ""} (site fiyatı ${tl(genelToplam)})`,
       kartIsim.trim() ? `Hediye kartında yazacak isim: ${kartIsim.trim()}` : "",
-      "Ad soyad / telefon / adres: ",
+      toptan ? `Ad soyad: ${umreciAd.trim()} / Telefon: ${umreciTel.trim()}${gonderim.listeNo ? ` / Liste no: ${gonderim.listeNo}` : ""}` : "Ad soyad / telefon / adres: ",
     ].filter(Boolean).join("\n");
   };
 
@@ -151,9 +186,15 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
           <strong> adınızın yazdığı bir hediye kartı</strong> koyuyoruz; Mekke&apos;de hediyelik aramayın, valiz taşımayın.
           <span className="mt-1 block text-[14px] text-stone-500">Ürünler karışık renklerde gönderilir.</span>
         </p>
-        {kafile && (
+        {kafile && toptan && (
+          <p className="mt-3 inline-block rounded-2xl border border-[#c9a24a] bg-[#faf6ec] px-3 py-1.5 text-[13px] text-stone-700">
+            <strong>{kafileBilgi?.ad}</strong> hediyelik listesi — seçiminizi yapın, listeniz kafilenize gider. Ödemeyi kafilenize yaparsınız.
+          </p>
+        )}
+        {kafile && !toptan && (
           <p className="mt-3 inline-block rounded-full border border-[#c9a24a] bg-[#faf6ec] px-3 py-1 text-[13px] text-stone-700">
-            Kafile kodunuz: <strong>{kafile}</strong> — ödemede indiriminiz otomatik uygulanır
+            {kafileBilgi ? <><strong>{kafileBilgi.ad}</strong> umrecilerine özel — </> : <>Kafile kodunuz: <strong>{kafile}</strong> — </>}
+            ödemede {kafileBilgi?.indirim ? `%${kafileBilgi.indirim} ` : ""}indiriminiz otomatik uygulanır
           </p>
         )}
       </header>
@@ -251,7 +292,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                 <li className="bg-[#faf6ec] px-4 py-3 text-[14px]">
                   <div className="flex items-center justify-between gap-3">
                     <span className="min-w-0 flex-1 text-stone-800">
-                      <strong>Hediye poşeti</strong> <span className="text-stone-500">(içinde isminizin yazdığı kart)</span>
+                      <strong>Kraft hediye poşeti</strong> <span className="text-stone-500">(içinde isminizin yazdığı kart)</span>
                       <span className="block text-[12.5px] text-stone-500">Kaç kişiye dağıtacaksanız o kadar · {tl(poset.price)} / adet</span>
                     </span>
                     <span className="w-24 shrink-0 text-right font-medium">{tl(posetTutar)}</span>
@@ -286,20 +327,49 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                 className="mt-2 w-full rounded-md border border-stone-300 px-3 py-2.5 text-[15px]"
               />
 
+              {toptan ? (
+                <div className="mt-6 rounded-xl border border-[#c9a24a] bg-white p-4">
+                  {gonderim.durum === "tamam" ? (
+                    <>
+                      <p className="text-[15px] font-medium text-stone-900">✓ Listeniz {kafileBilgi?.ad} kafilesine iletildi.</p>
+                      <p className="mt-1 text-[13.5px] text-stone-600">Liste no: <strong>{gonderim.listeNo}</strong>. Ödeme ve teslimat için kafileniz sizinle iletişime geçecek. İsterseniz listenizi WhatsApp&apos;tan da gönderin:</p>
+                      <a
+                        href={`https://wa.me/${kafileBilgi?.whatsapp ?? ""}?text=${encodeURIComponent(whatsappMetni())}`}
+                        target="_blank" rel="noopener noreferrer"
+                        className="mt-3 inline-block rounded-md border border-[#25d366] px-4 py-2.5 text-[14.5px] font-medium text-stone-900"
+                      >WhatsApp&apos;tan kafileme gönder</a>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-[15px] font-medium text-stone-900">Listenizi kafilenize gönderin</p>
+                      <p className="text-[13px] text-stone-500">Bu siparişte sitede ödeme yapmazsınız; ödemeyi {kafileBilgi?.ad} kafilesine yaparsınız.</p>
+                      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                        <input value={umreciAd} onChange={(e) => setUmreciAd(e.target.value)} maxLength={120} placeholder="Adınız soyadınız" className="rounded-md border border-stone-300 px-3 py-2.5 text-[15px]" />
+                        <input value={umreciTel} onChange={(e) => setUmreciTel(e.target.value)} maxLength={40} inputMode="tel" placeholder="Telefon (05xx…)" className="rounded-md border border-stone-300 px-3 py-2.5 text-[15px]" />
+                      </div>
+                      {gonderim.durum === "hata" && <p className="mt-2 text-[13px] text-red-600">{gonderim.mesaj}</p>}
+                      <button onClick={listeyiGonder} disabled={gonderim.durum === "gidiyor"} className="mt-3 w-full rounded-md bg-stone-900 px-5 py-3.5 text-[15px] font-medium text-white disabled:opacity-60">
+                        {gonderim.durum === "gidiyor" ? "Gönderiliyor…" : "Listemi kafileme gönder →"}
+                      </button>
+                    </>
+                  )}
+                </div>
+              ) : (
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <button onClick={sepeteEkle} className="rounded-md bg-stone-900 px-5 py-3.5 text-[15px] font-medium text-white">
-                  Siparişi tamamla →
-                  <span className="block text-[12px] font-normal text-stone-300">Kendim ödeyeceğim (kart / kapıda)</span>
-                </button>
-                <a
-                  href={`https://wa.me/?text=${encodeURIComponent(whatsappMetni())}`}
-                  target="_blank" rel="noopener noreferrer"
-                  className="rounded-md border border-[#25d366] bg-white px-5 py-3.5 text-center text-[15px] font-medium text-stone-900"
-                >
-                  Listemi kafileme gönder
-                  <span className="block text-[12px] font-normal text-stone-500">WhatsApp’ta kafilenizi seçin</span>
-                </a>
-              </div>
+                  <button onClick={sepeteEkle} className="rounded-md bg-stone-900 px-5 py-3.5 text-[15px] font-medium text-white">
+                    Siparişi tamamla →
+                    <span className="block text-[12px] font-normal text-stone-300">Kendim ödeyeceğim (kart / kapıda)</span>
+                  </button>
+                  <a
+                    href={`https://wa.me/?text=${encodeURIComponent(whatsappMetni())}`}
+                    target="_blank" rel="noopener noreferrer"
+                    className="rounded-md border border-[#25d366] bg-white px-5 py-3.5 text-center text-[15px] font-medium text-stone-900"
+                  >
+                    Listemi kafileme gönder
+                    <span className="block text-[12px] font-normal text-stone-500">WhatsApp’ta kafilenizi seçin</span>
+                  </a>
+                </div>
+              )}
               <p className="mt-3 text-[12.5px] text-stone-500">Fiyatlar site fiyatıdır; 10 ve üzeri pakette adet indirimi otomatik uygulanır.</p>
             </>
           )}

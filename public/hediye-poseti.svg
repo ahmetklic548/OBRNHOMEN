@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
   <rect width="400" height="400" fill="#faf6ec"/>
-  <path d="M155 120c0-32 20-52 45-52s45 20 45 52" fill="none" stroke="#c9a24a" stroke-width="10" stroke-linecap="round"/>
-  <path d="M95 120h210l18 230H77z" fill="#14392b"/>
-  <path d="M95 120h210l3 30H92z" fill="#0f2c21"/>
+  <path d="M155 120c0-32 20-52 45-52s45 20 45 52" fill="none" stroke="#8a6238" stroke-width="10" stroke-linecap="round"/>
+  <path d="M95 120h210l18 230H77z" fill="#b98a5a"/>
+  <path d="M95 120h210l3 30H92z" fill="#a47648"/>
   <rect x="130" y="200" width="140" height="95" rx="6" fill="#faf6ec" stroke="#c9a24a" stroke-width="3"/>
   <text x="200" y="232" text-anchor="middle" font-family="Georgia,serif" font-size="13" letter-spacing="2" fill="#9a8450">BU HEDİYE</text>
   <text x="200" y="258" text-anchor="middle" font-family="Georgia,serif" font-size="19" font-weight="bold" fill="#14392b">Umre Hatırası</text>

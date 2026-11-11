@@ -77,7 +77,7 @@ const p2 = `<section class="page">
   <div style="display:grid;gap:3.2mm;margin-top:6mm">
     ${step(1, "Linki umrecilerinize iletirsiniz", "Kafilenize özel bir link ve kod veriyoruz. WhatsApp grubunuza hazır görsel ve mesajıyla birlikte paylaşırsınız.")}
     ${step(2, "Umreci telefondan adım adım seçer", "obrnhomen.com/hediyelik-hazirla sayfasında sırayla seccade, eşarp-yazma, tesbih, yüzük-takke, esans, misvak ve diğer hediyelikler (Yasin, zikirmatik, cep Kur'an, hazır setler, çocuklar için). Her üründen kaç tane istediğini seçer, kartta yazacak adını girer.")}
-    ${step(3, "Biz hazırlarız, her hediyeye kart koyarız", "50 hediye varsa 50 kart. Ürünler İstanbul Eminönü'deki dükkânımızda, hediye poşetinde hazırlanır.")}
+    ${step(3, "Biz hazırlarız, her hediye kraft poşette ve kartlı", "50 hediye varsa 50 poşet, 50 kart. Ürünler İstanbul Eminönü'deki dükkânımızda, hediye poşetinde hazırlanır.")}
     ${step(4, "Teslimat sizin istediğiniz şekilde", "Umrecinin evine tek tek, ya da kafilenize toplu. Yola çıkmadan önce de olur, dönüşte kapısında da.")}
   </div>
   <div class="k" style="margin-top:8mm">Her hediyenin içindeki kart</div>
@@ -135,19 +135,20 @@ const yol = (tag, t, items, hl) => `<div class="box" style="position:relative;pa
 const p4 = `<section class="page">
   <div class="k">Üç çalışma şekli</div>
   <h1>Size hangisi uyarsa</h1>
-  <p class="lead">Hepsinde seçim ekranı, hediye kartı ve teslimat aynı. Fark sadece kazancın nasıl paylaşıldığında.</p>
+  <p class="lead">Hepsinde seçim ekranı, kraft hediye poşeti ve isimli kart aynı. Çoğu kafile için en kolayı Yol 2; Yol 1 yüklü alım yapan kafileler içindir.</p>
   <div style="display:grid;gap:5.5mm;margin-top:7mm">
-    ${yol("YOL 1 · KAFİLE SATAR", "Siz satın, fark sizin", [
-      "Ürünleri site fiyatının <b>%20 altında</b> alırsınız",
-      "Umrecinize site fiyatından satarsınız; aradaki fark kafilenizin kazancıdır",
-      "Siparişi umrecinin seçim listesiyle bize iletirsiniz, gerisini biz hazırlarız",
-    ], true)}
-    ${yol("YOL 2 · SIFIR MALİYET", "Ortaklık kodu", [
+    ${yol("YOL 1 · YÜKLÜ ALIM", "Siz satın, fark sizin", [
+      "Ürünleri site fiyatının <b>%20 altında</b> alırsınız; umrecinize site fiyatından satarsınız, fark kafilenizin",
+      "Umrecileriniz listesini size özel linkten gönderir, listeler sizin onayınızla <b>tek sipariş</b> olur",
+      "Yüklü alım içindir: tek siparişte <b>en az 15.000 ₺</b>, %50 kapora, tek adrese tek teslimat",
+      "Tahsilat ve dağıtım kafilenizde; sipariş yola çıkıştan en geç 15 gün önce kesinleşir",
+    ])}
+    ${yol("YOL 2 · SIFIR MALİYET · ÖNERİLEN", "Ortaklık kodu", [
       "Kafilenize özel indirim kodu ve link",
       "Umreciniz siteden alırken <b>%10 indirim</b> kazanır",
       "Siz her satıştan <b>%10 komisyon</b> alırsınız; satışlar sistemde kayıtlı, her ay şeffaf hesap",
-      "Stok, para, risk yok",
-    ])}
+      "Stok, para, risk yok; en az sipariş şartı yok",
+    ], true)}
     ${yol("YOL 3 · ÖZEL ANLAŞMA", "Size özel çalışalım", [
       "Büyük gruplar, hac kafileleri ya da farklı bir ihtiyacınız varsa",
       "Bir görüşmede konuşup size uygun şekilde anlaşırız",
