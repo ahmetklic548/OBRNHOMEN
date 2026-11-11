@@ -31,6 +31,23 @@ function grupAnahtari(p: Product): string {
   return `${n.replace(/[–\-|(),]/g, " ").replace(/\s+/g, " ").trim()}#${p.quantity ?? 1}#${p.size ?? ""}`;
 }
 
+/** Seccade adımında gösterilecekler — kullanıcının seçtiği 11 seccade, bu sırayla (2026-11-11).
+ *  Gruptaki herhangi bir renk bu listedeyse kart gösterilir. */
+const SECCADE_SECIM = [
+  "buyuk-boy-seccade-80x120-cm-battal-kadife-namazlik-hediyelik-kahverengi",
+  "1-adet-kadife-seccade-hac-umre-mevlut-hediyelik-dagitmalik",
+  "luks-kadife-seccade-namazlik-az-desenli-yumusak-dokulu-ve-kaliteli-ibadet-mati-sade-sik-ta",
+  "1-adet-pelus-namaz-seccadesi-namazlik-hac-umre-mevlut-hediyelik-dagitmalik-mihrap-rengaren",
+  "1-adet-simli-goblen-namaz-seccade-hac-umre-hediyelik-seccade-renk-secenekli-altin",
+  "1-adet-karma-renk-hic-desensiz-kadife-seccade-namazlik-dodya-imalat-sik-dokuma-sik-550-600",
+  "1-adet-sade-az-desenli-kadife-seccade-namazlik-sik-dokuma-dodya-iplik-goz-yormayan-desen-s",
+  "sade-mihrap-desen-astarsiz-sonil-seccade-namazlik-hac-umre-mevlut-ceyiz-hediyelik-bohca-da",
+  "luks-sonil-seccade-namazlik-geleneksel-desenli-sacakli-kaliteli-dokuma-yumusak-doku-sik-ve",
+  "luks-sonil-seccade-namazlik-oval-mihrap-desenli-sacakli-kaliteli-dokuma-yumusak-doku-sik-d",
+  "1-adet-kirkyama-seccade-karma-renk-ceyiz-mevlut-bohca-hac-umre-dagitmalik-lux-patchwork-na",
+];
+const seccadeSira = (g: Product[]) => Math.min(...g.map((p) => { const i = SECCADE_SECIM.indexOf(p.slug); return i < 0 ? Infinity : i; }));
+
 const toUrun = (p: Product): HazirlaUrun => ({
   slug: p.slug,
   name: p.name,
@@ -51,10 +68,12 @@ export default function HediyelikHazirlaPage() {
       const k = grupAnahtari(p);
       gruplar.set(k, [...(gruplar.get(k) ?? []), p]);
     }
-    const urunler: Grup[] = [...gruplar.values()]
+    let liste = [...gruplar.values()];
+    liste = a.id === "seccade"
+      ? liste.filter((g) => seccadeSira(g) < Infinity).sort((x, y) => seccadeSira(x) - seccadeSira(y))
       // Paketli (dağıtmalık) ürünler önce
-      .sort((x, y) => (y[0].quantity ?? 1) - (x[0].quantity ?? 1))
-      .map((g) => ({ anahtar: g[0].slug, secenekler: g.map(toUrun) }));
+      : liste.sort((x, y) => (y[0].quantity ?? 1) - (x[0].quantity ?? 1));
+    const urunler: Grup[] = liste.map((g) => ({ anahtar: g[0].slug, secenekler: g.map(toUrun) }));
     return { id: a.id, baslik: a.baslik, aciklama: a.aciklama, urunler };
   }).filter((a) => a.urunler.length > 0);
 
