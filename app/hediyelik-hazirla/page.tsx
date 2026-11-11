@@ -35,11 +35,18 @@ function DIGER_BOLUM(c: string, s?: string): [number, string] | null {
 /** Seccade adımında sadece tekli seccadeler (umreci tam adet yazsın); çocuk/sesli seccadeler hariç */
 const seccadeUygun = (p: Product) => (p.quantity ?? 1) === 1 && !/çocuk|sesli|kulaklık/i.test(p.name);
 
-/** Aynı ürünün renkleri tek kartta birleşsin: ad (renk çıkarılmış) + paket adedi + ebat */
+/** Ürün adlarında geçen renkler — aynı ürünün renkleri tek kartta birleşsin diye addan çıkarılır */
+const RENKLER = ["koyu yeşil", "açık pudra", "bebe mavi", "zümrüt yeşili", "bordo", "gold", "gümüş", "krem", "siyah", "yeşil", "lacivert", "pudra", "kırmızı", "mor", "altın", "beyaz", "mavi", "pembe", "gri", "kahverengi", "kahve rengi", "bej", "haki", "mürdüm", "turuncu", "sarı", "lila", "ekru"];
+
+/** Aynı ürünün renkleri tek kartta birleşsin: ad (renkler ve kesik son kelime çıkarılmış) + paket adedi + ebat */
 function grupAnahtari(p: Product): string {
   let n = p.name.toLocaleLowerCase("tr-TR");
-  if (p.color) n = n.split(p.color.toLocaleLowerCase("tr-TR")).join("");
-  return `${n.replace(/[–\-|(),]/g, " ").replace(/\s+/g, " ").trim()}#${p.quantity ?? 1}#${p.size ?? ""}`;
+  if (p.color) n = n.split(p.color.toLocaleLowerCase("tr-TR")).join(" ");
+  for (const r of RENKLER) n = n.split(r).join(" ");
+  n = n.replace(/[–\-|(),+]/g, " ").replace(/\s+/g, " ").trim();
+  // Trendyol'da kesilmiş adlar ("… Seti Bor", "… Seti Beb"): sondaki 1-4 harflik kelimeyi at
+  n = n.replace(/\s\S{1,4}$/, "");
+  return `${n}#${p.quantity ?? 1}#${p.size ?? ""}`;
 }
 
 /** Adım adım gösterilecek ürünler — kullanıcının seçtikleri, bu sırayla (2026-11-11).
