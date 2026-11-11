@@ -94,18 +94,7 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
   const aktif = (g: Grup) =>
     g.secenekler.find((u) => u.slug === renk[g.anahtar]) ?? g.secenekler.find((u) => (secim[u.slug] ?? 0) > 0) ?? g.secenekler[0];
   const grupSecili = (g: Grup) => g.secenekler.some((u) => (secim[u.slug] ?? 0) > 0);
-  /** Renk değişince girilen adet yeni renge taşınır */
-  const renkDegistir = (g: Grup, yeni: string) => {
-    const eski = aktif(g).slug;
-    setRenk((r) => ({ ...r, [g.anahtar]: yeni }));
-    setSecim((p) => {
-      const n = p[eski] ?? 0;
-      if (!n || eski === yeni) return p;
-      const q = { ...p, [yeni]: (p[yeni] ?? 0) + n };
-      delete q[eski];
-      return q;
-    });
-  };
+
 
   const ozet = adim >= adimlar.length;
   const a = adimlar[adim];
@@ -140,6 +129,7 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
         <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-stone-600">
           Her adımda istediğiniz üründen kaç tane istediğinizi seçin, istemediğiniz adımı geçin. Her hediyenin içine
           <strong> adınızın yazdığı bir hediye kartı</strong> koyuyoruz; Mekke&apos;de hediyelik aramayın, valiz taşımayın.
+          <span className="mt-1 block text-[14px] text-stone-500">Ürünler karışık renklerde gönderilir.</span>
         </p>
         {kafile && (
           <p className="mt-3 inline-block rounded-full border border-[#c9a24a] bg-[#faf6ec] px-3 py-1 text-[13px] text-stone-700">
@@ -188,14 +178,7 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
                       {tl(u.price)} <span className="text-[12px] font-normal text-stone-500">{isPack(u.packQty) ? `/ ${u.packQty}'lu paket` : "/ adet"}</span>
                     </p>
                     {g.secenekler.length > 1 && (
-                      <select
-                        value={u.slug}
-                        onChange={(e) => renkDegistir(g, e.target.value)}
-                        className="mt-1 w-full rounded-md border border-stone-300 bg-white px-2 py-1 text-[13px]"
-                        aria-label="Renk"
-                      >
-                        {g.secenekler.map((v) => <option key={v.slug} value={v.slug}>Renk: {v.color ?? "Standart"}</option>)}
-                      </select>
+                      <p className="mt-1 text-[12px] text-[#8a6d2a]">Renkler karışık gönderilir</p>
                     )}
                     <div className="mt-auto flex items-center gap-2 pt-2">
                       <button aria-label="Azalt" onClick={() => setN(u.slug, n - 1)} className="h-9 w-9 rounded-md border border-stone-300 text-lg">−</button>
