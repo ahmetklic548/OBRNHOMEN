@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
       .map(([name, slug]) => ({ source: `/koleksiyon/${encodeURIComponent(name)}`, destination: `/koleksiyon/${slug}`, permanent: true }));
   },
   images: {
+    // Vercel ücretsiz görsel optimizasyon kotası doldu (402) → görseller doğrudan CDN'den
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "cdn.dsmcdn.com" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
