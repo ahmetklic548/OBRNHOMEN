@@ -18,8 +18,19 @@ const ADIMLAR: { id: string; baslik: string; aciklama: string; sec: (c: string, 
   { id: "yuzuk", baslik: "Yüzük & Takke", aciklama: "Hac-umre yüzüğü ve takke.", sec: (c) => c === "Takke & Yüzük" },
   { id: "esans", baslik: "Esans", aciklama: "Alkolsüz esanslar.", sec: (c, s) => c === "Misvak, Esans & Sürme" && s === "Esans" },
   { id: "misvak", baslik: "Misvak", aciklama: "Vakumlu, dağıtmalık misvak.", sec: (c, s) => c === "Misvak, Esans & Sürme" && s === "Misvak" },
-  { id: "diger", baslik: "Diğer hediyelikler", aciklama: "Yasin, zikirmatik ve hazır setler (isteğe bağlı).", sec: (c, s) => (c === "Yasin & Dini Kitaplar" && s === "Yasin & Cüz") || c === "Zikirmatik" || (c === "Hediyelik Setler" && (s === "Yasin & Tesbih Setleri" || s === "Zikirmatik & Tesbih Setleri")) },
+  { id: "diger", baslik: "Diğer hediyelikler", aciklama: "Yasin, hazır setler, zikirmatik, cep Kur'an, çocuklar için ve hatıra hediyelikler.", sec: (c, s) => DIGER_BOLUM(c, s) !== null },
 ];
+
+/** "Diğer" adımı başlıklara ayrılır: [sıra, başlık] — null ise adımda yok */
+function DIGER_BOLUM(c: string, s?: string): [number, string] | null {
+  if (c === "Yasin & Dini Kitaplar" && s === "Yasin & Cüz") return [1, "Yasin & Cüz"];
+  if (c === "Hediyelik Setler" && s && ["Yasin & Tesbih Setleri", "Başörtü & Tesbih Setleri", "Mini Kuran & Tesbih Setleri", "Zikirmatik & Tesbih Setleri"].includes(s)) return [2, "Hazır hediyelik setler"];
+  if (c === "Zikirmatik") return [3, "Zikirmatik"];
+  if (c === "Kur'an-ı Kerim" && s === "Cep Boy") return [4, "Cep boy Kur'an-ı Kerim"];
+  if (c === "Hediyelik Eşya & Dekor" && s === "Çocuk Hediyelikleri") return [5, "Çocuklar için"];
+  if (c === "Hediyelik Eşya & Dekor") return [6, "Hatıra & dekor"];
+  return null;
+}
 
 /** Seccade adımında sadece tekli seccadeler (umreci tam adet yazsın); çocuk/sesli seccadeler hariç */
 const seccadeUygun = (p: Product) => (p.quantity ?? 1) === 1 && !/çocuk|sesli|kulaklık/i.test(p.name);
@@ -93,7 +104,15 @@ export default function HediyelikHazirlaPage() {
       ? liste.filter((g) => sira(secim, g) < Infinity).sort((x, y) => sira(secim, x) - sira(secim, y))
       // Paketli (dağıtmalık) ürünler önce
       : liste.sort((x, y) => (y[0].quantity ?? 1) - (x[0].quantity ?? 1));
-    const urunler: Grup[] = liste.map((g) => ({ anahtar: g[0].slug, secenekler: g.map(toUrun) }));
+    if (a.id === "diger") {
+      const b = (g: Product[]) => DIGER_BOLUM(g[0].category, g[0].subcategory)?.[0] ?? 99;
+      liste.sort((x, y) => b(x) - b(y));
+    }
+    const urunler: Grup[] = liste.map((g) => ({
+      anahtar: g[0].slug,
+      secenekler: g.map(toUrun),
+      ...(a.id === "diger" ? { bolum: DIGER_BOLUM(g[0].category, g[0].subcategory)?.[1] } : {}),
+    }));
     return { id: a.id, baslik: a.baslik, aciklama: a.aciklama, urunler };
   }).filter((a) => a.urunler.length > 0);
 

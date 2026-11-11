@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCart, cartMeta } from "@/app/components/CartContext";
@@ -25,6 +25,8 @@ export interface HazirlaUrun {
 export interface Grup {
   anahtar: string;
   secenekler: HazirlaUrun[];
+  /** "Diğer" adımında başlık (Yasin & Cüz, Hazır setler…) */
+  bolum?: string;
 }
 
 export interface Adim {
@@ -49,7 +51,7 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
   const [kartIsim, setKartIsim] = useState("");
   const [kafile, setKafile] = useState<string | null>(null);
   const [hazir, setHazir] = useState(false);
-  const [renk, setRenk] = useState<Record<string, string>>({}); // grup → seçili renk (slug)
+  const [renk] = useState<Record<string, string>>({}); // grup → seçili renk (slug)
 
   useEffect(() => {
     try {
@@ -164,11 +166,14 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {a.urunler.map((g) => {
+            {a.urunler.map((g, gi) => {
               const u = aktif(g);
               const n = secim[u.slug] ?? 0;
+              const baslik = g.bolum && g.bolum !== a.urunler[gi - 1]?.bolum ? g.bolum : null;
               return (
-                <div key={g.anahtar} className={`flex gap-3 rounded-xl border bg-white p-3 ${n > 0 ? "border-[#9a7a2c] ring-1 ring-[#9a7a2c]" : "border-stone-200"}`}>
+                <Fragment key={g.anahtar}>
+                {baslik && <h3 className="col-span-full mt-4 border-b border-stone-200 pb-1 font-serif text-[19px] text-stone-900">{baslik}</h3>}
+                <div className={`flex gap-3 rounded-xl border bg-white p-3 ${n > 0 ? "border-[#9a7a2c] ring-1 ring-[#9a7a2c]" : "border-stone-200"}`}>
                   <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg bg-stone-100">
                     {u.image && <Image src={u.image} alt={u.name} fill sizes="96px" className="object-cover" />}
                   </div>
@@ -193,6 +198,7 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
                     </div>
                   </div>
                 </div>
+                </Fragment>
               );
             })}
           </div>
