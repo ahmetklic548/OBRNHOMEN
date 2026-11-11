@@ -36,7 +36,7 @@ const TUR_ETIKET: Record<OrtakTur, string> = { kafile: "Kafile", influencer: "In
 const ref = () => doc(db!, "products", "_ortaklar");
 const tl = (n: number) => n.toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + " ₺";
 
-const BOS = { kod: "", ad: "", tur: "kafile" as OrtakTur, indirim: 5, komisyon: 10 };
+const BOS = { kod: "", ad: "", tur: "kafile" as OrtakTur, indirim: 10, komisyon: 10 };
 
 export default function AdminOrtaklar() {
   const [kodlar, setKodlar] = useState<Record<string, OrtakKayit>>({});
@@ -175,7 +175,7 @@ export default function AdminOrtaklar() {
           <select className={input + " w-full mt-1"} style={bc} value={form.tur}
             onChange={(e) => {
               const tur = e.target.value as OrtakTur;
-              setForm({ ...form, tur, ...(tur === "influencer" ? { indirim: 10, komisyon: 15 } : tur === "kafile" ? { indirim: 5, komisyon: 10 } : {}) });
+              setForm({ ...form, tur, ...(tur === "influencer" ? { indirim: 10, komisyon: 15 } : tur === "kafile" ? { indirim: 10, komisyon: 10 } : {}) });
             }}>
             <option value="kafile">Kafile</option>
             <option value="influencer">Influencer</option>

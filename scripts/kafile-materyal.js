@@ -92,7 +92,7 @@ const waHtml = `<!doctype html><html lang="tr"><head><meta charset="utf-8">${fon
 </style></head><body>
   <div class="brand">${arch("#c9a24a", 62)} OBRNHOMEN</div>
   <div class="for"><b>${NAME}</b> umrecilerine özel</div>
-  <h1>Hediyelikleriniz<br><span>%5 indirimle</span> kapınızda</h1>
+  <h1>Hediyelikleriniz<br><span>%10 indirimle</span> kapınızda</h1>
   <div class="sub">Seccade, tesbih, Yasin, takke, esans, misvak… Dönüşte dağıtacağınız hediyelikleri yola çıkmadan hazırlayın, valiz derdi olmasın.</div>
   <div class="photos">${imgs.map((u) => `<img src="${u}">`).join("")}</div>
   <div class="code">
@@ -126,7 +126,7 @@ run(["--window-size=1080,1350", `--screenshot=${path.join(outDir, "WhatsApp-Grup
 
 const msg = `Değerli umrecilerimiz 🌿
 Dönüşte eş dosta dağıtacağınız hediyelikleri (seccade, tesbih, Yasin, esans…) yola çıkmadan hazırlamak isteyenler için ${name} olarak OBRNHOMEN ile anlaştık.
-Size özel %5 indirim kodu: ${code.toUpperCase()}
+Size özel %10 indirim kodu: ${code.toUpperCase()}
 Link: https://www.${link}
 Hayırlı yolculuklar, Rabbim umrelerinizi kabul etsin.`;
 fs.writeFileSync(path.join(outDir, "WhatsApp-Grup-Mesaji.txt"), msg, "utf8");
