@@ -182,8 +182,9 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
         <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#9a7a2c]">Umre dönüş hediyeliği</p>
         <h1 className="mt-1 font-serif text-[28px] leading-tight text-stone-900 sm:text-[34px]">Dağıtacağınız hediyelikleri hazırlayın</h1>
         <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-stone-600">
-          Her adımda istediğiniz üründen kaç tane istediğinizi seçin, istemediğiniz adımı geçin. Her hediyenin içine
-          <strong> adınızın yazdığı bir hediye kartı</strong> koyuyoruz; Mekke&apos;de hediyelik aramayın, valiz taşımayın.
+          Her adımda istediğiniz üründen kaç tane istediğinizi seçin, istemediğiniz adımı geçin. Hediyelikleriniz
+          <strong> kraft hediye poşetleri ve adınızın yazdığı kartlarla</strong> birlikte gelir; hediyeleri kendi zevkinize göre hazırlarsınız.
+          Mekke&apos;de hediyelik aramayın, valiz taşımayın.
           <span className="mt-1 block text-[14px] text-stone-500">Ürünler karışık renklerde gönderilir.</span>
         </p>
         {kafile && toptan && (
@@ -292,7 +293,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                 <li className="bg-[#faf6ec] px-4 py-3 text-[14px]">
                   <div className="flex items-center justify-between gap-3">
                     <span className="min-w-0 flex-1 text-stone-800">
-                      <strong>Kraft hediye poşeti</strong> <span className="text-stone-500">(içinde isminizin yazdığı kart)</span>
+                      <strong>Kraft hediye poşeti</strong> <span className="text-stone-500">(her poşete adınızın yazdığı bir kart)</span>
                       <span className="block text-[12.5px] text-stone-500">Kaç kişiye dağıtacaksanız o kadar · {tl(poset.price)} / adet</span>
                     </span>
                     <span className="w-24 shrink-0 text-right font-medium">{tl(posetTutar)}</span>
@@ -320,7 +321,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
               </ul>
 
               <label className="mt-5 block text-[15px] font-medium text-stone-800" htmlFor="kart">Hediye kartında yazacak isim</label>
-              <p className="text-[13px] text-stone-500">Her poşetin içindeki kartta “… umre hatırasıdır” olarak yazılır.</p>
+              <p className="text-[13px] text-stone-500">Her poşet için bir kart basılır; kartta “— isminiz” olarak yazılır.</p>
               <input
                 id="kart" value={kartIsim} maxLength={60} onChange={(e) => setKartIsim(e.target.value)}
                 placeholder="ör. Ahmet Yılmaz ve ailesi"

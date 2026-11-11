@@ -4,7 +4,7 @@ import type { Product } from "@/lib/products";
  * Umre hediye poşeti — /hediyelik-hazirla özetinde otomatik eklenir (umreci adedi değiştirebilir).
  * Trendyol senkronu data/products.json'ı ezdiği için burada tanımlı; vitrinde gizli (productCuration HIDDEN_SLUGS),
  * sipariş/ödeme tarafında normal ürün gibi doğrulanır.
- * FİYAT/GÖRSEL: kullanıcı teyit edecek (2026-11-11 yer tutucu).
+ * Fiyat 25 TL (kullanıcı, 2026-11-12, "şimdilik"). Görsel: çizim (public/hediye-poseti.svg) — gerçek foto gelince değiştir.
  */
 export const POSET_SLUG = "umre-hediye-poseti";
 
@@ -14,7 +14,7 @@ export const HEDIYE_POSETI: Product = {
   name: "Kraft Hediye Poşeti (Hediye Kartı Dahil)",
   category: "Hediyelik Setler",
   brand: "OBRNHOMEN",
-  price: 15,
+  price: 25,
   currency: "TRY",
   stock: 5000,
   inStock: true,
@@ -23,7 +23,7 @@ export const HEDIYE_POSETI: Product = {
   features: [
     "Dağıtacağınız her hediye için bir kraft kâğıt poşet",
     "İçinde adınızın ve kafilenizin yazdığı hediye kartı",
-    "Hediyeler poşetlenmiş olarak gönderilir",
+    "Poşet ve kartlar ürünlerle birlikte ayrı gelir; hediyeleri kendi zevkinize göre hazırlarsınız",
   ],
   images: ["/hediye-poseti.svg"],
   metaDescription: "Umre dönüşü dağıtacağınız hediyelikler için hediye poşeti, içinde isminizin yazdığı hediye kartıyla.",

@@ -7,8 +7,8 @@
 export const TOPTAN = {
   /** Kafileye site fiyatı üzerinden indirim */
   INDIRIM: 20,
-  /** En az sipariş — kafile fiyatıyla (indirim sonrası), tek seferde */
-  MIN_TUTAR: 15000,
+  /** En az sipariş — kafile fiyatıyla (indirim sonrası), tek seferde (2026-11-12: 15.000 → 30.000) */
+  MIN_TUTAR: 30000,
   /** Onayda alınan kapora oranı */
   KAPORA: 50,
   /** Kapora sonrası hazırlık süresi (iş günü) */
@@ -19,20 +19,35 @@ export const TOPTAN = {
   TEKLIF_GECERLILIK: 7,
 } as const;
 
-/** Kafileye gösterilen/iletilen şartlar (sırasıyla) */
+export const CONTACT_PHONE_TEXT = "0531 689 38 49";
+
+const tl = (n: number) => n.toLocaleString("tr-TR") + " ₺";
+
+/** Kafileye giden şartlar — sade dille, sırasıyla */
 export const TOPTAN_KURALLAR: string[] = [
-  `Yüklü alım içindir: tek siparişte en az ${TOPTAN.MIN_TUTAR.toLocaleString("tr-TR")} ₺ (kafile fiyatıyla).`,
-  `Kafile ürünleri site fiyatının %${TOPTAN.INDIRIM} altında alır; umreciye site fiyatının üstünde satılmaz.`,
-  `Umrecilerin listeleri toplanır, kafile tek sipariş olarak onaylar. Parça parça sipariş alınmaz.`,
-  `Onayda %${TOPTAN.KAPORA} kapora, kalanı teslimde (nakit ya da faturalı havale +%10 KDV).`,
-  `Kapora sonrası ${TOPTAN.HAZIRLIK_GUN} iş günü içinde hazırlanır; sipariş grubun yola çıkışından en geç ${TOPTAN.SON_SIPARIS_GUN} gün önce kesinleşmelidir.`,
-  `Teslimat tek adrese, tek koli: her umrecinin hediyeleri ayrı kraft poşetlerde, üzerinde adı yazılı.`,
-  `Umreciden tahsilat ve umreciye dağıtım kafilenin sorumluluğundadır. Değişim sadece hasarlı/eksik üründe.`,
-  `Teklif ${TOPTAN.TEKLIF_GECERLILIK} gün geçerlidir.`,
+  `Ürünleri sitedeki fiyatın %${TOPTAN.INDIRIM} altında alırsınız. Umrecinize sitedeki fiyattan satarsınız, aradaki fark sizin kazancınızdır.`,
+  `Bu yol toplu alım içindir: bir siparişte en az ${tl(TOPTAN.MIN_TUTAR)}lik ürün alınır. Daha az olacaksa Yol 2 (kod) sizin için daha uygundur.`,
+  `Umrecileriniz size verdiğimiz linkten ne istediğini seçer. Listeler bize gelir, siz onaylayınca hepsi tek sipariş olur.`,
+  `Siparişi onaylarken tutarın yarısını (%${TOPTAN.KAPORA}) kapora olarak ödersiniz, kalanını malı teslim alırken.`,
+  `Kaporadan sonra ${TOPTAN.HAZIRLIK_GUN} iş gününde hazırlarız. Bu yüzden siparişi grubunuz yola çıkmadan en az ${TOPTAN.SON_SIPARIS_GUN} gün önce verin.`,
+  `Her şey tek koliyle size gelir. Her umrecinin ürünleri ayrı ayrı, üzerinde adı yazılı; yanında kraft poşetleri ve isimli kartları. Paketlemeyi umreci kendi zevkine göre yapar.`,
+  `Umreciden parayı siz alırsınız, ürünleri umrecilere siz dağıtırsınız. Umreciye sitedeki fiyattan pahalı satılmaz.`,
+  `Hasarlı ya da eksik ürünü hemen değiştiririz. Teklifimiz ${TOPTAN.TEKLIF_GECERLILIK} gün geçerlidir.`,
 ];
 
+/** Kafilenin anlaması için somut örnek (teklif PDF ve özet metni) */
+export const TOPTAN_ORNEK = {
+  umreci: 40,
+  kisiBasi: 1000,
+  get site() { return this.umreci * this.kisiBasi; },
+  get kafile() { return kafileTutari(this.site); },
+  get kazanc() { return this.site - this.kafile; },
+};
+
 /** Kafilenin bize ödeyeceği tutar (site satış tutarından %20 düşük) */
-export const kafileTutari = (siteTutari: number) => Math.round(siteTutari * (1 - TOPTAN.INDIRIM / 100) * 100) / 100;
+export function kafileTutari(siteTutari: number) {
+  return Math.round(siteTutari * (1 - TOPTAN.INDIRIM / 100) * 100) / 100;
+}
 
 export type ListeDurum = "yeni" | "onaylandi" | "hazirlaniyor" | "teslim" | "iptal";
 export const DURUM_ETIKET: Record<ListeDurum, string> = {

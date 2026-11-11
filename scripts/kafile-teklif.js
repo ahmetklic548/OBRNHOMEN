@@ -58,7 +58,7 @@ const p1 = `<section class="page dark">
   <div style="margin-top:50mm">
     <span style="display:inline-block;border:1px solid #c9a24a;border-radius:20mm;padding:2mm 5mm;font-size:8.5pt;letter-spacing:2px;color:#c9a24a">HAC &amp; UMRE KAFİLELERİNE ÖZEL</span>
     <div style="font-family:Lora,serif;font-weight:700;font-size:34pt;line-height:1.12;margin:7mm 0 6mm;color:#f5efe0">Umreciniz dönüşte dağıtacağı<br>hediyelikleri <span style="color:#c9a24a">sizden</span> alsın.</div>
-    <p style="font-size:12pt;line-height:1.6;color:#d9d2bf;max-width:160mm">Her umreci dönüşte 20-50 kişiye hediye dağıtır. Bu hediyelikleri Mekke'de, son gün, kalabalıkta değil; telefonundan birkaç dakikada seçsin. Biz hazırlayalım, her hediyenin içine <b>kafilenizin adı</b> ve <b>hediyeyi verenin adı</b> yazılı kartı koyalım.</p>
+    <p style="font-size:12pt;line-height:1.6;color:#d9d2bf;max-width:160mm">Her umreci dönüşte 20-50 kişiye hediye dağıtır. Bu hediyelikleri Mekke'de, son gün, kalabalıkta değil; telefonundan birkaç dakikada seçsin. Biz hazırlayıp gönderelim; yanında kraft hediye poşetleri ve üzerinde <b>kafilenizin adı</b> ile <b>hediyeyi verenin adı</b> yazılı kartlar olsun.</p>
   </div>
   <div class="grid3" style="margin-top:12mm">${IMG.map((u) => `<img src="${u}" style="width:100%;height:58mm;object-fit:cover;object-position:top;border-radius:3mm">`).join("")}</div>
   <div style="position:absolute;left:18mm;right:18mm;bottom:14mm;border-top:1px solid #4d6a55;padding-top:4mm;display:flex;justify-content:space-between;font-size:9.5pt;color:#cfc6ad">
@@ -77,7 +77,7 @@ const p2 = `<section class="page">
   <div style="display:grid;gap:3.2mm;margin-top:6mm">
     ${step(1, "Linki umrecilerinize iletirsiniz", "Kafilenize özel bir link ve kod veriyoruz. WhatsApp grubunuza hazır görsel ve mesajıyla birlikte paylaşırsınız.")}
     ${step(2, "Umreci telefondan adım adım seçer", "obrnhomen.com/hediyelik-hazirla sayfasında sırayla seccade, eşarp-yazma, tesbih, yüzük-takke, esans, misvak ve diğer hediyelikler (Yasin, zikirmatik, cep Kur'an, hazır setler, çocuklar için). Her üründen kaç tane istediğini seçer, kartta yazacak adını girer.")}
-    ${step(3, "Biz hazırlarız, her hediye kraft poşette ve kartlı", "50 hediye varsa 50 poşet, 50 kart. Ürünler İstanbul Eminönü'deki dükkânımızda, hediye poşetinde hazırlanır.")}
+    ${step(3, "Biz hazırlarız: ürünler + kraft poşet + isimli kart", "50 hediye varsa 50 poşet, 50 kart. Hepsi ayrı ayrı gelir; umreci hediyelerini kendi zevkine göre poşetler. Kolide nasıl hazırlayacağını anlatan bir bilgi kartı da olur.")}
     ${step(4, "Teslimat sizin istediğiniz şekilde", "Umrecinin evine tek tek, ya da kafilenize toplu. Yola çıkmadan önce de olur, dönüşte kapısında da.")}
   </div>
   <div class="k" style="margin-top:8mm">Her hediyenin içindeki kart</div>
@@ -98,7 +98,7 @@ const p2 = `<section class="page">
       <div style="font-size:7.5pt;letter-spacing:1px;color:#8a8572">OBRNHOMEN · obrnhomen.com</div>
     </div>
   </div>
-  <p style="margin-top:3mm;font-size:9pt;color:#7a7768">Bir umreci 50 hediye dağıtırsa kafilenizin adı 50 eve girer. Kartlar ücretsizdir. Umreci adını yazmazsa kart adsız basılır.</p>
+  <p style="margin-top:3mm;font-size:9pt;color:#7a7768">Bir umreci 50 hediye dağıtırsa kafilenizin adı 50 eve girer. Poşet ve kart, seçim ekranında umrecinin listesine kendiliğinden eklenir.</p>
   ${foot(2)}
 </section>`;
 
@@ -135,29 +135,29 @@ const yol = (tag, t, items, hl) => `<div class="box" style="position:relative;pa
 const p4 = `<section class="page">
   <div class="k">Üç çalışma şekli</div>
   <h1>Size hangisi uyarsa</h1>
-  <p class="lead">Hepsinde seçim ekranı, kraft hediye poşeti ve isimli kart aynı. Çoğu kafile için en kolayı Yol 2; Yol 1 yüklü alım yapan kafileler içindir.</p>
-  <div style="display:grid;gap:5.5mm;margin-top:7mm">
-    ${yol("YOL 1 · YÜKLÜ ALIM", "Siz satın, fark sizin", [
-      "Ürünleri site fiyatının <b>%20 altında</b> alırsınız; umrecinize site fiyatından satarsınız, fark kafilenizin",
-      "Umrecileriniz listesini size özel linkten gönderir, listeler sizin onayınızla <b>tek sipariş</b> olur",
-      "Yüklü alım içindir: tek siparişte <b>en az 15.000 ₺</b>, %50 kapora, tek adrese tek teslimat",
-      "Tahsilat ve dağıtım kafilenizde; sipariş yola çıkıştan en geç 15 gün önce kesinleşir",
+  <p class="lead">Hepsinde seçim ekranı, kraft hediye poşeti ve isimli kart aynı. Çoğu kafile için en kolayı Yol 2; Yol 1 toplu alım yapan kafileler içindir.</p>
+  <div style="display:grid;gap:4.5mm;margin-top:6mm">
+    ${yol("YOL 1 · TOPLU ALIM", "Siz satın, fark sizin", [
+      "Ürünleri sitedeki fiyatın <b>%20 altında</b> alırsınız, umrecinize sitedeki fiyattan satarsınız. Aradaki fark sizin.",
+      "<b>Örnek:</b> 40 umreciniz kişi başı 1.000 ₺'lik hediyelik seçti → umrecilerden 40.000 ₺ toplarsınız, bize 32.000 ₺ ödersiniz, <b>8.000 ₺ sizde kalır</b>.",
+      "Toplu alım içindir: bir siparişte en az <b>30.000 ₺</b>. Onayda yarısı kapora, kalanı teslimde.",
+      "Her şey tek koliyle size gelir; parayı umreciden siz alır, ürünleri siz dağıtırsınız. Sipariş yola çıkmadan en az 15 gün önce verilir.",
     ])}
     ${yol("YOL 2 · SIFIR MALİYET · ÖNERİLEN", "Ortaklık kodu", [
       "Kafilenize özel indirim kodu ve link",
       "Umreciniz siteden alırken <b>%10 indirim</b> kazanır",
       "Siz her satıştan <b>%10 komisyon</b> alırsınız; satışlar sistemde kayıtlı, her ay şeffaf hesap",
-      "Stok, para, risk yok; en az sipariş şartı yok",
+      "Hiçbir şey almazsınız, para toplamazsınız, dağıtmazsınız; en az sipariş şartı yok",
     ], true)}
     ${yol("YOL 3 · ÖZEL ANLAŞMA", "Size özel çalışalım", [
       "Büyük gruplar, hac kafileleri ya da farklı bir ihtiyacınız varsa",
       "Bir görüşmede konuşup size uygun şekilde anlaşırız",
     ])}
   </div>
-  <div style="background:#14392b;color:#f5efe0;border-radius:4mm;padding:5.5mm 6mm;margin-top:7mm;font-size:10.5pt;line-height:1.55">
+  <div style="background:#14392b;color:#f5efe0;border-radius:4mm;padding:4.5mm 6mm;margin-top:5mm;font-size:10pt;line-height:1.55">
     <b style="color:#c9a24a">Sömestr ve Ramazan umreleri (Ocak–Mart 2027)</b> için kafileler hazırlıklarına şimdiden başladı. Sizin umrecileriniz de yola çıkmadan seçimlerini yapabilsin diye tarihlerinizi erkenden konuşalım.
   </div>
-  <div class="box" style="margin-top:6mm;border:1.5px solid #c9a24a;display:flex;justify-content:space-between;align-items:center;gap:6mm">
+  <div class="box" style="margin-top:4.5mm;border:1.5px solid #c9a24a;padding-top:4mm;padding-bottom:4mm;display:flex;justify-content:space-between;align-items:center;gap:6mm">
     <div><h2>10 dakikalık bir görüşme yeterli</h2><p style="color:#5d6a62">Size hangi yolun uyduğunu konuşalım; kodunuzu, kartınızı ve grup görselinizi aynı gün hazırlayalım. İsterseniz ofisinize gelelim, isterseniz Eminönü'deki dükkânımızda ağırlayalım.</p></div>
     <div style="flex:none;text-align:right;font-size:10pt;line-height:1.7"><b>WhatsApp / Telefon</b><br>0531 689 38 49<br><b>E-posta</b><br>merhaba@obrnhomen.com<br><b>Seçim ekranı</b><br>obrnhomen.com/hediyelik-hazirla</div>
   </div>

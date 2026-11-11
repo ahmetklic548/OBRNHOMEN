@@ -30,9 +30,13 @@ interface SiparisOzet {
   total?: number;
   paymentMethod?: string;
   paidAt?: number;
+  teslim?: boolean;
 }
 
-interface Istatistik { adet: number; kart: number; kapida: number; ciro: number; komisyon: number; son?: number }
+/** komisyon: tüm siparişler · hakEdilen: sadece teslim edilenler (ödeme bunun üzerinden, ayda bir) */
+interface Istatistik { adet: number; kart: number; kapida: number; ciro: number; komisyon: number; hakEdilen: number; son?: number }
+/** Komisyon ödeme günü (her ay) */
+const ODEME_GUNU = 5;
 
 const SITE = "https://www.obrnhomen.com";
 const TUR_ETIKET: Record<OrtakTur, string> = { kafile: "Kafile", influencer: "Influencer", diger: "Diğer" };
@@ -67,11 +71,12 @@ export default function AdminOrtaklar() {
         const o = d.data() as SiparisOzet;
         const kod = o.ortak?.kod;
         if (!kod) return;
-        const st = (out[kod] ??= { adet: 0, kart: 0, kapida: 0, ciro: 0, komisyon: 0 });
+        const st = (out[kod] ??= { adet: 0, kart: 0, kapida: 0, ciro: 0, komisyon: 0, hakEdilen: 0 });
         st.adet++;
         if (o.paymentMethod === "kart") st.kart++; else st.kapida++;
         st.ciro += o.total ?? 0;
         st.komisyon += o.ortak?.komisyonTutari ?? 0;
+        if (o.teslim) st.hakEdilen += o.ortak?.komisyonTutari ?? 0;
         if (o.paidAt && (!st.son || o.paidAt > st.son)) st.son = o.paidAt;
       });
       setStat(out);
@@ -231,7 +236,9 @@ export default function AdminOrtaklar() {
             <tbody>
               {liste.map(([kod, o]) => {
                 const s = stat[kod];
-                const kalan = Math.max((s?.komisyon ?? 0) - (o.odenen ?? 0), 0);
+                // Sadece teslim edilmiş siparişlerin komisyonu ödenir
+                const kalan = Math.max((s?.hakEdilen ?? 0) - (o.odenen ?? 0), 0);
+                const bekleyen = Math.max((s?.komisyon ?? 0) - (s?.hakEdilen ?? 0), 0);
                 return (
                   <tr key={kod} className="border-b align-top" style={{ borderColor: "rgba(0,0,0,0.04)", opacity: o.aktif ? 1 : 0.5 }}>
                     <td className="px-3 py-3 font-mono font-semibold whitespace-nowrap">
@@ -254,7 +261,10 @@ export default function AdminOrtaklar() {
                       {s && <span className="block text-[11px]" style={{ color: "#86868B" }}>{s.kart} kart · {s.kapida} kapıda</span>}
                     </td>
                     <td className="px-3 py-3 whitespace-nowrap">{tl(s?.ciro ?? 0)}</td>
-                    <td className="px-3 py-3 whitespace-nowrap" style={{ color: "#9a7a2c" }}>{tl(s?.komisyon ?? 0)}</td>
+                    <td className="px-3 py-3 whitespace-nowrap" style={{ color: "#9a7a2c" }}>
+                      {tl(s?.hakEdilen ?? 0)}
+                      {bekleyen > 0 && <span className="block text-[11px]" style={{ color: "#86868B" }}>+{tl(bekleyen)} teslim bekliyor</span>}
+                    </td>
                     <td className="px-3 py-3 whitespace-nowrap">
                       {tl(o.odenen ?? 0)} / <b>{tl(kalan)}</b>
                       <button onClick={() => odemeEkle(kod)} className="block text-[11px] underline mt-1" style={{ color: "#1D1D1F" }}>Ödeme ekle</button>
@@ -272,7 +282,8 @@ export default function AdminOrtaklar() {
         </div>
       )}
       <p className="text-[12px] mt-4" style={{ color: "#86868B" }}>
-        Kapıda ödemeli siparişler WhatsApp onayından önce de sayılır; komisyonu ödemeden önce siparişin teslim edildiğini Siparişler sayfasından kontrol et.
+        Komisyon her ayın {ODEME_GUNU}&apos;inde, sadece teslim edilmiş siparişler için ödenir (Siparişler sayfasında &quot;Teslim edildi&quot; işaretle).
+        &quot;Komisyon&quot; sütunu hak edileni, altındaki gri tutar henüz teslim edilmemiş siparişleri gösterir.
         Sınırlar: indirim en fazla %{MAX_INDIRIM}, komisyon en fazla %{MAX_KOMISYON}. Yol 1 (kafile satar) kodları sitede indirim vermez;
         umreci listesini kafileye gönderir, listeler <a href="/admin/kafile-toptan" className="underline">Kafile Toptan</a> sayfasında toplanır.
       </p>

@@ -5,7 +5,7 @@ import { collection, doc, getDocs, query, updateDoc, where } from "firebase/fire
 import { db } from "@/lib/firebase";
 import { qtyText } from "@/lib/pack";
 import { TOPTAN, TOPTAN_KURALLAR, DURUM_ETIKET, kafileTutari, type ListeDurum } from "@/lib/kafileToptan";
-import { POSET_SLUG } from "@/lib/hediyePoseti";
+import { toplamaListesi, paketFisleri, hediyeKartlari, koliBilgiKartlari, kartSayisi as kartSay, type HazirlikListe } from "@/lib/hazirlikCikti";
 
 /**
  * Yol 1 — Kafile satar. Umrecilerin /hediyelik-hazirla?ref=KOD'dan gönderdiği listeler
@@ -29,31 +29,10 @@ interface Liste {
 }
 
 const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + " ₺";
-const esc = (s: unknown) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 const DURUMLAR = Object.keys(DURUM_ETIKET) as ListeDurum[];
 const adet = (k: Kalem) => k.qty * (k.pack ?? 1);
-
-/** Kart sayısı = poşet adedi; poşet yoksa en çok alınan üründeki adet (kaç kişiye dağıtılacağı) */
-const kartSayisi = (l: Liste) => {
-  const p = l.items.find((k) => k.slug === POSET_SLUG);
-  if (p) return p.qty;
-  return l.items.reduce((m, k) => Math.max(m, adet(k)), 0);
-};
-
-function yazdir(baslik: string, govde: string, ekCss = "") {
-  const w = window.open("", "_blank");
-  if (!w) return alert("Açılır pencere engellendi — tarayıcıda bu siteye izin ver.");
-  w.document.write(`<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>${esc(baslik)}</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<style>*{box-sizing:border-box;margin:0;padding:0} body{font-family:Inter,sans-serif;color:#1d1d1f;padding:12mm;font-size:11pt}
-h1{font-family:Lora,serif;font-size:18pt;margin-bottom:2mm} h2{font-family:Lora,serif;font-size:14pt;margin:5mm 0 2mm}
-table{width:100%;border-collapse:collapse;margin-top:3mm} td,th{border-bottom:1px solid #ddd;padding:2mm 1.5mm;text-align:left;vertical-align:top}
-th{font-size:9pt;color:#666;text-transform:uppercase;letter-spacing:.5px} .r{text-align:right} .k{color:#666;font-size:9.5pt}
-.fis{page-break-after:always} .fis:last-child{page-break-after:auto} .kutu{display:inline-block;width:4mm;height:4mm;border:1px solid #333;margin-right:2mm;vertical-align:-0.5mm}
-@media print{body{padding:0} @page{size:A4;margin:12mm}} ${ekCss}</style></head><body>${govde}
-<script>document.fonts.ready.then(()=>setTimeout(()=>print(),300))</script></body></html>`);
-  w.document.close();
-}
+const hazirlik = (l: Liste): HazirlikListe => ({ orderId: l.orderId, name: l.name, phone: l.phone, kartIsim: l.kartIsim, grupAd: l.kafile.ad, items: l.items });
+const kartSayisi = (l: Liste) => kartSay(hazirlik(l));
 
 export default function KafileToptan() {
   const [listeler, setListeler] = useState<Liste[]>([]);
@@ -107,51 +86,8 @@ export default function KafileToptan() {
     }
   };
 
-  // ---- Çıktılar ----
-  const toplama = () => {
-    const m = new Map<string, { name: string; sku?: string; qty: number; pack?: number }>();
-    secilenler.forEach((l) => l.items.forEach((k) => {
-      const x = m.get(k.slug) ?? { name: k.name, sku: k.sku, qty: 0, pack: k.pack };
-      x.qty += k.qty;
-      m.set(k.slug, x);
-    }));
-    const satirlar = [...m.values()].sort((a, b) => (a.sku ?? "").localeCompare(b.sku ?? ""));
-    yazdir(`Toplama listesi — ${kafileAd}`, `<h1>Toplama listesi — ${esc(kafileAd)}</h1>
-      <p class="k">${secilenler.length} umreci · ${new Date().toLocaleDateString("tr-TR")}</p>
-      <table><tr><th></th><th>Kod</th><th>Ürün</th><th class="r">Miktar</th></tr>
-      ${satirlar.map((s) => `<tr><td><span class="kutu"></span></td><td>${esc(s.sku ?? "")}</td><td>${esc(s.name)}</td><td class="r"><b>${esc(qtyText(s.qty, s.pack))}</b></td></tr>`).join("")}</table>
-      <p class="k" style="margin-top:4mm">Hediye kartı: ${secilenler.reduce((s, l) => s + kartSayisi(l), 0)} adet (Kafile Toptan › Hediye kartları)</p>`);
-  };
-
-  const fisler = () => {
-    yazdir(`Paket fişleri — ${kafileAd}`, secilenler.map((l) => `<div class="fis">
-      <h1>${esc(l.name)}</h1>
-      <p class="k">${esc(kafileAd)} · ${esc(l.phone)} · Liste ${esc(l.orderId)}${l.kartIsim ? ` · Kart: <b>${esc(l.kartIsim)}</b>` : ""}</p>
-      <table><tr><th></th><th>Ürün</th><th class="r">Miktar</th></tr>
-      ${l.items.map((k) => `<tr><td><span class="kutu"></span></td><td>${esc(k.name)}</td><td class="r"><b>${esc(qtyText(k.qty, k.pack))}</b></td></tr>`).join("")}</table>
-      <p style="margin-top:4mm">Hediye kartı: <b>${kartSayisi(l)} adet</b> · Poşetin üzerine: <b>${esc(l.name)}</b></p></div>`).join(""));
-  };
-
-  const kartlar = () => {
-    const kartHtml = (isim: string) => `<div class="kart"><div class="cer"></div>
-      <div class="b">Umreniz kabul olsun</div>
-      <div class="t">Mübarek topraklardan getirdiğim bu hediye, dualarınızda beni de hatırlamanız içindir.</div>
-      <div class="i">— ${esc(isim)}</div>
-      <div class="a">${esc(kafileAd)} umre hatırası · OBRNHOMEN</div></div>`;
-    const hepsi = secilenler.flatMap((l) => Array.from({ length: kartSayisi(l) }, () => kartHtml(l.kartIsim || l.name)));
-    const sayfalar: string[] = [];
-    for (let i = 0; i < hepsi.length; i += 10) sayfalar.push(`<div class="sayfa">${hepsi.slice(i, i + 10).join("")}</div>`);
-    yazdir(`Hediye kartları — ${kafileAd}`, sayfalar.join(""), `
-      body{padding:0} @page{size:A4;margin:0}
-      .sayfa{width:210mm;height:297mm;display:grid;grid-template-columns:repeat(2,85mm);grid-auto-rows:55mm;justify-content:center;align-content:center;page-break-after:always}
-      .sayfa:last-child{page-break-after:auto}
-      .kart{position:relative;background:#14392b;color:#f5efe0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 7mm;outline:0.1mm dashed #bbb;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-      .cer{position:absolute;inset:2.5mm;border:0.3mm solid #9a7a35;border-radius:1.5mm}
-      .b{font-family:Lora,serif;font-weight:600;font-size:13pt;color:#c9a24a}
-      .t{font-family:Lora,serif;font-style:italic;font-size:7pt;line-height:1.4;color:#ddd5c0;margin-top:1.2mm}
-      .i{font-family:Lora,serif;font-style:italic;font-size:10pt;margin-top:2mm}
-      .a{position:absolute;bottom:4.5mm;left:0;right:0;font-size:5.8pt;letter-spacing:.6px;color:#c9b98a}`);
-  };
+  // ---- Çıktılar (lib/hazirlikCikti) ----
+  const cikti = () => secilenler.map(hazirlik);
 
   const ozetMetni = () => [
     `${kafileAd} — umre hediyelik siparişi özeti`,
@@ -163,7 +99,7 @@ export default function KafileToptan() {
     `Kafilenizin kazancı: ${tl(siteToplam - kafileToplam)}`,
     `Onay için kapora (%${TOPTAN.KAPORA}): ${tl(kapora)} · kalanı teslimde`,
     kafileToplam < TOPTAN.MIN_TUTAR
-      ? `Not: Kafile fiyatı ile en az sipariş ${tl(TOPTAN.MIN_TUTAR)}; şu an ${tl(TOPTAN.MIN_TUTAR - kafileToplam)} eksik. Eksik kalırsa umrecileriniz kodla siteden %10 indirimli alabilir.`
+      ? `Not: Bu yolda en az sipariş ${tl(TOPTAN.MIN_TUTAR)} (sizin ödeyeceğiniz tutar). Şu an ${tl(TOPTAN.MIN_TUTAR - kafileToplam)} eksik. Tamamlanmazsa umrecileriniz size özel kodla siteden %10 indirimli alabilir, siz de her satıştan %10 kazanırsınız.`
       : ``,
     ``,
     `Şartlar:`,
@@ -227,9 +163,10 @@ export default function KafileToptan() {
 
           <div className="flex flex-wrap gap-2 mb-4">
             <button onClick={ozetKopyala} className={btn} style={{ background: "#1D1D1F", color: "#fff" }}>{kopya ? "Kopyalandı ✓" : "Kafileye özet (WhatsApp metni)"}</button>
-            <button onClick={toplama} className={btn}>Toplama listesi</button>
-            <button onClick={fisler} className={btn}>Paket fişleri</button>
-            <button onClick={kartlar} className={btn}>Hediye kartları (A4)</button>
+            <button onClick={() => toplamaListesi(kafileAd, cikti())} className={btn}>Toplama listesi</button>
+            <button onClick={() => paketFisleri(kafileAd, cikti())} className={btn}>Paket fişleri</button>
+            <button onClick={() => hediyeKartlari(kafileAd, cikti())} className={btn}>Hediye kartları (A4)</button>
+            <button onClick={() => koliBilgiKartlari(cikti())} className={btn}>Koli bilgi kartları</button>
             <span className="mx-1" />
             <button onClick={() => durumDegis(secilenler.map((l) => l.id), "onaylandi")} className={btn}>Seçilileri: kafile onayladı</button>
             <button onClick={() => durumDegis(secilenler.map((l) => l.id), "hazirlaniyor")} className={btn}>Hazırlanıyor</button>

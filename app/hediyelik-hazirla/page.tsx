@@ -7,7 +7,7 @@ import HazirlaClient, { type Adim, type Grup, type HazirlaUrun } from "./Hazirla
 export const metadata: Metadata = {
   title: "Umre Dönüş Hediyeliğini Hazırla",
   description:
-    "Umreden dönünce dağıtacağınız hediyelikleri adım adım seçin: seccade, eşarp, tesbih, yüzük, esans, misvak. Her hediyenin içinde adınızın yazdığı kart, kapınıza teslim.",
+    "Umreden dönünce dağıtacağınız hediyelikleri adım adım seçin: seccade, eşarp, tesbih, yüzük, esans, misvak. Kraft hediye poşeti ve adınızın yazdığı kartlarla, kapınıza teslim.",
   alternates: { canonical: "https://obrnhomen.com/hediyelik-hazirla" },
 };
 
