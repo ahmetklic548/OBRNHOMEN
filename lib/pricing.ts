@@ -1,5 +1,5 @@
 /** Sitedeki tüm ürünlere uygulanan indirim oranı (0.10 = %10). */
-export const DISCOUNT_PERCENT = 10;
+export const DISCOUNT_PERCENT = 5;
 
 /** Müşterinin ödeyeceği indirimli fiyat — gösterim, sepet ve ödeme aynı değeri kullanır. */
 export function salePrice(price: number): number {
