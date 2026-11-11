@@ -10,7 +10,8 @@
 import siteHidden from "@/data/hidden.json";
 
 /** Admin'in sitede "Sil" ile kaldırdıkları (scripts/sync-hidden.mjs, build öncesi) + elle eklenenler */
-export const HIDDEN_SLUGS = new Set<string>([...(siteHidden as string[])]);
+/** Vitrinde görünmez ama sipariş edilebilir: hediye poşeti sadece /hediyelik-hazirla özetinde eklenir */
+export const HIDDEN_SLUGS = new Set<string>([...(siteHidden as string[]), "umre-hediye-poseti"]);
 
 /** Kapak olarak ilk görsel yerine kullanılacak görselin sırası */
 export const COVER_IMAGE_INDEX: Record<string, number> = {};

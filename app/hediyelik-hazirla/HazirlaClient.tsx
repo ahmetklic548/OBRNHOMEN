@@ -39,11 +39,12 @@ export interface Adim {
 /** Ödeme ekranı bu anahtardan hediye kartı ismini okur (app/checkout) */
 export const KART_KEY = "obrnhomen-hediye-kart";
 const SECIM_KEY = "obrnhomen-hazirla-secim";
+const POSET_KEY = "obrnhomen-hazirla-poset";
 
 const tl = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " ₺";
 const kisaAd = (s: string) => (s.length > 70 ? s.slice(0, 68) + "…" : s);
 
-export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
+export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; poset: HazirlaUrun }) {
   const router = useRouter();
   const { add } = useCart();
   const [adim, setAdim] = useState(0);
@@ -52,11 +53,15 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
   const [kafile, setKafile] = useState<string | null>(null);
   const [hazir, setHazir] = useState(false);
   const [renk] = useState<Record<string, string>>({}); // grup → seçili renk (slug)
+  /** Hediye poşeti adedi — null: otomatik (en çok alınan üründen kaç kişiye dağıtılacaksa) */
+  const [posetN, setPosetN] = useState<number | null>(null);
 
   useEffect(() => {
     try {
       const s = localStorage.getItem(SECIM_KEY);
       if (s) setSecim(JSON.parse(s));
+      const ps = localStorage.getItem(POSET_KEY);
+      if (ps !== null && ps !== "") setPosetN(Math.max(0, parseInt(ps, 10) || 0));
       const k = localStorage.getItem(KART_KEY);
       if (k) setKartIsim(k);
     } catch {}
@@ -68,8 +73,12 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
 
   useEffect(() => {
     if (!hazir) return;
-    try { localStorage.setItem(SECIM_KEY, JSON.stringify(secim)); } catch {}
-  }, [secim, hazir]);
+    try {
+      localStorage.setItem(SECIM_KEY, JSON.stringify(secim));
+      if (posetN === null) localStorage.removeItem(POSET_KEY);
+      else localStorage.setItem(POSET_KEY, String(posetN));
+    } catch {}
+  }, [secim, posetN, hazir]);
 
   // Adım değişince sayfanın başına dön (adım çubuğu görünsün)
   useEffect(() => {
@@ -88,6 +97,11 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
     .map(([slug, n]) => ({ u: urunMap.get(slug)!, n }));
   const toplamAdet = secilenler.reduce((s, x) => s + x.n * x.u.packQty, 0);
   const toplamTutar = secilenler.reduce((s, x) => s + unitPriceFor(x.u.price, x.n) * x.n, 0);
+  // Poşet: her hediye alan kişiye bir poşet. Varsayılan = en çok alınan üründeki adet (ör. 50 tesbih + 50 misvak → 50 kişi)
+  const posetOtomatik = secilenler.reduce((m, x) => Math.max(m, x.n * x.u.packQty), 0);
+  const posetAdet = posetN ?? posetOtomatik;
+  const posetTutar = posetAdet > 0 ? unitPriceFor(poset.price, posetAdet) * posetAdet : 0;
+  const genelToplam = toplamTutar + posetTutar;
 
   const setN = (slug: string, n: number) =>
     setSecim((p) => ({ ...p, [slug]: Math.max(0, Math.min(1000, Math.floor(n) || 0)) }));
@@ -105,9 +119,12 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
     secilenler.forEach(({ u, n }) =>
       add({ slug: u.slug, name: u.name, price: u.price, image: u.image, ...cartMeta({ id: u.code, color: u.color, size: u.size, quantity: u.packQty }) }, n),
     );
+    if (posetAdet > 0)
+      add({ slug: poset.slug, name: poset.name, price: poset.price, image: poset.image, ...cartMeta({ id: poset.code, color: null, size: null, quantity: 1 }) }, posetAdet);
     try {
       if (kartIsim.trim()) localStorage.setItem(KART_KEY, kartIsim.trim());
       localStorage.removeItem(SECIM_KEY);
+      localStorage.removeItem(POSET_KEY);
     } catch {}
     router.push("/checkout");
   };
@@ -117,7 +134,8 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
     return [
       "Selamün aleyküm, umre dönüş hediyeliklerim için listem:",
       ...satirlar,
-      `Toplam: ${toplamAdet} adet hediyelik (site fiyatı ${tl(toplamTutar)})`,
+      posetAdet > 0 ? `• Hediye poşeti (kart dahil) — ${posetAdet} adet` : "• Hediye poşeti istemiyorum",
+      `Toplam: ${toplamAdet} adet hediyelik${posetAdet > 0 ? ` + ${posetAdet} poşet` : ""} (site fiyatı ${tl(genelToplam)})`,
       kartIsim.trim() ? `Hediye kartında yazacak isim: ${kartIsim.trim()}` : "",
       "Ad soyad / telefon / adres: ",
     ].filter(Boolean).join("\n");
@@ -230,13 +248,38 @@ export default function HazirlaClient({ adimlar }: { adimlar: Adim[] }) {
                     <span className="w-24 shrink-0 text-right font-medium">{tl(unitPriceFor(u.price, n) * n)}</span>
                   </li>
                 ))}
+                <li className="bg-[#faf6ec] px-4 py-3 text-[14px]">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="min-w-0 flex-1 text-stone-800">
+                      <strong>Hediye poşeti</strong> <span className="text-stone-500">(içinde isminizin yazdığı kart)</span>
+                      <span className="block text-[12.5px] text-stone-500">Kaç kişiye dağıtacaksanız o kadar · {tl(poset.price)} / adet</span>
+                    </span>
+                    <span className="w-24 shrink-0 text-right font-medium">{tl(posetTutar)}</span>
+                  </div>
+                  <div className="mt-2 flex items-center gap-2">
+                    <button aria-label="Poşet azalt" onClick={() => setPosetN(Math.max(0, posetAdet - 1))} className="h-9 w-9 rounded-md border border-stone-300 bg-white text-lg">−</button>
+                    <input
+                      type="number" min={0} inputMode="numeric" value={posetAdet}
+                      onChange={(e) => setPosetN(Math.max(0, Math.min(5000, Math.floor(+e.target.value) || 0)))}
+                      className="h-9 w-16 rounded-md border border-stone-300 bg-white text-center text-[15px]"
+                      aria-label="Poşet adedi"
+                    />
+                    <button aria-label="Poşet artır" onClick={() => setPosetN(posetAdet + 1)} className="h-9 w-9 rounded-md border border-stone-300 bg-white text-lg">+</button>
+                    <span className="text-[12px] text-stone-500">adet</span>
+                    {posetAdet > 0 ? (
+                      <button onClick={() => setPosetN(0)} className="ml-auto text-[12.5px] text-stone-500 underline">Poşet istemiyorum</button>
+                    ) : (
+                      <button onClick={() => setPosetN(null)} className="ml-auto text-[12.5px] text-[#8a6d2a] underline">Poşet ekle</button>
+                    )}
+                  </div>
+                </li>
                 <li className="flex justify-between px-4 py-3 text-[15px] font-semibold">
-                  <span>Toplam {toplamAdet} adet hediyelik</span><span>{tl(toplamTutar)}</span>
+                  <span>Toplam {toplamAdet} adet hediyelik{posetAdet > 0 ? ` + ${posetAdet} poşet` : ""}</span><span>{tl(genelToplam)}</span>
                 </li>
               </ul>
 
               <label className="mt-5 block text-[15px] font-medium text-stone-800" htmlFor="kart">Hediye kartında yazacak isim</label>
-              <p className="text-[13px] text-stone-500">Her hediyenin içindeki kartta “… umre hatırasıdır” olarak yazılır.</p>
+              <p className="text-[13px] text-stone-500">Her poşetin içindeki kartta “… umre hatırasıdır” olarak yazılır.</p>
               <input
                 id="kart" value={kartIsim} maxLength={60} onChange={(e) => setKartIsim(e.target.value)}
                 placeholder="ör. Ahmet Yılmaz ve ailesi"

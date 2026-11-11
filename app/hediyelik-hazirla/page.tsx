@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getAllProducts, type Product } from "@/lib/products";
 import { salePrice } from "@/lib/pricing";
+import { HEDIYE_POSETI } from "@/lib/hediyePoseti";
 import HazirlaClient, { type Adim, type Grup, type HazirlaUrun } from "./HazirlaClient";
 
 export const metadata: Metadata = {
@@ -123,5 +124,5 @@ export default function HediyelikHazirlaPage() {
     return { id: a.id, baslik: a.baslik, aciklama: a.aciklama, urunler };
   }).filter((a) => a.urunler.length > 0);
 
-  return <HazirlaClient adimlar={adimlar} />;
+  return <HazirlaClient adimlar={adimlar} poset={toUrun(HEDIYE_POSETI)} />;
 }

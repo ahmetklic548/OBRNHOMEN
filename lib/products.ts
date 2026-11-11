@@ -1,6 +1,7 @@
 import productsData from "@/data/products.json";
 import { HIDDEN_SLUGS, COVER_IMAGE_INDEX, TEXT_FIXES } from "@/lib/productCuration";
 import { CATEGORIES } from "@/lib/categories";
+import { HEDIYE_POSETI } from "@/lib/hediyePoseti";
 
 export interface Product {
   id: string;
@@ -42,7 +43,7 @@ function withTextFix(p: Product): Product {
 }
 
 /** Tüm ürünler — ürün sayfaları gizli ürünlerde de açılsın diye */
-const allProducts = (productsData as Product[]).map(withCover).map(withTextFix);
+const allProducts = [...(productsData as Product[]), HEDIYE_POSETI].map(withCover).map(withTextFix);
 /** Vitrinde görünenler — listeler, arama, sitemap, feed */
 const products = allProducts.filter((p) => !HIDDEN_SLUGS.has(p.slug));
 
