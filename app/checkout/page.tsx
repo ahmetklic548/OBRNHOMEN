@@ -71,6 +71,11 @@ export default function CheckoutPage() {
   useEffect(() => {
     const ref = readRef();
     if (ref) { setCouponInput(ref); applyCoupon(ref, true); }
+    // "Hediyeliğini hazırla" sayfasından gelen hediye kartı ismi (app/hediyelik-hazirla)
+    try {
+      const kart = localStorage.getItem("obrnhomen-hediye-kart");
+      if (kart) { setGiftWrap(true); setGiftNote(`Hediye kartı ismi: ${kart}`); }
+    } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -148,6 +153,7 @@ export default function CheckoutPage() {
         remember(data.orderId, "kapida", data);
         setStep("done"); // sepet boşalınca ana sayfaya yönlendirme tetiklenmesin
         clear();
+        try { localStorage.removeItem("obrnhomen-hediye-kart"); } catch {}
         router.push(`/odeme/basarili?oid=${data.orderId}&yontem=kapida`);
         return;
       }
