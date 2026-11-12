@@ -109,9 +109,10 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
     .map(([slug, n]) => ({ u: urunMap.get(slug)!, n }));
   const toplamAdet = secilenler.reduce((s, x) => s + x.n * x.u.packQty, 0);
   const toplamTutar = secilenler.reduce((s, x) => s + unitPriceFor(x.u.price, x.n) * x.n, 0);
-  // Poşet: her hediye alan kişiye bir poşet. Varsayılan = en çok alınan üründeki adet (ör. 50 tesbih + 50 misvak → 50 kişi)
-  const posetOtomatik = secilenler.reduce((m, x) => Math.max(m, x.n * x.u.packQty), 0);
-  const posetAdet = posetN ?? posetOtomatik;
+  // Poşet: her hediye alan kişiye bir poşet + bir kart. Adet tahmin edilmez, umreciye "kaç kişiye dağıtacaksınız?" diye sorulur
+  // (aynı kişiye tesbih + seccade birlikte verilebilir; ürün adedinden kişi sayısı çıkmaz). null = henüz cevaplanmadı.
+  const posetAdet = posetN ?? 0;
+  const posetSorulmadi = posetN === null && secilenler.length > 0;
   const posetTutar = posetAdet > 0 ? unitPriceFor(poset.price, posetAdet, poset.slug) * posetAdet : 0;
   const genelToplam = toplamTutar + posetTutar;
 
@@ -142,6 +143,10 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
   };
 
   const listeyiGonder = async () => {
+    if (posetSorulmadi) {
+      setGonderim({ durum: "hata", mesaj: "Lütfen kaç kişiye hediye dağıtacağınızı yazın." });
+      return;
+    }
     if (!umreciAd.trim() || umreciTel.replace(/\D/g, "").length < 10) {
       setGonderim({ durum: "hata", mesaj: "Lütfen adınızı ve telefon numaranızı yazın." });
       return;
@@ -183,7 +188,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
         <h1 className="mt-1 font-serif text-[28px] leading-tight text-stone-900 sm:text-[34px]">Dağıtacağınız hediyelikleri hazırlayın</h1>
         <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-stone-600">
           Her adımda istediğiniz üründen kaç tane istediğinizi seçin, istemediğiniz adımı geçin. Hediyelikleriniz
-          <strong> kraft hediye poşetleri ve adınızın yazdığı kartlarla</strong> birlikte gelir; hediyeleri kendi zevkinize göre hazırlarsınız.
+          <strong> kraft hediye poşetleri ve adınızın yazdığı kartlarla</strong>{" "}birlikte gelir; hediyeleri kendi zevkinize göre hazırlarsınız.
           Mekke&apos;de hediyelik aramayın, valiz taşımayın.
           <span className="mt-1 block text-[14px] text-stone-500">Ürünler karışık renklerde gönderilir.</span>
         </p>
@@ -290,30 +295,32 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                     <span className="w-24 shrink-0 text-right font-medium">{tl(unitPriceFor(u.price, n) * n)}</span>
                   </li>
                 ))}
-                <li className="bg-[#faf6ec] px-4 py-3 text-[14px]">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="min-w-0 flex-1 text-stone-800">
-                      <strong>Kraft hediye poşeti</strong> <span className="text-stone-500">(her poşete adınızın yazdığı bir kart)</span>
-                      <span className="block text-[12.5px] text-stone-500">Kaç kişiye dağıtacaksanız o kadar · {tl(poset.price)} / adet</span>
-                    </span>
-                    <span className="w-24 shrink-0 text-right font-medium">{tl(posetTutar)}</span>
-                  </div>
-                  <div className="mt-2 flex items-center gap-2">
-                    <button aria-label="Poşet azalt" onClick={() => setPosetN(Math.max(0, posetAdet - 1))} className="h-9 w-9 rounded-md border border-stone-300 bg-white text-lg">−</button>
-                    <input
-                      type="number" min={0} inputMode="numeric" value={posetAdet}
-                      onChange={(e) => setPosetN(Math.max(0, Math.min(5000, Math.floor(+e.target.value) || 0)))}
-                      className="h-9 w-16 rounded-md border border-stone-300 bg-white text-center text-[15px]"
-                      aria-label="Poşet adedi"
-                    />
-                    <button aria-label="Poşet artır" onClick={() => setPosetN(posetAdet + 1)} className="h-9 w-9 rounded-md border border-stone-300 bg-white text-lg">+</button>
-                    <span className="text-[12px] text-stone-500">adet</span>
-                    {posetAdet > 0 ? (
-                      <button onClick={() => setPosetN(0)} className="ml-auto text-[12.5px] text-stone-500 underline">Poşet istemiyorum</button>
-                    ) : (
-                      <button onClick={() => setPosetN(null)} className="ml-auto text-[12.5px] text-[#8a6d2a] underline">Poşet ekle</button>
-                    )}
-                  </div>
+                <li className={`px-4 py-3 text-[14px] ${posetSorulmadi ? "bg-[#fff7e0] ring-2 ring-inset ring-[#c9a24a]" : "bg-[#faf6ec]"}`}>
+                  {posetN === 0 ? (
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-stone-600">Hediye poşeti ve kart istemiyorum</span>
+                      <button onClick={() => setPosetN(null)} className="text-[12.5px] text-[#8a6d2a] underline">Poşet ve kart ekle</button>
+                    </div>
+                  ) : (
+                    <>
+                      <label htmlFor="kisi" className="block text-[15px] font-medium text-stone-900">Kaç kişiye hediye dağıtacaksınız?</label>
+                      <span className="block text-[12.5px] text-stone-500">
+                        Her kişiye bir <strong>kraft hediye poşeti</strong> ve adınızın yazdığı bir <strong>kart</strong> hazırlanır · {tl(poset.price)} / kişi
+                      </span>
+                      <div className="mt-2 flex items-center gap-2">
+                        <input
+                          id="kisi" type="number" min={0} inputMode="numeric" placeholder="ör. 30"
+                          value={posetN ?? ""}
+                          onChange={(e) => setPosetN(e.target.value === "" ? null : Math.max(0, Math.min(5000, Math.floor(+e.target.value) || 0)))}
+                          className="h-10 w-24 rounded-md border border-stone-300 bg-white text-center text-[15px]"
+                          aria-label="Kaç kişiye dağıtacaksınız"
+                        />
+                        <span className="text-[13px] text-stone-600">kişi{posetAdet > 0 ? ` → ${posetAdet} poşet + ${posetAdet} kart` : ""}</span>
+                        <span className="ml-auto w-24 shrink-0 text-right font-medium">{tl(posetTutar)}</span>
+                      </div>
+                      <button onClick={() => setPosetN(0)} className="mt-2 text-[12.5px] text-stone-500 underline">Poşet ve kart istemiyorum</button>
+                    </>
+                  )}
                 </li>
                 <li className="flex justify-between px-4 py-3 text-[15px] font-semibold">
                   <span>Toplam {toplamAdet} adet hediyelik{posetAdet > 0 ? ` + ${posetAdet} poşet` : ""}</span><span>{tl(genelToplam)}</span>
@@ -328,6 +335,9 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                 className="mt-2 w-full rounded-md border border-stone-300 px-3 py-2.5 text-[15px]"
               />
 
+              {posetSorulmadi && (
+                <p className="mt-4 rounded-md bg-[#fff7e0] px-3 py-2 text-[13.5px] text-[#7a5a14]">Devam etmeden önce yukarıda <strong>kaç kişiye hediye dağıtacağınızı</strong> yazın (ya da &ldquo;Poşet ve kart istemiyorum&rdquo; deyin).</p>
+              )}
               {toptan ? (
                 <div className="mt-6 rounded-xl border border-[#c9a24a] bg-white p-4">
                   {gonderim.durum === "tamam" ? (
@@ -349,7 +359,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                         <input value={umreciTel} onChange={(e) => setUmreciTel(e.target.value)} maxLength={40} inputMode="tel" placeholder="Telefon (05xx…)" className="rounded-md border border-stone-300 px-3 py-2.5 text-[15px]" />
                       </div>
                       {gonderim.durum === "hata" && <p className="mt-2 text-[13px] text-red-600">{gonderim.mesaj}</p>}
-                      <button onClick={listeyiGonder} disabled={gonderim.durum === "gidiyor"} className="mt-3 w-full rounded-md bg-stone-900 px-5 py-3.5 text-[15px] font-medium text-white disabled:opacity-60">
+                      <button onClick={listeyiGonder} disabled={gonderim.durum === "gidiyor" || posetSorulmadi} className="mt-3 w-full rounded-md bg-stone-900 px-5 py-3.5 text-[15px] font-medium text-white disabled:opacity-60">
                         {gonderim.durum === "gidiyor" ? "Gönderiliyor…" : "Listemi kafileme gönder →"}
                       </button>
                     </>
@@ -357,11 +367,13 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                 </div>
               ) : (
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <button onClick={sepeteEkle} className="rounded-md bg-stone-900 px-5 py-3.5 text-[15px] font-medium text-white">
+                  <button onClick={sepeteEkle} disabled={posetSorulmadi} className="rounded-md bg-stone-900 px-5 py-3.5 text-[15px] font-medium text-white disabled:opacity-50">
                     Siparişi tamamla →
                     <span className="block text-[12px] font-normal text-stone-300">Kendim ödeyeceğim (kart / kapıda)</span>
                   </button>
                   <a
+                    aria-disabled={posetSorulmadi}
+                    onClick={(e) => { if (posetSorulmadi) e.preventDefault(); }}
                     href={`https://wa.me/?text=${encodeURIComponent(whatsappMetni())}`}
                     target="_blank" rel="noopener noreferrer"
                     className="rounded-md border border-[#25d366] bg-white px-5 py-3.5 text-center text-[15px] font-medium text-stone-900"
