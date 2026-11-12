@@ -1,12 +1,13 @@
 // Kafileye özel hediye kartı (baskı PDF + önizleme PNG) ve WhatsApp grup görseli (PNG) üretir.
-// Kullanım: node scripts/kafile-materyal.js "Kafile Adı" KOD "2027 Ramazan Umresi"
+// Kullanım: node scripts/kafile-materyal.js "Kafile Adı" KOD "2027 Ramazan Umresi" ["Umreci Adı"]
+// Kart 3 bilgi: kafile (arka yüz) + OBRNHOMEN + hediyeyi veren umrecinin adı (ön yüz; verilmezse örnek isim)
 // Çıktı: Masaüstü/OBRNHOMEN Kafile ve Influencer/Kafile Materyalleri/<Kafile Adı>/
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
 const { execFileSync } = require("child_process");
 
-const [name = "Örnek Turizm", code = "ORNEK", tour = "2027 Umre Kafilesi"] = process.argv.slice(2);
+const [name = "Örnek Turizm", code = "ORNEK", tour = "2027 Umre Kafilesi", umreci = "Hatice Yılmaz"] = process.argv.slice(2);
 const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const base = path.join(os.homedir(), "OneDrive", "Desktop", "OBRNHOMEN Kafile ve Influencer", "Kafile Materyalleri");
 const outDir = path.join(base, name.replace(/[\\/:*?"<>|]/g, ""));
@@ -17,6 +18,7 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const NAME = esc(name);
 const CODE = esc(code.toUpperCase());
 const TOUR = esc(tour);
+const UMRECI = esc(umreci);
 const link = `obrnhomen.com/?ref=${CODE}`;
 
 const arch = (c, s) => `
@@ -41,6 +43,7 @@ const cardCss = `
   .frame { position:absolute; inset:2.5mm; border:0.3mm solid rgba(201,162,74,.7); border-radius:1.5mm; pointer-events:none; }
   .front h1 { font-family:Lora,serif; font-weight:600; font-size:13.5pt; color:#c9a24a; margin:1mm 0 1.2mm; letter-spacing:.3px; }
   .front p { font-family:Lora,serif; font-style:italic; font-size:7.2pt; line-height:1.4; color:#ddd5c0; max-width:66mm; }
+  .front .i { font-family:Lora,serif; font-style:italic; font-size:9.5pt; color:#f5efe0; margin-top:1.6mm; }
   .back { background:#faf6ec; color:#14392b; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:5mm; }
   .back .frame { border-color:#c9a24a; }
   .back .k { font-size:6.5pt; letter-spacing:1.6px; color:#9a8450; text-transform:uppercase; }
@@ -53,9 +56,10 @@ const cardHtml = (forPrint) => `<!doctype html><html lang="tr"><head><meta chars
 ${forPrint ? "" : "body{background:#e9e4d8;padding:24px;display:flex;flex-direction:column;gap:24px;width:max-content} .card{zoom:2.2;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:1mm}"}
 </style></head><body>
 <div class="card front"><div class="frame"></div>
-  ${arch("#c9a24a", 34)}
+  ${arch("#c9a24a", 28)}
   <h1>Umreniz kabul olsun</h1>
   <p>Mübarek topraklardan getirdiğim bu hediye, dualarınızda beni de hatırlamanız içindir.</p>
+  <div class="i">— ${UMRECI}</div>
 </div>
 <div class="card back"><div class="frame"></div>
   <div class="k">Bu hediye</div>

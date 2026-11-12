@@ -106,3 +106,4 @@
 
 ## 2026-11-12
 - [x] Kraft poşet tüm indirimlerin dışında: sabit 25 ₺ (site %5, toptan kademe, kupon/ortak kodu, kafile -%20, komisyon hariç) — lib/pricing.ts NO_DISCOUNT_SLUGS ([[GUNCEL_DURUM]])
+- [x] kafile-materyal.js: kartta umreci adı (4. parametre), örnek materyaller yeniden üretildi
