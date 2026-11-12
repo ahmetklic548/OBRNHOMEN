@@ -71,7 +71,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const clear = () => setItems([]);
   // Toptan kademe satır bazında uygulanır
   const total = mounted
-    ? Math.round(items.reduce((s, i) => s + unitPriceFor(i.price, i.qty) * i.qty, 0) * 100) / 100
+    ? Math.round(items.reduce((s, i) => s + unitPriceFor(i.price, i.qty, i.slug) * i.qty, 0) * 100) / 100
     : 0;
   const count = mounted ? items.reduce((s, i) => s + i.qty, 0) : 0;
 

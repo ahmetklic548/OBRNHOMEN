@@ -3,6 +3,7 @@ import { setDocRest } from "@/lib/firestoreRest";
 import { computeOrder } from "@/lib/order";
 import { ortakBilgi } from "@/lib/partners";
 import { kafileTutari } from "@/lib/kafileToptan";
+import { indirimsizTutar } from "@/lib/pricing";
 import { sendStoreNotice } from "@/lib/orderEmail";
 
 /**
@@ -29,6 +30,8 @@ export async function POST(req: NextRequest) {
 
     const listeNo = `KL${Date.now()}`;
     const siteTutari = order.subtotal;
+    const indirimsiz = indirimsizTutar(order.lines);
+    const kafileT = kafileTutari(siteTutari, indirimsiz);
     const saved = await setDocRest(`siparisler/${listeNo}`, {
       orderId: listeNo,
       name,
@@ -38,7 +41,7 @@ export async function POST(req: NextRequest) {
       kartIsim,
       items: order.lines,
       total: siteTutari,
-      kafileTutari: kafileTutari(siteTutari),
+      kafileTutari: kafileT,
       kafile: { kod: kafile.kod, ad: kafile.ad },
       paymentMethod: "kafile-toptan",
       status: "yeni",
@@ -50,7 +53,7 @@ export async function POST(req: NextRequest) {
       `Yeni kafile listesi: ${kafile.ad} — ${name}`,
       `<p><b>${esc(kafile.ad)}</b> (${kafile.kod}) umrecisi <b>${esc(name)}</b> (${esc(phone)}) liste gönderdi.</p>
        <ul>${order.lines.map((l) => `<li>${esc(l.name)} — ${l.qty}${l.pack ? ` paket (${l.qty * l.pack} adet)` : " adet"}</li>`).join("")}</ul>
-       <p>Site tutarı ${siteTutari.toLocaleString("tr-TR")} ₺ · kafile tutarı ${kafileTutari(siteTutari).toLocaleString("tr-TR")} ₺${kartIsim ? ` · kart: ${esc(kartIsim)}` : ""}</p>
+       <p>Site tutarı ${siteTutari.toLocaleString("tr-TR")} ₺ · kafile tutarı ${kafileT.toLocaleString("tr-TR")} ₺${kartIsim ? ` · kart: ${esc(kartIsim)}` : ""}</p>
        <p>Liste no ${listeNo} — Admin › Kafile Toptan</p>`,
     );
     return NextResponse.json({ listeNo, saved, siteTutari });

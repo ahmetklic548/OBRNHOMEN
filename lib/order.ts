@@ -1,5 +1,5 @@
 import { getProductBySlug } from "@/lib/products";
-import { salePrice, unitPriceFor, tierPct, orderTotals } from "@/lib/pricing";
+import { salePrice, unitPriceFor, tierPct, orderTotals, indirimsizTutar } from "@/lib/pricing";
 import { resolveCoupon, type OrtakTur } from "@/lib/partners";
 
 /**
@@ -47,7 +47,7 @@ export async function computeOrder(
     const p = hidden.has(String(slug)) ? undefined : getProductBySlug(String(slug));
     const n = Math.floor(Number(qty));
     if (!p || !p.inStock || !(n >= 1 && n <= 1000)) return null;
-    return { slug: p.slug, name: p.name, sku: p.sku, price: unitPriceFor(salePrice(p.price), n), qty: n, tier: tierPct(n), ...((p.quantity ?? 1) > 1 ? { pack: p.quantity } : {}) };
+    return { slug: p.slug, name: p.name, sku: p.sku, price: unitPriceFor(salePrice(p.price, p.slug), n, p.slug), qty: n, tier: tierPct(n, p.slug), ...((p.quantity ?? 1) > 1 ? { pack: p.quantity } : {}) };
   });
   if (lines.length === 0 || lines.some((l) => l === null)) {
     return { error: "Sepetteki bir ürün artık satışta değil. Sepetinizi kontrol edin." };
@@ -56,14 +56,15 @@ export async function computeOrder(
   const subtotal = Math.round(valid.reduce((s, i) => s + i.price * i.qty, 0) * 100) / 100;
   const resolved = await resolveCoupon(rawCoupon);
   const coupon = resolved?.code ?? null;
-  const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(subtotal, resolved?.discountRate ?? 0, cod);
+  const indirimsiz = indirimsizTutar(valid);
+  const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(subtotal, resolved?.discountRate ?? 0, cod, indirimsiz);
   const ortak = resolved?.ortak
     ? {
         kod: resolved.code,
         ad: resolved.ortak.ad,
         tur: resolved.ortak.tur,
         komisyonOrani: resolved.ortak.komisyon,
-        komisyonTutari: Math.round((subtotal - discountAmount) * resolved.ortak.komisyon / 100),
+        komisyonTutari: Math.round((subtotal - indirimsiz - discountAmount) * resolved.ortak.komisyon / 100),
       }
     : null;
   return { lines: valid, subtotal, coupon, discountRate, discountAmount, shipping, codFee, total: grandTotal, ortak };

@@ -89,7 +89,7 @@ const sira = (liste: string[], g: Product[]) => Math.min(...g.map((p) => { const
 const toUrun = (p: Product): HazirlaUrun => ({
   slug: p.slug,
   name: p.name,
-  price: salePrice(p.price),
+  price: salePrice(p.price, p.slug),
   image: p.images[0] ?? "",
   code: p.sku ?? p.id,
   color: p.color,

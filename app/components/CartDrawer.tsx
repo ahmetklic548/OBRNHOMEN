@@ -136,10 +136,10 @@ export default function CartDrawer({
                         </p>
                       )}
                       <p className="text-xs text-stone-400 mb-2">
-                        {tl(unitPriceFor(item.price, item.qty))} ₺ / {unitWord(item.packQty)} · <span className="text-stone-700">{tl(unitPriceFor(item.price, item.qty) * item.qty)} ₺</span>
-                        {tierPct(item.qty) > 0 && (
+                        {tl(unitPriceFor(item.price, item.qty, item.slug))} ₺ / {unitWord(item.packQty)} · <span className="text-stone-700">{tl(unitPriceFor(item.price, item.qty, item.slug) * item.qty)} ₺</span>
+                        {tierPct(item.qty, item.slug) > 0 && (
                           <span className="ml-1.5 px-1.5 py-0.5 text-[12px] font-medium" style={{ background: "#fffbf0", color: "#9a7a2c" }}>
-                            Toptan -%{tierPct(item.qty)}
+                            Toptan -%{tierPct(item.qty, item.slug)}
                           </span>
                         )}
                       </p>

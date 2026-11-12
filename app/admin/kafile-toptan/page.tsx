@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { qtyText } from "@/lib/pack";
+import { indirimsizTutar } from "@/lib/pricing";
 import { TOPTAN, TOPTAN_KURALLAR, DURUM_ETIKET, kafileTutari, type ListeDurum } from "@/lib/kafileToptan";
 import { toplamaListesi, paketFisleri, hediyeKartlari, koliBilgiKartlari, kartSayisi as kartSay, type HazirlikListe } from "@/lib/hazirlikCikti";
 
@@ -72,7 +73,7 @@ export default function KafileToptan() {
   // Varsayılan seçim: iptal ve teslim edilmemiş tüm listeler
   const secilenler = bu.filter((l) => secili[l.id] ?? (l.status !== "iptal" && l.status !== "teslim"));
   const siteToplam = secilenler.reduce((s, l) => s + (l.total ?? 0), 0);
-  const kafileToplam = kafileTutari(siteToplam);
+  const kafileToplam = kafileTutari(siteToplam, secilenler.reduce((s, l) => s + indirimsizTutar(l.items ?? []), 0));
   const minOran = Math.min(1, kafileToplam / TOPTAN.MIN_TUTAR);
   const kapora = Math.round(kafileToplam * TOPTAN.KAPORA / 100);
 
@@ -192,7 +193,7 @@ export default function KafileToptan() {
                       <td className="px-3 py-3">{l.kartIsim || <span style={{ color: "#86868B" }}>—</span>}<span className="block text-[11px]" style={{ color: "#86868B" }}>{kartSayisi(l)} kart</span></td>
                       <td className="px-3 py-3 text-[12px]">{l.items.map((k) => <div key={k.slug}>{qtyText(k.qty, k.pack)} · {k.name.slice(0, 48)}</div>)}</td>
                       <td className="px-3 py-3 whitespace-nowrap">{tl(l.total)}</td>
-                      <td className="px-3 py-3 whitespace-nowrap" style={{ color: "#9a7a2c" }}>{tl(l.kafileTutari ?? kafileTutari(l.total))}</td>
+                      <td className="px-3 py-3 whitespace-nowrap" style={{ color: "#9a7a2c" }}>{tl(l.kafileTutari ?? kafileTutari(l.total, indirimsizTutar(l.items ?? [])))}</td>
                       <td className="px-3 py-3">
                         <select value={l.status} onChange={(e) => durumDegis([l.id], e.target.value as ListeDurum)} className="border px-2 py-1 text-[12px]" style={{ borderColor: "rgba(0,0,0,0.12)" }}>
                           {DURUMLAR.map((d) => <option key={d} value={d}>{DURUM_ETIKET[d]}</option>)}

@@ -112,7 +112,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
   // Poşet: her hediye alan kişiye bir poşet. Varsayılan = en çok alınan üründeki adet (ör. 50 tesbih + 50 misvak → 50 kişi)
   const posetOtomatik = secilenler.reduce((m, x) => Math.max(m, x.n * x.u.packQty), 0);
   const posetAdet = posetN ?? posetOtomatik;
-  const posetTutar = posetAdet > 0 ? unitPriceFor(poset.price, posetAdet) * posetAdet : 0;
+  const posetTutar = posetAdet > 0 ? unitPriceFor(poset.price, posetAdet, poset.slug) * posetAdet : 0;
   const genelToplam = toplamTutar + posetTutar;
 
   const setN = (slug: string, n: number) =>

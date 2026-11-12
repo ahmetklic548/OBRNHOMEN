@@ -44,9 +44,11 @@ export const TOPTAN_ORNEK = {
   get kazanc() { return this.site - this.kafile; },
 };
 
-/** Kafilenin bize ödeyeceği tutar (site satış tutarından %20 düşük) */
-export function kafileTutari(siteTutari: number) {
-  return Math.round(siteTutari * (1 - TOPTAN.INDIRIM / 100) * 100) / 100;
+/** Kafilenin bize ödeyeceği tutar (site satış tutarından %20 düşük).
+ *  indirimsiz: indirim dışı kısım (kraft poşet, pricing.indirimsizTutar) — %20 ona uygulanmaz */
+export function kafileTutari(siteTutari: number, indirimsiz = 0) {
+  const n = Math.min(indirimsiz, siteTutari);
+  return Math.round(((siteTutari - n) * (1 - TOPTAN.INDIRIM / 100) + n) * 100) / 100;
 }
 
 export type ListeDurum = "yeni" | "onaylandi" | "hazirlaniyor" | "teslim" | "iptal";

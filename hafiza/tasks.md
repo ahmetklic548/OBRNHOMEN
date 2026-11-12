@@ -67,3 +67,42 @@
 - [x] 2026-10-28: 10'lu kutulu kadife Yasin-i Şerif setleri 11 renk geri eklendi (OBR-HED-0066..0076); Toptan Sipariş menüde çerçeveli düğme; yatay kaydırma çubuğu inceltildi
 - [x] 2026-10-28: 10'lu kutulu kadife Yasin setleri 849 TL, 5'li (OBR-HED-0011) 499 TL
 - [x] 2026-10-28: Paketli ilanlarda sayaç 'paket' sayar, her yerde '5 paket (50 adet)' yazar (lib/pack.ts)
+- [x] 2026-10-28: Merchant feed düzeltildi (www.obrnhomen.com/api/merchant-feed, 644 ürün, doğru Google kategorileri)
+- [ ] Merchant Center hesabı yok — kullanıcı açacak, sonra feed URL eklenecek
+- [x] 2026-10-28: Merchant Center hesabı açıldı (5891264654), iade=ücretsiz (iade kodu), feed bağlandı: 644 ürün, sorun yok. Site iade sayfası ücretsiz iade olarak güncellendi
+- [ ] Merchant Center ürün onaylarını 2-5 gün sonra kontrol et; sonra Meta katalog
+- [x] 2026-10-28: Yasin+tesbih setleri "jelatin" → "tül kese" (OBR-HED-0002..0010, 9 ürün). lib/productCuration.ts TEXT_FIXES — sync-trendyol ezse de kalıcı; slug değişmedi. Canlı + Merchant feed doğrulandı
+- [ ] Trendyol panelinde de bu 9 ilanın adını "Tül Kese" olarak düzelt (kaynak orası)
+- [ ] OBR-HED-0003..0010 fotoğrafları şeffaf jelatin poşet gösteriyor — tül kese fotoğrafı çekilince değiştir
+
+## 2026-11-03 — Ortak (kafile/influencer) kod sistemi
+- [x] [[partners]] lib/partners.ts: kodlar Firestore products/_ortaklar (herkese okunur → telefon yok, indirim ≤%15, komisyon ≤%30 sunucuda sınırlı)
+- [x] /api/kupon doğrulama; checkout kodu sunucuya sorar; ?ref=KOD linki 30 gün saklanır, ödemede otomatik uygulanır ([[RefCapture]])
+- [x] Siparişe ortak {kod, ad, tur, komisyonOrani, komisyonTutari} yazılır (kart + kapıda)
+- [x] /admin/ortaklar: kod ekle/düzenle/pasif/sil, link kopyala, sipariş/ciro/komisyon, ödenen/kalan komisyon
+- [ ] Canlıya al + ilk kodu admin'den ekleyip gerçek denemede kontrol et
+- [ ] Sırada: kafile teklif PDF'i, kafile/influencer mesaj metinleri
+
+## 2026-11-03 — Sipariş e-postaları (Resend)
+- [x] lib/orderEmail.ts: her siparişte mağazaya (ORDER_NOTIFY_EMAIL, varsayılan obrnhomen.destek@gmail.com) + müşteriye onay; kapıda (order-cod) ve kart (paytr-notify) bağlı
+- [x] Resend'de obrnhomen.com eklendi (eu-west-1)
+- [ ] Namecheap DNS: TXT resend._domainkey, CNAME rsend, CNAME send, TXT _dmarc (kök MX EKLENMEZ — yönlendirme bozulur)
+- [ ] RESEND_API_KEY Vercel'e (kullanıcı), domain doğrula, canlıya al, deneme siparişi
+- [ ] Sırada: toptan sayfasına "E-postayla teklif iste"
+- [x] 2026-11-03: Ortak kod + sipariş e-postaları CANLIDA. Resend obrnhomen.com doğrulandı, RESEND_API_KEY Vercel'de
+- [x] KRİTİK düzeltme: sunucu Firestore yazmaları (order-cod, paytr-token, paytr-notify) gRPC'de sonsuza askıda kalıyordu → lib/firestoreRest.ts (REST + 7 sn zaman aşımı). Kapıda ödeme denemesi 2,4 sn, iki e-posta teslim edildi
+- [ ] Kartlı ödeme uçtan uca ilk gerçek siparişte kontrol (aynı REST yolu)
+- [ ] Admin'de TEST siparişi KO1793723591047 var (silinebilir)
+
+## 2026-11-11
+- [x] Meta katalog kuruldu (644 ürün), Merchant Center kontrol (647/648 onaylı), Gmail merhaba@ gönderim, main merge+push
+- [x] Kafile teklif PDF (Masaüstü/OBRNHOMEN Kafile ve Influencer)
+- [x] `scripts/kafile-materyal.js "Kafile Adı" KOD "2027 Ramazan Umresi"` → hediye kartı baskı PDF + önizleme + WhatsApp grup görseli + mesaj
+- [x] Excel: yola çıkış/hatırlatma sütunları, Hac Kursu-Cami-Dernek sayfası, yapılacaklar 11-16
+- [ ] Instagram'ı Meta portföye bağla, Meta Pixel ekle
+- [ ] Haritalar ev adresi bildirimi (beklemede) ~18 Kas tekrar bak
+
+- 2026-11-11: Kafile kodu umreci indirimi %10 (admin varsayılanı, canlıda). Teklif PDF yeni modele göre: scripts/kafile-teklif.js → Masaüstü/TEKLIF.pdf ([[GUNCEL_DURUM]])
+
+## 2026-11-12
+- [x] Kraft poşet tüm indirimlerin dışında: sabit 25 ₺ (site %5, toptan kademe, kupon/ortak kodu, kafile -%20, komisyon hariç) — lib/pricing.ts NO_DISCOUNT_SLUGS ([[GUNCEL_DURUM]])

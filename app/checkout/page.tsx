@@ -7,7 +7,7 @@ import { useAuth } from "@/app/components/AuthProvider";
 import { trackBeginCheckout } from "@/lib/analytics";
 import Hint from "@/app/components/Hint";
 import { WHATSAPP_URL } from "@/lib/storeNav";
-import { FREE_SHIPPING_OVER, COD_FEE, orderTotals, unitPriceFor, tierPct } from "@/lib/pricing";
+import { FREE_SHIPPING_OVER, COD_FEE, orderTotals, unitPriceFor, tierPct, indirimsizTutar } from "@/lib/pricing";
 import { readRef, clearRef } from "@/lib/refCode";
 import { saveLastOrder, type LastOrder } from "@/lib/lastOrder";
 import { qtyText } from "@/lib/pack";
@@ -41,7 +41,7 @@ export default function CheckoutPage() {
   const [giftNote, setGiftNote] = useState("");
   const [sending, setSending] = useState(false);
 
-  const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(total, couponApplied ? couponRate : 0, payMethod === "kapida");
+  const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(total, couponApplied ? couponRate : 0, payMethod === "kapida", indirimsizTutar(items));
   // Ara toplam zaten kademeli; bilgi olarak kademesiz farkı göster
   const wholesaleSaving = Math.round((items.reduce((s, i) => s + i.price * i.qty, 0) - total) * 100) / 100;
 
@@ -122,7 +122,7 @@ export default function CheckoutPage() {
   ) => {
     saveLastOrder({
       orderId, method,
-      lines: o.lines ?? items.map(i => ({ name: i.name, sku: i.code, qty: i.qty, price: unitPriceFor(i.price, i.qty), pack: i.packQty })),
+      lines: o.lines ?? items.map(i => ({ name: i.name, sku: i.code, qty: i.qty, price: unitPriceFor(i.price, i.qty, i.slug), pack: i.packQty })),
       shipping: o.shipping, codFee: o.codFee, discountAmount: o.discountAmount, total: o.total,
       customer: { name: form.name, phone: form.phone, address: form.address },
       giftWrap, giftNote: giftNote.trim(), createdAt: Date.now(),
@@ -382,9 +382,9 @@ export default function CheckoutPage() {
                       <span style={{ color: "#bbb" }}>× {qtyText(item.qty, item.packQty)}</span>
                     </span>
                     <span className="shrink-0" style={{ color: "#0a0a0a" }}>
-                      {(unitPriceFor(item.price, item.qty) * item.qty).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
-                      {tierPct(item.qty) > 0 && (
-                        <span className="ml-1 text-[13px]" style={{ color: "#9a7a2c" }}>(-%{tierPct(item.qty)})</span>
+                      {(unitPriceFor(item.price, item.qty, item.slug) * item.qty).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
+                      {tierPct(item.qty, item.slug) > 0 && (
+                        <span className="ml-1 text-[13px]" style={{ color: "#9a7a2c" }}>(-%{tierPct(item.qty, item.slug)})</span>
                       )}
                     </span>
                   </div>

@@ -119,7 +119,7 @@ export default function ProductInfo({ product }: { product: Product }) {
     }
   };
 
-  const unit = salePrice(product.price);
+  const unit = salePrice(product.price, product.slug);
   // Paketli ilan (10'lu…): sayaç paket sayar, toplam adet yanında yazılır
   const pack = isPack(product.quantity) ? product.quantity! : undefined;
 
@@ -132,7 +132,7 @@ export default function ProductInfo({ product }: { product: Product }) {
 
   const handleBuy = () => {
     add({ slug: product.slug, name: product.name, price: unit, image: product.images[0] ?? "", ...cartMeta(product) }, qty);
-    trackBeginCheckout(unitPriceFor(unit, qty) * qty, [{ slug: product.slug, name: product.name, price: unitPriceFor(unit, qty), qty }]);
+    trackBeginCheckout(unitPriceFor(unit, qty, product.slug) * qty, [{ slug: product.slug, name: product.name, price: unitPriceFor(unit, qty, product.slug), qty }]);
     router.push("/checkout");
   };
 
@@ -168,7 +168,7 @@ export default function ProductInfo({ product }: { product: Product }) {
       {/* Fiyat — net, indirim rozeti yok */}
       <div className="mb-6 border-b pb-6" style={{ borderColor: "#efefef" }}>
         <p className="text-[32px] font-semibold leading-none text-stone-900">
-          {salePrice(product.price).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
+          {salePrice(product.price, product.slug).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺
         </p>
         <p className="mt-2 text-[13px] text-stone-500">
           KDV dahil{product.quantity && product.quantity > 1 ? ` · paket fiyatı (${product.quantity} adet)` : ""} · 2.000 ₺ üzeri kargo bedava
@@ -219,8 +219,8 @@ export default function ProductInfo({ product }: { product: Product }) {
               {pack && <span className="px-2 text-[13px] text-stone-600">paket</span>}
             </div>
             <p className="text-right text-xs leading-snug" style={{ color: "#555" }}>
-              {qtyText(qty, pack)}: <strong style={{ color: "#0a0a0a" }}>{(unitPriceFor(unit, qty) * qty).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺</strong>
-              {tierPct(qty) > 0 && <span className="block" style={{ color: "#1f9d55" }}>Toptan -%{tierPct(qty)} uygulandı</span>}
+              {qtyText(qty, pack)}: <strong style={{ color: "#0a0a0a" }}>{(unitPriceFor(unit, qty, product.slug) * qty).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺</strong>
+              {tierPct(qty, product.slug) > 0 && <span className="block" style={{ color: "#1f9d55" }}>Toptan -%{tierPct(qty, product.slug)} uygulandı</span>}
             </p>
           </div>
 
