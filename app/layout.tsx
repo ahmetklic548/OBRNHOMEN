@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AuthProvider>
 
             {/* Duyuru şeridi */}
-            <div className="print-hidden bg-gradient-to-r from-[#e9d48f] via-[#f3e3a6] to-[#e9d48f] text-[#3b2c08]">
+            <div className="site-chrome print-hidden bg-gradient-to-r from-[#e9d48f] via-[#f3e3a6] to-[#e9d48f] text-[#3b2c08]">
               <div className="mx-auto flex max-w-[1500px] items-center justify-center gap-6 px-4 py-2 text-[13px] md:justify-between md:px-6">
                 {/* İki ayrı mesaj: kargo tüm siparişler için, toptan ayrı bölüm */}
                 <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
@@ -90,13 +90,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
 
-            <div className="sticky top-0 z-40">
+            <div className="site-chrome sticky top-0 z-40">
               <NavbarClient />
             </div>
 
             <main className="flex-1">{children}</main>
 
-            <footer className="border-t border-stone-200 bg-[#f6f4ef] text-stone-700">
+            <footer className="site-chrome border-t border-stone-200 bg-[#f6f4ef] text-stone-700">
               <div className="mx-auto grid max-w-[1500px] gap-10 px-4 py-14 sm:grid-cols-2 md:px-6 lg:grid-cols-4">
                 <div>
                   <p
@@ -159,12 +159,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </footer>
 
-            <div className="print-hidden">
+            <div className="site-widgets print-hidden">
               <LiveChatWidget />
               <CallButton />
+              <ScrollToTop />
             </div>
             <NewsletterPopup />
-            <ScrollToTop />
             <RefCapture />
           </AuthProvider>
           </WholesaleListProvider>

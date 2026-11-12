@@ -59,6 +59,8 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
   const [kafileBilgi, setKafileBilgi] = useState<{ ad: string; model: "kod" | "toptan"; indirim: number; whatsapp: string | null } | null>(null);
   const [umreciAd, setUmreciAd] = useState("");
   const [umreciTel, setUmreciTel] = useState("");
+  /** Kafile kodu sorgusu bitti mi (fiyatlar ancak kod Yol 2 / yok ise gösterilir) */
+  const [kafileKontrol, setKafileKontrol] = useState(false);
   const [gonderim, setGonderim] = useState<{ durum: "bos" | "gidiyor" | "tamam" | "hata"; mesaj?: string; listeNo?: string }>({ durum: "bos" });
 
   useEffect(() => {
@@ -78,10 +80,22 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
       fetch(`/api/ortak-bilgi?kod=${encodeURIComponent(kod)}`)
         .then((r) => r.json())
         .then((d) => { if (d?.ok) setKafileBilgi({ ad: d.ad, model: d.model, indirim: d.indirim, whatsapp: d.whatsapp }); })
-        .catch(() => {});
+        .catch(() => {})
+        .finally(() => setKafileKontrol(true));
+    else setKafileKontrol(true);
     setHazir(true);
   }, []);
   const toptan = kafileBilgi?.model === "toptan";
+  /** Yol 1 (kafile satar): umreciye fiyat gösterilmez — fiyatı kafile verir; sayfa kafilenin sayfası gibi görünür */
+  const fiyatGoster = kafileKontrol && !toptan;
+
+  // Sayfa kendi alt çubuğunu kullanır → yüzen Ara / canlı destek düğmeleri gizlenir; Yol 1'de site menüsü/altlığı da gizlenir
+  useEffect(() => {
+    const h = document.documentElement;
+    h.setAttribute("data-hazirla", "");
+    if (toptan) h.setAttribute("data-kafile-modu", "");
+    return () => { h.removeAttribute("data-hazirla"); h.removeAttribute("data-kafile-modu"); };
+  }, [toptan]);
 
   useEffect(() => {
     if (!hazir) return;
@@ -175,7 +189,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
       "Selamün aleyküm, umre dönüş hediyeliklerim için listem:",
       ...satirlar,
       posetAdet > 0 ? `• Hediye poşeti (kart dahil) — ${posetAdet} adet` : "• Hediye poşeti istemiyorum",
-      `Toplam: ${toplamAdet} adet hediyelik${posetAdet > 0 ? ` + ${posetAdet} poşet` : ""} (site fiyatı ${tl(genelToplam)})`,
+      `Toplam: ${toplamAdet} adet hediyelik${posetAdet > 0 ? ` + ${posetAdet} poşet` : ""}${fiyatGoster ? ` (site fiyatı ${tl(genelToplam)})` : ""}`,
       kartIsim.trim() ? `Hediye kartında yazacak isim: ${kartIsim.trim()}` : "",
       toptan ? `Ad soyad: ${umreciAd.trim()} / Telefon: ${umreciTel.trim()}${gonderim.listeNo ? ` / Liste no: ${gonderim.listeNo}` : ""}` : "Ad soyad / telefon / adres: ",
     ].filter(Boolean).join("\n");
@@ -184,7 +198,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
   return (
     <main className="mx-auto max-w-5xl px-4 pb-24 pt-8 sm:px-6">
       <header className="mb-6">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#9a7a2c]">Umre dönüş hediyeliği</p>
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#9a7a2c]">{toptan ? `${kafileBilgi?.ad} · Umre dönüş hediyeliği` : "Umre dönüş hediyeliği"}</p>
         <h1 className="mt-1 font-serif text-[28px] leading-tight text-stone-900 sm:text-[34px]">Dağıtacağınız hediyelikleri hazırlayın</h1>
         <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-stone-600">
           Her adımda istediğiniz üründen kaç tane istediğinizi seçin, istemediğiniz adımı geçin. Hediyelikleriniz
@@ -194,7 +208,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
         </p>
         {kafile && toptan && (
           <p className="mt-3 inline-block rounded-2xl border border-[#c9a24a] bg-[#faf6ec] px-3 py-1.5 text-[13px] text-stone-700">
-            <strong>{kafileBilgi?.ad}</strong> hediyelik listesi — seçiminizi yapın, listeniz kafilenize gider. Ödemeyi kafilenize yaparsınız.
+            <strong>{kafileBilgi?.ad}</strong> umrecilerine özel hediyelik listesi. Seçiminizi yapın, son adımda listenizi kafilenize gönderin; fiyat ve ödemeyi kafileniz bildirir.
           </p>
         )}
         {kafile && !toptan && (
@@ -204,6 +218,21 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
           </p>
         )}
       </header>
+
+      {/* Kaç kişiye dağıtılacak → poşet + kart adedi (özette de değiştirilebilir) */}
+      <div className={`mb-6 rounded-xl border p-4 ${posetN === null ? "border-[#c9a24a] bg-[#fff7e0]" : "border-stone-200 bg-white"}`}>
+        <label htmlFor="kisi-ust" className="block text-[15.5px] font-medium text-stone-900">Kaç kişiye hediye dağıtacaksınız?</label>
+        <p className="text-[13px] text-stone-500">Her kişiye bir kraft hediye poşeti ve adınızın yazdığı bir kart hazırlanır.</p>
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <input
+            id="kisi-ust" type="number" min={0} inputMode="numeric" placeholder="ör. 30"
+            value={posetN ?? ""} onFocus={(e) => e.currentTarget.select()}
+            onChange={(e) => setPosetN(e.target.value === "" ? null : Math.max(0, Math.min(5000, Math.floor(+e.target.value) || 0)))}
+            className="h-10 w-24 rounded-md border border-stone-300 bg-white text-center text-[15px]"
+          />
+          <span className="text-[13.5px] text-stone-600">kişi{posetAdet > 0 ? ` → ${posetAdet} poşet + ${posetAdet} kart` : posetN === 0 ? " · poşet ve kart istemiyorum" : ""}</span>
+        </div>
+      </div>
 
       {/* Adım çubuğu */}
       <nav className="mb-6 flex gap-2 overflow-x-auto pb-2" aria-label="Adımlar">
@@ -244,16 +273,21 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                   </div>
                   <div className="flex min-w-0 flex-1 flex-col">
                     <p className="line-clamp-2 text-[13.5px] leading-snug text-stone-800">{u.name}</p>
-                    <p className="mt-1 text-[14px] font-semibold text-stone-900">
-                      {tl(u.price)} <span className="text-[12px] font-normal text-stone-500">{isPack(u.packQty) ? `/ ${u.packQty}'lu paket` : "/ adet"}</span>
-                    </p>
+                    {fiyatGoster ? (
+                      <p className="mt-1 text-[14px] font-semibold text-stone-900">
+                        {tl(u.price)} <span className="text-[12px] font-normal text-stone-500">{isPack(u.packQty) ? `/ ${u.packQty}'lu paket` : "/ adet"}</span>
+                      </p>
+                    ) : isPack(u.packQty) ? (
+                      <p className="mt-1 text-[12.5px] text-stone-500">{u.packQty}&apos;lu paket</p>
+                    ) : null}
                     {g.secenekler.length > 1 && (
                       <p className="mt-1 text-[12px] text-[#8a6d2a]">Renkler karışık gönderilir</p>
                     )}
                     <div className="mt-auto flex items-center gap-2 pt-2">
                       <button aria-label="Azalt" onClick={() => setN(u.slug, n - 1)} className="h-9 w-9 rounded-md border border-stone-300 text-lg">−</button>
                       <input
-                        type="number" min={0} inputMode="numeric" value={n}
+                        type="number" min={0} inputMode="numeric" value={n || ""} placeholder="0"
+                        onFocus={(e) => e.currentTarget.select()}
                         onChange={(e) => setN(u.slug, +e.target.value)}
                         className="h-9 w-14 rounded-md border border-stone-300 text-center text-[15px]"
                         aria-label={isPack(u.packQty) ? "Paket sayısı" : "Adet"}
@@ -269,7 +303,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
           </div>
 
           <div className="sticky bottom-0 mt-6 flex items-center justify-between gap-3 border-t border-stone-200 bg-[#faf6ec]/95 py-3 backdrop-blur">
-            <p className="text-[14px] text-stone-700">Şu ana kadar: <strong>{toplamAdet} adet</strong> · {tl(toplamTutar)}</p>
+            <p className="text-[14px] text-stone-700">Şu ana kadar: <strong>{toplamAdet} adet</strong>{fiyatGoster ? ` · ${tl(toplamTutar)}` : ""}</p>
             <div className="flex gap-2">
               {adim > 0 && <button onClick={() => setAdim(adim - 1)} className="rounded-md border border-stone-300 bg-white px-4 py-2.5 text-[14.5px]">Geri</button>}
               <button onClick={() => setAdim(adim + 1)} className="rounded-md bg-stone-900 px-5 py-2.5 text-[14.5px] font-medium text-white">
@@ -292,7 +326,7 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                   <li key={u.slug} className="flex items-center justify-between gap-3 px-4 py-3 text-[14px]">
                     <span className="min-w-0 flex-1 truncate text-stone-800">{u.name}</span>
                     <span className="shrink-0 text-stone-600">{isPack(u.packQty) ? `${n} paket (${n * u.packQty} adet)` : `${n} adet`}</span>
-                    <span className="w-24 shrink-0 text-right font-medium">{tl(unitPriceFor(u.price, n) * n)}</span>
+                    {fiyatGoster && <span className="w-24 shrink-0 text-right font-medium">{tl(unitPriceFor(u.price, n) * n)}</span>}
                   </li>
                 ))}
                 <li className={`px-4 py-3 text-[14px] ${posetSorulmadi ? "bg-[#fff7e0] ring-2 ring-inset ring-[#c9a24a]" : "bg-[#faf6ec]"}`}>
@@ -305,25 +339,25 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                     <>
                       <label htmlFor="kisi" className="block text-[15px] font-medium text-stone-900">Kaç kişiye hediye dağıtacaksınız?</label>
                       <span className="block text-[12.5px] text-stone-500">
-                        Her kişiye bir <strong>kraft hediye poşeti</strong> ve adınızın yazdığı bir <strong>kart</strong> hazırlanır · {tl(poset.price)} / kişi
+                        Her kişiye bir <strong>kraft hediye poşeti</strong> ve adınızın yazdığı bir <strong>kart</strong> hazırlanır{fiyatGoster ? ` · ${tl(poset.price)} / kişi` : ""}
                       </span>
                       <div className="mt-2 flex items-center gap-2">
                         <input
                           id="kisi" type="number" min={0} inputMode="numeric" placeholder="ör. 30"
-                          value={posetN ?? ""}
+                          value={posetN ?? ""} onFocus={(e) => e.currentTarget.select()}
                           onChange={(e) => setPosetN(e.target.value === "" ? null : Math.max(0, Math.min(5000, Math.floor(+e.target.value) || 0)))}
                           className="h-10 w-24 rounded-md border border-stone-300 bg-white text-center text-[15px]"
                           aria-label="Kaç kişiye dağıtacaksınız"
                         />
                         <span className="text-[13px] text-stone-600">kişi{posetAdet > 0 ? ` → ${posetAdet} poşet + ${posetAdet} kart` : ""}</span>
-                        <span className="ml-auto w-24 shrink-0 text-right font-medium">{tl(posetTutar)}</span>
+                        {fiyatGoster && <span className="ml-auto w-24 shrink-0 text-right font-medium">{tl(posetTutar)}</span>}
                       </div>
                       <button onClick={() => setPosetN(0)} className="mt-2 text-[12.5px] text-stone-500 underline">Poşet ve kart istemiyorum</button>
                     </>
                   )}
                 </li>
                 <li className="flex justify-between px-4 py-3 text-[15px] font-semibold">
-                  <span>Toplam {toplamAdet} adet hediyelik{posetAdet > 0 ? ` + ${posetAdet} poşet` : ""}</span><span>{tl(genelToplam)}</span>
+                  <span>Toplam {toplamAdet} adet hediyelik{posetAdet > 0 ? ` + ${posetAdet} poşet` : ""}</span>{fiyatGoster && <span>{tl(genelToplam)}</span>}
                 </li>
               </ul>
 
@@ -342,25 +376,25 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                 <div className="mt-6 rounded-xl border border-[#c9a24a] bg-white p-4">
                   {gonderim.durum === "tamam" ? (
                     <>
-                      <p className="text-[15px] font-medium text-stone-900">✓ Listeniz {kafileBilgi?.ad} kafilesine iletildi.</p>
-                      <p className="mt-1 text-[13.5px] text-stone-600">Liste no: <strong>{gonderim.listeNo}</strong>. Ödeme ve teslimat için kafileniz sizinle iletişime geçecek. İsterseniz listenizi WhatsApp&apos;tan da gönderin:</p>
+                      <p className="text-[15px] font-medium text-stone-900">Son adım: listenizi {kafileBilgi?.ad} kafilesine gönderin</p>
+                      <p className="mt-1 text-[13.5px] text-stone-600">Listeniz hazır (liste no: <strong>{gonderim.listeNo}</strong>). Aşağıdaki düğmeye basın, WhatsApp açılınca <strong>Gönder</strong>&apos;e dokunun. Fiyat, ödeme ve teslimat için kafileniz size dönecek.</p>
                       <a
                         href={`https://wa.me/${kafileBilgi?.whatsapp ?? ""}?text=${encodeURIComponent(whatsappMetni())}`}
                         target="_blank" rel="noopener noreferrer"
-                        className="mt-3 inline-block rounded-md border border-[#25d366] px-4 py-2.5 text-[14.5px] font-medium text-stone-900"
-                      >WhatsApp&apos;tan kafileme gönder</a>
+                        className="mt-3 block w-full rounded-md bg-[#1f9d55] px-5 py-3.5 text-center text-[15px] font-medium text-white"
+                      >WhatsApp&apos;tan kafileme gönder →</a>
                     </>
                   ) : (
                     <>
-                      <p className="text-[15px] font-medium text-stone-900">Listenizi kafilenize gönderin</p>
-                      <p className="text-[13px] text-stone-500">Bu siparişte sitede ödeme yapmazsınız; ödemeyi {kafileBilgi?.ad} kafilesine yaparsınız.</p>
+                      <p className="text-[15px] font-medium text-stone-900">Listenizi tamamlayın</p>
+                      <p className="text-[13px] text-stone-500">Sitede ödeme yapmazsınız; ödemeyi {kafileBilgi?.ad} kafilesine yaparsınız.</p>
                       <div className="mt-3 grid gap-2 sm:grid-cols-2">
                         <input value={umreciAd} onChange={(e) => setUmreciAd(e.target.value)} maxLength={120} placeholder="Adınız soyadınız" className="rounded-md border border-stone-300 px-3 py-2.5 text-[15px]" />
                         <input value={umreciTel} onChange={(e) => setUmreciTel(e.target.value)} maxLength={40} inputMode="tel" placeholder="Telefon (05xx…)" className="rounded-md border border-stone-300 px-3 py-2.5 text-[15px]" />
                       </div>
                       {gonderim.durum === "hata" && <p className="mt-2 text-[13px] text-red-600">{gonderim.mesaj}</p>}
                       <button onClick={listeyiGonder} disabled={gonderim.durum === "gidiyor" || posetSorulmadi} className="mt-3 w-full rounded-md bg-stone-900 px-5 py-3.5 text-[15px] font-medium text-white disabled:opacity-60">
-                        {gonderim.durum === "gidiyor" ? "Gönderiliyor…" : "Listemi kafileme gönder →"}
+                        {gonderim.durum === "gidiyor" ? "Hazırlanıyor…" : "Listemi tamamla →"}
                       </button>
                     </>
                   )}
@@ -383,7 +417,11 @@ export default function HazirlaClient({ adimlar, poset }: { adimlar: Adim[]; pos
                   </a>
                 </div>
               )}
-              <p className="mt-3 text-[12.5px] text-stone-500">Fiyatlar site fiyatıdır; 10 ve üzeri pakette adet indirimi otomatik uygulanır.</p>
+              {fiyatGoster ? (
+                <p className="mt-3 text-[12.5px] text-stone-500">Fiyatlar site fiyatıdır; 10 ve üzeri pakette adet indirimi otomatik uygulanır.</p>
+              ) : toptan ? (
+                <p className="mt-3 text-[12.5px] text-stone-500">Fiyat ve ödeme bilgisini kafileniz size iletecek.</p>
+              ) : null}
             </>
           )}
         </section>
