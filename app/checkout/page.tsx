@@ -332,7 +332,7 @@ export default function CheckoutPage() {
                 </legend>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {([
-                    ["kart", "💳 Kartla öde", "Kredi/banka kartı, taksit imkânı"],
+                    ["kart", "💳 Kartla öde", "Kredi/banka kartı, 6 aya kadar taksit"],
                     ["kapida", "🚚 Kapıda öde", `Teslimatta nakit/kart · +${COD_FEE} ₺`],
                   ] as const).map(([v, t, d]) => (
                     <label
@@ -492,7 +492,7 @@ export default function CheckoutPage() {
                   Ödeme Yöntemleri
                 </p>
                 <p className="text-[13px] leading-relaxed text-stone-500">
-                  Kartla (PayTR güvenli ödeme, taksit imkânı) veya kapıda nakit/kart ile ödeyebilirsiniz.
+                  Kartla (PayTR güvenli ödeme, 6 aya kadar taksit) veya kapıda nakit/kart ile ödeyebilirsiniz.
                 </p>
               </div>
             </div>
@@ -536,7 +536,7 @@ function CardHelp() {
     ["Kart numarası", "Kartın ön yüzündeki 16 haneli numara. Boşluk bırakmadan yazabilirsiniz."],
     ["Son kullanma tarihi", "Kartın önünde 'AA/YY' şeklinde yazar. Örneğin 08/28 → Ay: 08, Yıl: 28."],
     ["Güvenlik kodu (CVV)", "Kartın ARKA yüzünde, imza bandının yanındaki 3 haneli sayı."],
-    ["Taksit", "İsterseniz taksit seçebilirsiniz; tek çekim için 'Tek Çekim'i seçin."],
+    ["Taksit", "Kredi kartına 6 aya kadar taksit seçebilirsiniz (vade farkı bankaya göre ekranda yazar). Ek ücret ödemek istemezseniz 'Tek Çekim'i seçin."],
     ["SMS onay kodu", "Ödeme düğmesine bastıktan sonra bankanız telefonunuza bir kod gönderir. O kodu açılan ekrana yazın. Bu, kartınızı sizin kullandığınızı doğrular."],
   ];
   return (

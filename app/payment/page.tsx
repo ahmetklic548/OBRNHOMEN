@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Güvenli Ödeme Yöntemleri | OBRNHOMEN",
-  description: "Kredi kartı, banka kartı ve havale ile güvenli alışveriş. 256-bit SSL koruması, kart bilgisi saklanmaz. Seçili bankalarda 3 taksit imkânı.",
+  description: "Kredi kartı, banka kartı ve havale ile güvenli alışveriş. 256-bit SSL koruması, kart bilgisi saklanmaz. Kredi kartına 6 aya varan taksit imkânı.",
   openGraph: {
     title: "Güvenli Ödeme Yöntemleri | OBRNHOMEN",
     description: "256-bit SSL korumalı ödeme. Kredi kartı, EFT ve kapıda ödeme seçenekleri.",
@@ -43,9 +43,9 @@ const sections = [
     title: "Taksit Seçenekleri",
     content: (
       <p>
-        Anlaşmalı bankalar aracılığıyla{" "}
-        <strong style={{ color: "#0a0a0a" }}>3&apos;e kadar taksit</strong> imkânı
-        sunulmaktadır. Taksit seçenekleri sipariş aşamasında görüntülenir.
+        Kredi kartlarına{" "}
+        <strong style={{ color: "#0a0a0a" }}>6 aya kadar taksit</strong> imkânı
+        sunulmaktadır. Tek çekimde ek ücret yoktur; taksitli ödemelerde bankanın vade farkı uygulanır. Kartınıza uygun taksit seçenekleri ve tutarları ödeme ekranında görüntülenir.
       </p>
     ),
   },

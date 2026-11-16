@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     const user_basket = Buffer.from(JSON.stringify(basket)).toString("base64");
 
     const no_installment  = "0";
-    const max_installment = "0";
+    const max_installment = "6"; // en fazla 6 taksit (vade farkı müşteride)
     const currency        = "TL";
     const test_mode       = process.env.PAYTR_TEST_MODE ?? "0";
 
