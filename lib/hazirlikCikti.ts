@@ -22,7 +22,7 @@ export interface HazirlikListe {
   items: HazirlikKalem[];
 }
 
-const esc = (s: unknown) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+export const esc = (s: unknown) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 const adet = (k: HazirlikKalem) => k.qty * (k.pack ?? 1);
 
 /** Poşet adedi (siparişte varsa) */
@@ -36,7 +36,7 @@ export const kartIsmiNottan = (not?: string) => {
   return m ? m[1].trim().slice(0, 60) : undefined;
 };
 
-function yazdir(baslik: string, govde: string, ekCss = "") {
+export function yazdir(baslik: string, govde: string, ekCss = "") {
   const w = window.open("", "_blank");
   if (!w) return alert("Açılır pencere engellendi — tarayıcıda bu siteye izin ver.");
   w.document.write(`<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>${esc(baslik)}</title>

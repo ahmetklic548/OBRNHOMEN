@@ -6,7 +6,7 @@ import { db } from "@/lib/firebase";
 import { qtyText } from "@/lib/pack";
 import { indirimsizTutar } from "@/lib/pricing";
 import { TOPTAN, TOPTAN_KURALLAR, DURUM_ETIKET, kafileTutari, type ListeDurum } from "@/lib/kafileToptan";
-import { toplamaListesi, paketFisleri, hediyeKartlari, koliBilgiKartlari, kartSayisi as kartSay, type HazirlikListe } from "@/lib/hazirlikCikti";
+import { toplamaListesi, paketFisleri, hediyeKartlari, koliBilgiKartlari, kartSayisi as kartSay, yazdir, esc, type HazirlikListe } from "@/lib/hazirlikCikti";
 
 /**
  * Yol 1 — Kafile satar. Umrecilerin /hediyelik-hazirla?ref=KOD'dan gönderdiği listeler
@@ -99,6 +99,7 @@ export default function KafileToptan() {
     `Kafile fiyatı (-%${TOPTAN.INDIRIM}): ${tl(kafileToplam)}`,
     `Kafilenizin kazancı: ${tl(siteToplam - kafileToplam)}`,
     `Onay için kapora (%${TOPTAN.KAPORA}): ${tl(kapora)} · kalanı mal hazır olunca, koli çıkmadan`,
+    `Her umrecinin ne istediği ve ondan ne kadar alacağınız ekteki listede.`,
     kafileToplam < TOPTAN.MIN_TUTAR
       ? `Not: Bu yolda en az sipariş ${tl(TOPTAN.MIN_TUTAR)} (sizin ödeyeceğiniz tutar). Şu an ${tl(TOPTAN.MIN_TUTAR - kafileToplam)} eksik. Tamamlanmazsa umrecileriniz size özel kodla siteden %10 indirimli alabilir, siz de her satıştan %10 kazanırsınız.`
       : ``,
@@ -106,6 +107,20 @@ export default function KafileToptan() {
     `Şartlar:`,
     ...TOPTAN_KURALLAR.map((k) => `• ${k}`),
   ].filter((x, i, a) => !(x === "" && a[i - 1] === "")).join("\n");
+
+  /** Kafileye giden umreci umreci liste: kim ne istedi, kimden ne kadar alınacak (PDF olarak kaydedip WhatsApp'tan gönderilir) */
+  const kafileListesi = () => yazdir(`${kafileAd} — umreci listesi`, `
+    <h1>${esc(kafileAd)} — umreci hediyelik listesi</h1>
+    <p class="k">${secilenler.length} umreci · ${new Date().toLocaleDateString("tr-TR")} · Tutarlar site fiyatıdır (umreciden alınacak).</p>
+    <table><tr><th>Umreci</th><th class="r">Parça</th><th class="r">Umreciden alınacak</th><th>Ödedi</th></tr>
+    ${secilenler.map((l) => `<tr><td><b>${esc(l.name)}</b><br><span class="k">${esc(l.phone)}</span></td><td class="r">${l.items.reduce((s, k) => s + adet(k), 0)}</td><td class="r"><b>${tl(l.total)}</b></td><td><span class="kutu"></span></td></tr>`).join("")}
+    <tr><td><b>Toplam</b></td><td></td><td class="r"><b>${tl(siteToplam)}</b></td><td></td></tr></table>
+    <p style="margin-top:4mm">Bize ödenecek (kafile fiyatı, -%${TOPTAN.INDIRIM}): <b>${tl(kafileToplam)}</b> · Kapora: <b>${tl(kapora)}</b> · Kafilenizin kazancı: <b>${tl(siteToplam - kafileToplam)}</b></p>
+    ${secilenler.map((l) => `<div style="page-break-inside:avoid;margin-top:7mm">
+      <h2>${esc(l.name)} <span class="k">${esc(l.phone)}${l.kartIsim ? ` · Kart: ${esc(l.kartIsim)}` : ""}</span></h2>
+      <table><tr><th>Ürün</th><th class="r">Miktar</th></tr>
+      ${l.items.map((k) => `<tr><td>${esc(k.name)}</td><td class="r">${esc(qtyText(k.qty, k.pack))}</td></tr>`).join("")}
+      <tr><td><b>Umreciden alınacak</b></td><td class="r"><b>${tl(l.total)}</b></td></tr></table></div>`).join("")}`);
 
   const ozetKopyala = async () => {
     try { await navigator.clipboard.writeText(ozetMetni()); setKopya(true); setTimeout(() => setKopya(false), 1500); } catch {}
@@ -164,6 +179,7 @@ export default function KafileToptan() {
 
           <div className="flex flex-wrap gap-2 mb-4">
             <button onClick={ozetKopyala} className={btn} style={{ background: "#1D1D1F", color: "#fff" }}>{kopya ? "Kopyalandı ✓" : "Kafileye özet (WhatsApp metni)"}</button>
+            <button onClick={kafileListesi} className={btn} style={{ borderColor: "#1D1D1F" }}>Kafileye umreci listesi (PDF)</button>
             <button onClick={() => toplamaListesi(kafileAd, cikti())} className={btn}>Toplama listesi</button>
             <button onClick={() => paketFisleri(kafileAd, cikti())} className={btn}>Paket fişleri</button>
             <button onClick={() => hediyeKartlari(kafileAd, cikti())} className={btn}>Hediye kartları (A4)</button>
