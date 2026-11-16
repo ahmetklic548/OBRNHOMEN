@@ -135,12 +135,12 @@ const yol = (tag, t, items, hl) => `<div class="box" style="position:relative;pa
 const p4 = `<section class="page">
   <div class="k">Üç çalışma şekli</div>
   <h1>Size hangisi uyarsa</h1>
-  <p class="lead">Hepsinde seçim ekranı, kraft hediye poşeti ve isimli kart aynı. Çoğu kafile için en kolayı Yol 2; Yol 1 toplu alım yapan kafileler içindir.</p>
+  <p class="lead">Hepsinde seçim ekranı, kraft hediye poşeti ve isimli kart aynı. Asıl kazancınız da bu kart: umrecinizin dağıttığı her hediyeyle kafilenizin adı bir eve girer. Çoğu kafile için en kolayı Yol 2; Yol 1 toplu alım yapan kafileler içindir.</p>
   <div style="display:grid;gap:4.5mm;margin-top:6mm">
     ${yol("YOL 1 · TOPLU ALIM", "Siz satın, fark sizin", [
       "Ürünleri sitedeki fiyatın <b>%20 altında</b> alırsınız, umrecinize sitedeki fiyattan satarsınız. Aradaki fark sizin.",
       "<b>Örnek:</b> 40 umreciniz kişi başı 1.000 ₺'lik hediyelik seçti → umrecilerden 40.000 ₺ toplarsınız, bize 32.000 ₺ ödersiniz, <b>8.000 ₺ sizde kalır</b>.",
-      "Toplu alım içindir: bir siparişte en az <b>30.000 ₺</b>. Onayda yarısı kapora, kalanı teslimde.",
+      "Toplu alım içindir: bir siparişte en az <b>30.000 ₺</b>. Onayda yarısı kapora, kalanı mal hazır olunca (koli ödemeden sonra çıkar).",
       "Her şey tek koliyle size gelir; parayı umreciden siz alır, ürünleri siz dağıtırsınız. Sipariş yola çıkmadan en az 15 gün önce verilir.",
     ])}
     ${yol("YOL 2 · SIFIR MALİYET · ÖNERİLEN", "Ortaklık kodu", [

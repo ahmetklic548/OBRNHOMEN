@@ -28,9 +28,10 @@ export const TOPTAN_KURALLAR: string[] = [
   `Ürünleri sitedeki fiyatın %${TOPTAN.INDIRIM} altında alırsınız. Umrecinize sitedeki fiyattan satarsınız, aradaki fark sizin kazancınızdır.`,
   `Bu yol toplu alım içindir: bir siparişte en az ${tl(TOPTAN.MIN_TUTAR)}lik ürün alınır. Daha az olacaksa Yol 2 (kod) sizin için daha uygundur.`,
   `Umrecileriniz size verdiğimiz linkten ne istediğini seçer. Listeler bize gelir, siz onaylayınca hepsi tek sipariş olur.`,
-  `Siparişi onaylarken tutarın yarısını (%${TOPTAN.KAPORA}) kapora olarak ödersiniz, kalanını malı teslim alırken.`,
+  `Siparişi onaylarken tutarın yarısını (%${TOPTAN.KAPORA}) kapora olarak ödersiniz. Kalanını mal hazır olunca ödersiniz; ödeme gelince koliniz yola çıkar ya da Eminönü'den elden teslim alırsınız. Hazırlık başladıktan sonra kapora iade edilmez.`,
   `Kaporadan sonra ${TOPTAN.HAZIRLIK_GUN} iş gününde hazırlarız. Bu yüzden siparişi grubunuz yola çıkmadan en az ${TOPTAN.SON_SIPARIS_GUN} gün önce verin.`,
   `Her şey tek koliyle size gelir. Her umrecinin ürünleri ayrı ayrı, üzerinde adı yazılı; yanında kraft poşetleri ve isimli kartları. Paketlemeyi umreci kendi zevkine göre yapar.`,
+  `Her hediyenin içinde kafilenizin adı yazan kart olur. Umreciniz 50 hediye dağıtırsa adınız 50 eve girer; yeni umreci ve tavsiye buradan gelir.`,
   `Umreciden parayı siz alırsınız, ürünleri umrecilere siz dağıtırsınız. Umreciye sitedeki fiyattan pahalı satılmaz.`,
   `Hasarlı ya da eksik ürünü hemen değiştiririz. Teklifimiz ${TOPTAN.TEKLIF_GECERLILIK} gün geçerlidir.`,
 ];

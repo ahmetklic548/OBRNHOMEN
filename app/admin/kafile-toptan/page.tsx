@@ -98,7 +98,7 @@ export default function KafileToptan() {
     `Umrecilere satış toplamı (site fiyatı): ${tl(siteToplam)}`,
     `Kafile fiyatı (-%${TOPTAN.INDIRIM}): ${tl(kafileToplam)}`,
     `Kafilenizin kazancı: ${tl(siteToplam - kafileToplam)}`,
-    `Onay için kapora (%${TOPTAN.KAPORA}): ${tl(kapora)} · kalanı teslimde`,
+    `Onay için kapora (%${TOPTAN.KAPORA}): ${tl(kapora)} · kalanı mal hazır olunca, koli çıkmadan`,
     kafileToplam < TOPTAN.MIN_TUTAR
       ? `Not: Bu yolda en az sipariş ${tl(TOPTAN.MIN_TUTAR)} (sizin ödeyeceğiniz tutar). Şu an ${tl(TOPTAN.MIN_TUTAR - kafileToplam)} eksik. Tamamlanmazsa umrecileriniz size özel kodla siteden %10 indirimli alabilir, siz de her satıştan %10 kazanırsınız.`
       : ``,
