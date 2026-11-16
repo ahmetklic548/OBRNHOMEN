@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isAdmin } from "@/lib/adminAuth";
 
 export async function POST(req: NextRequest) {
-  const secret = req.headers.get("x-admin-secret");
-  if (secret !== process.env.ADMIN_SECRET) {
+  if (!(await isAdmin(req))) {
     return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
   }
 

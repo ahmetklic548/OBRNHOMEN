@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sinirAsildi, COK_ISTEK } from "@/lib/rateLimit";
 import crypto from "crypto";
 import { setDocRest } from "@/lib/firestoreRest";
 import { computeOrder, readCustomer } from "@/lib/order";
 
 export async function POST(req: NextRequest) {
+  if (sinirAsildi(req, "paytr-token", 15, 10 * 60_000)) return NextResponse.json(COK_ISTEK, { status: 429 });
   try {
     const body = await req.json();
     const { name, email, phone, address, giftWrap, giftNote } = readCustomer(body);
@@ -29,7 +31,8 @@ export async function POST(req: NextRequest) {
     }
 
     /* Benzersiz sipariş no */
-    const merchant_oid = `OBR${Date.now()}`;
+    /* Rastgele ek: siparisTakip kaydı (müşteri adı/adres) numara tahmin edilerek okunamasın */
+    const merchant_oid = `OBR${Date.now()}${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
 
     /* Kullanıcı IP */
     const forwarded = req.headers.get("x-forwarded-for");

@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isAdmin } from "@/lib/adminAuth";
 import { trendyolAuthHeader, TRENDYOL_BASE } from "@/lib/trendyol";
 
-function isAuthorized(req: NextRequest) {
-  return req.headers.get("x-admin-secret") === process.env.ADMIN_SECRET;
-}
 
 export async function GET(req: NextRequest) {
-  if (!isAuthorized(req)) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
+  if (!(await isAdmin(req))) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
 
   const supplierId = process.env.TRENDYOL_SUPPLIER_ID;
   if (!supplierId) {

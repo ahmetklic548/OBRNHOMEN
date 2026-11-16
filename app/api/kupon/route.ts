@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sinirAsildi, COK_ISTEK } from "@/lib/rateLimit";
 import { resolveCoupon } from "@/lib/partners";
 
 /** Ödeme ekranı kupon kontrolü: sabit kuponlar + aktif ortak (kafile/influencer) kodları.
  *  Asıl indirim yine sipariş anında sunucuda (lib/order.ts) yeniden hesaplanır. */
 export async function GET(req: NextRequest) {
+  if (sinirAsildi(req, "kupon", 30, 10 * 60_000)) return NextResponse.json(COK_ISTEK, { status: 429 });
   const r = await resolveCoupon(req.nextUrl.searchParams.get("kod"));
   if (!r || r.discountRate <= 0) return NextResponse.json({ ok: false }, { headers: { "Cache-Control": "no-store" } });
   return NextResponse.json(

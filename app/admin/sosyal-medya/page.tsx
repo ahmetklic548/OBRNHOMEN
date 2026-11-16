@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { getAllProducts } from "@/lib/products";
+import { adminHeaders } from "@/lib/adminClient";
 
-const adminHeaders = () => ({ "x-admin-secret": process.env.NEXT_PUBLIC_ADMIN_SECRET ?? "" });
 
 const PLATFORMS = ["instagram", "tiktok", "youtube_shorts"] as const;
 type Platform = (typeof PLATFORMS)[number];
@@ -76,7 +76,7 @@ export default function SosyalMedyaPage() {
     try {
       const res = await fetch("/api/social-content", {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...adminHeaders() },
+        headers: { "Content-Type": "application/json", ...(await adminHeaders()) },
         body: JSON.stringify(body),
       });
       const data = await res.json();

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isAdmin } from "@/lib/adminAuth";
 import { trendyolAuthHeader, TRENDYOL_BASE } from "@/lib/trendyol";
 
 async function fetchPage(supplierId: string, startDate: number, endDate: number, page: number) {
@@ -41,7 +42,7 @@ async function fetchAllOrders(supplierId: string, startDate: number, endDate: nu
 }
 
 export async function GET(req: NextRequest) {
-  if (req.headers.get("x-admin-secret") !== process.env.ADMIN_SECRET) {
+  if (!(await isAdmin(req))) {
     return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
   }
 

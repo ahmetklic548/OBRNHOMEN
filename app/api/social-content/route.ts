@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isAdmin } from "@/lib/adminAuth";
 import Anthropic from "@anthropic-ai/sdk";
 import { getProductBySlug } from "@/lib/products";
 
@@ -41,7 +42,7 @@ Platform dinamiklerine sadık kal:
 }`;
 
 export async function POST(req: NextRequest) {
-  if (req.headers.get("x-admin-secret") !== process.env.ADMIN_SECRET) {
+  if (!(await isAdmin(req))) {
     return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
   }
 

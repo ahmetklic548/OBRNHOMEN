@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sinirAsildi, COK_ISTEK } from "@/lib/rateLimit";
 import { setDocRest } from "@/lib/firestoreRest";
 import { computeOrder, readCustomer } from "@/lib/order";
 import { sendOrderEmails } from "@/lib/orderEmail";
@@ -9,6 +10,7 @@ import { sendOrderEmails } from "@/lib/orderEmail";
  * admin paneli için en iyi çaba ile yazılır (yazılamazsa sipariş WhatsApp'ta yine eksiksizdir).
  */
 export async function POST(req: NextRequest) {
+  if (sinirAsildi(req, "order-cod", 5, 10 * 60_000)) return NextResponse.json(COK_ISTEK, { status: 429 });
   try {
     const body = await req.json();
     const customer = readCustomer(body);

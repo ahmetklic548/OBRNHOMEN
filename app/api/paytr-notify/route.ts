@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { getDocRest, setDocRest, deleteDocRest } from "@/lib/firestoreRest";
 import { sendOrderEmails } from "@/lib/orderEmail";
+import { smsIcAnahtar } from "@/lib/icAnahtar";
 
 export async function POST(req: NextRequest) {
   try {
@@ -49,7 +50,7 @@ export async function POST(req: NextRequest) {
           if (info?.phone) {
             await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://obrnhomen.com"}/api/send-sms`, {
               method: "POST",
-              headers: { "Content-Type": "application/json" },
+              headers: { "Content-Type": "application/json", "x-ic-anahtar": smsIcAnahtar() },
               body: JSON.stringify({
                 type: "order_confirm",
                 data: {

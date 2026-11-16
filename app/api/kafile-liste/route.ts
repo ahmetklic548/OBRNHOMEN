@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sinirAsildi, COK_ISTEK } from "@/lib/rateLimit";
 import { setDocRest } from "@/lib/firestoreRest";
 import { computeOrder } from "@/lib/order";
 import { ortakBilgi } from "@/lib/partners";
@@ -12,6 +13,7 @@ import { sendStoreNotice } from "@/lib/orderEmail";
  * Kayıt siparisler koleksiyonuna paymentMethod "kafile-toptan" ile yazılır (sitenin sipariş kaydı yetkisiyle).
  */
 export async function POST(req: NextRequest) {
+  if (sinirAsildi(req, "kafile-liste", 5, 10 * 60_000)) return NextResponse.json(COK_ISTEK, { status: 429 });
   try {
     const body = await req.json();
     const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");

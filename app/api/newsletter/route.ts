@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sinirAsildi, COK_ISTEK } from "@/lib/rateLimit";
 
 export async function POST(req: NextRequest) {
+  if (sinirAsildi(req, "newsletter", 5, 10 * 60_000)) return NextResponse.json(COK_ISTEK, { status: 429 });
   try {
     const { email } = await req.json();
 

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isAdmin } from "@/lib/adminAuth";
 import { trendyolAuthHeader } from "@/lib/trendyol";
 
 // Trendyol ürün/stok uçları eski sapigw adresinden kaldırıldı (2026-10'da 500 veriyordu);
@@ -6,12 +7,9 @@ import { trendyolAuthHeader } from "@/lib/trendyol";
 const PRODUCT_BASE   = "https://apigw.trendyol.com/integration/product/sellers";
 const INVENTORY_BASE = "https://apigw.trendyol.com/integration/inventory/sellers";
 
-function isAuthorized(req: NextRequest) {
-  return req.headers.get("x-admin-secret") === process.env.ADMIN_SECRET;
-}
 
 export async function GET(req: NextRequest) {
-  if (!isAuthorized(req)) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
+  if (!(await isAdmin(req))) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
 
   const supplierId = process.env.TRENDYOL_SUPPLIER_ID;
   if (!supplierId) return NextResponse.json({ error: "TRENDYOL_SUPPLIER_ID eksik" }, { status: 500 });
@@ -41,7 +39,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAuthorized(req)) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
+  if (!(await isAdmin(req))) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
 
   const supplierId = process.env.TRENDYOL_SUPPLIER_ID;
   if (!supplierId) return NextResponse.json({ error: "TRENDYOL_SUPPLIER_ID eksik" }, { status: 500 });

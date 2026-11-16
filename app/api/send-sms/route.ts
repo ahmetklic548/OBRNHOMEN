@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { smsIcAnahtar } from "@/lib/icAnahtar";
 
 async function sendSms(to: string, message: string) {
   const username = process.env.NETGSM_USERNAME!;
@@ -23,6 +24,9 @@ async function sendSms(to: string, message: string) {
 }
 
 export async function POST(req: NextRequest) {
+  if (!process.env.PAYTR_MERCHANT_KEY || req.headers.get("x-ic-anahtar") !== smsIcAnahtar()) {
+    return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
+  }
   try {
     const { type, data } = await req.json();
 
