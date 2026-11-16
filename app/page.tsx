@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
     description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
   },
-  alternates: { canonical: "https://obrnhomen.com" },
+  alternates: { canonical: "https://obrnhomen.com", languages: { "tr-TR": "https://obrnhomen.com", en: "https://obrnhomen.com/en" } },
 };
 
 const jsonLd = [

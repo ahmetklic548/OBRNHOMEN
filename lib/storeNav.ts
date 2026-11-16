@@ -8,6 +8,7 @@ export const UTILITY_LINKS = [
   { href: "/returns", label: "İade Şartları" },
   { href: "/payment", label: "Güvenli Ödeme" },
   { href: "/kargo-takip", label: "Sipariş Takip" },
+  { href: "/en", label: "English · International Orders" },
 ];
 
 export const WHATSAPP_URL = "https://wa.me/905316893849";
