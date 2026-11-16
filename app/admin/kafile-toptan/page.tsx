@@ -42,6 +42,8 @@ export default function KafileToptan() {
   const [aktifKod, setAktifKod] = useState<string | null>(null);
   const [secili, setSecili] = useState<Record<string, boolean>>({});
   const [kopya, setKopya] = useState(false);
+  /** Kafile WhatsApp no (ortak kaydından) — Yol 1 koli kartına OBRNHOMEN yerine kafile yazılır */
+  const [kafileTel, setKafileTel] = useState<Record<string, string | null>>({});
 
   const yukle = useCallback(async () => {
     if (!db) { setLoading(false); return; }
@@ -67,6 +69,13 @@ export default function KafileToptan() {
     });
     return [...m.entries()];
   }, [listeler]);
+
+  useEffect(() => {
+    if (!aktifKod || aktifKod in kafileTel) return;
+    fetch(`/api/ortak-bilgi?kod=${encodeURIComponent(aktifKod)}`).then((r) => r.json())
+      .then((d) => setKafileTel((m) => ({ ...m, [aktifKod]: d?.whatsapp ?? null })))
+      .catch(() => setKafileTel((m) => ({ ...m, [aktifKod]: null })));
+  }, [aktifKod, kafileTel]);
 
   const bu = listeler.filter((l) => l.kafile.kod === aktifKod);
   const kafileAd = bu[0]?.kafile.ad ?? "";
@@ -183,7 +192,7 @@ export default function KafileToptan() {
             <button onClick={() => toplamaListesi(kafileAd, cikti())} className={btn}>Toplama listesi</button>
             <button onClick={() => paketFisleri(kafileAd, cikti())} className={btn}>Paket fişleri</button>
             <button onClick={() => hediyeKartlari(kafileAd, cikti())} className={btn}>Hediye kartları (A4)</button>
-            <button onClick={() => koliBilgiKartlari(cikti())} className={btn}>Koli bilgi kartları</button>
+            <button onClick={() => koliBilgiKartlari(cikti(), { ad: kafileAd, telefon: aktifKod ? kafileTel[aktifKod] : null })} className={btn}>Koli bilgi kartları</button>
             <span className="mx-1" />
             <button onClick={() => durumDegis(secilenler.map((l) => l.id), "onaylandi")} className={btn}>Seçilileri: kafile onayladı</button>
             <button onClick={() => durumDegis(secilenler.map((l) => l.id), "hazirlaniyor")} className={btn}>Hazırlanıyor</button>

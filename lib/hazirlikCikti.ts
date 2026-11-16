@@ -103,20 +103,24 @@ export function hediyeKartlari(baslik: string, listeler: HazirlikListe[]) {
     .a{position:absolute;bottom:4.5mm;left:0;right:0;font-size:5.8pt;letter-spacing:.6px;color:#c9b98a}`);
 }
 
-/** Koliye konan bilgi kartı (A4'e 2'li A5): poşet ve kartlar size bırakıldı, kendi zevkinize göre hazırlayın */
-export function koliBilgiKartlari(listeler: HazirlikListe[]) {
+/** Koliye konan bilgi kartı (A4'e 2'li A5): poşet ve kartlar size bırakıldı, kendi zevkinize göre hazırlayın.
+ *  kafile verilirse (Yol 1): kartta OBRNHOMEN yok — kafile adı ve kafilenin numarası yazar (umreci kafilenin müşterisi). */
+export function koliBilgiKartlari(listeler: HazirlikListe[], kafile?: { ad: string; telefon?: string | null }) {
+  const telYaz = (t: string) => { const d = t.replace(/\D/g, "").replace(/^90/, "0"); return d.length === 11 ? `${d.slice(0, 4)} ${d.slice(4, 7)} ${d.slice(7, 9)} ${d.slice(9)}` : t; };
   const kart = (l: HazirlikListe) => {
     const p = posetSayisi(l);
     const k = kartSayisi(l);
     return `<div class="a5"><div class="cer"></div>
-      <div class="ust">OBRNHOMEN</div>
+      <div class="ust">${kafile ? esc(kafile.ad) : "OBRNHOMEN"}</div>
       <div class="bas">Hediyelerinizi kendi zevkinize göre hazırlayın</div>
       <p>Değerli ${esc(l.name)},</p>
       <p>Kolinizde hediyelikleriniz${p ? `, <b>${p} kraft hediye poşeti</b>` : ""} ve adınızın yazdığı <b>${k} hediye kartı</b> var.
       Poşetleri ve kartları bilerek ayrı koyduk: hangi hediyeyi kime, nasıl vereceğinizi en iyi siz bilirsiniz.
       Dilediğiniz gibi eşleştirin, süsleyin, kendi tarzınızla hazırlayın.</p>
       <p class="dua">Rabbim umrenizi kabul etsin, dağıttığınız her hediye hayırla anılsın.</p>
-      <p class="alt">Eksik ya da hasarlı bir şey olursa WhatsApp: ${CONTACT_PHONE_TEXT} · obrnhomen.com</p></div>`;
+      <p class="alt">${kafile
+        ? `Eksik ya da hasarlı bir şey olursa kafilenize bildirin${kafile.telefon ? `: ${esc(telYaz(kafile.telefon))}` : "."}`
+        : `Eksik ya da hasarlı bir şey olursa WhatsApp: ${CONTACT_PHONE_TEXT} · obrnhomen.com`}</p></div>`;
   };
   const sayfalar: string[] = [];
   for (let i = 0; i < listeler.length; i += 2) sayfalar.push(`<div class="sayfa">${listeler.slice(i, i + 2).map(kart).join("")}</div>`);
