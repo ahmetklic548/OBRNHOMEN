@@ -303,8 +303,8 @@ export default function CheckoutPage() {
                 />
               </div>
 
-              {/* Hediye */}
-              <fieldset className="rounded-lg border border-stone-200 bg-white p-4">
+              {/* Hediye paketi seçeneği ŞİMDİLİK KAPALI (2026-11-16) — geri açmak için false → true */}
+              {false && <fieldset className="rounded-lg border border-stone-200 bg-white p-4">
                 <label className="flex cursor-pointer items-start gap-3 text-[15px] text-stone-800">
                   <input type="checkbox" checked={giftWrap} onChange={e => setGiftWrap(e.target.checked)} className="mt-1 h-5 w-5 accent-[#9a7a2c]" />
                   <span>
@@ -322,7 +322,7 @@ export default function CheckoutPage() {
                     className="mt-3 w-full rounded-md border border-stone-300 px-3 py-2.5 text-[15px] focus:outline-none focus:border-black"
                   />
                 )}
-              </fieldset>
+              </fieldset>}
 
               {/* Ödeme yöntemi */}
               <fieldset>
