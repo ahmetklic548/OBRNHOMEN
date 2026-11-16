@@ -368,8 +368,8 @@ export default function CheckoutPage() {
               </p>
             </form>
 
-            {/* Right — Order summary */}
-            <div>
+            {/* Right — Order summary (mobilde üstte: kupon kutusu görünsün) */}
+            <div className="order-first md:order-none">
               <p className="text-[12px] tracking-[0.04em] uppercase mb-5" style={{ color: "#999" }}>
                 Sipariş Özeti
               </p>
@@ -394,13 +394,15 @@ export default function CheckoutPage() {
               {/* Kupon */}
               <div className="border-t pt-4 mb-4" style={{ borderColor: "#efefef" }}>
                 {!couponApplied ? (
+                  <>
+                  <p className="mb-2 text-[14px] font-medium text-stone-800">🏷️ İndirim kodunuz var mı?</p>
                   <div className="flex gap-2">
                     <input
                       type="text"
                       value={couponInput}
                       onChange={e => { setCouponInput(e.target.value); setCouponError(""); }}
-                      placeholder="Kupon kodu"
-                      className="flex-1 border bg-white px-3 py-2 text-xs focus:outline-none focus:border-black transition-colors uppercase"
+                      placeholder="İndirim / kupon kodu"
+                      className="flex-1 border bg-white px-3 py-2.5 text-[16px] focus:outline-none focus:border-black transition-colors uppercase"
                       style={{ borderColor: "#e0e0e0", color: "#0a0a0a" }}
                     />
                     <button
@@ -412,6 +414,7 @@ export default function CheckoutPage() {
                       Uygula
                     </button>
                   </div>
+                  </>
                 ) : (
                   <div className="flex items-center justify-between">
                     <span className="text-xs" style={{ color: "#16a34a" }}>✓ {couponApplied} uygulandı (%{couponRate}){couponPartner && <> · {couponPartner}</>}</span>
