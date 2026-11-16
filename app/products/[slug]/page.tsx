@@ -8,6 +8,7 @@ import ProductInfo from "@/app/components/ProductInfo";
 import RecentlyViewed from "@/app/components/RecentlyViewed";
 import ProductReviews from "@/app/components/ProductReviews";
 import { salePrice } from "@/lib/pricing";
+import { productSeoTitle, productSeoDescription } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -22,12 +23,14 @@ export async function generateMetadata({
   const product = getProductBySlug(slug);
   if (!product) return {};
 
-  const title = `${product.name} | ${product.category} – OBRNHOMEN`;
-  const description = `${product.metaDescription} ${product.inStock ? "Stokta mevcut." : ""} Hızlı kargo, 14 gün iade garantisi. obrnhomen.com`;
+  const title = productSeoTitle(product);
+  const description = productSeoDescription(product);
+  const url = `https://obrnhomen.com/products/${product.slug}`;
 
   return {
     title,
     description,
+    alternates: { canonical: url },
     keywords: [
       product.name,
       product.category,
@@ -40,7 +43,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `https://obrnhomen.com/products/${product.slug}`,
+      url,
       type: "website",
       images: product.images[0] ? [{ url: product.images[0], alt: product.name }] : [],
     },

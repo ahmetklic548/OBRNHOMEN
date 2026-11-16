@@ -1,0 +1,245 @@
+{
+  "_not": "SEO metinleri. Anahtar kelimeler Search Console'daki gerçek aramalardan (2026-11-16, son 90 gün) seçildi. landings = /<slug> açılış sayfaları; categories = kategori sayfasının altındaki metin + SSS.",
+  "landings": [
+    {
+      "slug": "hac-umre-hediyelik-set",
+      "title": "Hac Umre Hediyelik Set ve Umre Seti Modelleri",
+      "h1": "Hac & Umre Hediyelik Setler",
+      "description": "Umre seti ve hac umre hediyelik set modelleri: seccade, tesbih, Yasin, misvak ve zemzem içeren 10, 20, 30, 50 ve 100 kişilik hazır setler. Kafilelere toptan fiyat.",
+      "queries": ["hac umre hediyelik set", "umre seti", "umre hediyelik", "hac hediyelik"],
+      "intro": [
+        "Umreden ya da hacdan dönerken sevdiklerinize dağıtmak için hazırladığımız hac umre hediyelik setler, tek tek ürün toplama derdini ortadan kaldırır. Setlerde seccade, tesbih, Yasin-i Şerif, misvak, esans ve zemzem şişesi gibi en çok tercih edilen hediyelikler bir arada gelir.",
+        "10 kişilikten 100 kişiliğe kadar hazır umre seti seçeneklerimiz var; kişi sayısını siz belirleyin, paketleme ve hediye kartını biz hazırlayalım. Kafile ve tur firmaları için ayrıca toptan fiyat veriyoruz."
+      ],
+      "faqs": [
+        { "q": "Umre setinin içinde neler var?", "a": "Setine göre değişmekle birlikte seccade, tesbih, Yasin-i Şerif, misvak, esans, takke ve zemzem şişesi en sık yer alan ürünlerdir. Her setin içeriği ürün sayfasında tek tek yazar." },
+        { "q": "Kafile için toplu umre seti alabilir miyim?", "a": "Evet. 20, 30, 40, 50 ve 100 kişilik kafile setlerimiz var. Toptan Sipariş sayfasından ürünleri seçip WhatsApp'tan toptan fiyat alabilirsiniz." },
+        { "q": "Hac umre hediyelik setler ne kadar sürede gelir?", "a": "Siparişler 1-2 iş gününde hazırlanır, kargoda 1-3 gün sürer. 2.000 ₺ üzeri siparişlerde kargo ücretsizdir." }
+      ],
+      "links": ["hac-umre-kafile-setleri", "hediyelik-setler", "seccade", "tesbih"]
+    },
+    {
+      "slug": "desensiz-seccade",
+      "title": "Desensiz Seccade Modelleri | Düz ve Sade Seccade",
+      "h1": "Desensiz & Düz Seccade",
+      "description": "Desensiz seccade modelleri: düz renk, sade kadife ve peluş seccadeler. Gözü yormayan, huşu için ideal desensiz düz seccade seçenekleri; toptan ve hediyelik.",
+      "queries": ["desensiz seccade", "düz seccade", "düz peluş seccade", "sade seccade"],
+      "intro": [
+        "Desensiz seccade, namazda dikkatin dağılmasını istemeyenlerin ilk tercihidir. Düz renkli zemin gözü yormaz, odaklanmayı kolaylaştırır. Sade görünümü sayesinde her ev dekoruna da uyum sağlar.",
+        "Düz desensiz seccade modellerimiz kadife ve peluş (welsoft) kumaştan üretilir; yumuşak dokusu dizlerde rahatlık verir. Karma renkli 5'li paketler mevlüt, hac ve umre hediyeliği olarak da sıkça tercih edilir."
+      ],
+      "faqs": [
+        { "q": "Desensiz seccade neden tercih edilir?", "a": "Desen ve motif olmadığı için namaz sırasında göz bir noktaya takılmaz; sade, düz renkli zemin huşuyu kolaylaştırır." },
+        { "q": "Düz seccadeler hangi kumaştan?", "a": "Kadife ve peluş (welsoft) seçeneklerimiz var. Peluş daha kalın ve yumuşak, kadife daha ince ve hafiftir." },
+        { "q": "Toplu desensiz seccade alabilir miyim?", "a": "Evet, 10 adet ve üzeri alımlarda adet indirimi otomatik uygulanır; daha büyük siparişler için Toptan Sipariş sayfasından fiyat isteyebilirsiniz." }
+      ],
+      "links": ["seccade", "ceyiz-bohca-setleri", "hediyelik-setler"]
+    },
+    {
+      "slug": "battal-boy-seccade",
+      "title": "Battal Boy Seccade 80x120 | Büyük Boy Kadife Seccade",
+      "h1": "Battal Boy Seccade",
+      "description": "Battal boy seccade (80x120 cm): uzun boylu ve iri yapılı kişiler için geniş, büyük boy kadife namaz seccadesi. Hızlı kargo, 14 gün iade.",
+      "queries": ["battal boy seccade", "büyük boy seccade"],
+      "intro": [
+        "Standart seccadeler genellikle 65x115 cm civarındadır. Battal boy seccade ise 80x120 cm ölçüsüyle secde ve oturuşta daha geniş alan sağlar; uzun boylu ve iri yapılı kişiler için rahat bir seçenektir.",
+        "Büyük boy seccade modellerimiz kadife dokuludur; renk seçenekleri ürün sayfalarında yer alır."
+      ],
+      "faqs": [
+        { "q": "Battal boy seccade kaç cm?", "a": "Battal boy seccadelerimiz 80x120 cm ölçüsündedir." },
+        { "q": "Battal boy seccade kimler için uygun?", "a": "Uzun boylu, iri yapılı kişiler ve secdede geniş alan isteyen herkes için uygundur." }
+      ],
+      "links": ["seccade", "desensiz-seccade"]
+    },
+    {
+      "slug": "cam-inci-tesbih",
+      "title": "Cam İnci Tesbih 99'luk | Hediyelik ve Toptan Tesbih",
+      "h1": "Cam İnci Tesbih",
+      "description": "Cam inci tesbih çeşitleri: 99'luk ve 33'lük, renk renk hediyelik inci tesbihler. 10'lu paketler mevlüt, hac ve umre dağıtmalık için; toptan fiyat.",
+      "queries": ["cam inci tesbih", "inci tesbih", "tesbih seti"],
+      "intro": [
+        "Cam inci tesbih, parlak görünümü ve uygun fiyatıyla en çok dağıtılan hediyelik tesbihtir. 99'luk ve 33'lük seçenekleri, beyaz, krem, gri ve renkli modelleri vardır.",
+        "10'lu ve daha büyük paketlerimiz mevlüt, kandil, hac ve umre dönüşü dağıtmak için hazırlanır. Tül keseli ve kutulu sunum seçenekleri de mevcuttur."
+      ],
+      "faqs": [
+        { "q": "Cam inci tesbih kaç tane?", "a": "99'luk (99 tane) ve 33'lük (33 tane) seçeneklerimiz var. Paket adedi ürün adında yazar (ör. 10 adet)." },
+        { "q": "Toplu inci tesbih fiyatı ne kadar?", "a": "Aynı üründen 10, 25 ve 50 adet alımlarda kademeli indirim otomatik uygulanır. Daha büyük adetler için WhatsApp'tan toptan fiyat veriyoruz." }
+      ],
+      "links": ["tesbih", "tavaf-tesbihi", "hediyelik-setler"]
+    },
+    {
+      "slug": "tavaf-tesbihi",
+      "title": "Tavaf Tesbihi | 7'li Tavaf Sayacı Tesbih Fiyatları",
+      "h1": "Tavaf Tesbihi",
+      "description": "Tavaf tesbihi: Kâbe tavafında şavt saymak için 7 taneli pratik tesbih. Renk seçenekleri ve 5'li paketler; hac ve umre hediyeliği olarak toptan.",
+      "queries": ["tavaf tesbihi"],
+      "intro": [
+        "Tavaf tesbihi, Kâbe'nin etrafında yapılan yedi şavtı saymayı kolaylaştıran 7 taneli küçük bir tesbihtir. Kalabalıkta kaçıncı turda olduğunuzu şaşırmamanızı sağlar.",
+        "Hafif ve bileğe takılabilir yapısıyla hac ve umreye gidenlere en pratik hediyelerden biridir. Tekli ve 5'li paket seçeneklerimiz vardır."
+      ],
+      "faqs": [
+        { "q": "Tavaf tesbihi ne işe yarar?", "a": "Tavafta yapılan 7 şavtı (turu) saymak içindir; her turda bir tane ilerletilir." },
+        { "q": "Tavaf tesbihi hediye olur mu?", "a": "Evet, hac ve umreye gidenlere en çok verilen pratik hediyelerdendir; 5'li paketlerimiz dağıtmak için uygundur." }
+      ],
+      "links": ["tesbih", "ihram-hac-malzemeleri", "hac-umre-hediyelik-set"]
+    },
+    {
+      "slug": "toptan-misvak",
+      "title": "Toptan Misvak | Vakumlu Taze Misvak (Swak) Paketleri",
+      "h1": "Vakumlu Misvak ve Toptan Misvak",
+      "description": "Vakumlu taze misvak (swak) 5'li, 10'lu ve toptan paketler. Hac, umre ve mevlüt dağıtmalık misvak; kafile ve camiler için toptan fiyat.",
+      "queries": ["misvak", "swak"],
+      "intro": [
+        "Misvak (swak), Peygamber Efendimizin sünneti olan doğal diş temizleme çubuğudur. Vakumlu paketlenen misvaklarımız tazeliğini uzun süre korur.",
+        "5'li, 10'lu ve büyük paketler hac, umre dönüşü ve mevlütlerde dağıtmak için idealdir. Toplu misvak alımlarında toptan fiyat veriyoruz."
+      ],
+      "faqs": [
+        { "q": "Vakumlu misvak ne kadar dayanır?", "a": "Vakum paket açılmadığı sürece misvak tazeliğini uzun süre korur; açtıktan sonra serin ve kuru yerde saklayın." },
+        { "q": "Toptan misvak alabilir miyim?", "a": "Evet. Toptan Sipariş sayfasından adet girip WhatsApp'tan fiyat alabilirsiniz." }
+      ],
+      "links": ["misvak-esans-surme", "hac-umre-hediyelik-set"]
+    },
+    {
+      "slug": "yasin-tesbih-seti",
+      "title": "Yasin Tesbih Seti | Kadife Yasin ve Tesbih Mevlüt Seti",
+      "h1": "Yasin & Tesbih Hediyelik Set",
+      "description": "Kadife kaplı Yasin-i Şerif ve tesbih setleri: tül keseli ve kutulu 5, 10, 25, 50 adetlik mevlüt, hac ve umre hediyelik setler. Toptan fiyat.",
+      "queries": ["yasin tesbih seti", "kesede yasin", "kadife yasin"],
+      "intro": [
+        "Yasin tesbih seti, mevlüt ve taziyelerde en çok dağıtılan hediyeliktir. Kadife kaplı Yasin-i Şerif ile inci tesbih, tül kese ya da şık bir kutu içinde hazır gelir.",
+        "Tek renk ve karışık renk seçenekleri, 5'ten 50 adede kadar paketleri vardır. Büyük adetlerde toptan fiyat için bize yazabilirsiniz."
+      ],
+      "faqs": [
+        { "q": "Yasin tesbih seti kaç adet geliyor?", "a": "Paket adedi ürün adında yazar: 5, 10, 25 ve 50 adetlik seçenekler vardır. Her adet bir Yasin ve bir tesbihten oluşur." },
+        { "q": "Mevlüt için kaç set almalıyım?", "a": "Davetli sayısı kadar set almanız önerilir; 50 ve üzeri adetler için WhatsApp'tan özel fiyat veriyoruz." }
+      ],
+      "links": ["hediyelik-setler", "yasin-dini-kitaplar", "tesbih"]
+    },
+    {
+      "slug": "islemeli-namaz-elbisesi",
+      "title": "İşlemeli Namaz Elbisesi | Çift Parça Kadın Namaz Kıyafeti",
+      "h1": "İşlemeli Namaz Elbisesi",
+      "description": "İşlemeli çift parça namaz elbisesi: terletmeyen kumaş, başörtülü pratik kadın namaz kıyafeti. Hac, umre ve hediye için; hızlı kargo, 14 gün iade.",
+      "queries": ["işlemeli namaz elbisesi", "namaz elbisesi", "kız çocuk namaz seti"],
+      "intro": [
+        "İşlemeli namaz elbisesi, giymesi pratik ve şık görünümüyle evde, camide ve seyahatte rahat kullanılır. Çift parça modeller tek hareketle giyilir, terletmeyen kumaşı gün boyu konfor sağlar.",
+        "Hac ve umreye gidecek hanımlar ile anneler için anlamlı bir hediyedir. Kız çocuklar için seccadeli ve tesbihli namaz setlerimiz de vardır."
+      ],
+      "faqs": [
+        { "q": "Namaz elbisesi beden seçimi nasıl?", "a": "Beden ve ölçü bilgisi her ürünün sayfasında yazar; emin olamazsanız WhatsApp'tan sorabilirsiniz." },
+        { "q": "Namaz elbisesi iade edilebilir mi?", "a": "Evet, 14 gün içinde ücretsiz iade edebilirsiniz." }
+      ],
+      "links": ["namaz-elbisesi-tesettur", "esarp-yazma-ortu"]
+    }
+  ],
+  "categories": {
+    "seccade": {
+      "intro": [
+        "Seccade modellerimizde kadife, peluş (welsoft), simli goblen, şönil ve tafta seçenekleri bulunur. Desensiz düz seccadeler sade bir namaz alanı isteyenler için, simli goblen ve işlemeli modeller ise çeyiz ve hediye için tercih edilir.",
+        "Standart ölçünün yanında 80x120 cm battal boy seccade, çantada taşınan cep seccadesi ve çocuk seccadeleri de vardır. Aynı üründen 10 ve üzeri alımlarda adet indirimi otomatik uygulanır."
+      ],
+      "faqs": [
+        { "q": "Hangi seccade daha yumuşak?", "a": "Peluş (welsoft) seccadeler en kalın ve yumuşak olanlardır; kadife seccadeler daha ince ve hafiftir." },
+        { "q": "Battal boy seccade var mı?", "a": "Evet, 80x120 cm battal boy kadife seccadelerimiz var." },
+        { "q": "Desensiz seccade var mı?", "a": "Evet, düz renkli desensiz kadife ve peluş seccadelerimiz var." }
+      ],
+      "links": ["desensiz-seccade", "battal-boy-seccade", "ceyiz-bohca-setleri"]
+    },
+    "tesbih": {
+      "intro": [
+        "Tesbih çeşitlerimiz arasında cam inci, kristal, kehribar ve kuka tesbihler yer alır. 99'luk ve 33'lük seçeneklerin yanında tavafta şavt saymak için 7 taneli tavaf tesbihi de vardır.",
+        "Dağıtmalık 10'lu ve 50'li paketler mevlüt, kandil, hac ve umre için uygundur; tül keseli ve kutulu sunum seçenekleri mevcuttur."
+      ],
+      "faqs": [
+        { "q": "99'luk ve 33'lük tesbih farkı nedir?", "a": "99'luk tesbih Esmaü'l-Hüsna sayısınca 99 tane, 33'lük tesbih ise üç turda tamamlanan 33 tanedir." },
+        { "q": "Toplu tesbih alırsam indirim var mı?", "a": "Aynı üründen 10, 25 ve 50 adette kademeli indirim otomatik uygulanır." }
+      ],
+      "links": ["cam-inci-tesbih", "tavaf-tesbihi", "yasin-tesbih-seti"]
+    },
+    "hediyelik-setler": {
+      "intro": [
+        "Hediyelik setlerimiz mevlüt, hac, umre, kandil ve düğünlerde dağıtmak için hazırlanır. Yasin ve tesbih, mini Kur'an ve tesbih, başörtü ve tesbih gibi kombinasyonlar tül kese ya da kutu içinde hazır gelir.",
+        "Kişi sayısına göre 5'ten 50 adede kadar paketler vardır; daha büyük siparişler için toptan fiyat veriyoruz."
+      ],
+      "faqs": [
+        { "q": "Hediyelik setler paketli mi geliyor?", "a": "Evet, setler tül kese veya kutu içinde dağıtıma hazır gelir." },
+        { "q": "Kendi setimi oluşturabilir miyim?", "a": "Evet. Hediyelik Hazırla sayfasından kişi sayısını ve ürünleri seçerek kendi setinizi oluşturabilirsiniz." }
+      ],
+      "links": ["yasin-tesbih-seti", "hac-umre-hediyelik-set", "hac-umre-kafile-setleri"]
+    },
+    "hac-umre-kafile-setleri": {
+      "intro": [
+        "Hac ve umre kafileleri için 20, 30, 40, 50 ve 100 kişilik hazır hediyelik setler hazırlıyoruz. Her sette seccade, tesbih, Yasin, misvak ve benzeri ürünler kişi başı paketlenir.",
+        "Kafile ve tur firmalarına özel toptan fiyat, kafile adına hediye kartı ve tek adrese toplu gönderim seçeneklerimiz vardır."
+      ],
+      "faqs": [
+        { "q": "Kafile seti siparişi ne kadar önce verilmeli?", "a": "Yola çıkıştan en az 15 gün önce sipariş vermenizi öneririz; hazırlık yaklaşık 10 iş günü sürer." },
+        { "q": "Kafile adına özel kart basılıyor mu?", "a": "Evet, kafile siparişlerinde kafile adını taşıyan hediye kartı hazırlıyoruz." }
+      ],
+      "links": ["hac-umre-hediyelik-set", "hediyelik-setler"]
+    },
+    "ihram-hac-malzemeleri": {
+      "intro": [
+        "İhram çeşitlerimizde pamuk ve bambu erkek ihramı, 110x260 cm battal boy ihram ve çocuk ihramı bulunur. Bambu ihram daha hafif ve serin tutar, pamuk ihram ise yüksek emiciliğiyle öne çıkar.",
+        "Ayrıca ihram kemeri (para kemeri), kokusuz sabun, ihram pudrası ve tavaf tesbihi gibi hac umre malzemelerini de bulabilirsiniz."
+      ],
+      "faqs": [
+        { "q": "Battal boy ihram kaç cm?", "a": "Battal boy ihramımız 110x260 cm ölçüsündedir; uzun boylu ve iri yapılı kişiler için uygundur." },
+        { "q": "İhram kemeri ne işe yarar?", "a": "İhram kemeri (para kemeri) ihramı belde sabitler; fermuarlı cebinde para, pasaport ve telefon taşınır." },
+        { "q": "Bambu mu pamuk mu ihram?", "a": "Sıcakta daha serin tutması için bambu, yüksek emicilik ve kalın doku için pamuk ihram tercih edilir." }
+      ],
+      "links": ["tavaf-tesbihi", "hac-umre-hediyelik-set", "toptan-misvak"]
+    },
+    "misvak-esans-surme": {
+      "intro": [
+        "Vakumlu taze misvak, alkolsüz esans ve göz sürmesi hac ve umre dönüşü en çok dağıtılan hediyeliklerdendir. Misvaklarımız vakumlu paketlenir, tazeliğini uzun süre korur.",
+        "5'li, 10'lu ve 50'li paketler mevlüt ve kafileler için uygundur; büyük adetlerde toptan fiyat veriyoruz."
+      ],
+      "faqs": [
+        { "q": "Esanslar alkollü mü?", "a": "Hayır, esanslarımız alkolsüzdür." },
+        { "q": "Misvak nasıl kullanılır?", "a": "Ucundaki kabuk 1 cm kadar soyulur, lifler yumuşayınca dişler ve diş etleri fırçalanır; kullanılan uç birkaç günde bir kesilir." }
+      ],
+      "links": ["toptan-misvak", "hac-umre-hediyelik-set"]
+    },
+    "zikirmatik": {
+      "intro": [
+        "Zikirmatik çeşitlerimizde dijital (elektronik) zikirmatik, ışıklı yüzük tipi ve taşlı süslü modeller bulunur. Elektronik zikirmatik parmağa takılır, tek tuşla sayar ve sayıyı hafızasında tutar.",
+        "10'lu ve 12'li paketler hac, umre ve mevlüt hediyeliği olarak dağıtılır."
+      ],
+      "faqs": [
+        { "q": "Elektronik zikirmatik pili değişir mi?", "a": "Dijital zikirmatikler düğme pille çalışır; pil bilgisi her ürünün sayfasında yazar." }
+      ],
+      "links": ["tesbih", "hediyelik-setler"]
+    },
+    "kuran-i-kerim": {
+      "intro": [
+        "Kur'an-ı Kerim çeşitlerimizde cep, orta, hafız, rahle ve cami boy; bilgisayar hatlı, Medine hatlı, tecvidli ve mealli baskılar bulunur. Kadife kaplı, kutulu ve isme özel seçenekler hediye için idealdir.",
+        "Kalemle üzerinden yazılabilen gölgeli (kendin yaz) Kur'an-ı Kerim ile hattı adım adım yazarak öğrenebilirsiniz."
+      ],
+      "faqs": [
+        { "q": "Yazılabilir Kur'an nedir?", "a": "Harfleri gölgeli basılmış, kalemle üzerinden geçerek yazılan Kur'an-ı Kerim'dir; hat ve ezber çalışması için kullanılır." },
+        { "q": "Hafız boy Kur'an kaç cm?", "a": "Boyutlar ürün sayfasında yazar; cep boy en küçük, cami boy en büyük seçenektir." }
+      ],
+      "links": ["yasin-dini-kitaplar", "hediyelik-setler"]
+    },
+    "namaz-elbisesi-tesettur": {
+      "intro": [
+        "Namaz elbisesi modellerimiz arasında işlemeli çift parça, tek parça pratik ve hazır başörtülü kadın namaz kıyafetleri yer alır. Terletmeyen kumaşları gün boyu rahat kullanım sağlar.",
+        "Kız çocuklar için seccadeli, tesbihli ve elifbalı namaz setlerimiz de vardır."
+      ],
+      "faqs": [
+        { "q": "Çift parça namaz elbisesi nasıl giyilir?", "a": "Üst parça başörtülü bonelidir, alt parça lastikli etektir; ikisi ayrı ayrı saniyeler içinde giyilir." }
+      ],
+      "links": ["islemeli-namaz-elbisesi", "esarp-yazma-ortu"]
+    },
+    "takke-yuzuk": {
+      "intro": [
+        "Örgü takke ve akik, taşlı erkek yüzükleri hac ve umre dönüşü en çok hediye edilen ürünlerdendir. Umre yüzüğü ve hac yüzüğü olarak bilinen modellerimiz dağıtmalık paketlerde de sunulur."
+      ],
+      "faqs": [
+        { "q": "Umre yüzükleri ayarlanabilir mi?", "a": "Modeline göre değişir; ayarlanabilir modeller ürün sayfasında belirtilir." }
+      ],
+      "links": ["hac-umre-hediyelik-set", "ihram-hac-malzemeleri"]
+    }
+  }
+}

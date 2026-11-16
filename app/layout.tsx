@@ -34,9 +34,9 @@ const playfair = Lora({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://obrnhomen.com"),
-  title: { default: "OBRNHOMEN | El İşi Tesbih, Seccade & Hediyelik", template: "%s | OBRNHOMEN" },
-  description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler. 198+ ürün, hızlı kargo, 14 gün iade garantisi.",
-  keywords: ["tesbih", "seccade", "hac hediyeliği", "umre hediyeliği", "mevlüt hediyeliği", "hediyelik set", "el işi hediye", "namaz örtüsü", "çeyizlik tesbih", "toplu hediyelik", "ramazan hediyesi", "düğün hediyesi", "misvak", "ihram", "din kitabı", "obrnhomen"],
+  title: { default: "OBRNHOMEN | Hac Umre Hediyelik, Seccade, Tesbih & Toptan", template: "%s | OBRNHOMEN" },
+  description: "Hac umre hediyelik set, umre seti, seccade, tesbih, ihram, misvak ve Kur'an-ı Kerim. 600+ ürün, kafilelere toptan fiyat, 2.000 ₺ üzeri ücretsiz kargo, 14 gün ücretsiz iade.",
+  keywords: ["hac umre hediyelik set", "umre seti", "hac hediyelik", "umre hediyelik", "desensiz seccade", "seccade", "tesbih", "cam inci tesbih", "tavaf tesbihi", "ihram", "battal boy ihram", "misvak", "zikirmatik", "Kur'an-ı Kerim", "yasin tesbih seti", "mevlüt hediyeliği", "toptan hediyelik", "kafile hediyelik", "obrnhomen"],
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,

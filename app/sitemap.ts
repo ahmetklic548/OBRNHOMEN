@@ -1,6 +1,7 @@
 import { getAllProducts, getProductsByCategory } from "@/lib/products";
 import { CATEGORIES } from "@/lib/categories";
 import type { MetadataRoute } from "next";
+import { LANDINGS, landingProducts } from "@/lib/seoContent";
 
 const BASE_URL = "https://obrnhomen.com";
 
@@ -13,6 +14,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const categoryUrls = CATEGORIES.filter((c) => getProductsByCategory(c.name).length).map(({ slug }) => ({
+    url: `${BASE_URL}/koleksiyon/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  const landingUrls = LANDINGS.filter((l) => landingProducts(l).length).map(({ slug }) => ({
     url: `${BASE_URL}/koleksiyon/${slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
@@ -56,6 +64,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/payment`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.4 },
     { url: `${BASE_URL}/kargo-takip`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.3 },
     ...categoryUrls,
+    ...landingUrls,
     ...blogUrls,
     ...productUrls,
   ];
