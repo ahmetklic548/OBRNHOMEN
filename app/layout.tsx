@@ -13,6 +13,7 @@ import LiveChatWidget from "@/app/components/LiveChatWidget";
 import NewsletterPopup from "@/app/components/NewsletterPopup";
 import ScrollToTop from "@/app/components/ScrollToTop";
 import RefCapture from "@/app/components/RefCapture";
+import MetaPixel from "@/app/components/MetaPixel";
 import { CATEGORY_LINKS, UTILITY_LINKS, WHATSAPP_URL, INSTAGRAM_URL, STORE_ADDRESS, CONTACT_EMAIL } from "@/lib/storeNav";
 import "./globals.css";
 
@@ -171,6 +172,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </WishlistProvider>
         </CartProvider>
         <GoogleAnalytics gaId="G-EZ3ZCTGL48" />
+        <MetaPixel />
       </body>
     </html>
   );
