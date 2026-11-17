@@ -28,6 +28,13 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // Kafile paneli (/kafile-panel?k=ANAHTAR): belge kimliği = sha256(anahtar) → sadece linki bilen okur.
+    // Listeleme ve yazma sadece admin (Ortak Kodları sayfası günceller).
+    match /ortakPanel/{id} {
+      allow get: if true;
+      allow list, write: if isAdmin();
+    }
+
     // Kartla ödeme öncesi geçici kayıt: sunucu (paytr-token) yazar, paytr-notify numarasıyla okuyup siler.
     // Numara rastgele ekli (tahmin edilemez); listeleme ve değiştirme sadece admin.
     match /siparisTakip/{orderId} {

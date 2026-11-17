@@ -5,6 +5,8 @@ import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteField } from
 import { db } from "@/lib/firebase";
 import { normalizeKod, MAX_INDIRIM, MAX_KOMISYON, type OrtakTur, type OrtakModel } from "@/lib/partners";
 import { TOPTAN } from "@/lib/kafileToptan";
+import { POSET_SLUG } from "@/lib/hediyePoseti";
+import { PANEL_YOLU, sha256Hex, yeniAnahtar, type OrtakPanelKayit, type PanelSiparis } from "@/lib/ortakPanel";
 
 /**
  * Kafile / influencer ortak kodları.
@@ -31,6 +33,7 @@ interface SiparisOzet {
   paymentMethod?: string;
   paidAt?: number;
   teslim?: boolean;
+  items?: { slug?: string; qty?: number }[];
 }
 
 /** komisyon: tüm siparişler · hakEdilen: sadece teslim edilenler (ödeme bunun üzerinden, ayda bir) */
@@ -47,6 +50,13 @@ const BOS = { kod: "", ad: "", tur: "kafile" as OrtakTur, indirim: 10, komisyon:
 /** Kafileye verilen link: doğrudan hediyelik seçim ekranı */
 const linkOf = (kod: string, o?: { tur?: OrtakTur }) => (o?.tur === "kafile" ? `${SITE}/hediyelik-hazirla?ref=${kod}` : `${SITE}/?ref=${kod}`);
 
+const panelVerisi = (kod: string, o: OrtakKayit, anahtar: string, siparisler: PanelSiparis[]): OrtakPanelKayit => ({
+  kod, ad: o.ad, anahtar, indirim: o.indirim, komisyon: o.komisyon,
+  siparisler: [...siparisler].sort((a, b) => b.tarih - a.tarih),
+  odenen: o.odenen ?? 0,
+  guncelleme: Date.now(),
+});
+
 export default function AdminOrtaklar() {
   const [kodlar, setKodlar] = useState<Record<string, OrtakKayit>>({});
   const [stat, setStat] = useState<Record<string, Istatistik>>({});
@@ -55,18 +65,25 @@ export default function AdminOrtaklar() {
   const [mesaj, setMesaj] = useState("");
   const [hata, setHata] = useState("");
   const [kopyalanan, setKopyalanan] = useState<string | null>(null);
+  /** kod → kafile paneli (belge kimliği + linkteki anahtar) */
+  const [paneller, setPaneller] = useState<Record<string, { id: string; anahtar: string }>>({});
+  /** kod → panelde gösterilecek siparişler (müşteri bilgisi yok) */
+  const [panelSip, setPanelSip] = useState<Record<string, PanelSiparis[]>>({});
 
   const yukle = useCallback(async () => {
     if (!db) { setLoading(false); return; }
+    let kayitlar: Record<string, OrtakKayit> = {};
     try {
       const snap = await getDoc(ref());
-      setKodlar((snap.data()?.kodlar ?? {}) as Record<string, OrtakKayit>);
+      kayitlar = (snap.data()?.kodlar ?? {}) as Record<string, OrtakKayit>;
+      setKodlar(kayitlar);
     } catch (e) {
       setHata("Kodlar okunamadı: " + (e as Error).message);
     }
     try {
       const s = await getDocs(collection(db, "siparisler"));
       const out: Record<string, Istatistik> = {};
+      const ps: Record<string, PanelSiparis[]> = {};
       s.docs.forEach((d) => {
         const o = d.data() as SiparisOzet;
         const kod = o.ortak?.kod;
@@ -78,8 +95,27 @@ export default function AdminOrtaklar() {
         st.komisyon += o.ortak?.komisyonTutari ?? 0;
         if (o.teslim) st.hakEdilen += o.ortak?.komisyonTutari ?? 0;
         if (o.paidAt && (!st.son || o.paidAt > st.son)) st.son = o.paidAt;
+        (ps[kod] ??= []).push({
+          tarih: o.paidAt ?? 0,
+          tutar: o.total ?? 0,
+          komisyon: o.ortak?.komisyonTutari ?? 0,
+          teslim: !!o.teslim,
+          kart: o.items?.find((k) => k.slug === POSET_SLUG)?.qty ?? 0,
+        });
       });
       setStat(out);
+      setPanelSip(ps);
+      // Kafile panelleri: var olanları en güncel verilerle yaz (kafile linki açınca bunu görür)
+      const pSnap = await getDocs(collection(db, "ortakPanel"));
+      const pm: Record<string, { id: string; anahtar: string }> = {};
+      await Promise.all(pSnap.docs.map(async (d) => {
+        const v = d.data() as OrtakPanelKayit;
+        pm[v.kod] = { id: d.id, anahtar: v.anahtar };
+        const o = kayitlar[v.kod];
+        if (!o) return;
+        await setDoc(doc(db!, "ortakPanel", d.id), panelVerisi(v.kod, o, v.anahtar, ps[v.kod] ?? []));
+      }));
+      setPaneller(pm);
     } catch (e) {
       setHata("Siparişler okunamadı: " + (e as Error).message);
     }
@@ -122,6 +158,8 @@ export default function AdminOrtaklar() {
       const yeni = { ...kodlar[kod], ...alan };
       await setDoc(ref(), { kodlar: { [kod]: yeni } }, { merge: true });
       setKodlar((k) => ({ ...k, [kod]: yeni }));
+      const p = paneller[kod];
+      if (p) await setDoc(doc(db!, "ortakPanel", p.id), panelVerisi(kod, yeni, p.anahtar, panelSip[kod] ?? []));
     } catch (e) {
       setHata("Güncellenemedi: " + (e as Error).message);
     }
@@ -142,6 +180,25 @@ export default function AdminOrtaklar() {
     const n = Number((girdi ?? "").replace(",", "."));
     if (!girdi || !Number.isFinite(n) || n <= 0) return;
     await guncelle(kod, { odenen: Math.round(((kodlar[kod].odenen ?? 0) + n) * 100) / 100 });
+  };
+
+  /** Kafile paneli linki: yoksa oluşturur, panoya kopyalar */
+  const panelLinki = async (kod: string) => {
+    setHata("");
+    try {
+      let p = paneller[kod];
+      if (!p) {
+        const anahtar = yeniAnahtar();
+        p = { id: await sha256Hex(anahtar), anahtar };
+        await setDoc(doc(db!, "ortakPanel", p.id), panelVerisi(kod, kodlar[kod], anahtar, panelSip[kod] ?? []));
+        setPaneller((m) => ({ ...m, [kod]: p! }));
+      }
+      await navigator.clipboard.writeText(`${SITE}${PANEL_YOLU}?k=${p.anahtar}`);
+      setKopyalanan("panel:" + kod);
+      setTimeout(() => setKopyalanan(null), 1500);
+    } catch (e) {
+      setHata("Panel linki oluşturulamadı: " + (e as Error).message);
+    }
   };
 
   const kopyala = async (kod: string) => {
@@ -246,6 +303,12 @@ export default function AdminOrtaklar() {
                       <button onClick={() => kopyala(kod)} className="block text-[11px] font-sans font-normal underline mt-1" style={{ color: "#9a7a2c" }}>
                         {kopyalanan === kod ? "Kopyalandı ✓" : "Linki kopyala"}
                       </button>
+                      {o.model !== "toptan" && (
+                        <button onClick={() => panelLinki(kod)} className="block text-[11px] font-sans font-normal underline mt-1" style={{ color: "#1D1D1F" }}
+                          title="Kafilenin kendi satışlarını ve komisyonunu gördüğü sayfa">
+                          {kopyalanan === "panel:" + kod ? "Kopyalandı ✓" : paneller[kod] ? "Panel linki" : "Panel linki oluştur"}
+                        </button>
+                      )}
                     </td>
                     <td className="px-3 py-3">
                       {o.ad}
