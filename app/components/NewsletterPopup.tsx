@@ -14,7 +14,7 @@ export default function NewsletterPopup() {
 
   const pathname = usePathname();
   // Ödeme/giriş akışını bölmesin; kafile linkiyle gelen umreci kafile indirimiyle karıştırmasın
-  const blocked = /^\/(checkout|odeme|payment|hesap|admin|hediyelik-hazirla)/.test(pathname ?? "");
+  const blocked = /^\/(checkout|odeme|payment|hesap|admin|hediyelik-hazirla|kafile-panel)/.test(pathname ?? "");
 
   useEffect(() => {
     if (blocked || sessionStorage.getItem("nl_seen")) return;
