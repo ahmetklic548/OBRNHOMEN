@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ kategori:
   const { kategori } = await params;
   const page = resolve(kategori);
   if (!page) return {};
-  const url = `https://obrnhomen.com/koleksiyon/${page.slug}`;
+  const url = `https://www.obrnhomen.com/koleksiyon/${page.slug}`;
   return {
     title: page.title,
     description: page.description,
@@ -72,13 +72,13 @@ export default async function KategoriPage({ params }: { params: Promise<{ kateg
   if (!page) notFound();
   if (page.products.length === 0) notFound();
 
-  const url = `https://obrnhomen.com/koleksiyon/${page.slug}`;
+  const url = `https://www.obrnhomen.com/koleksiyon/${page.slug}`;
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Anasayfa", item: "https://obrnhomen.com" },
-      { "@type": "ListItem", position: 2, name: "Koleksiyon", item: "https://obrnhomen.com/koleksiyon" },
+      { "@type": "ListItem", position: 1, name: "Anasayfa", item: "https://www.obrnhomen.com" },
+      { "@type": "ListItem", position: 2, name: "Koleksiyon", item: "https://www.obrnhomen.com/koleksiyon" },
       { "@type": "ListItem", position: 3, name: page.name, item: url },
     ],
   };
@@ -90,7 +90,7 @@ export default async function KategoriPage({ params }: { params: Promise<{ kateg
     itemListElement: page.products.slice(0, 30).map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `https://obrnhomen.com/products/${p.slug}`,
+      url: `https://www.obrnhomen.com/products/${p.slug}`,
       name: p.name,
     })),
   };

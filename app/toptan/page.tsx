@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Toptan Sipariş | OBRNHOMEN",
     description: "Ürünleri seçin, adetleri yazın, WhatsApp'tan toptan fiyat alın.",
-    url: "https://obrnhomen.com/toptan",
+    url: "https://www.obrnhomen.com/toptan",
   },
-  alternates: { canonical: "https://obrnhomen.com/toptan" },
+  alternates: { canonical: "https://www.obrnhomen.com/toptan" },
 };
 
 export default function ToptanPage() {

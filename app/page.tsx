@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
     description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
-    url: "https://obrnhomen.com",
+    url: "https://www.obrnhomen.com",
     type: "website",
   },
   twitter: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "OBRNHOMEN | El İşi Tesbih, Seccade & Hac Umre Hediyeliği",
     description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
   },
-  alternates: { canonical: "https://obrnhomen.com", languages: { "tr-TR": "https://obrnhomen.com", en: "https://obrnhomen.com/en" } },
+  alternates: { canonical: "https://www.obrnhomen.com", languages: { "tr-TR": "https://www.obrnhomen.com", en: "https://www.obrnhomen.com/en" } },
 };
 
 const jsonLd = [
@@ -34,10 +34,10 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "OBRNHOMEN",
-    url: "https://obrnhomen.com",
+    url: "https://www.obrnhomen.com",
     potentialAction: {
       "@type": "SearchAction",
-      target: { "@type": "EntryPoint", urlTemplate: "https://obrnhomen.com/koleksiyon?q={search_term_string}" },
+      target: { "@type": "EntryPoint", urlTemplate: "https://www.obrnhomen.com/koleksiyon?q={search_term_string}" },
       "query-input": "required name=search_term_string",
     },
   },
@@ -45,9 +45,9 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "OBRNHOMEN",
-    url: "https://obrnhomen.com",
-    logo: "https://obrnhomen.com/icons/icon.svg",
-    image: "https://obrnhomen.com/icons/icon.svg",
+    url: "https://www.obrnhomen.com",
+    logo: "https://www.obrnhomen.com/icons/icon.svg",
+    image: "https://www.obrnhomen.com/icons/icon.svg",
     description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
     telephone: "+905316893849",
     email: "merhaba@obrnhomen.com",
@@ -72,8 +72,8 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "Store",
     name: "OBRNHOMEN",
-    url: "https://obrnhomen.com",
-    logo: "https://obrnhomen.com/icons/icon.svg",
+    url: "https://www.obrnhomen.com",
+    logo: "https://www.obrnhomen.com/icons/icon.svg",
     description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
     contactPoint: {
       "@type": "ContactPoint",

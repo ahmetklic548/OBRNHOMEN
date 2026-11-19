@@ -666,7 +666,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://obrnhomen.com/blog/${slug}`,
+      url: `https://www.obrnhomen.com/blog/${slug}`,
       type: "article",
       publishedTime: post.date,
       authors: ["OBRNHOMEN"],
@@ -676,7 +676,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: post.title,
       description: post.excerpt,
     },
-    alternates: { canonical: `https://obrnhomen.com/blog/${slug}` },
+    alternates: { canonical: `https://www.obrnhomen.com/blog/${slug}` },
   };
 }
 
@@ -706,13 +706,13 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     description: post.excerpt,
     datePublished: post.date,
     dateModified: post.date,
-    author: { "@type": "Organization", name: "OBRNHOMEN", url: "https://obrnhomen.com" },
+    author: { "@type": "Organization", name: "OBRNHOMEN", url: "https://www.obrnhomen.com" },
     publisher: {
       "@type": "Organization",
       name: "OBRNHOMEN",
-      logo: { "@type": "ImageObject", url: "https://obrnhomen.com/icons/icon.svg" },
+      logo: { "@type": "ImageObject", url: "https://www.obrnhomen.com/icons/icon.svg" },
     },
-    mainEntityOfPage: { "@type": "WebPage", "@id": `https://obrnhomen.com/blog/${slug}` },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `https://www.obrnhomen.com/blog/${slug}` },
   };
 
   return (

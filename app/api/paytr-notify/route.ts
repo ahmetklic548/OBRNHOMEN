@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
           }
 
           if (info?.phone) {
-            await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://obrnhomen.com"}/api/send-sms`, {
+            await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.obrnhomen.com"}/api/send-sms`, {
               method: "POST",
               headers: { "Content-Type": "application/json", "x-ic-anahtar": smsIcAnahtar() },
               body: JSON.stringify({

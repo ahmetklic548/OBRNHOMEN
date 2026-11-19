@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Koleksiyon | OBRNHOMEN",
     description: "El işçiliğiyle üretilmiş tesbih, seccade ve hediyelik ürünler.",
-    url: "https://obrnhomen.com/koleksiyon",
+    url: "https://www.obrnhomen.com/koleksiyon",
   },
-  alternates: { canonical: "https://obrnhomen.com/koleksiyon" },
+  alternates: { canonical: "https://www.obrnhomen.com/koleksiyon" },
 };
 
 export default function KoleksiyonPage() {

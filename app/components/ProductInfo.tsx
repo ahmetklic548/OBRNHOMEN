@@ -109,7 +109,7 @@ export default function ProductInfo({ product }: { product: Product }) {
   }, [product.slug, product.name, product.price, product.images, product.category]);
 
   const handleShare = async () => {
-    const url = `https://obrnhomen.com/products/${product.slug}`;
+    const url = `https://www.obrnhomen.com/products/${product.slug}`;
     if (navigator.share) {
       await navigator.share({ title: product.name, url });
     } else {

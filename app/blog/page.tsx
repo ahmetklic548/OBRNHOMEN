@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Blog & Rehber | OBRNHOMEN",
     description: "Hac, umre, mevlüt ve İslami hediyelik ürünleri hakkında rehber içerikler.",
-    url: "https://obrnhomen.com/blog",
+    url: "https://www.obrnhomen.com/blog",
     type: "website",
   },
   twitter: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "Blog & Rehber | OBRNHOMEN",
     description: "Hac, umre, mevlüt ve İslami hediyelik ürünleri hakkında rehber içerikler.",
   },
-  alternates: { canonical: "https://obrnhomen.com/blog" },
+  alternates: { canonical: "https://www.obrnhomen.com/blog" },
 };
 
 const posts = [

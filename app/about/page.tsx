@@ -7,23 +7,23 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Hakkımızda | OBRNHOMEN",
     description: "El sanatlarından ilham, modern minimalist estetikle buluşan özel hediyelik koleksiyonları.",
-    url: "https://obrnhomen.com/about",
+    url: "https://www.obrnhomen.com/about",
     type: "website",
   },
-  alternates: { canonical: "https://obrnhomen.com/about" },
+  alternates: { canonical: "https://www.obrnhomen.com/about" },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "Hakkımızda — OBRNHOMEN",
-  url: "https://obrnhomen.com/about",
+  url: "https://www.obrnhomen.com/about",
   description: "OBRNHOMEN, hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler sunan Türk markasıdır.",
   publisher: {
     "@type": "Organization",
     name: "OBRNHOMEN",
-    url: "https://obrnhomen.com",
-    logo: "https://obrnhomen.com/icons/icon.svg",
+    url: "https://www.obrnhomen.com",
+    logo: "https://www.obrnhomen.com/icons/icon.svg",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+905316893849",

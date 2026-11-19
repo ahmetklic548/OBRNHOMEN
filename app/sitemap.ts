@@ -3,7 +3,7 @@ import { CATEGORIES } from "@/lib/categories";
 import type { MetadataRoute } from "next";
 import { LANDINGS, landingProducts } from "@/lib/seoContent";
 
-const BASE_URL = "https://obrnhomen.com";
+const BASE_URL = "https://www.obrnhomen.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const productUrls = getAllProducts().map(({ slug }) => ({

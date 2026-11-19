@@ -7,7 +7,7 @@ import PrintButton from "./PrintButton";
 export const metadata: Metadata = {
   title: "Toptan Ürün Kataloğu | OBRNHOMEN",
   description: "Hac/umre kafileleri, mevlüt, cami/dernek ve mağazalar için ürün kodlu toptan kataloğu. Fiyat için WhatsApp'tan teklif alın.",
-  alternates: { canonical: "https://obrnhomen.com/toptan/katalog" },
+  alternates: { canonical: "https://www.obrnhomen.com/toptan/katalog" },
 };
 
 /**

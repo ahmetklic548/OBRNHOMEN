@@ -25,7 +25,7 @@ export async function generateMetadata({
 
   const title = productSeoTitle(product);
   const description = productSeoDescription(product);
-  const url = `https://obrnhomen.com/products/${product.slug}`;
+  const url = `https://www.obrnhomen.com/products/${product.slug}`;
 
   return {
     title,
@@ -79,7 +79,7 @@ export default async function ProductPage({
       brand: { "@type": "Brand", name: product.brand },
       offers: {
         "@type": "Offer",
-        url: `https://obrnhomen.com/products/${product.slug}`,
+        url: `https://www.obrnhomen.com/products/${product.slug}`,
         priceCurrency: "TRY",
         price: salePrice(product.price).toFixed(2),
         availability: product.inStock
@@ -92,10 +92,10 @@ export default async function ProductPage({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Anasayfa", item: "https://obrnhomen.com" },
-        { "@type": "ListItem", position: 2, name: "Koleksiyon", item: "https://obrnhomen.com/koleksiyon" },
-        { "@type": "ListItem", position: 3, name: product.category, item: `https://obrnhomen.com${categoryHref(product.category)}` },
-        { "@type": "ListItem", position: 4, name: product.name, item: `https://obrnhomen.com/products/${product.slug}` },
+        { "@type": "ListItem", position: 1, name: "Anasayfa", item: "https://www.obrnhomen.com" },
+        { "@type": "ListItem", position: 2, name: "Koleksiyon", item: "https://www.obrnhomen.com/koleksiyon" },
+        { "@type": "ListItem", position: 3, name: product.category, item: `https://www.obrnhomen.com${categoryHref(product.category)}` },
+        { "@type": "ListItem", position: 4, name: product.name, item: `https://www.obrnhomen.com/products/${product.slug}` },
       ],
     },
   ];

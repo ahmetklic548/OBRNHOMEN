@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Güvenli Ödeme Yöntemleri | OBRNHOMEN",
     description: "256-bit SSL korumalı ödeme. Kredi kartı, EFT ve kapıda ödeme seçenekleri.",
-    url: "https://obrnhomen.com/payment",
+    url: "https://www.obrnhomen.com/payment",
     type: "website",
   },
-  alternates: { canonical: "https://obrnhomen.com/payment" },
+  alternates: { canonical: "https://www.obrnhomen.com/payment" },
 };
 
 const sections = [

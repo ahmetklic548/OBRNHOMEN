@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
             <p style="font-size: 13px; color: #c9a84c; letter-spacing: 0.15em; margin-bottom: 32px;">
               İlk siparişinizde %10 indirim: <strong>HOSGELDIN10</strong>
             </p>
-            <a href="https://obrnhomen.com/koleksiyon" style="display: inline-block; padding: 14px 32px; background: #c9a84c; color: #1D1D1F; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;">
+            <a href="https://www.obrnhomen.com/koleksiyon" style="display: inline-block; padding: 14px 32px; background: #c9a84c; color: #1D1D1F; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;">
               Koleksiyonu Gör
             </a>
             <p style="font-size: 11px; color: #555; margin-top: 40px;">

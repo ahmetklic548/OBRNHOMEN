@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin", "/checkout", "/hesap", "/odeme", "/api/"],
     },
-    sitemap: "https://obrnhomen.com/sitemap.xml",
+    sitemap: "https://www.obrnhomen.com/sitemap.xml",
   };
 }

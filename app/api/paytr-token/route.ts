@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     const merchant_id   = process.env.PAYTR_MERCHANT_ID!;
     const merchant_key  = process.env.PAYTR_MERCHANT_KEY!;
     const merchant_salt = process.env.PAYTR_MERCHANT_SALT!;
-    const site_url      = process.env.NEXT_PUBLIC_SITE_URL ?? "https://obrnhomen.com";
+    const site_url      = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.obrnhomen.com";
 
     if (!merchant_id || !merchant_key || !merchant_salt) {
       return NextResponse.json({ error: "PayTR yapılandırması eksik" }, { status: 500 });

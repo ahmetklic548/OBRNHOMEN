@@ -7,7 +7,7 @@ import { WHATSAPP_URL, CONTACT_EMAIL, STORE_ADDRESS } from "@/lib/storeNav";
 
 // Yurt dışı müşteriler için İngilizce vitrin. Kargo firması/ücreti henüz sabit değil:
 // fiyat ve gönderim ücreti WhatsApp'tan sipariş bazında veriliyor (yanlış vaat yok).
-const URL = "https://obrnhomen.com/en";
+const URL = "https://www.obrnhomen.com/en";
 
 export const metadata: Metadata = {
   title: { absolute: "Islamic Gifts from Istanbul | Prayer Rugs, Tasbih & Hajj Umrah Gift Sets – OBRNHOMEN" },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "prayer beads turkey", "hajj umrah gift sets", "umrah gifts wholesale", "ihram towel", "miswak wholesale",
     "quran turkey", "islamic gifts wholesale istanbul",
   ],
-  alternates: { canonical: URL, languages: { "tr-TR": "https://obrnhomen.com", en: URL } },
+  alternates: { canonical: URL, languages: { "tr-TR": "https://www.obrnhomen.com", en: URL } },
   openGraph: {
     title: "Islamic Gifts from Istanbul – OBRNHOMEN",
     description: "Prayer rugs, tasbih, Quran and Hajj & Umrah gift sets. Retail & wholesale, shipped worldwide.",
