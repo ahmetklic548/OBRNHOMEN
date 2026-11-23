@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { collection, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { qtyText } from "@/lib/pack";
 import { toplamaListesi, paketFisleri, hediyeKartlari, koliBilgiKartlari, kartIsmiNottan, type HazirlikListe } from "@/lib/hazirlikCikti";
@@ -67,6 +67,21 @@ export default function AdminSiparisler() {
       setHata("Güncellenemedi: " + (e as Error).message);
     }
   };
+  const sil = async () => {
+    const ids = secilenler.map((o) => o.orderId || o.id).join(", ");
+    if (!window.confirm(`${secilenler.length} sipariş KALICI olarak silinecek:
+${ids}
+
+Sadece test/hatalı kayıtlar için kullanın. Emin misiniz?`)) return;
+    setHata("");
+    try {
+      await Promise.all(secilenler.map((o) => deleteDoc(doc(db!, "siparisler", o.id))));
+      setOrders((os) => os.filter((o) => !secili[o.id]));
+      setSecili({});
+    } catch (e) {
+      setHata("Silinemedi: " + (e as Error).message);
+    }
+  };
   const sbtn = "px-3 py-1.5 text-[12.5px] font-medium border bg-white";
 
   return (
@@ -88,6 +103,7 @@ export default function AdminSiparisler() {
         <button disabled={!secilenler.length} onClick={() => koliBilgiKartlari(secilenler.map(hazirlik))} className={sbtn + " disabled:opacity-40"}>Koli bilgi kartları</button>
         <button disabled={!secilenler.length} onClick={() => teslimEt(true)} className={sbtn + " disabled:opacity-40"} style={{ color: "#16a34a" }}>Teslim edildi ✓</button>
         <button disabled={!secilenler.length} onClick={() => teslimEt(false)} className={sbtn + " disabled:opacity-40"}>Teslimi geri al</button>
+        <button disabled={!secilenler.length} onClick={sil} className={sbtn + " disabled:opacity-40"} style={{ color: "#dc2626" }}>Sil</button>
       </div>
       {hata && <p className="text-sm mb-3" style={{ color: "#dc2626" }}>{hata}</p>}
 
