@@ -6,3 +6,5 @@ hafiza/
 scripts/classify.mjs
 scripts/sync-trendyol.mjs
 .next-old-*
+graphify-out/
+.claude/

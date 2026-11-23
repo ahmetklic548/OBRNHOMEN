@@ -52,3 +52,4 @@ hafıza/
 .vercel
 .env*
 .next-old-*
+graphify-out/
