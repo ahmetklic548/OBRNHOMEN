@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Lora } from "next/font/google";
 import Link from "next/link";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { CartProvider } from "@/app/components/CartContext";
 import { AuthProvider } from "@/app/components/AuthProvider";
 import { WishlistProvider } from "@/app/components/WishlistContext";
@@ -13,7 +12,8 @@ import LiveChatWidget from "@/app/components/LiveChatWidget";
 import NewsletterPopup from "@/app/components/NewsletterPopup";
 import ScrollToTop from "@/app/components/ScrollToTop";
 import RefCapture from "@/app/components/RefCapture";
-import MetaPixel from "@/app/components/MetaPixel";
+import CookieConsent from "@/app/components/CookieConsent";
+import { LEGAL_LINKS } from "@/lib/legal";
 import { CATEGORY_LINKS, UTILITY_LINKS, WHATSAPP_URL, INSTAGRAM_URL, STORE_ADDRESS, CONTACT_EMAIL } from "@/lib/storeNav";
 import "./globals.css";
 
@@ -155,6 +155,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="border-t border-stone-200">
                 <div className="mx-auto flex max-w-[1500px] flex-col items-center justify-between gap-2 px-4 py-5 text-[12px] text-stone-500 md:flex-row md:px-6">
                   <span>© {new Date().getFullYear()} OBRNHOMEN. Tüm hakları saklıdır.</span>
+                  <nav aria-label="Yasal" className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+                    {LEGAL_LINKS.map(({ href, label }) => (
+                      <Link key={href} href={href} className="hover:text-[#b8902e] hover:underline">{label}</Link>
+                    ))}
+                  </nav>
                   <span>Güvenli ödeme · PayTR</span>
                 </div>
               </div>
@@ -171,8 +176,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </WholesaleListProvider>
           </WishlistProvider>
         </CartProvider>
-        <GoogleAnalytics gaId="G-EZ3ZCTGL48" />
-        <MetaPixel />
+        <CookieConsent />
       </body>
     </html>
   );

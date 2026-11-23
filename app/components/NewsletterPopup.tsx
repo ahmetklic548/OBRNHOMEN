@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { db } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import { readConsent } from "@/app/components/CookieConsent";
+import { CONSENT_EVENT } from "@/lib/legal";
 
 export default function NewsletterPopup() {
   const [visible, setVisible] = useState(false);
@@ -18,8 +20,18 @@ export default function NewsletterPopup() {
 
   useEffect(() => {
     if (blocked || sessionStorage.getItem("nl_seen")) return;
-    const t = setTimeout(() => setVisible(true), 10000);
-    return () => clearTimeout(t);
+    // Çerez bandıyla üst üste binmesin: tercih yapılınca 10 sn say
+    let t: ReturnType<typeof setTimeout> | undefined;
+    const start = () => {
+      if (t || !readConsent()) return;
+      t = setTimeout(() => setVisible(true), 10000);
+    };
+    start();
+    window.addEventListener(CONSENT_EVENT, start);
+    return () => {
+      window.removeEventListener(CONSENT_EVENT, start);
+      if (t) clearTimeout(t);
+    };
   }, [blocked]);
 
   const close = () => {
@@ -135,7 +147,7 @@ export default function NewsletterPopup() {
                   </form>
 
                   <p className="text-[9px] mt-3 text-center" style={{ color: "#bbb" }}>
-                    İstediğin zaman abonelikten çıkabilirsin.
+                    Kaydolarak kampanya e-postası almayı kabul edersin; istediğin zaman çıkabilirsin. <a href="/kvkk" className="underline">KVKK</a>
                   </p>
                 </>
               ) : (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, startTransition } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/app/components/CartContext";
 import { useAuth } from "@/app/components/AuthProvider";
@@ -40,6 +41,7 @@ export default function CheckoutPage() {
   const [giftWrap, setGiftWrap] = useState(false);
   const [giftNote, setGiftNote] = useState("");
   const [sending, setSending] = useState(false);
+  const [agreed, setAgreed] = useState(false);
 
   const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(total, couponApplied ? couponRate : 0, payMethod === "kapida", indirimsizTutar(items));
   // Ara toplam zaten kademeli; bilgi olarak kademesiz farkı göster
@@ -131,6 +133,7 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!agreed) return; // sözleşme onayı zorunlu (Mesafeli Sözleşmeler Yön.)
     setError("");
     setSending(true);
     const payload = {
@@ -347,9 +350,28 @@ export default function CheckoutPage() {
                 </div>
               </fieldset>
 
+              {/* Ön bilgilendirme + mesafeli satış onayı — yasal zorunluluk */}
+              <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-stone-200 bg-white p-4 text-[14px] leading-relaxed text-stone-700">
+                <input
+                  type="checkbox"
+                  required
+                  checked={agreed}
+                  onChange={e => setAgreed(e.target.checked)}
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 accent-black"
+                />
+                <span>
+                  <Link href="/on-bilgilendirme" target="_blank" className="font-medium underline underline-offset-2">Ön Bilgilendirme Formu</Link>&apos;nu ve{" "}
+                  <Link href="/mesafeli-satis-sozlesmesi" target="_blank" className="font-medium underline underline-offset-2">Mesafeli Satış Sözleşmesi</Link>&apos;ni okudum, onaylıyorum.
+                  <span className="mt-1 block text-[13px] text-stone-500">
+                    Kişisel verileriniz siparişinizi teslim etmek için{" "}
+                    <Link href="/kvkk" target="_blank" className="underline underline-offset-2">KVKK Aydınlatma Metni</Link>&apos;ne uygun işlenir.
+                  </span>
+                </span>
+              </label>
+
               <button
                 type="submit"
-                disabled={sending}
+                disabled={sending || !agreed}
                 className="w-full rounded-md py-4 text-[16px] font-semibold text-white transition-opacity hover:opacity-85 disabled:opacity-60"
                 style={{ background: "#0a0a0a" }}
               >
