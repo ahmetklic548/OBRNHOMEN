@@ -28,7 +28,7 @@ export default function Page() {
               <Items>{[
                 <>Unvan: {fill(SELLER.unvan, "Satıcı unvanı")} ({SELLER.marka})</>,
                 <>Adres: {SELLER.adres}</>,
-                <>Vergi dairesi / no: {fill(SELLER.vergiDairesi, "Vergi dairesi")} / {fill(SELLER.vergiNo, "Vergi no")}</>,
+                ...(SELLER.vergiNo ? [<>Vergi dairesi / no: {fill(SELLER.vergiDairesi, "Vergi dairesi")} / {SELLER.vergiNo}</>] : []),
                 ...(SELLER.mersisNo ? [<>MERSİS no: {SELLER.mersisNo}</>] : []),
                 <>Telefon / WhatsApp: {SELLER.telefon}</>,
                 <>E-posta: {SELLER.eposta}</>,

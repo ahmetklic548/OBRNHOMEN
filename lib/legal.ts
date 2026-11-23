@@ -7,8 +7,8 @@ import { SHIPPING_FEE, FREE_SHIPPING_OVER, COD_FEE } from "@/lib/pricing";
  * Adres: Trendyol'daki fatura adresi (Fatih). Arnavutköy adresi (ev) hiçbir yerde kullanılmaz.
  */
 export const SELLER = {
-  unvan: "", // örn. "Ahmet Kılıç" (şahıs şirketi) veya "OBRNHOMEN Tic. Ltd. Şti."
-  vergiDairesi: "",
+  unvan: "Diyar Kılıç", // şahıs şirketi (kullanıcı 2026-11-23)
+  vergiDairesi: "", // yönetmelikte zorunlu değil; boşsa sayfalarda satır gizlenir
   vergiNo: "", // VKN veya TCKN
   mersisNo: "", // şahıs şirketinde yoksa boş bırak
   marka: "OBRNHOMEN",
