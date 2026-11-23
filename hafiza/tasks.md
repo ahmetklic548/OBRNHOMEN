@@ -72,7 +72,7 @@
 - [x] 2026-10-28: Merchant Center hesabı açıldı (5891264654), iade=ücretsiz (iade kodu), feed bağlandı: 644 ürün, sorun yok. Site iade sayfası ücretsiz iade olarak güncellendi
 - [ ] Merchant Center ürün onaylarını 2-5 gün sonra kontrol et; sonra Meta katalog
 - [x] 2026-10-28: Yasin+tesbih setleri "jelatin" → "tül kese" (OBR-HED-0002..0010, 9 ürün). lib/productCuration.ts TEXT_FIXES — sync-trendyol ezse de kalıcı; slug değişmedi. Canlı + Merchant feed doğrulandı
-- [ ] Trendyol panelinde de bu 9 ilanın adını "Tül Kese" olarak düzelt (kaynak orası)
+- [x] 2026-11-19 KARAR: Trendyol ilan adları DEĞİŞMEYECEK (jelatin kalsın, kullanıcı istemedi) — sadece sitede tül kese
 - [ ] OBR-HED-0003..0010 fotoğrafları şeffaf jelatin poşet gösteriyor — tül kese fotoğrafı çekilince değiştir
 
 ## 2026-11-03 — Ortak (kafile/influencer) kod sistemi
@@ -92,7 +92,7 @@
 - [x] 2026-11-03: Ortak kod + sipariş e-postaları CANLIDA. Resend obrnhomen.com doğrulandı, RESEND_API_KEY Vercel'de
 - [x] KRİTİK düzeltme: sunucu Firestore yazmaları (order-cod, paytr-token, paytr-notify) gRPC'de sonsuza askıda kalıyordu → lib/firestoreRest.ts (REST + 7 sn zaman aşımı). Kapıda ödeme denemesi 2,4 sn, iki e-posta teslim edildi
 - [ ] Kartlı ödeme uçtan uca ilk gerçek siparişte kontrol (aynı REST yolu)
-- [ ] Admin'de TEST siparişi KO1793723591047 var (silinebilir)
+- [x] 2026-11-19 TEST siparişi KO1793723591047 Firestore'da yok (önceden silinmiş), kontrol edildi
 
 ## 2026-11-11
 - [x] Meta katalog kuruldu (644 ürün), Merchant Center kontrol (647/648 onaylı), Gmail merhaba@ gönderim, main merge+push
@@ -107,3 +107,34 @@
 ## 2026-11-12
 - [x] Kraft poşet tüm indirimlerin dışında: sabit 25 ₺ (site %5, toptan kademe, kupon/ortak kodu, kafile -%20, komisyon hariç) — lib/pricing.ts NO_DISCOUNT_SLUGS ([[GUNCEL_DURUM]])
 - [x] kafile-materyal.js: kartta umreci adı (4. parametre), örnek materyaller yeniden üretildi
+- [x] 2026-11-16 Yol 1 ödeme kuralı: kalan mal hazır olunca, koli ödemeden sonra çıkar; kapora hazırlık başlayınca iadesiz (kafileToptan/admin/teklif PDF/Rehber/Teklif Olustur.html) — commit eef9d98, DEPLOY KULLANICIDA
+- [x] 2026-11-16 Düzeltme mesajı 12 kafileye + ilk mesaj 14 yeni kafileye gönderildi; Mabsut katalog istedi
+- [ ] Yol 1 testi kafile tarafı (özet → onay → çıktılar → teslim), sonra Yol 2 testi, sonra test temizliği
+
+- [x] 2026-11-16 Meta Pixel 1841355110246616 (Obrnhomen portföyü) siteye eklendi, canlıda. Not: content_ids = slug; Meta kataloğu g:id = ürün id → dinamik reklam eşleşmesi için ileride id gönderilmeli. [[GUNCEL_DURUM]]
+- [x] 2026-11-16 Kafileye umreci listesi (PDF: kim ne istedi, umreciden alınacak, ödedi kutusu) + Yol 1 koli kartında OBRNHOMEN yerine kafile adı/no — deploy edildi
+- [x] 2026-11-16 Yol 1 testi BİTTİ: liste → özet → onay → toplama/fiş/kart/koli → hazırlanıyor → teslim ✓
+- [ ] Yol 2 testi (TESTKOD), sonra test temizliği (TESTTOPTAN + 3 liste)
+- [x] 2026-11-16 SEO 1. aşama canlı (commit sonrası prod): data/seo-content.json (8 landing /koleksiyon/<slug> + 10 kategori metni/SSS), lib/seo.ts (ürün başlık/açıklama), FAQPage+ItemList şeması, canonical. GSC baz: desensiz seccade 169 gösterim/8,6 sıra, umre seti 148/7,1, hac umre hediyelik set 118/5,2. 2-3 hafta sonra karşılaştır. [[GUNCEL_DURUM]]
+
+- [x] 2026-11-16: Checkout hediye paketi seçeneği şimdilik kaldırıldı (`{false && ...}`, geri açmak için true) — canlıda
+- [x] 2026-11-16: Checkout mobilde sipariş özeti + "İndirim kodunuz var mı?" kutusu üste alındı — canlıda
+- [x] 2026-11-16: Taksit en fazla 6 (max_installment=6), /payment + checkout metinleri düzeltildi — canlıda. Juzdan/Tosla kalıyor (kullanıcı kararı). PayTR panelinde vade farkı ayarı (müşteri mi biz mi) henüz doğrulanmadı
+- [x] 2026-11-16 Yol 2 testi BİTTİ (TESTKOD: %10 indirim poşet hariç, komisyon 291 ₺ doğru, teslim → hak edildi ✓). Test temizliği yapıldı: 5 test sipariş/liste + TESTKOD + TESTTOPTAN silindi.
+- [x] 2026-11-16 GÜVENLİK (8be9fab, DEPLOY KULLANICIDA): NEXT_PUBLIC_ADMIN_SECRET herkese açık JS'teydi → admin API'leri (trendyol, social-content, deploy) artık Firebase ID token ile (lib/adminAuth.ts); send-sms sadece sunucu içi (lib/icAnahtar.ts); kafile-liste/order-cod/paytr-token/newsletter/kupon IP sınırı (lib/rateLimit.ts); kart sipariş no rastgele ekli.
+- [x] 2026-11-17 Firestore kuralları yayınlandı + test edildi (geçersiz sipariş 403, girişsiz değiştir/sil/oku 403, geçerli sipariş 200, admin okur). Eski kuralda siparisler herkese açık yazılabilir/silinebilirdi; siparisTakip okuması admin'e kapalıydı → kart siparişlerinde müşteri bilgisi okunamıyor olabilirdi.
+- [ ] Vercel env: NEXT_PUBLIC_ADMIN_SECRET ve ADMIN_SECRET artık kullanılmıyor → silinebilir.
+- [x] 2026-11-17 Yurt dışı 1. adım: /en İngilizce vitrin (fiyat/kargo WhatsApp teklifiyle), hreflang tr/en, sitemap, footer "English · International Orders". GSC: 8 landing için dizin isteği gönderildi (16 Kas). Dizinde 162, keşfedildi-taranmadı 789. Bekleyen: yurt dışı kargo firması kararı. [[GUNCEL_DURUM]]
+- [x] 2026-11-17: PayTR Bildirim URL "https://obrnhomen.com/" idi (yanlış path + apex→www 307) → https://www.obrnhomen.com/api/paytr-notify yapıldı; 3 duran bildirim yeniden başlatıldı, hepsi OK aldı, askıda uyarısı kalktı. 08.08 başarılı ödeme OBR1786193203772 artık sonuçlanmalı (bakiye/aktarım kontrol et)
+- [x] 2026-11-17 19 Kasım hatırlatma metni + 20 kafile listesi + 17 kafile arama listesi/konuşması → Masaüstü/OBRNHOMEN Kafile ve Influencer/19 Kasim Hatirlatma ve Arama Listesi.txt
+- [x] 2026-11-17 Kafile paneli /kafile-panel?k=ANAHTAR (b04a384, kural yayında, DEPLOY BEKLİYOR): Ortak Kodları → "Panel linki oluştur" → kafileye gönder. Panel admin Ortak Kodları açıldıkça güncellenir.
+- HACUMRE10 komisyon %10 kalsın (kullanıcı kararı 17.11).
+- [x] 2026-11-17 Kafile paneli CANLIDA (deploy READY; ilk build Google Fonts hatasıyla düştü, tekrar deneyince geçti). HACUMRE10 panel linki oluşturuldu. Bülten popup'ı panelde kapalı.
+
+## 2026-11-23 — Yasal sayfalar + çerez onayı (7520eeb, 870b01b — pushlandı, CANLIDA DEĞİL)
+- [x] /mesafeli-satis-sozlesmesi, /on-bilgilendirme, /kvkk, /gizlilik ([[LegalPage]], satıcı bilgisi tek yerde lib/legal.ts SELLER)
+- [x] [[CookieConsent]]: GA4 + Meta Pixel yalnız "Kabul et" sonrası; bülten pop-up çerez tercihinden sonra; footer yasal linkler; sitemap
+- [x] Checkout: ön bilgilendirme + mesafeli satış onay kutusu zorunlu
+- [x] Admin Siparişler: seçili siparişi Sil (test kaydı KO1793723591047 için)
+- [ ] Şirket unvanı + vergi dairesi + vergi no → lib/legal.ts → build → deploy
+- [ ] RESEND_API_KEY geçersiz (11 karakter yer tutucu) → sipariş onay + bülten maili gitmiyor; RESEND_AUDIENCE_ID yok
