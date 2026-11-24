@@ -1,5 +1,5 @@
 rules_version = '2';
-// Firebase konsolunda yayınlı kuralların kopyası (2026-11-16). Değişiklik: konsol > Firestore > Rules.
+// Firebase konsolunda yayınlı kuralların kopyası (2026-11-24). Değişiklik: konsol > Firestore > Rules.
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -50,5 +50,7 @@ service cloud.firestore {
         && request.resource.data.status in ["success", "kapida-odeme", "yeni"];
       allow read, update, delete: if isAdmin();
     }
+    // Yurt disi toptan musteri + proforma: sadece admin (2026-11-24)
+    match /yurtdisi/{id} { allow read, write: if isAdmin(); }
   }
 }

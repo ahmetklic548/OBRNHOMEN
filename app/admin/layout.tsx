@@ -12,6 +12,7 @@ const ADMIN_LINKS = [
   { href: "/admin/siparisler", label: "Siparişler" },
   { href: "/admin/ortaklar", label: "Ortak Kodları" },
   { href: "/admin/kafile-toptan", label: "Kafile Toptan" },
+  { href: "/admin/yurtdisi", label: "Yurt Dışı" },
   { href: "/admin/gizlenen", label: "Gizlenen Ürünler" },
   { href: "/admin/benzer", label: "Benzer Ürünler" },
   { href: "/admin/trendyol", label: "Trendyol" },
