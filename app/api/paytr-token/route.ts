@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { sinirAsildi, COK_ISTEK } from "@/lib/rateLimit";
 import crypto from "crypto";
 import { setDocRest } from "@/lib/firestoreRest";
-import { computeOrder, readCustomer } from "@/lib/order";
+import { computeOrder, readCustomer, type ComputedOrder } from "@/lib/order";
+import { isAdmin } from "@/lib/adminAuth";
 
 export async function POST(req: NextRequest) {
   if (sinirAsildi(req, "paytr-token", 15, 10 * 60_000)) return NextResponse.json(COK_ISTEK, { status: 429 });
@@ -11,7 +12,14 @@ export async function POST(req: NextRequest) {
     const { name, email, phone, address, giftWrap, giftNote } = readCustomer(body);
 
     /* Fiyatlar sunucuda ürün verisinden (lib/order.ts) — istemci fiyatına güvenilmez */
-    const order = await computeOrder(body.items, body.coupon);
+    /* Admin ödeme testi (/admin/odeme-testi): sadece admin oturumuyla 1 ₺, kargosuz */
+    let order: ComputedOrder | { error: string };
+    if (body.adminTest === true) {
+      if (!(await isAdmin(req))) return NextResponse.json({ error: "Yetkisiz" }, { status: 401 });
+      order = { lines: [{ slug: "odeme-testi", name: "ODEME TESTI (silinecek)", price: 1, qty: 1, tier: 0 }], subtotal: 1, coupon: null, discountRate: 0, discountAmount: 0, shipping: 0, codFee: 0, total: 1, ortak: null };
+    } else {
+      order = await computeOrder(body.items, body.coupon);
+    }
     if ("error" in order) return NextResponse.json({ error: order.error }, { status: 400 });
     const { lines: valid, coupon, discountRate, shipping, total, ortak } = order;
 
