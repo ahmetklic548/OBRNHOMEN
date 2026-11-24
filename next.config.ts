@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   devIndicators: false,
   turbopack: { root: __dirname },
+  // Toptan katalog PDF'leri herkese açık değil: sadece bu API e-posta eki olarak gönderir
+  outputFileTracingIncludes: { "/api/wholesale-lead": ["./data/katalog/**/*"] },
   // Eski (ad tabanlı) kategori adresleri → yeni slug adresleri
   async redirects() {
     const old: [string, string][] = [

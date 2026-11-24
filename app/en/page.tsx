@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "prayer beads turkey", "hajj umrah gift sets", "umrah gifts wholesale", "ihram towel", "miswak wholesale",
     "quran turkey", "islamic gifts wholesale istanbul",
   ],
-  alternates: { canonical: URL, languages: { "tr-TR": "https://www.obrnhomen.com", en: URL } },
+  alternates: { canonical: URL, languages: { "tr-TR": "https://www.obrnhomen.com", en: URL, fr: "https://www.obrnhomen.com/fr" } },
   openGraph: {
     title: "Islamic Gifts from Istanbul – OBRNHOMEN",
     description: "Prayer rugs, tasbih, Quran and Hajj & Umrah gift sets. Retail & wholesale, shipped worldwide.",
@@ -103,6 +103,9 @@ export default function EnglishPage() {
           <a href="#categories" className="rounded-full border border-stone-300 bg-white px-7 py-3 text-[15px] font-semibold text-stone-800 hover:border-stone-900">
             Browse products
           </a>
+          <Link href="/en/wholesale" className="rounded-full border border-stone-900 bg-stone-900 px-7 py-3 text-[15px] font-semibold text-white hover:opacity-85">
+            Wholesale catalogues →
+          </Link>
         </div>
         <p className="mt-3 text-[13px] text-stone-500">WhatsApp: +90 531 689 38 49 · {CONTACT_EMAIL}</p>
       </section>
