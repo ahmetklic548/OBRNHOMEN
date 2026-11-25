@@ -12,10 +12,10 @@ export const UTILITY_LINKS = [
   { href: "/fr", label: "Français · Grossiste" },
 ];
 
-export const WHATSAPP_URL = "https://wa.me/905316893849";
+export const WHATSAPP_URL = "https://wa.me/905319556830";
 /** Telefonla sipariş — yaşlı müşteriler formla uğraşmadan arasın */
-export const PHONE_DISPLAY = "0531 689 38 49";
-export const PHONE_HREF = "tel:+905316893849";
+export const PHONE_DISPLAY = "0531 955 68 30";
+export const PHONE_HREF = "tel:+905319556830";
 export const INSTAGRAM_URL = "https://www.instagram.com/obrnhomen";
 /** Müşteri e-postası — Namecheap yönlendirmesiyle obrnhomen.destek@gmail.com'a gider */
 export const CONTACT_EMAIL = "merhaba@obrnhomen.com";

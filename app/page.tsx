@@ -49,7 +49,7 @@ const jsonLd = [
     logo: "https://www.obrnhomen.com/icons/icon.svg",
     image: "https://www.obrnhomen.com/icons/icon.svg",
     description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
-    telephone: "+905316893849",
+    telephone: "+905319556830",
     email: "merhaba@obrnhomen.com",
     priceRange: "₺₺",
     address: {
@@ -77,7 +77,7 @@ const jsonLd = [
     description: "Hac, umre, mevlüt ve düğün için el işçiliğiyle üretilmiş tesbih, seccade ve özel hediyelik setler.",
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+905316893849",
+      telephone: "+905319556830",
       email: "merhaba@obrnhomen.com",
       contactType: "customer service",
       availableLanguage: "Turkish",

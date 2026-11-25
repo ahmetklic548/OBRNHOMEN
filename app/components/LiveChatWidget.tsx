@@ -49,7 +49,7 @@ export default function LiveChatWidget() {
         id: Date.now() + 1,
         from: "bot",
         text: "Mesajınızı aldık! WhatsApp'tan hemen yanıtlayacağız.",
-        waLink: `https://wa.me/905316893849?text=${encoded}`,
+        waLink: `https://wa.me/905319556830?text=${encoded}`,
       };
       setMsgs(m => [...m, botReply]);
       setSending(false);

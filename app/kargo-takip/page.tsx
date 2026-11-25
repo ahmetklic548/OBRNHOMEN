@@ -110,7 +110,7 @@ export default function KargoTakipPage() {
             takip kodunuz WhatsApp veya e-posta ile iletilecektir.
           </p>
           <a
-            href="https://wa.me/905316893849"
+            href="https://wa.me/905319556830"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-4 text-[10px] tracking-[0.2em] uppercase transition-opacity hover:opacity-70"

@@ -62,7 +62,7 @@ const p1 = `<section class="page dark">
   </div>
   <div class="grid3" style="margin-top:12mm">${IMG.map((u) => `<img src="${u}" style="width:100%;height:58mm;object-fit:cover;object-position:top;border-radius:3mm">`).join("")}</div>
   <div style="position:absolute;left:18mm;right:18mm;bottom:14mm;border-top:1px solid #4d6a55;padding-top:4mm;display:flex;justify-content:space-between;font-size:9.5pt;color:#cfc6ad">
-    <span>obrnhomen.com</span><span>WhatsApp: 0531 689 38 49</span><span>merhaba@obrnhomen.com</span></div>
+    <span>obrnhomen.com</span><span>WhatsApp: 0531 955 68 30</span><span>merhaba@obrnhomen.com</span></div>
 </section>`;
 
 // ---------- Sayfa 2: Nasıl işler + kart ----------
@@ -159,7 +159,7 @@ const p4 = `<section class="page">
   </div>
   <div class="box" style="margin-top:4.5mm;border:1.5px solid #c9a24a;padding-top:4mm;padding-bottom:4mm;display:flex;justify-content:space-between;align-items:center;gap:6mm">
     <div><h2>10 dakikalık bir görüşme yeterli</h2><p style="color:#5d6a62">Size hangi yolun uyduğunu konuşalım; kodunuzu, kartınızı ve grup görselinizi aynı gün hazırlayalım. İsterseniz ofisinize gelelim, isterseniz Eminönü'deki dükkânımızda ağırlayalım.</p></div>
-    <div style="flex:none;text-align:right;font-size:10pt;line-height:1.7"><b>WhatsApp / Telefon</b><br>0531 689 38 49<br><b>E-posta</b><br>merhaba@obrnhomen.com<br><b>Seçim ekranı</b><br>obrnhomen.com/hediyelik-hazirla</div>
+    <div style="flex:none;text-align:right;font-size:10pt;line-height:1.7"><b>WhatsApp / Telefon</b><br>0531 955 68 30<br><b>E-posta</b><br>merhaba@obrnhomen.com<br><b>Seçim ekranı</b><br>obrnhomen.com/hediyelik-hazirla</div>
   </div>
   ${foot(4)}
 </section>`;

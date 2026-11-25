@@ -60,7 +60,7 @@ export default function EnglishPage() {
     url: URL,
     description: "Islamic gifts, prayer rugs, tasbih and Hajj & Umrah gift sets from Istanbul. Retail, wholesale and international shipping.",
     email: CONTACT_EMAIL,
-    telephone: "+905316893849",
+    telephone: "+905319556830",
     address: { "@type": "PostalAddress", streetAddress: STORE_ADDRESS.line1, addressLocality: "Fatih, Istanbul", addressCountry: "TR" },
     areaServed: "Worldwide",
   };
@@ -107,7 +107,7 @@ export default function EnglishPage() {
             Wholesale catalogues →
           </Link>
         </div>
-        <p className="mt-3 text-[13px] text-stone-500">WhatsApp: +90 531 689 38 49 · {CONTACT_EMAIL}</p>
+        <p className="mt-3 text-[13px] text-stone-500">WhatsApp: +90 531 955 68 30 · {CONTACT_EMAIL}</p>
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-12">

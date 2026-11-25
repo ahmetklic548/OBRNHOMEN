@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const GRAPH_API_VERSION = "v21.0";
-const WHATSAPP_NUMBER = "905316893849";
+const WHATSAPP_NUMBER = "905319556830";
 
 function buildSystemPrompt(): string {
   const categories = getAllCategories();

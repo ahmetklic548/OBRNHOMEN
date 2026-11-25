@@ -19,7 +19,7 @@ export const TOPTAN = {
   TEKLIF_GECERLILIK: 7,
 } as const;
 
-export const CONTACT_PHONE_TEXT = "0531 689 38 49";
+export const CONTACT_PHONE_TEXT = "0531 955 68 30";
 
 const tl = (n: number) => n.toLocaleString("tr-TR") + " ₺";
 

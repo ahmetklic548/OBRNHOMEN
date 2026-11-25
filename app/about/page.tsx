@@ -26,7 +26,7 @@ const jsonLd = {
     logo: "https://www.obrnhomen.com/icons/icon.svg",
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+905316893849",
+      telephone: "+905319556830",
       email: "merhaba@obrnhomen.com",
       contactType: "customer service",
       availableLanguage: "Turkish",

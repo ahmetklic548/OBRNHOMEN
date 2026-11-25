@@ -41,7 +41,7 @@ export default function PanelClient() {
     return (
       <main className="mx-auto max-w-xl px-4 py-20 text-center">
         <h1 className="font-serif text-[26px] text-stone-900">Panel bulunamadı</h1>
-        <p className="mt-2 text-[15px] text-stone-600">Linkin tamamını kopyaladığınızdan emin olun. Sorun devam ederse bize WhatsApp&apos;tan yazın: 0531 689 38 49</p>
+        <p className="mt-2 text-[15px] text-stone-600">Linkin tamamını kopyaladığınızdan emin olun. Sorun devam ederse bize WhatsApp&apos;tan yazın: 0531 955 68 30</p>
       </main>
     );
   }
@@ -138,7 +138,7 @@ export default function PanelClient() {
       <div className="mt-6 space-y-1 text-[12.5px] leading-relaxed text-stone-500">
         <p>Komisyon her ayın {ODEME_GUNU}&apos;inde, teslim edilmiş siparişler için ödenir. Bugüne kadar ödenen: <b>{tl(p.odenen ?? 0)}</b>.</p>
         <p>Umrecilerinizin adı, telefonu ve adresi gizlilik gereği burada gösterilmez.</p>
-        <p>Son güncelleme: {tarih(p.guncelleme)}. Sorunuz olursa WhatsApp: 0531 689 38 49</p>
+        <p>Son güncelleme: {tarih(p.guncelleme)}. Sorunuz olursa WhatsApp: 0531 955 68 30</p>
       </div>
     </main>
   );

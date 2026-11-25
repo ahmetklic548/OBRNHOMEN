@@ -70,7 +70,7 @@ export default function AddToCartButton({ slug, name, price, image, inStock, waT
 
       {/* Direkt WhatsApp */}
       <a
-        href={`https://wa.me/905316893849?text=${waText}`}
+        href={`https://wa.me/905319556830?text=${waText}`}
         target="_blank"
         rel="noopener noreferrer"
         className="block w-full py-4 bg-stone-900 text-white text-xs tracking-[0.2em] uppercase text-center hover:bg-stone-700 transition-colors duration-200"

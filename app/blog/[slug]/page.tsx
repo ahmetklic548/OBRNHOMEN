@@ -251,7 +251,7 @@ Sünneti yaşatmak isteyenler için misvak, mütevazı ama değerli bir Ramazan 
 - **Seccade + Namaz Örtüsü Seti**
 - **Tesbih + Kuran Seti**
 
-Toplu Ramazan hediyeliği için OBRNHOMEN olarak özel fiyat ve paketleme imkânı sunuyoruz. Detaylar için WhatsApp: +90 531 689 38 49
+Toplu Ramazan hediyeliği için OBRNHOMEN olarak özel fiyat ve paketleme imkânı sunuyoruz. Detaylar için WhatsApp: +90 531 955 68 30
     `,
     related: [
       { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
@@ -291,7 +291,7 @@ Toplu hediyelik genellikle şu durumlar için tercih edilir:
 **Adım 3:** 24 saat içinde özel toplu fiyat ve kargo koşullarınızı paylaşırız.
 **Adım 4:** Ödeme sonrası paketleme ve kargo takip numarası iletilir.
 
-50 adet ve üzeri siparişlerde **ücretsiz kargo** ve **özel fiyat** uygulanmaktadır. OBRNHOMEN WhatsApp: +90 531 689 38 49
+50 adet ve üzeri siparişlerde **ücretsiz kargo** ve **özel fiyat** uygulanmaktadır. OBRNHOMEN WhatsApp: +90 531 955 68 30
     `,
     related: [
       { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
@@ -332,7 +332,7 @@ Nişan organizasyonlarında genellikle daha küçük ve sembolik hediyeler terci
 - Misvak seti
 - Küçük tesbih + kese
 
-50 adet ve üzeri toplu siparişlerde özel paketleme ve fiyat avantajı sunulmaktadır. Detaylar için WhatsApp: +90 531 689 38 49
+50 adet ve üzeri toplu siparişlerde özel paketleme ve fiyat avantajı sunulmaktadır. Detaylar için WhatsApp: +90 531 955 68 30
     `,
     related: [
       { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
@@ -369,7 +369,7 @@ Tesbih, namaz ve zikir için kullanılan bir ibadet aracı olmasının yanı sı
 2. **Estetik:** Renk ve tasarım uyumu, setin bir bütün olarak değerini artırır.
 3. **Kutulama:** Özel bir kutu veya kese içinde sunulan set hediye olarak da idealdir.
 
-OBRNHOMEN koleksiyonunda özelleştirilebilir çeyizlik tesbih ve seccade setleri mevcuttur. İstenilen renk, boyut ve ambalaj kombinasyonları için WhatsApp: +90 531 689 38 49
+OBRNHOMEN koleksiyonunda özelleştirilebilir çeyizlik tesbih ve seccade setleri mevcuttur. İstenilen renk, boyut ve ambalaj kombinasyonları için WhatsApp: +90 531 955 68 30
     `,
     related: [
       { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
@@ -452,7 +452,7 @@ Kuran-ı Kerim, tefsirler ve İslami bilgi kitapları; hac, umre, mevlüt ve dü
 - **Gençler için:** Modern baskılı, Türkçe açıklamalı Kuran
 - **Yetişkinler için:** Büyük boy, deri ciltli klasik baskı
 
-OBRNHOMEN koleksiyonunda kaliteli din kitabı seçenekleri mevcuttur. Hediye paketleme için WhatsApp: +90 531 689 38 49
+OBRNHOMEN koleksiyonunda kaliteli din kitabı seçenekleri mevcuttur. Hediye paketleme için WhatsApp: +90 531 955 68 30
     `,
     related: [
       { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
@@ -487,7 +487,7 @@ Bayramlar, aile ve dostlarla bir araya gelme, sevinç paylaşma ve sevgi göster
 
 ## Toplu Bayram Hediyeliği
 
-Bayram ziyaretlerinizde misafir olduğunuz her eve ayrı hediye götürmek için toplu sipariş seçeneğini değerlendirebilirsiniz. OBRNHOMEN'de 10 adet ve üzeri siparişlerde özel fiyat uygulanmaktadır. Detaylar için WhatsApp: +90 531 689 38 49
+Bayram ziyaretlerinizde misafir olduğunuz her eve ayrı hediye götürmek için toplu sipariş seçeneğini değerlendirebilirsiniz. OBRNHOMEN'de 10 adet ve üzeri siparişlerde özel fiyat uygulanmaktadır. Detaylar için WhatsApp: +90 531 955 68 30
     `,
     related: [
       { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
@@ -525,7 +525,7 @@ Sünnet törenlerinde misafirlere dağıtılan hediyelikler genellikle şunlar o
 
 ## Kaç Adet Sipariş Verilmeli?
 
-Davetli sayısına göre hesaplama yapın ve %10 fazladan sipariş verin; son dakika davetliler için yedek bulundurmak önemlidir. OBRNHOMEN'de 50 adet ve üzeri siparişlerde ücretsiz kargo ve özel fiyat uygulanmaktadır. WhatsApp: +90 531 689 38 49
+Davetli sayısına göre hesaplama yapın ve %10 fazladan sipariş verin; son dakika davetliler için yedek bulundurmak önemlidir. OBRNHOMEN'de 50 adet ve üzeri siparişlerde ücretsiz kargo ve özel fiyat uygulanmaktadır. WhatsApp: +90 531 955 68 30
     `,
     related: [
       { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
@@ -562,7 +562,7 @@ Ziyarette bebeğe özel hediye götürmek isteyenler için:
 
 ## Kaç Kişilik Sipariş?
 
-Davetli sayısını belirleyin ve %15 fazladan sipariş verin. OBRNHOMEN'de bebek mevlüdü için özel renk ve ambalaj seçenekleri mevcuttur. WhatsApp: +90 531 689 38 49
+Davetli sayısını belirleyin ve %15 fazladan sipariş verin. OBRNHOMEN'de bebek mevlüdü için özel renk ve ambalaj seçenekleri mevcuttur. WhatsApp: +90 531 955 68 30
     `,
     related: [
       { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },
@@ -601,7 +601,7 @@ Bir yakınını kaybeden aileye yapılan taziye ziyareti, insani ve dini bir sor
 - Koyu veya pastel tonlar tercih edin
 - Mümkünse aile büyüğüne veya ev sahibine verin
 
-OBRNHOMEN'de taziye için uygun sade tesbih ve Kuran-ı Kerim seçenekleri mevcuttur. WhatsApp: +90 531 689 38 49
+OBRNHOMEN'de taziye için uygun sade tesbih ve Kuran-ı Kerim seçenekleri mevcuttur. WhatsApp: +90 531 955 68 30
     `,
     related: [
       { label: "Tesbih Koleksiyonu", href: "/koleksiyon/Tesbih" },
@@ -642,7 +642,7 @@ Bayramlar, sevdiklerimizle hasret giderme ve sevgi gösterme zamanlarıdır. Ram
 
 ## Bayram Hediyesinde Ambalaj Önemi
 
-Hediyenin sunumu en az içeriği kadar önemlidir. Özel bayramlık ambalaj ve kurdele seçimi, hediyenizi çok daha anlamlı kılar. OBRNHOMEN'de tüm siparişlerde özel hediye ambalajı seçeneği mevcuttur. Detaylar için WhatsApp: +90 531 689 38 49
+Hediyenin sunumu en az içeriği kadar önemlidir. Özel bayramlık ambalaj ve kurdele seçimi, hediyenizi çok daha anlamlı kılar. OBRNHOMEN'de tüm siparişlerde özel hediye ambalajı seçeneği mevcuttur. Detaylar için WhatsApp: +90 531 955 68 30
     `,
     related: [
       { label: "Hediyelik Setler", href: "/koleksiyon/Hediyelik Set" },

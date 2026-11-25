@@ -103,7 +103,7 @@ const waHtml = `<!doctype html><html lang="tr"><head><meta charset="utf-8">${fon
     <div><div class="l">İNDİRİM KODUNUZ</div><div class="c">${CODE}</div></div>
     <div class="r">Siparişte kodu yazın<br>ya da linke tıklayın:<br><b>${link}</b></div>
   </div>
-  <div class="foot"><span>WhatsApp: 0531 689 38 49</span><span>2.000 ₺ üzeri ücretsiz kargo</span></div>
+  <div class="foot"><span>WhatsApp: 0531 955 68 30</span><span>2.000 ₺ üzeri ücretsiz kargo</span></div>
 </body></html>`;
 
 

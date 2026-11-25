@@ -30,7 +30,7 @@ export default function OdemeHata() {
             Tekrar Dene
           </Link>
           <a
-            href="https://wa.me/905316893849"
+            href="https://wa.me/905319556830"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 text-xs tracking-[0.04em] uppercase border border-stone-300 text-stone-500 hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors"

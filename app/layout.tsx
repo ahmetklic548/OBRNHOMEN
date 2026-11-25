@@ -140,7 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div>
                   <p className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-stone-900">İletişim</p>
                   <ul className="space-y-2.5 text-[13px]">
-                    <li>WhatsApp: <a href={WHATSAPP_URL} className="hover:text-[#b8902e]">0531 689 38 49</a></li>
+                    <li>WhatsApp: <a href={WHATSAPP_URL} className="hover:text-[#b8902e]">0531 955 68 30</a></li>
                     <li>E-posta: <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-[#b8902e]">{CONTACT_EMAIL}</a></li>
                     <li>
                       <a href={STORE_ADDRESS.mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#b8902e]">

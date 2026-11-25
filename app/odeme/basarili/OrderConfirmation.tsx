@@ -54,7 +54,7 @@ export default function OrderConfirmation() {
               ✓ Siparişi WhatsApp&apos;tan Onayla
             </a>
           ) : (
-            <p className="mt-3 text-[14px] text-stone-600">Lütfen sipariş numaranızla bize WhatsApp&apos;tan yazın: 0531 689 38 49</p>
+            <p className="mt-3 text-[14px] text-stone-600">Lütfen sipariş numaranızla bize WhatsApp&apos;tan yazın: 0531 955 68 30</p>
           )}
           <p className="mt-3 text-[13px] text-stone-500">Ödemeyi ürün elinize ulaştığında kargo görevlisine nakit veya kartla yapacaksınız.</p>
         </div>
