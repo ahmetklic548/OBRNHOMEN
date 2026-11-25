@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: "Ürünleri seçin, adetleri yazın, WhatsApp'tan toptan fiyat alın.",
     url: "https://www.obrnhomen.com/toptan",
   },
-  alternates: { canonical: "https://www.obrnhomen.com/toptan" },
+  alternates: { canonical: "https://www.obrnhomen.com/toptan", languages: { "tr-TR": "https://www.obrnhomen.com/toptan", en: "https://www.obrnhomen.com/en/wholesale", fr: "https://www.obrnhomen.com/fr", "x-default": "https://www.obrnhomen.com/en/wholesale" } },
 };
 
 export default function ToptanPage() {

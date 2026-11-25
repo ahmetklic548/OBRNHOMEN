@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "coffret ramadan en gros", "coffret cadeau aid grossiste", "cadeaux hajj omra en gros", "fournisseur produits islamiques turquie",
     "grossiste islamique istanbul", "tapis de prière marque blanche",
   ],
-  alternates: { canonical: URL, languages: { fr: URL, en: "https://www.obrnhomen.com/en/wholesale", "tr-TR": "https://www.obrnhomen.com/toptan" } },
+  alternates: { canonical: URL, languages: { fr: URL, en: "https://www.obrnhomen.com/en/wholesale", "tr-TR": "https://www.obrnhomen.com/toptan", "x-default": "https://www.obrnhomen.com/en/wholesale" } },
   openGraph: { title: "Grossiste articles islamiques à Istanbul – OBRNHOMEN", description: "Tapis de prière, tasbihs, Corans et coffrets Ramadan, Hajj & Omra pour les boutiques.", url: URL, locale: "fr_FR", type: "website" },
 };
 
@@ -113,6 +113,7 @@ export default function FrenchPage() {
             <p className="mt-2 text-[15px] leading-relaxed text-stone-600">{a}</p>
           </details>
         ))}
+        <p className="mt-8 text-[15px] text-stone-600">À lire : <Link href="/fr/blog/grossiste-tapis-de-priere-turquie" className="underline">grossiste tapis de prière en Turquie</Link> · <Link href="/fr/blog" className="underline">tous les guides grossiste</Link>.</p>
       </section>
     </div>
   );

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "ramadan gift box wholesale", "eid gift sets wholesale", "hajj umrah gifts wholesale", "islamic products supplier turkey",
     "muslim gift wholesale europe", "private label prayer mat",
   ],
-  alternates: { canonical: URL, languages: { en: URL, fr: "https://www.obrnhomen.com/fr", "tr-TR": "https://www.obrnhomen.com/toptan" } },
+  alternates: { canonical: URL, languages: { en: URL, fr: "https://www.obrnhomen.com/fr", "tr-TR": "https://www.obrnhomen.com/toptan", "x-default": URL } },
   openGraph: { title: "Islamic Gifts Wholesale from Istanbul – OBRNHOMEN", description: "Prayer mats, tasbih, Qurans and Ramadan, Hajj & Umrah gift sets for shops worldwide.", url: URL, locale: "en_US", type: "website" },
 };
 
@@ -95,6 +95,7 @@ export default function WholesalePage() {
           </details>
         ))}
         <p className="mt-8 text-[15px] text-stone-600">Shopping for yourself? See our <Link href="/en" className="underline">retail shop in English</Link>.</p>
+        <p className="mt-3 text-[15px] text-stone-600">Reading: <Link href="/en/blog/how-to-buy-prayer-mats-wholesale-from-turkey" className="underline">how to buy prayer mats wholesale from Turkey</Link> · <Link href="/en/blog" className="underline">all wholesale guides</Link>.</p>
       </section>
     </div>
   );

@@ -1,6 +1,7 @@
 import { getAllProducts, getProductsByCategory } from "@/lib/products";
 import { CATEGORIES } from "@/lib/categories";
 import type { MetadataRoute } from "next";
+import { INTL_POSTS } from "@/lib/intlBlog";
 import { LANDINGS, landingProducts } from "@/lib/seoContent";
 
 const BASE_URL = "https://www.obrnhomen.com";
@@ -54,13 +55,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const intlBlogUrls = [
+    { url: `${BASE_URL}/en/blog`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.6 },
+    { url: `${BASE_URL}/fr/blog`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.6 },
+    ...INTL_POSTS.map((p) => ({ url: `${BASE_URL}/${p.lang}/blog/${p.slug}`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 })),
+  ];
+
   return [
-    { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily" as const, priority: 1 },
+    { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily" as const, priority: 1, alternates: { languages: { "tr-TR": BASE_URL, en: `${BASE_URL}/en` } } },
     { url: `${BASE_URL}/koleksiyon`, lastModified: new Date(), changeFrequency: "daily" as const, priority: 0.9 },
-    { url: `${BASE_URL}/toptan`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${BASE_URL}/en`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: `${BASE_URL}/en/wholesale`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: `${BASE_URL}/fr`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: `${BASE_URL}/toptan`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9, alternates: { languages: { "tr-TR": `${BASE_URL}/toptan`, en: `${BASE_URL}/en/wholesale`, fr: `${BASE_URL}/fr` } } },
+    { url: `${BASE_URL}/en`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8, alternates: { languages: { "tr-TR": BASE_URL, en: `${BASE_URL}/en` } } },
+    { url: `${BASE_URL}/en/wholesale`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8, alternates: { languages: { "tr-TR": `${BASE_URL}/toptan`, en: `${BASE_URL}/en/wholesale`, fr: `${BASE_URL}/fr` } } },
+    { url: `${BASE_URL}/fr`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8, alternates: { languages: { "tr-TR": `${BASE_URL}/toptan`, en: `${BASE_URL}/en/wholesale`, fr: `${BASE_URL}/fr` } } },
     { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.7 },
     { url: `${BASE_URL}/about`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.5 },
     { url: `${BASE_URL}/returns`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.4 },
@@ -73,6 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...categoryUrls,
     ...landingUrls,
     ...blogUrls,
+    ...intlBlogUrls,
     ...productUrls,
   ];
 }
