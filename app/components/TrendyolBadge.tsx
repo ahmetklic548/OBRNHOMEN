@@ -1,9 +1,9 @@
 /**
  * Güven rozeti: Trendyol mağaza puanı. Puan elle güncellenir (Trendyol satıcı paneli → Mağaza Puanı).
- * Son kontrol: 2026-10-21 → 9,02
+ * Son kontrol: 2026-11-26 → 9,2
  */
-export const TRENDYOL_STORE_URL = "https://www.trendyol.com/magaza/obrnhomen";
-const SCORE = "9,0";
+export const TRENDYOL_STORE_URL = "https://www.trendyol.com/sr?mid=639975";
+const SCORE = "9,2";
 
 export default function TrendyolBadge({ compact = false }: { compact?: boolean }) {
   return (

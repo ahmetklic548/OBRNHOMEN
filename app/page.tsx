@@ -66,7 +66,7 @@ const jsonLd = [
       opens: "09:00",
       closes: "21:00",
     },
-    sameAs: ["https://www.trendyol.com/magaza/obrnhomen"],
+    sameAs: ["https://www.trendyol.com/sr?mid=639975"],
   },
   {
     "@context": "https://schema.org",
@@ -83,7 +83,7 @@ const jsonLd = [
       availableLanguage: "Turkish",
       contactOption: "TollFree",
     },
-    sameAs: ["https://www.trendyol.com/magaza/obrnhomen"],
+    sameAs: ["https://www.trendyol.com/sr?mid=639975"],
   },
 ];
 

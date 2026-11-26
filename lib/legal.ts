@@ -12,7 +12,7 @@ export const SELLER = {
   vergiNo: "", // VKN veya TCKN
   mersisNo: "", // şahıs şirketinde yoksa boş bırak
   marka: "OBRNHOMEN",
-  adres: "Mercan Mah. Mahmutpaşa Yokuşu Cad. Büyük Çorapçı Han No:155 İç Kapı No:Z01, 34116 Fatih/İstanbul",
+  adres: "Mahmutpaşa Yokuşu, Büyük Çorapçı Han D:219/10-1, Beyazıt, 34116 Fatih/İstanbul",
   telefon: PHONE_DISPLAY,
   eposta: CONTACT_EMAIL,
   site: "www.obrnhomen.com",
