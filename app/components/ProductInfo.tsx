@@ -10,7 +10,8 @@ import type { Product } from "@/lib/products";
 import { salePrice, unitPriceFor, tierPct } from "@/lib/pricing";
 import WholesaleBox from "./WholesaleBox";
 import TrendyolBadge from "./TrendyolBadge";
-import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/storeNav";
+import DeliveryCheck, { TrustBlock } from "./DeliveryCheck";
+import { PHONE_DISPLAY, PHONE_HREF, WHATSAPP_URL } from "@/lib/storeNav";
 import AdminProductTools, { useIsAdmin } from "./AdminProductTools";
 import { useHiddenSlugs } from "@/lib/hidden";
 import { isPack, qtyText } from "@/lib/pack";
@@ -41,7 +42,7 @@ const BadgeCheckIcon = () => (
 const TRUST_ITEMS = [
   { Icon: TruckIcon,      label: "2000 ₺ üzeri ücretsiz kargo" },
   { Icon: ShieldIcon,     label: "256-bit SSL güvenli ödeme"   },
-  { Icon: ReturnIcon,     label: "14 gün ücretsiz iade"          },
+  { Icon: ReturnIcon,     label: "14 gün iade hakkı"          },
   { Icon: BadgeCheckIcon, label: "Orijinal ve garantili ürün"  },
 ];
 
@@ -259,6 +260,20 @@ export default function ProductInfo({ product }: { product: Product }) {
         </div>
       )}
 
+      {/* Mevlit/etkinlik tarihine yetişir mi */}
+      <div className="mb-4"><DeliveryCheck productName={product.name} /></div>
+
+      {/* WhatsApp ile sipariş */}
+      <a
+        href={`${WHATSAPP_URL}?text=${encodeURIComponent(`Merhaba, ${product.sku ? product.sku + " kodlu " : ""}"${product.name}" ürününden ${qty} ${pack ? "paket" : "adet"} sipariş vermek istiyorum.
+${typeof window !== "undefined" ? window.location.href : "https://www.obrnhomen.com/products/" + product.slug}`)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mb-3 flex items-center justify-center gap-2 rounded-md bg-[#25D366] py-3 text-[15px] font-medium text-white hover:opacity-90"
+      >
+        <span aria-hidden="true">💬</span> WhatsApp ile sipariş ver
+      </a>
+
       {/* Telefonla sipariş */}
       <a
         href={PHONE_HREF}
@@ -281,6 +296,7 @@ export default function ProductInfo({ product }: { product: Product }) {
       </button>
 
       <div className="mb-4"><TrendyolBadge compact /></div>
+      <div className="mb-6"><TrustBlock /></div>
 
       {/* Trust badges */}
       <div className="grid grid-cols-2 gap-2 mb-8">
@@ -315,14 +331,15 @@ export default function ProductInfo({ product }: { product: Product }) {
           <div className="space-y-2">
             <p>2000 ₺ ve üzeri siparişlerde kargo ücretsizdir.</p>
             <p>2000 ₺ altı siparişlerde 200 ₺ kargo ücreti uygulanır.</p>
-            <p>Siparişler 1–3 iş günü içinde kargoya verilir.</p>
-            <p>Teslimat süresi kargo firmasına göre 1–3 iş günüdür.</p>
+            <p>Stoktaki ürünler çoğunlukla 1–2 gün içinde kargoya verilir (en geç 3 iş günü).</p>
+            <p>Çoğu sipariş 2–3 gün içinde elinizdedir; yoğun dönemlerde süre uzayabilir.</p>
+            <p>Belirli bir tarihe (mevlit, davet, yolculuk) yetişmesi gerekiyorsa yukarıdan tarihi seçin veya bize yazın. Ertesi güne ihtiyacınız varsa sipariş vermeden önce WhatsApp&apos;tan yazın.</p>
           </div>
         </Accordion>
 
         <Accordion title="İade & Değişim">
           <div className="space-y-2">
-            <p>Teslim tarihinden itibaren 14 gün içinde ücretsiz iade veya değişim yapabilirsiniz (iade koduyla, kargo ücreti bizden).</p>
+            <p>Teslim tarihinden itibaren 14 gün içinde iade veya değişim yapabilirsiniz. İade kargo ücreti alıcıya aittir; kusurlu, hasarlı veya yanlış gönderilen üründe kargo ücretini biz karşılarız.</p>
             <p>Ürünün orijinal ambalajında ve kullanılmamış olması gerekmektedir.</p>
             <p>İade talepleriniz için canlı destek hattımızdan bize ulaşabilirsiniz.</p>
           </div>

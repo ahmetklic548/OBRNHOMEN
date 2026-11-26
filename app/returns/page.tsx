@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "İade & Değişim Şartları | OBRNHOMEN",
-  description: "OBRNHOMEN'de teslimden itibaren 14 gün içinde ücretsiz iade ve değişim. HepsiJet iade koduyla kargo ücreti ödemeden iade edin.",
+  description: "OBRNHOMEN'de teslimden itibaren 14 gün içinde iade ve değişim. İade kargo ücreti alıcıya aittir; kusurlu ürünlerde bizden.",
   openGraph: {
     title: "İade & Değişim Şartları | OBRNHOMEN",
-    description: "Teslimden itibaren 14 gün içinde ücretsiz iade ve değişim.",
+    description: "Teslimden itibaren 14 gün içinde iade ve değişim.",
     url: "https://www.obrnhomen.com/returns",
     type: "website",
   },
@@ -30,8 +30,8 @@ const sections = [
           "Ürün orijinal ambalajında ve kullanılmamış olmalıdır.",
           "Hijyen nedeniyle açılmış ürünlerde iade kabul edilmez.",
           "Hediye setlerinde tüm parçaların eksiksiz iade edilmesi gerekmektedir.",
-          "İade kargo ücreti bize aittir: size verdiğimiz iade koduyla anlaşmalı kargo firmamız HepsiJet'e ücretsiz teslim edersiniz.",
-          "Kusurlu veya hasarlı gelen ürünlerde de iade/değişim ücretsizdir.",
+          "İade kargo ücretini alıcı öder (cayma hakkı kullanımında). Ürünü, size WhatsApp'tan ileteceğimiz adrese istediğiniz kargo firmasıyla gönderebilirsiniz.",
+          "Kusurlu, hasarlı veya yanlış gönderilen üründe iade/değişim kargosu bize aittir; bu durumda fotoğrafla bize yazmanız yeterli.",
         ].map((item, i) => (
           <li key={i} className="flex gap-4 text-sm">
             <span className="flex-shrink-0 mt-0.5" style={{ color: "#c9a84c" }}>—</span>
@@ -46,9 +46,8 @@ const sections = [
     content: (
       <p>
         İade talebinizi WhatsApp üzerinden sipariş numaranızla bildirin. Size{" "}
-        <strong style={{ color: "#0a0a0a" }}>iade kodu</strong> gönderiyoruz; ürünü bu kodla anlaşmalı kargo firmamız{" "}
-        <strong style={{ color: "#0a0a0a" }}>HepsiJet</strong>{" "}
-        şubesine veya kuryesine <strong style={{ color: "#0a0a0a" }}>ücret ödemeden</strong> teslim edersiniz.
+        <strong style={{ color: "#0a0a0a" }}>iade adresini</strong> iletiyoruz; ürünü istediğiniz kargo firmasıyla gönderirsiniz.
+        <strong style={{ color: "#0a0a0a" }}> İade kargo ücretini alıcı öder</strong> (kusurlu veya yanlış üründe bu ücret bize aittir).
         İsterseniz iade yerine başka bir ürünle değişim de yapabilirsiniz.
         Ürün tarafımıza ulaşıp kontrol edildikten sonra en geç{" "}
         <strong style={{ color: "#0a0a0a" }}>7 gün</strong> içinde ödeme yönteminize iade edilir.
@@ -84,7 +83,7 @@ export default function ReturnsPage() {
             İade Şartları
           </h1>
           <p className="mt-4 text-[15px]" style={{ color: "#555" }}>
-            14 gün içinde <strong style={{ color: "#0a0a0a" }}>ücretsiz iade</strong> ve değişim.
+            14 gün içinde iade ve değişim. <strong style={{ color: "#0a0a0a" }}>İade kargo ücreti alıcıya aittir</strong> (kusurlu üründe bizden).
           </p>
         </div>
       </div>

@@ -62,8 +62,8 @@ const cards = [
       </svg>
     ),
     label: "Kolay İade",
-    title: "14 gün ücretsiz\niade garantisi",
-    desc: "Beğenmediyseniz iade kodumuzla kargo ücreti ödemeden iade edin.",
+    title: "14 gün\niade hakkı",
+    desc: "Beğenmediyseniz 14 gün içinde iade edebilirsiniz. İade kargo ücreti alıcıya aittir.",
   },
 ];
 

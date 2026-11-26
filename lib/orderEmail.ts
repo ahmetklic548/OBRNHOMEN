@@ -130,7 +130,7 @@ function musteriMaili(o: OrderEmailData) {
       ${o.giftWrap ? `<p>🎁 Hediye paketi yapılacak.</p>` : ""}
       <p style="margin-top:20px">Siparişiniz hazırlanıp kargoya verildiğinde takip numaranızı ileteceğiz.
         Sorunuz olursa bu e-postayı yanıtlayabilir ya da WhatsApp'tan (${esc(PHONE_DISPLAY)}) yazabilirsiniz.</p>
-      <p style="color:#888;font-size:13px">14 gün içinde ücretsiz iade: <a href="${SITE}/returns" style="color:#9a7a2c">iade koşulları</a></p>
+      <p style="color:#888;font-size:13px">14 gün içinde iade hakkı (iade kargo ücreti alıcıya aittir): <a href="${SITE}/returns" style="color:#9a7a2c">iade koşulları</a></p>
     `),
   };
 }

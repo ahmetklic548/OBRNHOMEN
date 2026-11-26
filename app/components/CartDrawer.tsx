@@ -10,6 +10,7 @@ import { useWholesaleList } from "./WholesaleListContext";
 import Image from "next/image";
 import { unitPriceFor, tierPct, nextTier, QUOTE_FROM_QTY } from "@/lib/pricing";
 import { isPack, unitWord } from "@/lib/pack";
+import DeliveryCheck, { TrustBlock } from "./DeliveryCheck";
 
 const noopSubscribe = () => () => {};
 
@@ -218,6 +219,8 @@ export default function CartDrawer({
                 <p className="-mt-1 mb-3 text-center text-[13px] text-stone-500">
                   Bir sonraki adımda adres ve kart bilgilerinizi gireceksiniz.
                 </p>
+                <div className="mb-4"><DeliveryCheck compact /></div>
+                <div className="mb-4"><TrustBlock /></div>
 
                 <button
                   onClick={clear}

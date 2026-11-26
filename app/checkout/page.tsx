@@ -12,6 +12,7 @@ import { FREE_SHIPPING_OVER, COD_FEE, orderTotals, unitPriceFor, tierPct, indiri
 import { readRef, clearRef } from "@/lib/refCode";
 import { saveLastOrder, type LastOrder } from "@/lib/lastOrder";
 import { qtyText } from "@/lib/pack";
+import DeliveryCheck, { TrustBlock } from "@/app/components/DeliveryCheck";
 
 type Step = "form" | "paying" | "error" | "done";
 
@@ -42,6 +43,7 @@ export default function CheckoutPage() {
   const [giftNote, setGiftNote] = useState("");
   const [sending, setSending] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const [triedNoConsent, setTriedNoConsent] = useState(false);
 
   const { discountRate, discountAmount, shipping, codFee, grandTotal } = orderTotals(total, couponApplied ? couponRate : 0, payMethod === "kapida", indirimsizTutar(items));
   // Ara toplam zaten kademeli; bilgi olarak kademesiz farkı göster
@@ -133,7 +135,7 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!agreed) return; // sözleşme onayı zorunlu (Mesafeli Sözleşmeler Yön.)
+    if (!agreed) { setTriedNoConsent(true); return; } // sözleşme onayı zorunlu (Mesafeli Sözleşmeler Yön.)
     setError("");
     setSending(true);
     const payload = {
@@ -350,29 +352,42 @@ export default function CheckoutPage() {
                 </div>
               </fieldset>
 
-              {/* Ön bilgilendirme + mesafeli satış onayı — yasal zorunluluk */}
-              <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-stone-200 bg-white p-4 text-[14px] leading-relaxed text-stone-700">
+              {/* Önemli koşullar özeti + ön bilgilendirme / mesafeli satış onayı — yasal zorunluluk */}
+              <div className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-[14px] leading-relaxed text-stone-800">
+                <p className="mb-2 font-semibold">Sipariş vermeden önce lütfen okuyun</p>
+                <ul className="space-y-1.5">
+                  <li>• Ürün teslim tarihinden itibaren <strong>14 gün</strong> içinde iade edebilirsiniz.</li>
+                  <li>• <strong>İade kargo ücretini alıcı öder.</strong> Kusurlu, hasarlı veya yanlış gönderilen üründe kargo ücreti bizden.</li>
+                  <li>• Açılmış hijyen ürünleri (misvak, esans vb.) ve isme özel hazırlanan ürünler iade edilemez.</li>
+                  <li>• Siparişler çoğunlukla 1–2 günde kargoya verilir (en geç 3 iş günü); çoğu sipariş 2–3 günde ulaşır.</li>
+                  <li>• Belirli bir tarihe yetişmesi gerekiyorsa <strong>sipariş vermeden önce</strong> WhatsApp&apos;tan yazın.</li>
+                </ul>
+              </div>
+              <label className={`flex cursor-pointer items-start gap-3 rounded-lg border-2 bg-white p-4 text-[15px] leading-relaxed text-stone-800 ${agreed ? "border-emerald-500" : triedNoConsent ? "border-red-500" : "border-stone-300"}`}>
                 <input
                   type="checkbox"
-                  required
                   checked={agreed}
-                  onChange={e => setAgreed(e.target.checked)}
-                  className="mt-0.5 h-5 w-5 flex-shrink-0 accent-black"
+                  onChange={e => { setAgreed(e.target.checked); setTriedNoConsent(false); }}
+                  className="mt-0.5 h-6 w-6 flex-shrink-0 accent-black"
                 />
                 <span>
+                  <strong>Yukarıdaki koşulları okudum, onaylıyorum.</strong>{" "}
                   <Link href="/on-bilgilendirme" target="_blank" className="font-medium underline underline-offset-2">Ön Bilgilendirme Formu</Link>&apos;nu ve{" "}
-                  <Link href="/mesafeli-satis-sozlesmesi" target="_blank" className="font-medium underline underline-offset-2">Mesafeli Satış Sözleşmesi</Link>&apos;ni okudum, onaylıyorum.
+                  <Link href="/mesafeli-satis-sozlesmesi" target="_blank" className="font-medium underline underline-offset-2">Mesafeli Satış Sözleşmesi</Link>&apos;ni kabul ediyorum.
                   <span className="mt-1 block text-[13px] text-stone-500">
                     Kişisel verileriniz siparişinizi teslim etmek için{" "}
                     <Link href="/kvkk" target="_blank" className="underline underline-offset-2">KVKK Aydınlatma Metni</Link>&apos;ne uygun işlenir.
                   </span>
                 </span>
               </label>
+              {triedNoConsent && !agreed && (
+                <p className="-mt-2 text-[14px] font-medium text-red-600">Devam etmek için yukarıdaki onay kutusunu işaretleyin.</p>
+              )}
 
               <button
                 type="submit"
-                disabled={sending || !agreed}
-                className="w-full rounded-md py-4 text-[16px] font-semibold text-white transition-opacity hover:opacity-85 disabled:opacity-60"
+                disabled={sending}
+                className={`w-full rounded-md py-4 text-[16px] font-semibold text-white transition-opacity hover:opacity-85 disabled:opacity-60 ${agreed ? "" : "opacity-60"}`}
                 style={{ background: "#0a0a0a" }}
               >
                 {sending
@@ -507,6 +522,9 @@ export default function CheckoutPage() {
                   {(FREE_SHIPPING_OVER - total).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₺ daha ekleyin, kargo ücretsiz olsun!
                 </div>
               )}
+
+              <div className="mt-5"><DeliveryCheck compact /></div>
+              <div className="mt-4"><TrustBlock /></div>
 
               {/* Payment info */}
               <div className="mt-5 p-4 border" style={{ borderColor: "#efefef", background: "#ffffff" }}>

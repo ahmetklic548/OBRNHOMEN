@@ -47,7 +47,7 @@ export default function Page() {
           title: "Cayma hakkı",
           body: (
             <>
-              <p>Teslimden itibaren {ORDER_TERMS.cayma} gün içinde gerekçe göstermeden cayabilirsiniz. İade kargosu ücretsizdir; ödemeniz ürün bize ulaştıktan sonra en geç {ORDER_TERMS.iadeOdeme} gün içinde iade edilir.</p>
+              <p>Teslimden itibaren {ORDER_TERMS.cayma} gün içinde gerekçe göstermeden cayabilirsiniz. İade kargo ücreti alıcıya aittir (kusurlu, hasarlı veya yanlış gönderilen üründe satıcıya aittir); ödemeniz ürün bize ulaştıktan sonra en geç {ORDER_TERMS.iadeOdeme} gün içinde iade edilir.</p>
               <p>Kişiye özel hazırlanan (isimli/yazılı) ürünlerde ve ambalajı açılmış hijyen ürünlerinde (misvak, esans, zemzem vb.) cayma hakkı kullanılamaz.</p>
             </>
           ),
