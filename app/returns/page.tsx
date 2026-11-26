@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { STORE_ADDRESS } from "@/lib/storeNav";
 
 export const metadata: Metadata = {
   title: "İade & Değişim Şartları | OBRNHOMEN",
@@ -30,7 +31,7 @@ const sections = [
           "Ürün orijinal ambalajında ve kullanılmamış olmalıdır.",
           "Hijyen nedeniyle açılmış ürünlerde iade kabul edilmez.",
           "Hediye setlerinde tüm parçaların eksiksiz iade edilmesi gerekmektedir.",
-          "İade kargo ücretini alıcı öder (cayma hakkı kullanımında). Ürünü, size WhatsApp'tan ileteceğimiz adrese istediğiniz kargo firmasıyla gönderebilirsiniz.",
+          "İade kargo ücretini alıcı öder (cayma hakkı kullanımında). Ürünü, iade talebiniz onaylandıktan sonra bu sayfadaki Eminönü adresimize istediğiniz kargo firmasıyla gönderebilirsiniz.",
           "Kusurlu, hasarlı veya yanlış gönderilen üründe iade/değişim kargosu bize aittir; bu durumda fotoğrafla bize yazmanız yeterli.",
         ].map((item, i) => (
           <li key={i} className="flex gap-4 text-sm">
@@ -46,7 +47,8 @@ const sections = [
     content: (
       <p>
         İade talebinizi WhatsApp üzerinden sipariş numaranızla bildirin. Size{" "}
-        <strong style={{ color: "#0a0a0a" }}>iade adresini</strong> iletiyoruz; ürünü istediğiniz kargo firmasıyla gönderirsiniz.
+        <strong style={{ color: "#0a0a0a" }}>onayı</strong> iletiyoruz; ürünü istediğiniz kargo firmasıyla aşağıdaki adrese gönderirsiniz:{" "}
+        <strong style={{ color: "#0a0a0a" }}>OBRNHOMEN, {STORE_ADDRESS.line1}, {STORE_ADDRESS.line2}</strong> (paketin üstüne sipariş numaranızı yazın).
         <strong style={{ color: "#0a0a0a" }}> İade kargo ücretini alıcı öder</strong> (kusurlu veya yanlış üründe bu ücret bize aittir).
         İsterseniz iade yerine başka bir ürünle değişim de yapabilirsiniz.
         Ürün tarafımıza ulaşıp kontrol edildikten sonra en geç{" "}

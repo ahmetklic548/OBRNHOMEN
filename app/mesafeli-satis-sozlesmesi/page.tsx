@@ -71,7 +71,7 @@ export default function Page() {
           body: (
             <>
               <p>Alıcı, ürünü teslim aldığı tarihten itibaren <strong>{ORDER_TERMS.cayma} gün</strong> içinde hiçbir gerekçe göstermeden ve cezai şart ödemeden sözleşmeden cayabilir. Cayma bildirimi WhatsApp ({SELLER.telefon}) veya e-posta ({SELLER.eposta}) ile sipariş numarası belirtilerek yapılır.</p>
-              <p>Bildirimden sonra size iade adresi iletilir; ürünü 10 gün içinde bu adrese kargoyla gönderirsiniz. <strong>Cayma halinde iade kargo ücreti alıcıya aittir</strong>; kusurlu, hasarlı veya yanlış gönderilen üründe kargo ücreti satıcıya aittir. Ürün bize ulaştıktan sonra ödemeniz en geç {ORDER_TERMS.iadeOdeme} gün içinde (genellikle 7 gün içinde), ödeme yaptığınız yönteme iade edilir. Ayrıntılar: <Link href="/returns" className="underline">İade Şartları</Link>.</p>
+              <p>Bildirimden sonra iade onayı iletilir; ürünü 10 gün içinde İade Şartları sayfasındaki adrese (Eminönü/Fatih) kargoyla gönderirsiniz. <strong>Cayma halinde iade kargo ücreti alıcıya aittir</strong>; kusurlu, hasarlı veya yanlış gönderilen üründe kargo ücreti satıcıya aittir. Ürün bize ulaştıktan sonra ödemeniz en geç {ORDER_TERMS.iadeOdeme} gün içinde (genellikle 7 gün içinde), ödeme yaptığınız yönteme iade edilir. Ayrıntılar: <Link href="/returns" className="underline">İade Şartları</Link>.</p>
             </>
           ),
         },
